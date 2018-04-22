@@ -16,16 +16,16 @@ class World {
 				block.className = 'standartPlace';
 				switch(val) {
 				 	case 1:
-				 		getDirt(block);
-				 		break;
+						getDirt(block);
+						break;
 				 	case 2:
-				 		getBorder(block);
-				 		break;
-				 	case 9:
-				 		getPlayer(block);
-				 		break;
+						getBorder(block);
+						break;
 				 	case 3:
 				 		getChest(block);
+				 		break;
+				 	default:
+						getCreature(block);
 				 		break;
 				}
 				row.appendChild(block);
@@ -38,12 +38,24 @@ class World {
 					block.className += ' border';
 				}
 
-				function getPlayer(block) {
-					block.className += ' player';
-				}
-
 				function getChest(block) {
 					block.className += ' chest';
+				}
+
+				function getCreature(block) {
+					if (val.type === 'player') {
+						getPlayer(block);
+					} else if (val.type === 'enemy') {
+						getEnemy(block);
+					}
+
+					function getPlayer(block) {
+						block.className += ' player';
+					}
+
+					function getEnemy(block) {
+						block.className += ' enemy';
+					}
 				}
 			}
 		});

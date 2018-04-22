@@ -1,21 +1,25 @@
 'use strict';
-function createPlayer() {
+function createCreature() {
 	let num = 0;
-	class Player {
-		constructor (state, coor) {
+	class Creature {
+		constructor (state) {
 			this.state = state;
 			this.id = num;
-			state.players[num] = {};
-			state.players[num].x = coor.x;
-			state.players[num].y = coor.y;
-			state.place[coor.x][coor.y] = 9;
 			num++;
 		}
 
 		move(direction) {
 			let id = this.id;
-			let x = this.state.players[id].x;
-			let y = this.state.players[id].y;
+			let ownObject = this;
+			let x = null;
+			let y = null;
+			if (ownObject.type === 'player') {
+				x = this.state.players[id].x;
+				y = this.state.players[id].y;
+			} else if (ownObject.type === 'enemy') {
+				x = this.state.enemy[id].x;
+				y = this.state.enemy[id].y;
+			}
 			switch(direction) {
 				case 'right':
 					moveRight(this.state);
@@ -84,18 +88,22 @@ function createPlayer() {
 				checkWin();
 				changeClassOld();
 				changeClassForNew();
-				changeCoordinate();
+				if (ownObject.type === 'player') {
+					changeCoordinate(state.players[id]);
+				} else if (ownObject.type === 'enemy') {
+					changeCoordinate(state.enemy[id]);
+				}
 				if (win === true) {
 					setTimeout(()=> {
 						alert('you win');
 					}, 500);
 				}
 
-				function changeCoordinate() {
+				function changeCoordinate(player) {
 					state.place[state.players[id].x][state.players[id].y] = 1;
 					state.players[id].x = coor.newX;
 					state.players[id].y = coor.newY;
-					state.place[state.players[id].x][state.players[id].y] = 9;
+					state.place[state.players[id].x][state.players[id].y] = player;
 				}
 
 				function changeClassForNew() {
@@ -125,7 +133,34 @@ function createPlayer() {
 		}
 	}
 
-	return Player;
-};
+	class Enemy extends Creature {
+		constructor (state, coor) {
+			super(state);
+			this.type = 'enemy';
+			state.enemy[num - 1] = {};
+			state.enemy[num - 1].x = coor.x;
+			state.enemy[num - 1].y = coor.y;
+			state.place[coor.x][coor.y] = this;
+		}
+	}
 
-let Player = createPlayer();
+	class Player extends Creature {
+		constructor (state, coor) {
+			super(state);
+			this.type = 'player';
+			state.players[num - 1] = {};
+			state.players[num - 1].x = coor.x;
+			state.players[num - 1].y = coor.y;
+			state.place[coor.x][coor.y] = this;
+		}
+	}
+
+	let Obj = {};
+	Obj.player = Player;
+	Obj.enemy = Enemy;
+
+	return Obj;
+};
+let ALLCLASSES = createCreature();
+let Player = ALLCLASSES.player;
+let Enemy = ALLCLASSES.enemy;

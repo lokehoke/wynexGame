@@ -4,6 +4,7 @@ class generateState {
 		let state = {};
 		generatePlace(state);
 		state.players = [];
+		state.enemy = [];
 
 		this.state = state;
 
@@ -21,29 +22,28 @@ class generateState {
 					}
 				}
 			}
-			console.log(state)
-			addRoom(state);
+			// addRoom(state);
 			return state;
-			function addRoom(state) {
-				for (let i = 0; i < N; i+= 8) {
-					for (let j = 0; j < M; j++) {
-						let randDigit = Math.floor(Math.random() * 11);
-						if (randDigit > 9) {
-							for (let k = j; k < j+randDigit && k < M; k++) {
-								if (k === j) {
-									for (let n = i; n < i+randDigit+1 && n < N; n++) {
-										state.place[n][k] = 2;
-									}
-								} else {
-									state.place[i][k] = 2;
-									state.place[(i+randDigit >= N ? i : i+randDigit)][k] = 2;
-								}
-							}
-							j+= 8;
-						}
-					}
-				}
-			}
+			// function addRoom(state) {
+			// 	for (let i = 0; i < N; i+= 8) {
+			// 		for (let j = 0; j < M; j++) {
+			// 			let randDigit = Math.floor(Math.random() * 11);
+			// 			if (randDigit > 9) {
+			// 				for (let k = j; k < j+randDigit && k < M; k++) {
+			// 					if (k === j) {
+			// 						for (let n = i; n < i+randDigit+1 && n < N; n++) {
+			// 							state.place[n][k] = 2;
+			// 						}
+			// 					} else {
+			// 						state.place[i][k] = 2;
+			// 						state.place[(i+randDigit >= N ? i : i+randDigit)][k] = 2;
+			// 					}
+			// 				}
+			// 				j+= 8;
+			// 			}
+			// 		}
+			// 	}
+			// }
 		}
 	}
 }

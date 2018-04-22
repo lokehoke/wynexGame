@@ -26,5 +26,7 @@ body,
       background: #000; }
     .world .row .player {
       background: #FC4848; }
+    .world .row .enemy {
+      background: #903EFF; }
     .world .row .chest {
       background: #74FD59; }
