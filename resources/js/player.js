@@ -1,3 +1,4 @@
+'use strict';
 function createPlayer() {
 	let num = 0;
 	class Player {
