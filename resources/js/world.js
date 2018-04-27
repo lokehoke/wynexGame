@@ -1,13 +1,14 @@
 'use strict';
 class World {
-	constructor(config, ...players) {
+	constructor(config) {
 		this.place = config;
-		let world = getWorld();
-		config.place.forEach( val => {
+		let world = getEmptyWorld();
+		config._place.forEach( val => {
 			let row = document.createElement('div');
 			row.className = 'row';
-			val.forEach( function (val) {
-				getBlock(val);
+			val.forEach( val => {
+				let block = getBlock(val);
+				row.appendChild(block);
 			});
 			world.appendChild(row);
 
@@ -15,23 +16,26 @@ class World {
 				let block = document.createElement('div');
 				block.className = 'standartPlace';
 				switch(val) {
-				 	case 1:
+					case 1:
 						getDirt(block);
 						break;
-				 	case 2:
+					case 2:
 						getBorder(block);
 						break;
-				 	case 3:
+					case 3:
 				 		getChest(block);
 				 		break;
-				 	default:
+					default:
+				 		getDirt(block);
 						getCreature(block);
 				 		break;
 				}
-				row.appendChild(block);
+				return block;
 
 				function getDirt(block) {
 					block.className += ' dirt';
+					let iner = document.createElement('div');
+					block.appendChild(iner);
 				}
 
 				function getBorder(block) {
@@ -50,11 +54,13 @@ class World {
 					}
 
 					function getPlayer(block) {
-						block.className += ' player';
+						// let div = document.createElement('div');
+						// div.className = 'magePlayer';
+						block.children[0].className = 'magePlayer';
+						// block.appendChild(div);
 					}
 
 					function getEnemy(block) {
-						block.className += ' enemy';
 					}
 				}
 			}
@@ -62,7 +68,7 @@ class World {
 		document.querySelector('.wrapper').appendChild(world);
 		return world;
 
-		function getWorld() {
+		function getEmptyWorld() {
 			let world = document.createElement('div');
 			world.className = 'world';
 			return world;

@@ -2,24 +2,21 @@
 function createCreature() {
 	let num = 0;
 	class Creature {
-		constructor (state) {
+		constructor (state, coor) {
 			this.state = state;
 			this.id = num;
-			num++;
+			this.img = null;
+			this.x = coor.x;
+			this.y = coor.y;
+			state.setCoorPlayer(coor, num++);
 		}
+
 
 		move(direction) {
 			let id = this.id;
 			let ownObject = this;
-			let x = null;
-			let y = null;
-			if (ownObject.type === 'player') {
-				x = this.state.players[id].x;
-				y = this.state.players[id].y;
-			} else if (ownObject.type === 'enemy') {
-				x = this.state.enemy[id].x;
-				y = this.state.enemy[id].y;
-			}
+			let x = this.state._creature[id].x;
+			let y = this.state._creature[id].y;
 			switch(direction) {
 				case 'right':
 					moveRight(this.state);
@@ -36,7 +33,7 @@ function createCreature() {
 			}
 
 			function moveRight (state) {
-				let newPosition = state.place[x][y+1];
+				let newPosition = state._place[x][y+1];
 				if (canImove(newPosition)) {
 					moving(state, {
 							x: x,
@@ -48,7 +45,7 @@ function createCreature() {
 			}
 
 			function moveLeft (state) {
-				let newPosition = state.place[x][y-1];
+				let newPosition = state._place[x][y-1];
 				if (canImove(newPosition)) {
 					moving(state, {
 							x: x,
@@ -60,7 +57,7 @@ function createCreature() {
 			}
 
 			function moveUp (state) {
-				let newPosition = state.place[x-1][y];
+				let newPosition = state._place[x-1][y];
 				if (canImove(newPosition)) {
 					moving(state, {
 							x: x,
@@ -72,7 +69,7 @@ function createCreature() {
 			}
 
 			function moveDown (state) {
-				let newPosition = state.place[x+1][y];
+				let newPosition = state._place[x+1][y];
 				if (canImove(newPosition)) {
 					moving(state, {
 							x: x,
@@ -88,11 +85,7 @@ function createCreature() {
 				checkWin();
 				changeClassOld();
 				changeClassForNew();
-				if (ownObject.type === 'player') {
-					changeCoordinate(state.players[id]);
-				} else if (ownObject.type === 'enemy') {
-					changeCoordinate(state.enemy[id]);
-				}
+				changeCoordinate(state._creature[id]);
 				if (win === true) {
 					setTimeout(()=> {
 						alert('you win');
@@ -100,24 +93,23 @@ function createCreature() {
 				}
 
 				function changeCoordinate(player) {
-					state.place[state.players[id].x][state.players[id].y] = 1;
-					state.players[id].x = coor.newX;
-					state.players[id].y = coor.newY;
-					state.place[state.players[id].x][state.players[id].y] = player;
+					state._place[state._creature[id].x][state._creature[id].y] = 1;
+					state._creature[id].x = coor.newX;
+					state._creature[id].y = coor.newY;
+					state._place[state._creature[id].x][state._creature[id].y] = player;
 				}
 
 				function changeClassForNew() {
 					let newBlock = document.querySelectorAll('.world .row')[coor.newX].querySelectorAll('.standartPlace')[coor.newY];
-					newBlock.className = newBlock.className.replace(' dirt', ' player');
-				}
+					newBlock.children[0].className = 'magePlayer';				}
 
 				function changeClassOld() {
 					let last = document.querySelectorAll('.world .row')[coor.x].querySelectorAll('.standartPlace')[coor.y];
-					last.className = last.className.replace(' player' , ' dirt');
+					last.children[0].className = '';
 				}
 
 				function checkWin() {
-					if (state.place[coor.newX][coor.newY] === 3) {
+					if (state._place[coor.newX][coor.newY] === 3) {
 						win = true;
 					}
 				}
@@ -135,23 +127,20 @@ function createCreature() {
 
 	class Enemy extends Creature {
 		constructor (state, coor) {
-			super(state);
+			super(state, coor);
 			this.type = 'enemy';
-			state.enemy[num - 1] = {};
-			state.enemy[num - 1].x = coor.x;
-			state.enemy[num - 1].y = coor.y;
-			state.place[coor.x][coor.y] = this;
 		}
 	}
 
 	class Player extends Creature {
-		constructor (state, coor) {
-			super(state);
+		constructor (state, coor, profession) {
+			super(state, coor);
 			this.type = 'player';
-			state.players[num - 1] = {};
-			state.players[num - 1].x = coor.x;
-			state.players[num - 1].y = coor.y;
-			state.place[coor.x][coor.y] = this;
+			switch(profession) {
+				case 'mage':
+					this.img = 'resources/img/iconCreature/player/mage.svg';
+					break;
+			}
 		}
 	}
 
@@ -161,6 +150,6 @@ function createCreature() {
 
 	return Obj;
 };
-let ALLCLASSES = createCreature();
-let Player = ALLCLASSES.player;
-let Enemy = ALLCLASSES.enemy;
+let ALL_CLASSES = createCreature();
+let Player = ALL_CLASSES.player;
+let Enemy = ALL_CLASSES.enemy;

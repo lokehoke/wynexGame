@@ -2,31 +2,45 @@
   padding: 0;
   margin: 0; }
 
+html, body {
+  width: 100%; }
+
 html,
 body,
 .wrapper,
 .world {
-  display: flex; }
+  display: flex;
+  background: #000; }
 
 .world {
   flex-direction: column;
-  overflow: hidden;
-  position: absolute;
-  width: 100%;
-  height: 100%; }
+  background: #000; }
   .world .row {
     display: flex; }
     .world .row .standartPlace {
       width: 50px;
       height: 50px;
-      border: solid 1px #222; }
+      position: relative; }
+      .world .row .standartPlace div {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: 2; }
+        .world .row .standartPlace div.magePlayer {
+          background-image: url(../img/iconCreature/player/mage.svg);
+          background-size: 150%;
+          background-position: -12px -15px;
+          background-repeat: no-repeat; }
     .world .row .border {
-      background: #575656; }
+      background-image: url(../img/worldTextures/border.svg);
+      background-size: 200%;
+      background-position: -16px -75px;
+      background-repeat: no-repeat;
+      background-color: black; }
     .world .row .dirt {
-      background: #000; }
-    .world .row .player {
-      background: #FC4848; }
-    .world .row .enemy {
-      background: #903EFF; }
+      background-image: url(../img/worldTextures/road.svg);
+      background-size: 150%;
+      background-position: -18px -28px;
+      background-repeat: no-repeat; }
     .world .row .chest {
       background: #74FD59; }
