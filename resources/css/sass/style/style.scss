@@ -18,8 +18,15 @@
 
 				&.magePlayer {
 					background-image: url(../img/iconCreature/player/mage.svg);
-					background-size: 150%;
-					background-position: -12px -15px;
+					background-size: 195%;
+					background-position: 10px 2px;
+					background-repeat: no-repeat;
+				}
+
+				&.slimeEnemy {
+					background-image: url(../img/iconCreature/enemy/slime.svg);
+					background-size: 200%;
+					background-position: -2px 8px;
 					background-repeat: no-repeat;
 				}
 			}
@@ -28,15 +35,14 @@
 		.border {
 			background-image: url(../img/worldTextures/border.svg);
 			background-size: 200%;
-			background-position: -16px -75px;
+			background-position: 8px 5px;
 			background-repeat: no-repeat;
 			background-color: black;
 		}
 
 		.dirt {
 			background-image: url(../img/worldTextures/road.svg);
-			background-size: 150%;
-			background-position: -18px -28px;
+			background-size: 200%;
 			background-repeat: no-repeat;
 		}
 

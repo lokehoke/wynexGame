@@ -6,20 +6,31 @@ player: 9
 chest: 3
 */
 
+let GLOBAL_SETTING = {
+	sizeBlock: {
+		width: 50,
+		height: 50
+	},
+	numBlocks: {
+		width: 51,
+		height: 51
+	}
+};
+
 class ControllerGame {
 	constructor (players = null, enemy = null) {
-		this.state = (new State({
-			width: 12,
-			height: 12
-		}));
+		let numCreature = 0;
+		this.state = (new State(GLOBAL_SETTING.numBlocks));
 		setPlayers(players, this.state);
 		setEnemys(enemy, this.state);
-		this.world = new World (this.state);
+		this.state.setStartPointWatch({x:0, y:0});
+		this.world = new World(this.state);
+		this.world.renderWorld();
 
 		function setPlayers(players, state) {
 			if (players !== null) {
-				players.forEach((val, i) => {
-					state.setPlayer(i, val);
+				players.forEach((val) => {
+					state.setPlayer(numCreature++, val);
 				});
 				return true;
 			} else {
@@ -27,10 +38,11 @@ class ControllerGame {
 			}
 		}
 
-		function setEnemys(players, state) {
-			if (players !== null) {
-				enemy.forEach((val, i) => {
-					state.setEnemy(i, val);
+		function setEnemys(enemys, state) {
+			let lastIdPlayer = players.length;
+			if (enemys !== null) {
+				enemy.forEach((val) => {
+					state.setEnemy(numCreature++, val);
 				});
 				return true;
 			} else {
@@ -48,33 +60,32 @@ class ControllerGame {
 			// if (item.type === 'enemy') {
 			// }
 		});
+		this.world.renderWorld();
 	}
 }
 
-let game = new ControllerGame(
-[{
-	x: 1,
-	y: 1,
-	type: 'mage'
+let game = new ControllerGame([{
+	x: 4,
+	y: 6,
+	type: 'mage',
+	main: true
+}],[{
+	x:2,
+	y:2,
+	type: 'slime'
 }]);
 
 document.onkeypress = function (e) {
+	e.preventDefault();
+	let player = game.getState().getCreature(0);
 	if (e.keyCode === 100 || e.keyCode === 1074) {
-		setTimeout(function () {
-			game.getState()._creature[0].move('right');
-		}, 0);
+		player.move('right');
 	} else if (e.keyCode === 115 || e.keyCode === 1099) {
-		setTimeout(function () {
-			game.getState()._creature[0].move('down');
-		}, 0);
+		player.move('down');
 	} else if (e.keyCode === 119 || e.keyCode === 1094) {
-		setTimeout(function () {
-			game.getState()._creature[0].move('up');
-		}, 0);
+		player.move('up');
 	} else if (e.keyCode === 97 || e.keyCode === 1092) {
-		setTimeout(function () {
-			game.getState()._creature[0].move('left');
-		}, 0);
+		player.move('left');
 	}
 	game.tactOfGame();
 }
