@@ -1,9 +1,8 @@
 'use strict';
 class State {
-	constructor (config = {height: 12, width: 12}) {
+	constructor (config) {
 		generatePlace(this);
 		this._creature = [];
-		this._watcher = {};
 		this._pointWatch = {};
 		this._startPointWatch = {x:0,y:0};
 		this._bias = null;
@@ -23,9 +22,9 @@ class State {
 					||
 						j + 1 === M
 					){
-						state._place[i][j] = 2;
+						state._place[i][j] = State.getBlockObject(2);
 					} else {
-						state._place[i][j] = 1;
+						state._place[i][j] = State.getBlockObject(1);
 					}
 				}
 			}
@@ -40,11 +39,11 @@ class State {
 							for (let k = j; k < j+randDigit && k < M; k++) {
 								if (k === j) {
 									for (let n = i; n < i+randDigit+1 && n < N; n++) {
-										state._place[n][k] = 2;
+										state._place[n][k] = State.getBlockObject(2);
 									}
 								} else {
-									state._place[i][k] = 2;
-									state._place[(i+randDigit >= N ? i : i+randDigit)][k] = 2;
+									state._place[i][k] = State.getBlockObject(2);
+									state._place[(i+randDigit >= N ? i : i+randDigit)][k] = State.getBlockObject(2);
 								}
 							}
 							j+= 8;
@@ -55,7 +54,30 @@ class State {
 		}
 	}
 
-	setCoorPlayer (coor = {x:1, y:1}, num = 0) {
+	static getBlockObject(id) {
+		switch(id) {
+			case 1:
+				return {
+					type: 'dirt',
+					patency: true,
+					classNameCSS: 'dirt',
+					nesting: false,
+					idBlock: 1,
+					isCreature: false
+				};
+			case 2:
+				return {
+					type: 'border',
+					patency: false,
+					classNameCSS: 'border',
+					nesting: false,
+					idBlock: 2,
+					isCreature: false
+				}
+		}
+	}
+
+	setCoorPlayer (coor, num = 0) {
 		this._creature[num] = {};
 		this._creature[num].x = coor.x;
 		this._creature[num].y = coor.y;
@@ -63,7 +85,7 @@ class State {
 	}
 
 	setPlayer (id = 0 , val) {
-		this._creature[id] = new Player(this, val.main, {x: val.x, y: val.y}, val.type);
+		this._creature[id] = new Player(this, val.watcher, {x: val.x, y: val.y}, val.type);
 		this._place[val.x][val.y] = this._creature[id];
 		return true;
 	}
@@ -86,35 +108,23 @@ class State {
 		return this._place;
 	}
 
-	getCellPlace(coor = {x:0, y:0}) {
+	getCellPlace(coor) {
 		return this._place[coor.x][coor.y];
 	}
 
-	setCellPlace(coor = {x:0, y:0}, val) {
+	setCellPlace(coor, val) {
+		if (val.isCreature === true) {
+			val.idBackBlock = this._place[coor.x][coor.y].idBlock;
+			val.classNameBackBlock = this._place[coor.x][coor.y].classNameCSS;
+		}
 		this._place[coor.x][coor.y] = val;
 		return true;
 	}
 
-	changeCoorPlayer (coor = {x:1, y:1}, id = 0) {
+	changeCoorPlayer(coor, id = 0) {
 		this._creature[id].x = coor.x;
 		this._creature[id].y = coor.y;
 		return true;
-	}
-
-	setWatcher(coor, who) {
-		this._watcher.x = coor.x;
-		this._watcher.y = coor.y;
-		if (
-			typeof who === 'object'
-		&&
-			who !== null
-		) {
-			this._watcher.player = who;
-		}
-	}
-
-	getWatcher() {
-		return this._watcher;
 	}
 
 	setBias(direction) {
@@ -134,9 +144,11 @@ class State {
 		}
 	}
 
-	setPointWatch(coor) {
+	setPointWatch(coor, watcher) {
 		this._pointWatch.x = coor.x;
 		this._pointWatch.y = coor.y;
+		this._pointWatch.watcher = watcher;
+		return true;
 	}
 
 	changePointWatch(bais) {
@@ -154,6 +166,7 @@ class State {
 				this._pointWatch.x++;
 				break;
 		}
+		return true;
 	}
 
 	getPiointWatch() {
@@ -163,6 +176,7 @@ class State {
 	setStartPointWatch(coor) {
 		this._startPointWatch.x = coor.x;
 		this._startPointWatch.y = coor.y;
+		return true;
 	}
 
 	getStartPiointWatch() {
@@ -184,5 +198,6 @@ class State {
 				this._startPointWatch.x++;
 				break;
 		}
+		return true;
 	}
 }

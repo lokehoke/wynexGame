@@ -3,13 +3,40 @@ function createCreature() {
 	let num = 0;
 	class Creature {
 		constructor (state, coor) {
+			this.isCreature = true;
+			this.nesting = true;
 			this.state = state;
 			this.id = num;
 			this.x = coor.x;
 			this.y = coor.y;
-			this.visable = false;
-			this.className = '';
+			this.visable = {};
+			this.visable.was = false;
+			this.visable.now = false;
+			this.visable = this.identifyVisable(this, state, {newX: coor.x, newY: coor.y});
+			this.classNameCSS = '';
+			this.classNameBackBlock = 'dirt';
+			this.idBackBlock = 1;
 			state.setCoorPlayer(coor, num++);
+		}
+
+		identifyVisable(creature, state, coor) {
+			let startPointWatch = state.getStartPiointWatch();
+			let size = World.getSize();
+			let visable = {};
+			visable.was = creature.visable.now;
+			if (coor.newX - startPointWatch.x <= size.heightBlocks
+			&&
+				coor.newY - startPointWatch.y <= size.widthBlocks
+			&&
+				coor.newX - startPointWatch.x > 0
+			&&
+				coor.newY - startPointWatch.y > 0
+			){
+				visable.now = true;
+			} else {
+				visable.now = false;
+			}
+			return visable;
 		}
 
 		move(direction) {
@@ -30,6 +57,8 @@ function createCreature() {
 				case 'down':
 					moveDown(this.state, this);
 					break;
+				default:
+					throw 'empty direction on move creature: ' + this.id;
 			}
 
 			function moveRight (state, creature) {
@@ -81,29 +110,18 @@ function createCreature() {
 			}
 
 			function moving(state, coor, creature) {
-				state.setBias(direction);
-				let win = checkWin();
 				if (creature.watcher === true) {
-					state.setPointWatch({x:coor.newX, y:coor.newY});
-					let startPointWatch = state.getStartPiointWatch();
-					let div = document.createElement('div');
-					div.className = creature.className;
-					let world = document.querySelector('.world');
-					world.children[coor.x - startPointWatch.x].children[coor.y - startPointWatch.y].children[0].remove();
-					world.children[coor.newX - startPointWatch.x].children[coor.newY - startPointWatch.y].appendChild(div);
+					movingPointAndBais(coor, creature, direction, state);
 				}
+				creature.visable = foundVisable(creature, state, coor);
+				movingVisableSwapingIcon(state, creature, coor);
 				changeCoordinate(state.getCreature(id), coor);
-				if (win === true) {
-					setTimeout(()=> {
-						alert('you win');
-					}, 500);
-				}
 
 				function changeCoordinate(player, coor) {
 					state.setCellPlace({
 						x: state.getCreature(id).x,
 						y: state.getCreature(id).y
-					}, 1);
+					}, State.getBlockObject(player.idBackBlock));
 					state.changeCoorPlayer({
 						x: coor.newX,
 						y: coor.newY
@@ -116,26 +134,63 @@ function createCreature() {
 					player.y = coor.newY;
 				}
 
-				function checkWin() {
-					if (
-						state.getCellPlace({x:coor.newX, y:coor.newY}) === 3
-					&&
-						this.type === 'player'
-					) {
-						return true;
+				function getBlockWithCreature(creature) {
+					let div = document.createElement('div');
+					div.className = creature.classNameCSS;
+					return div;
+				}
+
+				function movingPointAndBais(coor, creature, direction, state) {
+					state.setBias(direction);
+					state.setPointWatch({x:coor.newX, y:coor.newY}, creature);
+				}
+
+				function movingVisableSwapingIcon(state, creature, coor) {
+					let startPointWatch = state.getStartPiointWatch();
+					let div = getBlockWithCreature(creature);
+					let world = document.querySelector('.world');
+					let size = World.getSize();
+					if (creature.visable.was === true) {
+						world.children[coor.x - startPointWatch.x].children[coor.y - startPointWatch.y].children[0].remove();
+					}
+					if (creature.visable.now === true){
+						world.children[coor.newX - startPointWatch.x].children[coor.newY - startPointWatch.y].appendChild(div);
+					}
+				}
+
+				function foundVisable(creature, state, coor) {
+					if (creature.watcher === true) {
+						return creature.visable;
 					} else {
-						return false;
+						return creature.identifyVisable(creature, state, coor);
 					}
 				}
 			}
 
 			function canImove(newPosition) {
-				if (newPosition === 1 || newPosition === 3) {
-					return true;
-				} else {
-					return false;
-				}
+				return newPosition.patency;
 			}
+		}
+
+		randMove() {
+			let digit = Math.floor(Math.random() * 4) + 1;
+			let direction = '';
+			switch(digit) {
+				case 1:
+					direction = 'left';
+					break;
+				case 2:
+					direction = 'right';
+					break;
+				case 3:
+					direction = 'up';
+					break;
+				case 4:
+					direction = 'down';
+					break;
+			}
+			this.move(direction);
+			return true;
 		}
 	}
 
@@ -143,20 +198,28 @@ function createCreature() {
 		constructor (state, coor) {
 			super(state, coor);
 			this.type = 'enemy';
-			this.className = 'slimeEnemy';
+			this.classNameCSS = 'slimeEnemy';
+			this.watcher = false;
 		}
 	}
 
 	class Player extends Creature {
-		constructor (state, main, coor, profession) {
+		constructor (state, watcher, coor, profession) {
 			super(state, coor);
 			this.type = 'player';
-			this.watcher = true;
-			state.setPointWatch(coor);
-			state.setWatcher(coor, this);
+			if (watcher === true){
+				this.watcher = true;
+				state.setPointWatch(coor, this);
+				this.visable = {
+					was: true,
+					now: true
+				};
+			} else {
+				this.watcher = false;
+			}
 			switch(profession) {
 				case 'mage':
-					this.className = 'magePlayer';
+					this.classNameCSS = 'magePlayer';
 					break;
 			}
 		}

@@ -1,19 +1,19 @@
 'use strict';
 /*
-border: 2
-dirt: 1
-player: 9
-chest: 3
+	tasks:
+		0.start point watch
+		1.small Map
+		2.break when enemy leave screen
 */
 
-let GLOBAL_SETTING = {
+const GLOBAL_SETTING = {
 	sizeBlock: {
 		width: 50,
 		height: 50
 	},
 	numBlocks: {
-		width: 51,
-		height: 51
+		width: 32,
+		height: 32
 	}
 };
 
@@ -23,7 +23,12 @@ class ControllerGame {
 		this.state = (new State(GLOBAL_SETTING.numBlocks));
 		setPlayers(players, this.state);
 		setEnemys(enemy, this.state);
-		this.state.setStartPointWatch({x:0, y:0});
+		let startPoint = getStartPiointWatch(players);
+		if (startPoint === false) {
+			throw "2 or more main player";
+		} else {
+			this.state.setStartPointWatch(startPoint);
+		}
 		this.world = new World(this.state);
 		this.world.renderWorld();
 
@@ -49,6 +54,19 @@ class ControllerGame {
 				return false;
 			}
 		}
+
+		function getStartPiointWatch(players) { /////to do!!!!!!!!!!!!!!
+			players.filter(player => {
+				return player.watcher;
+			});
+			if (players.length !== 1) {
+				return false;
+			}
+			let x = players[0].x;
+			let y = players[0].y;
+			let size = World.getSize();
+			return {x:0, y:0};
+		}
 	}
 
 	getState () {
@@ -57,8 +75,9 @@ class ControllerGame {
 
 	tactOfGame() {
 		this.state._creature.forEach((item) => {
-			// if (item.type === 'enemy') {
-			// }
+			if (item.watcher !== true) {
+				item.randMove();
+			}
 		});
 		this.world.renderWorld();
 	}
@@ -68,7 +87,7 @@ let game = new ControllerGame([{
 	x: 4,
 	y: 6,
 	type: 'mage',
-	main: true
+	watcher: true
 }],[{
 	x:2,
 	y:2,
@@ -89,3 +108,5 @@ document.onkeypress = function (e) {
 	}
 	game.tactOfGame();
 }
+
+console.log(game.state);
