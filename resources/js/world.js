@@ -13,8 +13,8 @@ function getWorldClass()  {
 				let heightBlocks = Math.floor(window.innerHeight / GLOBAL_SETTING.sizeBlock.height);
 				this.firstFindSize = false;
 				return {
-					widthBlocks: widthBlocks,
-					heightBlocks: heightBlocks
+					widthBlocks: (widthBlocks < GLOBAL_SETTING.numBlocks.width ? widthBlocks : GLOBAL_SETTING.numBlocks.width),
+					heightBlocks: (heightBlocks < GLOBAL_SETTING.numBlocks.height ? heightBlocks : GLOBAL_SETTING.numBlocks.height)
 				};
 			} else {
 				return this.size;

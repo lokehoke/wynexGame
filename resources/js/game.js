@@ -1,9 +1,8 @@
 'use strict';
 /*
 	tasks:
-		0.start point watch
-		1.small Map
-		2.break when enemy leave screen
+		0.break when enemy leave screen
+		1.small numsBlock
 */
 
 const GLOBAL_SETTING = {
@@ -12,8 +11,8 @@ const GLOBAL_SETTING = {
 		height: 50
 	},
 	numBlocks: {
-		width: 32,
-		height: 32
+		width: 2 ** 8,
+		height: 2 ** 8
 	}
 };
 
@@ -25,7 +24,7 @@ class ControllerGame {
 		setEnemys(enemy, this.state);
 		let startPoint = getStartPiointWatch(players);
 		if (startPoint === false) {
-			throw "2 or more main player";
+			throw "2 or more main player or null";
 		} else {
 			this.state.setStartPointWatch(startPoint);
 		}
@@ -55,7 +54,7 @@ class ControllerGame {
 			}
 		}
 
-		function getStartPiointWatch(players) { /////to do!!!!!!!!!!!!!!
+		function getStartPiointWatch(players) {
 			players.filter(player => {
 				return player.watcher;
 			});
@@ -65,7 +64,34 @@ class ControllerGame {
 			let x = players[0].x;
 			let y = players[0].y;
 			let size = World.getSize();
-			return {x:0, y:0};
+			let startPointWatch = {};
+
+			findX(startPointWatch, x, size);
+			findY(startPointWatch, y, size);
+
+			return startPointWatch;
+
+			function findX (startPointWatch, x, size) {
+				if (x < Math.floor(size.heightBlocks / 2)) {
+					startPointWatch.x = 0;
+				} else if (x >= (GLOBAL_SETTING.numBlocks.height - Math.floor(size.heightBlocks / 2) - 1)) {
+					startPointWatch.x = GLOBAL_SETTING.numBlocks.height - Math.floor(size.heightBlocks / 2) - 1;
+				} else {
+					startPointWatch.x = x - Math.floor(size.heightBlocks / 2);
+				}
+				return startPointWatch;
+			}
+
+			function findY (startPointWatch, y, size) {
+				if (y < Math.floor(size.widthBlocks / 2)) {
+					startPointWatch.y = 0;
+				} else if (y >= (GLOBAL_SETTING.numBlocks.width - Math.floor(size.widthBlocks / 2) - 1)) {
+					startPointWatch.y = GLOBAL_SETTING.numBlocks.width - Math.floor(size.widthBlocks / 2) - 1;
+				} else {
+					startPointWatch.y = y - Math.floor(size.widthBlocks / 2);
+				}
+				return startPointWatch;
+			}
 		}
 	}
 
@@ -84,13 +110,21 @@ class ControllerGame {
 }
 
 let game = new ControllerGame([{
-	x: 4,
-	y: 6,
+	x: 100,
+	y: 100,
 	type: 'mage',
 	watcher: true
 }],[{
 	x:2,
 	y:2,
+	type: 'slime'
+},{
+	x:2,
+	y:3,
+	type: 'slime'
+},{
+	x:2,
+	y:4,
 	type: 'slime'
 }]);
 
