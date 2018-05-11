@@ -40,17 +40,29 @@ function getWorldClass()  {
 				let startPointWatch = state.getStartPiointWatch();
 				let pointWotch = state.getPiointWatch();
 				if (
-				(((startPointWatch.x === 0 || startPointWatch.x === GLOBAL_SETTING.numBlocks.height - size.heightBlocks)
+				(((startPointWatch.x === 0
+						||
+				startPointWatch.x === GLOBAL_SETTING.numBlocks.height - size.heightBlocks)
 					&&
-				(pointWotch.x < Math.floor(size.heightBlocks / 2) || pointWotch.x >= (GLOBAL_SETTING.numBlocks.height - Math.floor(size.heightBlocks / 2) - 1))
+				(pointWotch.x < Math.floor(size.heightBlocks / 2)
+						||
+				pointWotch.x >= (GLOBAL_SETTING.numBlocks.height - Math.floor(size.heightBlocks / 2)))
 					&&
-				(bais === 'up' || bais === 'down'))
+				(bais === 'up'
+						||
+				bais === 'down'))
 				||
-				((startPointWatch.y === 0 || startPointWatch.y === GLOBAL_SETTING.numBlocks.width - size.widthBlocks)
+				((startPointWatch.y === 0
+						||
+				startPointWatch.y === GLOBAL_SETTING.numBlocks.width - size.widthBlocks)
 					&&
-				(pointWotch.y < Math.floor(size.widthBlocks / 2) || pointWotch.y >= (GLOBAL_SETTING.numBlocks.width - Math.floor(size.widthBlocks / 2) - 1))
+				(pointWotch.y < Math.floor(size.widthBlocks / 2)
+						||
+				pointWotch.y >= (GLOBAL_SETTING.numBlocks.width - Math.floor(size.widthBlocks / 2)))
 					&&
-				(bais === 'left' || bais === 'right')))
+				(bais === 'left'
+						||
+				bais === 'right')))
 				){
 					return false;
 				}

@@ -4,6 +4,7 @@ function createCreature() {
 	class Creature {
 		constructor (state, coor) {
 			this.isCreature = true;
+			this.patency = false;
 			this.nesting = true;
 			this.state = state;
 			this.id = num;
@@ -12,25 +13,25 @@ function createCreature() {
 			this.visable = {};
 			this.visable.was = false;
 			this.visable.now = false;
-			this.visable = this.identifyVisable(this, state, {newX: coor.x, newY: coor.y});
+			this.visable = this.identifyVisable({newX: coor.x, newY: coor.y});
 			this.classNameCSS = '';
 			this.classNameBackBlock = 'dirt';
 			this.idBackBlock = 1;
 			state.setCoorPlayer(coor, num++);
 		}
 
-		identifyVisable(creature, state, coor) {
-			let startPointWatch = state.getStartPiointWatch();
+		identifyVisable(coor) {
+			let startPointWatch = this.state.getStartPiointWatch();
 			let size = World.getSize();
 			let visable = {};
-			visable.was = creature.visable.now;
+			visable.was = this.visable.now;
 			if (coor.newX - startPointWatch.x <= size.heightBlocks
 			&&
 				coor.newY - startPointWatch.y <= size.widthBlocks
 			&&
-				coor.newX - startPointWatch.x > 0
+				coor.newX - startPointWatch.x >= 0
 			&&
-				coor.newY - startPointWatch.y > 0
+				coor.newY - startPointWatch.y >= 0
 			){
 				visable.now = true;
 			} else {
@@ -162,7 +163,7 @@ function createCreature() {
 					if (creature.watcher === true) {
 						return creature.visable;
 					} else {
-						return creature.identifyVisable(creature, state, coor);
+						return creature.identifyVisable(coor);
 					}
 				}
 			}

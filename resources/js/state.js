@@ -104,6 +104,10 @@ class State {
 		}
 	}
 
+	getAllCreature() {
+		return this._creature;
+	}
+
 	getAllPlace() {
 		return this._place;
 	}

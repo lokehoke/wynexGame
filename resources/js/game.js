@@ -1,10 +1,4 @@
 'use strict';
-/*
-	tasks:
-		0.break when enemy leave screen
-		1.small numsBlock
-*/
-
 const GLOBAL_SETTING = {
 	sizeBlock: {
 		width: 50,
@@ -21,13 +15,13 @@ class ControllerGame {
 		let numCreature = 0;
 		this.state = (new State(GLOBAL_SETTING.numBlocks));
 		setPlayers(players, this.state);
-		setEnemys(enemy, this.state);
 		let startPoint = getStartPiointWatch(players);
 		if (startPoint === false) {
 			throw "2 or more main player or null";
 		} else {
 			this.state.setStartPointWatch(startPoint);
 		}
+		setEnemys(enemy, this.state);
 		this.world = new World(this.state);
 		this.world.renderWorld();
 
@@ -74,10 +68,10 @@ class ControllerGame {
 			function findX (startPointWatch, x, size) {
 				if (x < Math.floor(size.heightBlocks / 2)) {
 					startPointWatch.x = 0;
-				} else if (x >= (GLOBAL_SETTING.numBlocks.height - Math.floor(size.heightBlocks / 2) - 1)) {
-					startPointWatch.x = GLOBAL_SETTING.numBlocks.height - Math.floor(size.heightBlocks / 2) - 1;
+				} else if (x >= (GLOBAL_SETTING.numBlocks.height - Math.floor(size.heightBlocks / 2))) {
+					startPointWatch.x = GLOBAL_SETTING.numBlocks.height - Math.floor(size.heightBlocks / 2);
 				} else {
-					startPointWatch.x = x - Math.floor(size.heightBlocks / 2);
+					startPointWatch.x = x - Math.floor(size.heightBlocks / 2) + 1;
 				}
 				return startPointWatch;
 			}
@@ -85,10 +79,10 @@ class ControllerGame {
 			function findY (startPointWatch, y, size) {
 				if (y < Math.floor(size.widthBlocks / 2)) {
 					startPointWatch.y = 0;
-				} else if (y >= (GLOBAL_SETTING.numBlocks.width - Math.floor(size.widthBlocks / 2) - 1)) {
-					startPointWatch.y = GLOBAL_SETTING.numBlocks.width - Math.floor(size.widthBlocks / 2) - 1;
+				} else if (y >= (GLOBAL_SETTING.numBlocks.width - Math.floor(size.widthBlocks / 2))) {
+					startPointWatch.y = GLOBAL_SETTING.numBlocks.width - Math.floor(size.widthBlocks / 2);
 				} else {
-					startPointWatch.y = y - Math.floor(size.widthBlocks / 2);
+					startPointWatch.y = y - Math.floor(size.widthBlocks / 2) + 1;
 				}
 				return startPointWatch;
 			}
@@ -100,18 +94,18 @@ class ControllerGame {
 	}
 
 	tactOfGame() {
+		this.world.renderWorld();
 		this.state._creature.forEach((item) => {
 			if (item.watcher !== true) {
 				item.randMove();
 			}
 		});
-		this.world.renderWorld();
 	}
 }
 
 let game = new ControllerGame([{
-	x: 100,
-	y: 100,
+	x: 25,
+	y: 25,
 	type: 'mage',
 	watcher: true
 }],[{
