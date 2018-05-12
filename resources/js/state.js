@@ -34,8 +34,8 @@ class State {
 			function addRoom(state) {
 				for (let i = 0; i < N; i+= 8) {
 					for (let j = 0; j < M; j++) {
-						let randDigit = Math.floor(Math.random() * 11);
-						if (randDigit > 9) {
+						let randDigit = Math.floor(Math.random() * 400);
+						if (randDigit > 9 && randDigit < 25) {
 							for (let k = j; k < j+randDigit && k < M; k++) {
 								if (k === j) {
 									for (let n = i; n < i+randDigit+1 && n < N; n++) {
@@ -77,26 +77,26 @@ class State {
 		}
 	}
 
-	setCoorPlayer (coor, num = 0) {
+	setCoorPlayer(coor, num = 0) {
 		this._creature[num] = {};
 		this._creature[num].x = coor.x;
 		this._creature[num].y = coor.y;
 		return true;
 	}
 
-	setPlayer (id = 0 , val) {
+	setPlayer(id = 0 , val) {
 		this._creature[id] = new Player(this, val.watcher, {x: val.x, y: val.y}, val.type);
 		this._place[val.x][val.y] = this._creature[id];
 		return true;
 	}
 
-	setEnemy (id = 0 , val) {
+	setEnemy(id = 0 , val) {
 		this._creature[id] = new Enemy(this, {x: val.x, y: val.y}, val.type);
 		this._place[val.x][val.y] = this._creature[id];
 		return true;
 	}
 
-	getCreature (id = 0) {
+	getCreature(id = 0) {
 		if (typeof +id !== 'number') {
 			return false;
 		} else {

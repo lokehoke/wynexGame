@@ -1,17 +1,25 @@
 'use strict';
+/*
+	task:
+		0.Defind DOMObject after moving
+		1.bias weapon after bais world
+		2.reRender without bais and reRender All world
+
+*/
+
 const GLOBAL_SETTING = {
 	sizeBlock: {
 		width: 50,
 		height: 50
 	},
 	numBlocks: {
-		width: 2 ** 8,
-		height: 2 ** 8
+		width: 2 ** 10,
+		height: 2 ** 10
 	}
 };
 
 class ControllerGame {
-	constructor (players = null, enemy = null) {
+	constructor (players = null, enemy = []) {
 		let numCreature = 0;
 		this.state = (new State(GLOBAL_SETTING.numBlocks));
 		setPlayers(players, this.state);
@@ -21,9 +29,18 @@ class ControllerGame {
 		} else {
 			this.state.setStartPointWatch(startPoint);
 		}
+		enemy = enemy.concat(World.makeAroayWihtEnemy(1000));
 		setEnemys(enemy, this.state);
 		this.world = new World(this.state);
 		this.world.renderWorld();
+		this.tempDiv = createTempDiv();
+
+		function createTempDiv() {
+			let temp = document.createElement('div');
+			temp.className = 'temp';
+			document.querySelector('body').appendChild(temp);
+			return temp;
+		}
 
 		function setPlayers(players, state) {
 			if (players !== null) {
@@ -37,9 +54,8 @@ class ControllerGame {
 		}
 
 		function setEnemys(enemys, state) {
-			let lastIdPlayer = players.length;
 			if (enemys !== null) {
-				enemy.forEach((val) => {
+				enemys.forEach((val) => {
 					state.setEnemy(numCreature++, val);
 				});
 				return true;
@@ -89,7 +105,7 @@ class ControllerGame {
 		}
 	}
 
-	getState () {
+	getState() {
 		return this.state;
 	}
 
@@ -104,35 +120,31 @@ class ControllerGame {
 }
 
 let game = new ControllerGame([{
-	x: 25,
-	y: 25,
+	x: 1,
+	y: 1,
 	type: 'mage',
 	watcher: true
-}],[{
-	x:2,
-	y:2,
-	type: 'slime'
-},{
-	x:2,
-	y:3,
-	type: 'slime'
-},{
-	x:2,
-	y:4,
-	type: 'slime'
 }]);
 
-document.onkeypress = function (e) {
+document.onkeydown = function (e) {
 	e.preventDefault();
 	let player = game.getState().getCreature(0);
-	if (e.keyCode === 100 || e.keyCode === 1074) {
+	if (e.keyCode === 68) {
 		player.move('right');
-	} else if (e.keyCode === 115 || e.keyCode === 1099) {
+	} else if (e.keyCode === 83) {
 		player.move('down');
-	} else if (e.keyCode === 119 || e.keyCode === 1094) {
+	} else if (e.keyCode === 87) {
 		player.move('up');
-	} else if (e.keyCode === 97 || e.keyCode === 1092) {
+	} else if (e.keyCode === 65) {
 		player.move('left');
+	} else if (e.keyCode === 39) {
+		player.doAttack('right');
+	} else if (e.keyCode === 40) {
+		player.doAttack('down');
+	} else if (e.keyCode === 38) {
+		player.doAttack('up');
+	} else if (e.keyCode === 37) {
+		player.doAttack('left');
 	}
 	game.tactOfGame();
 }

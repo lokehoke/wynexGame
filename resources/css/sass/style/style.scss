@@ -51,3 +51,17 @@
 		}
 	}
 }
+
+.temp {
+	.stackWeaponBall {
+		position: absolute;
+		width: 50px;
+		height: 50px;
+		background: url('../img/weaponTextures/stackWeaponBall.svg');
+		background-size: 250%;
+		background-position: 7px 7px;
+		background-repeat: no-repeat;
+		z-index: 10;
+		transition: top 2s, left 2s;
+	}
+}

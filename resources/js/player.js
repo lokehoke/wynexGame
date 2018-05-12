@@ -17,6 +17,12 @@ function createCreature() {
 			this.classNameCSS = '';
 			this.classNameBackBlock = 'dirt';
 			this.idBackBlock = 1;
+			this.DOMObject = null;
+
+			this.health = 100;
+			this.attackDamage = 20;
+			this.range = 100;
+
 			state.setCoorPlayer(coor, num++);
 		}
 
@@ -25,9 +31,9 @@ function createCreature() {
 			let size = World.getSize();
 			let visable = {};
 			visable.was = this.visable.now;
-			if (coor.newX - startPointWatch.x <= size.heightBlocks
+			if (coor.newX - startPointWatch.x < size.heightBlocks
 			&&
-				coor.newY - startPointWatch.y <= size.widthBlocks
+				coor.newY - startPointWatch.y < size.widthBlocks
 			&&
 				coor.newX - startPointWatch.x >= 0
 			&&
@@ -47,25 +53,28 @@ function createCreature() {
 			let y = this.state.getCreature(id).y;
 			switch(direction) {
 				case 'right':
-					moveRight(this.state, this);
+					moveRight(this);
 					break;
 				case 'left':
-					moveLeft(this.state, this);
+					moveLeft(this);
 					break;
 				case 'up':
-					moveUp(this.state, this);
+					moveUp(this);
 					break;
 				case 'down':
-					moveDown(this.state, this);
+					moveDown(this);
 					break;
 				default:
 					throw 'empty direction on move creature: ' + this.id;
 			}
 
-			function moveRight (state, creature) {
-				let newPosition = state.getCellPlace({x:x, y:(y+1)});
+			function moveRight (creature) {
+				if (GLOBAL_SETTING.numBlocks.width <= y+1) {
+					return false;
+				}
+				let newPosition = creature.state.getCellPlace({x:x, y:(y+1)});
 				if (canImove(newPosition)) {
-					moving(state, {
+					moving({
 						x: x,
 						y: y,
 						newX: x,
@@ -74,10 +83,13 @@ function createCreature() {
 				}
 			}
 
-			function moveLeft (state, creature) {
-				let newPosition = state.getCellPlace({x:x, y:(y-1)});
+			function moveLeft (creature) {
+				if (0 > y - 1) {
+					return false;
+				}
+				let newPosition = creature.state.getCellPlace({x:x, y:(y-1)});
 				if (canImove(newPosition)) {
-					moving(state, {
+					moving({
 						x: x,
 						y: y,
 						newX: x,
@@ -86,10 +98,13 @@ function createCreature() {
 				}
 			}
 
-			function moveUp (state, creature) {
-				let newPosition = state.getCellPlace({x:(x-1), y:y});
+			function moveUp (creature) {
+				if (0 > x-1) {
+					return false;
+				}
+				let newPosition = creature.state.getCellPlace({x:(x-1), y:y});
 				if (canImove(newPosition)) {
-					moving(state, {
+					moving({
 						x: x,
 						y: y,
 						newX: x-1,
@@ -98,10 +113,13 @@ function createCreature() {
 				}
 			}
 
-			function moveDown (state, creature) {
-				let newPosition = state.getCellPlace({x:(x+1), y:y});
+			function moveDown (creature) {
+				if (GLOBAL_SETTING.numBlocks.height <= x+1) {
+					return false;
+				}
+				let newPosition = creature.state.getCellPlace({x:(x+1), y:y});
 				if (canImove(newPosition)) {
-					moving(state, {
+					moving({
 						x: x,
 						y: y,
 						newX: x+1,
@@ -110,24 +128,24 @@ function createCreature() {
 				}
 			}
 
-			function moving(state, coor, creature) {
+			function moving(coor, creature) {
 				if (creature.watcher === true) {
-					movingPointAndBais(coor, creature, direction, state);
+					movingPointAndBais(coor, creature, direction);
 				}
-				creature.visable = foundVisable(creature, state, coor);
-				movingVisableSwapingIcon(state, creature, coor);
-				changeCoordinate(state.getCreature(id), coor);
+				creature.visable = foundVisable(creature, coor);
+				creature.movingVisableSwapingIcon(coor);
+				changeCoordinate(creature.state.getCreature(id), coor);
 
 				function changeCoordinate(player, coor) {
-					state.setCellPlace({
-						x: state.getCreature(id).x,
-						y: state.getCreature(id).y
+					player.state.setCellPlace({
+						x: player.state.getCreature(id).x,
+						y: player.state.getCreature(id).y
 					}, State.getBlockObject(player.idBackBlock));
-					state.changeCoorPlayer({
+					player.state.changeCoorPlayer({
 						x: coor.newX,
 						y: coor.newY
 					}, id);
-					state.setCellPlace({
+					player.state.setCellPlace({
 						x: coor.newX,
 						y: coor.newY
 					}, player);
@@ -135,31 +153,12 @@ function createCreature() {
 					player.y = coor.newY;
 				}
 
-				function getBlockWithCreature(creature) {
-					let div = document.createElement('div');
-					div.className = creature.classNameCSS;
-					return div;
+				function movingPointAndBais(coor, creature, direction) {
+					creature.state.setBias(direction);
+					creature.state.setPointWatch({x:coor.newX, y:coor.newY}, creature);
 				}
 
-				function movingPointAndBais(coor, creature, direction, state) {
-					state.setBias(direction);
-					state.setPointWatch({x:coor.newX, y:coor.newY}, creature);
-				}
-
-				function movingVisableSwapingIcon(state, creature, coor) {
-					let startPointWatch = state.getStartPiointWatch();
-					let div = getBlockWithCreature(creature);
-					let world = document.querySelector('.world');
-					let size = World.getSize();
-					if (creature.visable.was === true) {
-						world.children[coor.x - startPointWatch.x].children[coor.y - startPointWatch.y].children[0].remove();
-					}
-					if (creature.visable.now === true){
-						world.children[coor.newX - startPointWatch.x].children[coor.newY - startPointWatch.y].appendChild(div);
-					}
-				}
-
-				function foundVisable(creature, state, coor) {
+				function foundVisable(creature, coor) {
 					if (creature.watcher === true) {
 						return creature.visable;
 					} else {
@@ -192,6 +191,70 @@ function createCreature() {
 			}
 			this.move(direction);
 			return true;
+		}
+
+		movingVisableSwapingIcon(coor) {
+			let startPointWatch = this.state.getStartPiointWatch();
+			let div = getBlockWithCreature(this);
+			let world = document.querySelector('.world');
+			let size = World.getSize();
+			if (this.visable.was === true) {
+				world.children[coor.x - startPointWatch.x].children[coor.y - startPointWatch.y].children[0].remove();
+			}
+			if (this.visable.now === true){
+				world.children[coor.newX - startPointWatch.x].children[coor.newY - startPointWatch.y].appendChild(div);
+			}
+
+			function getBlockWithCreature(creature) {
+				let div = document.createElement('div');
+				div.className = creature.classNameCSS;
+				return div;
+			}
+		}
+
+		doAttack(direction) {
+			let creature = this;
+			makeAnimation(direction);
+			checkCreatureForAttack(direction);
+
+			function makeAnimation(direction) {
+				let coor = creature.DOMObject.getBoundingClientRect();
+				let weapon = document.createElement('div');
+				weapon.className = 'stackWeaponBall';
+				weapon.style.left = coor.x + 'px';
+				weapon.style.top = coor.y + 'px';
+				document.querySelector('.temp').appendChild(weapon);
+				setTimeout(() => {
+					let needCoor = 0;
+					let max = 0;
+					switch(direction) {
+						case 'left':
+							needCoor = coor.x - creature.range * GLOBAL_SETTING.sizeBlock.width;
+							weapon.style.left = (needCoor < 0 ? 0 : needCoor) + 'px';
+							break;
+						case 'right':
+							needCoor = coor.x + creature.range * GLOBAL_SETTING.sizeBlock.width;
+							max = GLOBAL_SETTING.sizeBlock.width * (World.getSize().widthBlocks - 1);
+							weapon.style.left = (needCoor > max ? max : needCoor) + 'px';
+							break;
+						case 'up':
+							needCoor = coor.y - creature.range * GLOBAL_SETTING.sizeBlock.height;
+							weapon.style.top = (needCoor < 0 ? 0 : needCoor ) + 'px';
+							break;
+						case 'down':
+							needCoor = coor.y + creature.range * GLOBAL_SETTING.sizeBlock.height;
+							max = GLOBAL_SETTING.sizeBlock.height * (World.getSize().heightBlocks - 1);
+							weapon.style.top = (needCoor > max ? max : needCoor) + 'px';
+							break;
+					}
+					setTimeout(() => {
+						weapon.remove();
+					} ,2000);
+				}, 100);
+			}
+
+			function checkCreatureForAttack(direction) {
+			}
 		}
 	}
 
