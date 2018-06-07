@@ -1,4 +1,32 @@
 'use strict';
+
+class Block {
+	constructor() {
+		this.nesting = false;
+		this.isCreature = false;
+	}
+}
+
+class DirtBlock extends Block {
+	constructor() {
+		super();
+		this.type = 'dirt';
+		this.idBlock = 1;
+		this.patency = true;
+		this.classNameCSS = 'dirt';
+	}
+}
+
+class BorderBlock extends Block {
+	constructor() {
+		super();
+		this.type = 'border';
+		this.idBlock = 2;
+		this.patency = false;
+		this.classNameCSS = 'border';
+	}
+}
+
 class State {
 	constructor (config) {
 		generatePlace(this);
@@ -6,10 +34,14 @@ class State {
 		this._pointWatch = {};
 		this._startPointWatch = {x:0,y:0};
 		this._bias = null;
+		this._weaponDiv = null;
+		this._worldDiv = null;
+		this._worldObject = null;
 
 		function generatePlace(state) {
 			const N = config.height;
 			const M = config.width;
+
 			state._place = [];
 			for (let i = 0; i < N; i++) {
 				state._place[i] = [];
@@ -28,13 +60,15 @@ class State {
 					}
 				}
 			}
+
 			addRoom(state);
+
 			return state;
 
 			function addRoom(state) {
 				for (let i = 0; i < N; i+= 8) {
 					for (let j = 0; j < M; j++) {
-						let randDigit = Math.floor(Math.random() * 400);
+						const randDigit = Math.floor(Math.random() * 400);
 						if (randDigit > 9 && randDigit < 25) {
 							for (let k = j; k < j+randDigit && k < M; k++) {
 								if (k === j) {
@@ -57,23 +91,9 @@ class State {
 	static getBlockObject(id) {
 		switch(id) {
 			case 1:
-				return {
-					type: 'dirt',
-					patency: true,
-					classNameCSS: 'dirt',
-					nesting: false,
-					idBlock: 1,
-					isCreature: false
-				};
+				return new DirtBlock();
 			case 2:
-				return {
-					type: 'border',
-					patency: false,
-					classNameCSS: 'border',
-					nesting: false,
-					idBlock: 2,
-					isCreature: false
-				}
+				return new BorderBlock();
 		}
 	}
 
@@ -121,6 +141,7 @@ class State {
 			val.idBackBlock = this._place[coor.x][coor.y].idBlock;
 			val.classNameBackBlock = this._place[coor.x][coor.y].classNameCSS;
 		}
+
 		this._place[coor.x][coor.y] = val;
 		return true;
 	}
@@ -170,6 +191,7 @@ class State {
 				this._pointWatch.x++;
 				break;
 		}
+
 		return true;
 	}
 
@@ -202,6 +224,42 @@ class State {
 				this._startPointWatch.x++;
 				break;
 		}
+
 		return true;
+	}
+
+	setWeaponDiv(weaponDiv) {
+		this._weaponDiv = weaponDiv;
+		return true;
+	}
+
+	setWorldDiv(worldDiv) {
+		this._worldDiv = worldDiv;
+		return true;
+	}
+
+	getWorldDiv() {
+		return this._worldDiv;
+	}
+
+	getWeaponDiv() {
+		return this._weaponDiv;
+	}
+
+	setWorldObject(obj) {
+		this._worldObject = obj;
+		return true;
+	}
+
+	getWorldObject() {
+		return this._worldObject;
+	}
+
+	getWatcher() {
+		if (this._pointWatch.watcher) {
+			return this._pointWatch.watcher;
+		} else {
+			return null;
+		}
 	}
 }

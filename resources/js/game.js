@@ -1,10 +1,9 @@
 'use strict';
 /*
 	task:
-		0.Defind DOMObject after moving
-		1.bias weapon after bais world
-		2.reRender without bais and reRender All world
-
+		0.bias weapon after bais world
+		1.reRender without bais and reRender All world
+		2.rewrite bais function
 */
 
 const GLOBAL_SETTING = {
@@ -21,25 +20,34 @@ const GLOBAL_SETTING = {
 class ControllerGame {
 	constructor (players = null, enemy = []) {
 		let numCreature = 0;
-		this.state = (new State(GLOBAL_SETTING.numBlocks));
+
+		this.state = new State(GLOBAL_SETTING.numBlocks);
 		setPlayers(players, this.state);
-		let startPoint = getStartPiointWatch(players);
+
+		const startPoint = getStartPiointWatch(players);
+
 		if (startPoint === false) {
 			throw "2 or more main player or null";
 		} else {
 			this.state.setStartPointWatch(startPoint);
 		}
+
 		enemy = enemy.concat(World.makeAroayWihtEnemy(1000));
 		setEnemys(enemy, this.state);
-		this.world = new World(this.state);
-		this.world.renderWorld();
-		this.tempDiv = createTempDiv();
 
-		function createTempDiv() {
-			let temp = document.createElement('div');
-			temp.className = 'temp';
-			document.querySelector('body').appendChild(temp);
-			return temp;
+		this.world = new World(this.state);
+		const worldDiv = this.world.renderWorld(true);
+		this.weaponDiv = createWeaponDiv();
+
+		this.state.setWeaponDiv(this.weaponDiv);
+		this.state.setWorldDiv(worldDiv);
+		this.state.setWorldObject(this.world);
+
+		function createWeaponDiv() {
+			let weapon = document.createElement('div');
+			weapon.className = 'weapon';
+			document.querySelector('body').appendChild(weapon);
+			return weapon;
 		}
 
 		function setPlayers(players, state) {
@@ -65,42 +73,53 @@ class ControllerGame {
 		}
 
 		function getStartPiointWatch(players) {
-			players.filter(player => {
+			let watcher = players.filter(player => {
 				return player.watcher;
 			});
-			if (players.length !== 1) {
+
+			if (watcher.length !== 1) {
 				return false;
+			} else {
+				watcher = watcher[0];
 			}
-			let x = players[0].x;
-			let y = players[0].y;
-			let size = World.getSize();
+
+			const size = World.getSize();
+
+			let x = watcher.x;
+			let y = watcher.y;
 			let startPointWatch = {};
 
-			findX(startPointWatch, x, size);
-			findY(startPointWatch, y, size);
+			startPointWatch.x = findX(x, size);
+			startPointWatch.y = findY(y, size);
 
 			return startPointWatch;
 
-			function findX (startPointWatch, x, size) {
+			function findX (x, size) {
+				let newX = 0;
+
 				if (x < Math.floor(size.heightBlocks / 2)) {
-					startPointWatch.x = 0;
+					newX = 0;
 				} else if (x >= (GLOBAL_SETTING.numBlocks.height - Math.floor(size.heightBlocks / 2))) {
-					startPointWatch.x = GLOBAL_SETTING.numBlocks.height - Math.floor(size.heightBlocks / 2);
+					newX = GLOBAL_SETTING.numBlocks.height - Math.floor(size.heightBlocks / 2);
 				} else {
-					startPointWatch.x = x - Math.floor(size.heightBlocks / 2) + 1;
+					newX = x - Math.floor(size.heightBlocks / 2) + 1;
 				}
-				return startPointWatch;
+
+				return newX;
 			}
 
-			function findY (startPointWatch, y, size) {
+			function findY (y, size) {
+				let newY = 0;
+
 				if (y < Math.floor(size.widthBlocks / 2)) {
-					startPointWatch.y = 0;
+					newY = 0;
 				} else if (y >= (GLOBAL_SETTING.numBlocks.width - Math.floor(size.widthBlocks / 2))) {
-					startPointWatch.y = GLOBAL_SETTING.numBlocks.width - Math.floor(size.widthBlocks / 2);
+					newY = GLOBAL_SETTING.numBlocks.width - Math.floor(size.widthBlocks / 2);
 				} else {
-					startPointWatch.y = y - Math.floor(size.widthBlocks / 2) + 1;
+					newY = y - Math.floor(size.widthBlocks / 2) + 1;
 				}
-				return startPointWatch;
+
+				return newY;
 			}
 		}
 	}
@@ -113,30 +132,30 @@ class ControllerGame {
 		this.world.renderWorld();
 		this.state._creature.forEach((item) => {
 			if (item.watcher !== true) {
-				item.randMove();
+				item.movePerformance('rand');
 			}
 		});
 	}
 }
 
-let game = new ControllerGame([{
+const game = new ControllerGame([{
 	x: 1,
 	y: 1,
 	type: 'mage',
 	watcher: true
 }]);
+const state = game.getState();
+const player = state.getCreature(0);
 
 document.onkeydown = function (e) {
-	e.preventDefault();
-	let player = game.getState().getCreature(0);
 	if (e.keyCode === 68) {
-		player.move('right');
+		player.movePerformance('right');
 	} else if (e.keyCode === 83) {
-		player.move('down');
+		player.movePerformance('down');
 	} else if (e.keyCode === 87) {
-		player.move('up');
+		player.movePerformance('up');
 	} else if (e.keyCode === 65) {
-		player.move('left');
+		player.movePerformance('left');
 	} else if (e.keyCode === 39) {
 		player.doAttack('right');
 	} else if (e.keyCode === 40) {
@@ -149,4 +168,4 @@ document.onkeydown = function (e) {
 	game.tactOfGame();
 }
 
-console.log(game.state);
+console.log(state);
