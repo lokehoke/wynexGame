@@ -1,42 +1,27 @@
 'use strict';
 
-class Block {
-	constructor() {
-		this.nesting = false;
-		this.isCreature = false;
-	}
-}
+const Player = require('../../creatures/player.js');
+const Enemy = require('../../creatures/enemy.js');
 
-class DirtBlock extends Block {
-	constructor() {
-		super();
-		this.type = 'dirt';
-		this.idBlock = 1;
-		this.patency = true;
-		this.classNameCSS = 'dirt';
-	}
-}
+const ControllerBlock = require('./blocks/controllerBlock.js');
 
-class BorderBlock extends Block {
-	constructor() {
-		super();
-		this.type = 'border';
-		this.idBlock = 2;
-		this.patency = false;
-		this.classNameCSS = 'border';
-	}
-}
+const Coor = require('../../structOfDate/coordinate.js');
 
-class State {
+module.exports = class State {
 	constructor (config) {
 		generatePlace(this);
 		this._creature = [];
 		this._pointWatch = {};
-		this._startPointWatch = {x:0,y:0};
+		this._startPointWatch = {x:0 , y:0};
 		this._bias = null;
 		this._weaponDiv = null;
 		this._worldDiv = null;
 		this._worldObject = null;
+
+		this._sizeWorld = {
+			firstFindSize: true,
+			sizeG: null
+		};
 
 		function generatePlace(state) {
 			const N = config.height;
@@ -54,9 +39,9 @@ class State {
 					||
 						j + 1 === M
 					){
-						state._place[i][j] = State.getBlockObject(2);
+						state._place[i][j] = ControllerBlock.getBlockObject(2);
 					} else {
-						state._place[i][j] = State.getBlockObject(1);
+						state._place[i][j] = ControllerBlock.getBlockObject(1);
 					}
 				}
 			}
@@ -73,11 +58,11 @@ class State {
 							for (let k = j; k < j+randDigit && k < M; k++) {
 								if (k === j) {
 									for (let n = i; n < i+randDigit+1 && n < N; n++) {
-										state._place[n][k] = State.getBlockObject(2);
+										state._place[n][k] = ControllerBlock.getBlockObject(2);
 									}
 								} else {
-									state._place[i][k] = State.getBlockObject(2);
-									state._place[(i+randDigit >= N ? i : i+randDigit)][k] = State.getBlockObject(2);
+									state._place[i][k] = ControllerBlock.getBlockObject(2);
+									state._place[(i+randDigit >= N ? i : i+randDigit)][k] = ControllerBlock.getBlockObject(2);
 								}
 							}
 							j+= 8;
@@ -88,31 +73,29 @@ class State {
 		}
 	}
 
-	static getBlockObject(id) {
-		switch(id) {
-			case 1:
-				return new DirtBlock();
-			case 2:
-				return new BorderBlock();
-		}
+	getSizeWorld() {
+		return this._sizeWorld;
+	}
+
+	setFirstFindSize(sizeWorld) {
+		this._sizeWorld = sizeWorld;
 	}
 
 	setCoorPlayer(coor, num = 0) {
 		this._creature[num] = {};
-		this._creature[num].x = coor.x;
-		this._creature[num].y = coor.y;
+		this._creature[num].coor = coor;
 		return true;
 	}
 
 	setPlayer(id = 0 , val) {
-		this._creature[id] = new Player(this, val.watcher, {x: val.x, y: val.y}, val.type);
-		this._place[val.x][val.y] = this._creature[id];
+		this._creature[id] = new Player(id, this, val.watcher, val.coor, val.type);
+		this._place[val.coor.x][val.coor.y] = this._creature[id];
 		return true;
 	}
 
 	setEnemy(id = 0 , val) {
-		this._creature[id] = new Enemy(this, {x: val.x, y: val.y}, val.type);
-		this._place[val.x][val.y] = this._creature[id];
+		this._creature[id] = new Enemy(id, this, val.coor, val.type);
+		this._place[val.coor.x][val.coor.y] = this._creature[id];
 		return true;
 	}
 
@@ -147,8 +130,8 @@ class State {
 	}
 
 	changeCoorPlayer(coor, id = 0) {
-		this._creature[id].x = coor.x;
-		this._creature[id].y = coor.y;
+		this._creature[id].coor.x = coor.x;
+		this._creature[id].coor.y = coor.y;
 		return true;
 	}
 

@@ -1,30 +1,18 @@
 'use strict';
-/*
-	task:
-		0.bias weapon after bais world
-		1.reRender without bais and reRender All world
-		2.rewrite bais function
-*/
 
-const GLOBAL_SETTING = {
-	sizeBlock: {
-		width: 50,
-		height: 50
-	},
-	numBlocks: {
-		width: 2 ** 10,
-		height: 2 ** 10
-	}
-};
+const State = require('./state/state.js');
+const World = require('./world.js');
+const GLOBAL_SETTING_CLASS = require('../setting/globalSetting.js');
+const GLOBAL_SETTING = new GLOBAL_SETTING_CLASS();
 
-class ControllerGame {
+module.exports = class ControllerGame {
 	constructor (players = null, enemy = []) {
 		let numCreature = 0;
 
 		this.state = new State(GLOBAL_SETTING.numBlocks);
 		setPlayers(players, this.state);
 
-		const startPoint = getStartPiointWatch(players);
+		const startPoint = getStartPiointWatch(players, this.state);
 
 		if (startPoint === false) {
 			throw "2 or more main player or null";
@@ -32,7 +20,7 @@ class ControllerGame {
 			this.state.setStartPointWatch(startPoint);
 		}
 
-		enemy = enemy.concat(World.makeAroayWihtEnemy(1000));
+		enemy = enemy.concat(World.makeAroayWihtEnemy(1000, this.state));
 		setEnemys(enemy, this.state);
 
 		this.world = new World(this.state);
@@ -72,7 +60,7 @@ class ControllerGame {
 			}
 		}
 
-		function getStartPiointWatch(players) {
+		function getStartPiointWatch(players, state) {
 			let watcher = players.filter(player => {
 				return player.watcher;
 			});
@@ -83,10 +71,10 @@ class ControllerGame {
 				watcher = watcher[0];
 			}
 
-			const size = World.getSize();
+			const size = World.getSize(state);
 
-			let x = watcher.x;
-			let y = watcher.y;
+			let x = watcher.coor.x;
+			let y = watcher.coor.y;
 			let startPointWatch = {};
 
 			startPointWatch.x = findX(x, size);
@@ -137,35 +125,3 @@ class ControllerGame {
 		});
 	}
 }
-
-const game = new ControllerGame([{
-	x: 1,
-	y: 1,
-	type: 'mage',
-	watcher: true
-}]);
-const state = game.getState();
-const player = state.getCreature(0);
-
-document.onkeydown = function (e) {
-	if (e.keyCode === 68) {
-		player.movePerformance('right');
-	} else if (e.keyCode === 83) {
-		player.movePerformance('down');
-	} else if (e.keyCode === 87) {
-		player.movePerformance('up');
-	} else if (e.keyCode === 65) {
-		player.movePerformance('left');
-	} else if (e.keyCode === 39) {
-		player.doAttack('right');
-	} else if (e.keyCode === 40) {
-		player.doAttack('down');
-	} else if (e.keyCode === 38) {
-		player.doAttack('up');
-	} else if (e.keyCode === 37) {
-		player.doAttack('left');
-	}
-	game.tactOfGame();
-}
-
-console.log(state);
