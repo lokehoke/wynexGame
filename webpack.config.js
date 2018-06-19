@@ -6,25 +6,25 @@ module.exports = {
 		styles: './resources/css/sass/index.scss'
 	},
 	output: {
-		path: __dirname + "/resources/dist/",
+		path: __dirname + "/dist/",
 	},
 	mode: 'production',
 	watch: true,
 	devtool: 'source-map',
 	module: {
-       rules: [{
-            test: /\.scss$/,
-            use: [{
-                loader: "style-loader"
-            }, {
-                loader: "css-loader", options: {
-                    sourceMap: true
-                }
-            }, {
-                loader: "sass-loader", options: {
-                    sourceMap: true
-                }
-            }]
-        }]
-    }
+		rules: [{
+			test: /\.scss$/,
+			use: [{
+				loader: "style-loader"
+			}, {
+				loader: "css-loader", options: {
+					sourceMap: true
+				}
+			}, {
+				loader: "sass-loader", options: {
+					sourceMap: true
+				}
+			}]
+		}]
+	}
 };
