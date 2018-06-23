@@ -28,7 +28,7 @@ module.exports = class Creature {
 		this.health = 100;
 		this.attackDamage = 20;
 		this.attackRange = 100;
-		this.pursuitRange = 10;
+		this.pursuitRange = 50;
 
 		state.setCoorPlayer(coor, id);
 	}
@@ -266,8 +266,16 @@ module.exports = class Creature {
 		const place = state.getAllPlace();
 		const startX = creature.coor.x - range;
 		const startY = creature.coor.y - range;
+		const watcher = state.getWatcher();
 
 		let localPlace = getLocalPlace();
+		let direction = wave(localPlace);
+
+		if (direction === false) {
+			creature._randMove();
+		} else {
+			creature._move(direction);
+		}
 
 		function getLocalPlace() {
 			let localPlace = [];
@@ -278,21 +286,117 @@ module.exports = class Creature {
 				localPlace[i] = [];
 
 				for (let j = 0; j < side; j++) {
-					if (i === 0 || i === side - 1 || j === i || j === side - 1) {
-						localPlace[i][j] = Infinity;
+					if (i === 0 || i === side - 1 || j === 0 || j === side - 1) {
+						localPlace[i][j] = -1;
 					} else {
-						cell = place[startX + i][startY + j];
-
-						if (cell.patency === true) {
-							localPlace[i][j] = 0;
+						if (place[startX + i] !== undefined && place[startX + i][startY + j] !== undefined){
+							cell = place[startX + i][startY + j];
+							if (cell === creature) {
+								localPlace[i][j] = 0;
+								localPlace.own = {
+									i: i,
+									j: j
+								}
+							} else if (cell === watcher) {
+								localPlace[i][j] = -2;
+							} else if (cell.patency === true) {
+								localPlace[i][j] = Infinity;
+							} else {
+								localPlace[i][j] = -1;
+							}
 						} else {
-							localPlace[i][j] = Infinity;
+							localPlace[i][j] = -1;
 						}
 					}
 				}
 			}
 
 			return localPlace;
+		}
+
+		function wave(localPlace) {
+			const ownX = localPlace.own.i;
+			const ownY = localPlace.own.j;
+
+			let cur = 0;
+			let wayExist = false;
+			let findWatcher = false;
+			let coorWatcher = new Coor();
+			let locCoor = new Coor();
+
+			do {
+				wayExist = false;
+
+				for (let i = 0; i < side; i++) {
+					if (findWatcher) {
+						break;
+					}
+
+					for (let j = 0; j < side; j++) {
+						if (localPlace[i][j] === cur) {
+							if (localPlace[i + 1][j] > cur + 1) {
+								localPlace[i + 1][j] = cur + 1;
+								wayExist = true;
+							}
+							if (localPlace[i - 1][j] > cur + 1) {
+								localPlace[i - 1][j] = cur + 1;
+								wayExist = true;
+							}
+							if (localPlace[i][j + 1] > cur + 1) {
+								localPlace[i][j + 1] = cur + 1;
+								wayExist = true;
+							}
+							if (localPlace[i][j - 1] > cur + 1) {
+								localPlace[i][j - 1] = cur + 1;
+								wayExist = true;
+							}
+							if (localPlace[locCoor.x = i - 1][locCoor.y = j] === -2
+							||  localPlace[locCoor.x = i + 1][locCoor.y = j] === -2
+							||  localPlace[locCoor.x = i][locCoor.y = j + 1] === -2
+							||  localPlace[locCoor.x = i][locCoor.y = j - 1] === -2
+							){
+								findWatcher = true;
+								coorWatcher.x = locCoor.x;
+								coorWatcher.y = locCoor.y;
+								break;
+							}
+						}
+					}
+				}
+
+				cur++;
+			} while (wayExist && !findWatcher);
+
+			if (findWatcher) {
+				for (let i = cur; i >= 0; i--) {
+					if (localPlace[coorWatcher.x + 1][coorWatcher.y] === i - 1) {
+						coorWatcher.x++;
+						if (i === 1) {
+							return 'up';
+						}
+					}
+					if (localPlace[coorWatcher.x - 1][coorWatcher.y] === i - 1) {
+						coorWatcher.x--;
+						if (i === 1) {
+							return 'down';
+						}
+					}
+					if (localPlace[coorWatcher.x][coorWatcher.y + 1] === i - 1) {
+						coorWatcher.y++;
+						if (i === 1) {
+							return 'left';
+						}
+					}
+					if (localPlace[coorWatcher.x][coorWatcher.y - 1] === i - 1) {
+						coorWatcher.y--;
+						if (i === 1) {
+							return 'right';
+						}
+					}
+				}
+			} else {
+				return false;
+			}
 		}
 	}
 

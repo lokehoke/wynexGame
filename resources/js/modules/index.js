@@ -50,12 +50,12 @@ function startGame() {
 		} else if (e.keyCode === 37) {
 			player.doAttack('left');
 		}
-		game.tactOfGame();
+		game.tactOfGame(true);
 	}
 
 	setInterval(() => {
 		game.tactOfGame();
-	}, 50)
+	}, 200)
 
 	console.log(state);
 }
