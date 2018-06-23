@@ -1,19 +1,24 @@
 'use strict';
 
+const Place = require('./inerState/place/place.js');
+
 const Player = require('../../creatures/player.js');
 const Enemy = require('../../creatures/enemy.js');
-
-const ControllerBlock = require('./blocks/controllerBlock.js');
 
 const Coor = require('../../structOfDate/coordinate.js');
 
 module.exports = class State {
 	constructor (config) {
-		generatePlace(this);
+
+		this._place = new Place(config);
+		this._place.addRoom();
+
 		this._creature = [];
+
 		this._pointWatch = {};
-		this._startPointWatch = {x:0 , y:0};
+		this._startPointWatch = {x:0, y:0};
 		this._bias = null;
+
 		this._weaponDiv = null;
 		this._worldDiv = null;
 		this._worldObject = null;
@@ -22,55 +27,6 @@ module.exports = class State {
 			firstFindSize: true,
 			sizeG: null
 		};
-
-		function generatePlace(state) {
-			const N = config.height;
-			const M = config.width;
-
-			state._place = [];
-			for (let i = 0; i < N; i++) {
-				state._place[i] = [];
-				for (let j = 0; j < M; j++) {
-					if (i === 0
-					||
-						i + 1 === N
-					||
-						j === 0
-					||
-						j + 1 === M
-					){
-						state._place[i][j] = ControllerBlock.getBlockObject(2);
-					} else {
-						state._place[i][j] = ControllerBlock.getBlockObject(1);
-					}
-				}
-			}
-
-			addRoom(state);
-
-			return state;
-
-			function addRoom(state) {
-				for (let i = 0; i < N; i+= 8) {
-					for (let j = 0; j < M; j++) {
-						const randDigit = Math.floor(Math.random() * 400);
-						if (randDigit > 9 && randDigit < 25) {
-							for (let k = j; k < j+randDigit && k < M; k++) {
-								if (k === j) {
-									for (let n = i; n < i+randDigit+1 && n < N; n++) {
-										state._place[n][k] = ControllerBlock.getBlockObject(2);
-									}
-								} else {
-									state._place[i][k] = ControllerBlock.getBlockObject(2);
-									state._place[(i+randDigit >= N ? i : i+randDigit)][k] = ControllerBlock.getBlockObject(2);
-								}
-							}
-							j+= 8;
-						}
-					}
-				}
-			}
-		}
 	}
 
 	getSizeWorld() {
@@ -95,7 +51,7 @@ module.exports = class State {
 
 	setEnemy(id = 0 , val) {
 		this._creature[id] = new Enemy(id, this, val.coor, val.type);
-		this._place[val.coor.x][val.coor.y] = this._creature[id];
+		this._place.setCell(val.coor.x, val.coor.y, this._creature[id]);
 		return true;
 	}
 
@@ -112,20 +68,20 @@ module.exports = class State {
 	}
 
 	getAllPlace() {
-		return this._place;
+		return this._place.getAllPlace();
 	}
 
 	getCellPlace(coor) {
-		return this._place[coor.x][coor.y];
+		return this._place.getCell(coor.x, coor.y);
 	}
 
 	setCellPlace(coor, val) {
 		if (val.isCreature === true) {
-			val.idBackBlock = this._place[coor.x][coor.y].idBlock;
-			val.classNameBackBlock = this._place[coor.x][coor.y].classNameCSS;
+			val.idBackBlock = this._place.getCell(coor.x, coor.y).idBlock;
+			val.classNameBackBlock = this._place.getCell(coor.x, coor.y).classNameCSS;
 		}
 
-		this._place[coor.x][coor.y] = val;
+		this._place.setCell(coor.x, coor.y, val);
 		return true;
 	}
 

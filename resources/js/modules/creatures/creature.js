@@ -4,7 +4,7 @@ const GLOBAL_SETTING = new (require('../setting/globalSetting.js'))();
 const Coor = require('../structOfDate/coordinate.js');
 const ExCoor = require('../structOfDate/ExCoordinate.js');
 const World = require('../globalClass/world.js');
-const ControllerBlock = require('../globalClass/state/blocks/controllerBlock.js');
+const ControllerBlock = require('../globalClass/state/inerState/place/blocks/controllerBlock.js');
 
 module.exports = class Creature {
 	constructor (id, state, coor) {

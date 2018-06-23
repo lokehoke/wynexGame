@@ -181,7 +181,6 @@ module.exports = class World {
 
 					let y = 0;
 					let newY = 0;
-					let block = null;
 
 					if (bias === 'right') {
 						y = state.getStartPiointWatch().y + size.widthBlocks;
@@ -191,11 +190,13 @@ module.exports = class World {
 						newY = y + size.widthBlocks;
 					}
 
-					block = getBlock(place[i][y], {newX:i,newY:y}, true);
 
 					if (place[i][newY].isCreature === true) {
 						visableHideCreature(place[i][newY]);
 					}
+
+					let block = null;
+					block = getBlock(place[i][y], {newX:i,newY:y}, true);
 
 					let line = oldWorld.children[i-x];
 					let idBlockForRemove = 0;

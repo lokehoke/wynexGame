@@ -8,7 +8,8 @@ module.exports = {
 	output: {
 		path: __dirname + "/dist/",
 	},
-	mode: 'production',
+	// mode: 'production',
+	mode: 'development',
 	watch: true,
 	devtool: 'source-map',
 	module: {
