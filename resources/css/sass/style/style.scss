@@ -6,8 +6,8 @@
 		display: flex;
 
 		.standartPlace {
-			width: 50px;
-			height: 50px;
+			width: 30px;
+			height: 30px;
 			position: relative;
 
 			div {
@@ -35,7 +35,7 @@
 		.border {
 			background-image: url(/resources/img/worldTextures/border.svg);
 			background-size: 200%;
-			background-position: 8px 5px;
+			background-position: 5px 4px;
 			background-repeat: no-repeat;
 			background-color: black;
 		}
@@ -55,8 +55,8 @@
 .weapon {
 	.stackWeaponBall {
 		position: absolute;
-		width: 50px;
-		height: 50px;
+		width: 30px;
+		height: 30px;
 		background: url('/resources/img/weaponTextures/stackWeaponBall.svg');
 		background-size: 250%;
 		background-position: 7px 7px;

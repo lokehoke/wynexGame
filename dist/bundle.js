@@ -363,7 +363,6 @@ module.exports = class Creature {
 		const startX = creature.coor.x - range;
 		const startY = creature.coor.y - range;
 
-
 		let localPlace = getLocalPlace();
 
 		function getLocalPlace() {
@@ -609,13 +608,19 @@ module.exports = class ControllerGame {
 		return this.state;
 	}
 
-	tactOfGame() {
+	tactOfGame(onlyRender = false) {
+
 		this.world.renderWorld();
-		this.state._creature.forEach((item) => {
-			if (item.watcher !== true) {
-				item.movePerformance('rand');
-			}
-		});
+
+		if (onlyRender === false) {
+			this.state._creature.forEach((item) => {
+				if (item.watcher !== true) {
+					item.movePerformance('rand');
+				}
+			});
+		}
+
+		return true;
 	}
 }
 
@@ -728,7 +733,8 @@ module.exports = class Place {
 	constructor (config) {
 		const N = config.height;
 		const M = config.width;
-
+		this.height = N;
+		this.width = M;
 
 		for (let i = 0; i < N; i++) {
 			this[i] = [];
@@ -743,6 +749,9 @@ module.exports = class Place {
 	}
 
 	addRoom () {
+		const N = this.height;
+		const M = this.width;
+
 		for (let i = 0; i < N; i+= 8) {
 			for (let j = 0; j < M; j++) {
 				const randDigit = Math.floor(Math.random() * 400);
@@ -1204,20 +1213,14 @@ module.exports = class World {
 					}
 
 					let block = null;
-					block = getBlock(place[i][y], {newX:i,newY:y}, true);
-
 					let line = oldWorld.children[i-x];
-					let idBlockForRemove = 0;
+					let idBlockForRemove = (bias === 'right' ? 0 : line.children.length - 1);
+
+					block = getBlock(place[i][y], {newX:i,newY:y}, true, line.children[idBlockForRemove]);
 
 					if (bias === 'right') {
-						idBlockForRemove = 0;
-
-						line.children[idBlockForRemove].remove();
 						line.appendChild(block);
 					} else if (bias === 'left') {
-						idBlockForRemove = line.children.length - 1;
-
-						line.children[idBlockForRemove].remove();
 						line.insertBefore(block, oldWorld.children[i-x].children[0]);
 					}
 
@@ -1229,8 +1232,13 @@ module.exports = class World {
 			function upDownBias() {
 				const y = state.getStartPiointWatch().y;
 
-				let row = document.createElement('div');
-				row.className = 'row';
+				let row = null;
+
+				if (bias === 'up') {
+					row = oldWorld.children[oldWorld.children.length-1];
+				} else if (bias === 'down') {
+					row = oldWorld.children[0];
+				}
 
 				for (let i = y; i < y + size.widthBlocks; i++) {
 					let x = 0;
@@ -1244,9 +1252,7 @@ module.exports = class World {
 						newX = x - size.heightBlocks;
 					}
 
-					let block = getBlock(place[x][i], {newX:x,newY:i}, true);
-					row.appendChild(block);
-
+					let block = getBlock(place[x][i], {newX:x,newY:i}, true, row.children[i-y]);
 
 					if (place[newX][i].isCreature === true) {
 						visableHideCreature(place[newX][i]);
@@ -1254,19 +1260,28 @@ module.exports = class World {
 				}
 
 				if (bias === 'up') {
-					oldWorld.children[oldWorld.children.length-1].remove();
 					oldWorld.insertBefore(row, oldWorld.children[0]);
 				} else if (bias === 'down') {
-					oldWorld.children[0].remove();
 					oldWorld.appendChild(row);
 				}
+
 
 				return true;
 			}
 		}
 
-		function getBlock(blockObject, coor, bias) {
-			let block = document.createElement('div');
+		function getBlock(blockObject, coor, bias, lastBlock = null) {
+			let block = null;
+
+			if (lastBlock === null) {
+				block = document.createElement('div');
+			} else {
+				block = lastBlock;
+
+				if (block.children[0]) {
+					block.children[0].remove();
+				}
+			}
 
 			if (blockObject.nesting === true) {
 				block.className = 'standartPlace ' + blockObject.classNameBackBlock;
@@ -1329,44 +1344,63 @@ module.exports = class World {
 		0.bias weapon after bais world
 		1.reRender without bais and reRender All world
 */
+function startGame() {
+	const GLOBAL_SETTING = new __webpack_require__(/*! ./setting/globalSetting.js */ "./resources/js/modules/setting/globalSetting.js");
+	const ControllerGame = __webpack_require__(/*! ./globalClass/game.js */ "./resources/js/modules/globalClass/game.js");
 
-const GLOBAL_SETTING = new __webpack_require__(/*! ./setting/globalSetting.js */ "./resources/js/modules/setting/globalSetting.js");
-const ControllerGame = __webpack_require__(/*! ./globalClass/game.js */ "./resources/js/modules/globalClass/game.js");
+	const game = new ControllerGame([{
+		coor: {
+			x: 1,
+			y: 1
+		},
+		type: 'mage',
+		watcher: true
+	}]);
 
-const game = new ControllerGame([{
-	coor: {
-		x: 1,
-		y: 1
-	},
-	type: 'mage',
-	watcher: true
-}]);
+	const state = game.getState();
+	const player = state.getCreature(0);
 
-const state = game.getState();
-const player = state.getCreature(0);
+	let timer = false;
 
-document.onkeydown = function (e) {
-	if (e.keyCode === 68) {
-		player.movePerformance('right');
-	} else if (e.keyCode === 83) {
-		player.movePerformance('down');
-	} else if (e.keyCode === 87) {
-		player.movePerformance('up');
-	} else if (e.keyCode === 65) {
-		player.movePerformance('left');
-	} else if (e.keyCode === 39) {
-		player.doAttack('right');
-	} else if (e.keyCode === 40) {
-		player.doAttack('down');
-	} else if (e.keyCode === 38) {
-		player.doAttack('up');
-	} else if (e.keyCode === 37) {
-		player.doAttack('left');
+	document.onkeydown = function (e) {
+
+		if (timer) {
+			return 0;
+		} else {
+			timer = true;
+			setTimeout(() => {
+				timer = false;
+			}, 50);
+		}
+
+		if (e.keyCode === 68) {
+			player.movePerformance('right');
+		} else if (e.keyCode === 83) {
+			player.movePerformance('down');
+		} else if (e.keyCode === 87) {
+			player.movePerformance('up');
+		} else if (e.keyCode === 65) {
+			player.movePerformance('left');
+		} else if (e.keyCode === 39) {
+			player.doAttack('right');
+		} else if (e.keyCode === 40) {
+			player.doAttack('down');
+		} else if (e.keyCode === 38) {
+			player.doAttack('up');
+		} else if (e.keyCode === 37) {
+			player.doAttack('left');
+		}
+		game.tactOfGame();
 	}
-	game.tactOfGame();
+
+	setInterval(() => {
+		game.tactOfGame();
+	}, 50)
+
+	console.log(state);
 }
 
-console.log(state);
+startGame();
 
 /***/ }),
 
@@ -1384,7 +1418,7 @@ const Size = __webpack_require__(/*! ../structOfDate/size.js */ "./resources/js/
 
 module.exports = class GLOBAL_SETTING {
 	constructor() {
-		this.sizeBlock = new Size(50, 50);
+		this.sizeBlock = new Size(30, 30);
 		this.numBlocks = new Size(2 ** 10, 2 ** 10);
 	}
 }

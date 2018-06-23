@@ -267,7 +267,6 @@ module.exports = class Creature {
 		const startX = creature.coor.x - range;
 		const startY = creature.coor.y - range;
 
-
 		let localPlace = getLocalPlace();
 
 		function getLocalPlace() {

@@ -4,7 +4,8 @@ module.exports = class Place {
 	constructor (config) {
 		const N = config.height;
 		const M = config.width;
-
+		this.height = N;
+		this.width = M;
 
 		for (let i = 0; i < N; i++) {
 			this[i] = [];
@@ -19,6 +20,9 @@ module.exports = class Place {
 	}
 
 	addRoom () {
+		const N = this.height;
+		const M = this.width;
+
 		for (let i = 0; i < N; i+= 8) {
 			for (let j = 0; j < M; j++) {
 				const randDigit = Math.floor(Math.random() * 400);

@@ -196,20 +196,14 @@ module.exports = class World {
 					}
 
 					let block = null;
-					block = getBlock(place[i][y], {newX:i,newY:y}, true);
-
 					let line = oldWorld.children[i-x];
-					let idBlockForRemove = 0;
+					let idBlockForRemove = (bias === 'right' ? 0 : line.children.length - 1);
+
+					block = getBlock(place[i][y], {newX:i,newY:y}, true, line.children[idBlockForRemove]);
 
 					if (bias === 'right') {
-						idBlockForRemove = 0;
-
-						line.children[idBlockForRemove].remove();
 						line.appendChild(block);
 					} else if (bias === 'left') {
-						idBlockForRemove = line.children.length - 1;
-
-						line.children[idBlockForRemove].remove();
 						line.insertBefore(block, oldWorld.children[i-x].children[0]);
 					}
 
@@ -221,8 +215,13 @@ module.exports = class World {
 			function upDownBias() {
 				const y = state.getStartPiointWatch().y;
 
-				let row = document.createElement('div');
-				row.className = 'row';
+				let row = null;
+
+				if (bias === 'up') {
+					row = oldWorld.children[oldWorld.children.length-1];
+				} else if (bias === 'down') {
+					row = oldWorld.children[0];
+				}
 
 				for (let i = y; i < y + size.widthBlocks; i++) {
 					let x = 0;
@@ -236,9 +235,7 @@ module.exports = class World {
 						newX = x - size.heightBlocks;
 					}
 
-					let block = getBlock(place[x][i], {newX:x,newY:i}, true);
-					row.appendChild(block);
-
+					let block = getBlock(place[x][i], {newX:x,newY:i}, true, row.children[i-y]);
 
 					if (place[newX][i].isCreature === true) {
 						visableHideCreature(place[newX][i]);
@@ -246,19 +243,28 @@ module.exports = class World {
 				}
 
 				if (bias === 'up') {
-					oldWorld.children[oldWorld.children.length-1].remove();
 					oldWorld.insertBefore(row, oldWorld.children[0]);
 				} else if (bias === 'down') {
-					oldWorld.children[0].remove();
 					oldWorld.appendChild(row);
 				}
+
 
 				return true;
 			}
 		}
 
-		function getBlock(blockObject, coor, bias) {
-			let block = document.createElement('div');
+		function getBlock(blockObject, coor, bias, lastBlock = null) {
+			let block = null;
+
+			if (lastBlock === null) {
+				block = document.createElement('div');
+			} else {
+				block = lastBlock;
+
+				if (block.children[0]) {
+					block.children[0].remove();
+				}
+			}
 
 			if (blockObject.nesting === true) {
 				block.className = 'standartPlace ' + blockObject.classNameBackBlock;
