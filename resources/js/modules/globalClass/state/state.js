@@ -1,6 +1,8 @@
 'use strict';
 
 const Place = require('./inerState/place/place.js');
+const StackTempClassName = require('./inerState/stackTemp/stackTempClassName.js');
+const StorCustomEvents = require('./inerState/events/StorCustomEvents.js')
 
 const Player = require('../../creatures/player.js');
 const Enemy = require('../../creatures/enemy.js');
@@ -16,7 +18,7 @@ module.exports = class State {
 		this._creature = [];
 
 		this._pointWatch = {};
-		this._startPointWatch = {x:0, y:0};
+		this._startPointWatch = new Coor(0, 0);
 		this._bias = null;
 
 		this._weaponDiv = null;
@@ -27,6 +29,14 @@ module.exports = class State {
 			firstFindSize: true,
 			sizeG: null
 		};
+
+		this._stackTempClassName = new StackTempClassName();
+
+		this._events = new StorCustomEvents();
+	}
+
+	getEventBias() {
+		return this._events.getEventBias();
 	}
 
 	getSizeWorld() {
@@ -115,8 +125,8 @@ module.exports = class State {
 		return true;
 	}
 
-	changePointWatch(bais) {
-		switch(bais) {
+	changePointWatch(bias) {
+		switch(bias) {
 			case 'right':
 				this._pointWatch.y++;
 				break;
@@ -148,8 +158,8 @@ module.exports = class State {
 		return this._startPointWatch;
 	}
 
-	changeStartPointWatch(bais) {
-		switch(bais) {
+	changeStartPointWatch(bias) {
+		switch(bias) {
 			case 'right':
 				this._startPointWatch.y++;
 				break;

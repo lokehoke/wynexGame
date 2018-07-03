@@ -1,10 +1,15 @@
 'use strict';
 
 const GLOBAL_SETTING = new (require('../setting/globalSetting.js'))();
+
 const Coor = require('../structOfDate/coordinate.js');
 const ExCoor = require('../structOfDate/ExCoordinate.js');
-const World = require('../globalClass/world.js');
+
 const ControllerBlock = require('../globalClass/state/inerState/place/blocks/controllerBlock.js');
+
+const World = require('../globalClass/world.js');
+
+const tempClassName = require('../globalClass/timers/tempClassName.js');
 
 module.exports = class Creature {
 	constructor (id, state, coor) {
@@ -69,12 +74,14 @@ module.exports = class Creature {
 		checkCreatureForAttack(direction);
 
 		function makeAnimation(direction) {
+			/* bais listen in game.js */
 			const coor = creature.DOMObject.getBoundingClientRect();
 
 			let weapon = document.createElement('div');
 			weapon.className = 'stackWeaponBall';
 			weapon.style.left = coor.x + 'px';
 			weapon.style.top = coor.y + 'px';
+
 			creature.state.getWeaponDiv().appendChild(weapon);
 
 			setTimeout(() => {
@@ -102,15 +109,8 @@ module.exports = class Creature {
 				}
 				setTimeout(() => {
 					weapon.remove();
-				} ,2000);
-			}, 100);
-
-			if (lisenAttack === false) {
-				world.setAfterWorldRenderDoing(() => {
-					const weapon = state.getWeaponDiv();
-				});
-				lisenAttack = true;
-			}
+				} ,GLOBAL_SETTING.timeAnimationWeapon);
+			}, 0);
 		}
 
 		function checkCreatureForAttack(direction) {

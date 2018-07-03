@@ -97,10 +97,15 @@
 
 
 const GLOBAL_SETTING = new (__webpack_require__(/*! ../setting/globalSetting.js */ "./resources/js/modules/setting/globalSetting.js"))();
+
 const Coor = __webpack_require__(/*! ../structOfDate/coordinate.js */ "./resources/js/modules/structOfDate/coordinate.js");
 const ExCoor = __webpack_require__(/*! ../structOfDate/ExCoordinate.js */ "./resources/js/modules/structOfDate/ExCoordinate.js");
-const World = __webpack_require__(/*! ../globalClass/world.js */ "./resources/js/modules/globalClass/world.js");
+
 const ControllerBlock = __webpack_require__(/*! ../globalClass/state/inerState/place/blocks/controllerBlock.js */ "./resources/js/modules/globalClass/state/inerState/place/blocks/controllerBlock.js");
+
+const World = __webpack_require__(/*! ../globalClass/world.js */ "./resources/js/modules/globalClass/world.js");
+
+const tempClassName = __webpack_require__(/*! ../globalClass/timers/tempClassName.js */ "./resources/js/modules/globalClass/timers/tempClassName.js");
 
 module.exports = class Creature {
 	constructor (id, state, coor) {
@@ -165,12 +170,14 @@ module.exports = class Creature {
 		checkCreatureForAttack(direction);
 
 		function makeAnimation(direction) {
+			/* bais listen in game.js */
 			const coor = creature.DOMObject.getBoundingClientRect();
 
 			let weapon = document.createElement('div');
 			weapon.className = 'stackWeaponBall';
 			weapon.style.left = coor.x + 'px';
 			weapon.style.top = coor.y + 'px';
+
 			creature.state.getWeaponDiv().appendChild(weapon);
 
 			setTimeout(() => {
@@ -198,15 +205,8 @@ module.exports = class Creature {
 				}
 				setTimeout(() => {
 					weapon.remove();
-				} ,2000);
-			}, 100);
-
-			if (lisenAttack === false) {
-				world.setAfterWorldRenderDoing(() => {
-					const weapon = state.getWeaponDiv();
-				});
-				lisenAttack = true;
-			}
+				} ,GLOBAL_SETTING.timeAnimationWeapon);
+			}, 0);
 		}
 
 		function checkCreatureForAttack(direction) {
@@ -603,29 +603,27 @@ const GLOBAL_SETTING = new GLOBAL_SETTING_CLASS();
 
 module.exports = class ControllerGame {
 	constructor (players = null, enemy = []) {
-		let numCreature = 0;
+		this._numCreature = 0;
 
 		this.state = new State(GLOBAL_SETTING.numBlocks);
-		setPlayers(players, this.state);
+		this._setPlayers(players, this.state);
 
-		const startPoint = getStartPiointWatch(players, this.state);
-
-		if (startPoint === false) {
-			throw "2 or more main player or null";
-		} else {
-			this.state.setStartPointWatch(startPoint);
-		}
+		this._definedAndSetStartPointWatch(players);
 
 		enemy = enemy.concat(World.makeAroayWihtEnemy(1000, this.state));
-		setEnemys(enemy, this.state);
+		this._setEnemys(enemy, this.state);
 
 		this.world = new World(this.state);
 		const worldDiv = this.world.renderWorld(true);
 		this.weaponDiv = createWeaponDiv();
+		this.weaponDiv.addEventListener('bias', (e) => {
+			
+		});
 
 		this.state.setWeaponDiv(this.weaponDiv);
 		this.state.setWorldDiv(worldDiv);
 		this.state.setWorldObject(this.world);
+
 
 		function createWeaponDiv() {
 			let weapon = document.createElement('div');
@@ -633,78 +631,88 @@ module.exports = class ControllerGame {
 			document.querySelector('body').appendChild(weapon);
 			return weapon;
 		}
+	}
 
-		function setPlayers(players, state) {
-			if (players !== null) {
-				players.forEach((val) => {
-					state.setPlayer(numCreature++, val);
-				});
-				return true;
-			} else {
-				return false;
-			}
+	_definedAndSetStartPointWatch(players) {
+		const startPoint = this._getStartPiointWatch(players, this.state);
+
+		if (startPoint === false) {
+			throw "2 or more main player or null";
+		} else {
+			this.state.setStartPointWatch(startPoint);
 		}
+	}
 
-		function setEnemys(enemys, state) {
-			if (enemys !== null) {
-				enemys.forEach((val) => {
-					state.setEnemy(numCreature++, val);
-				});
-				return true;
-			} else {
-				return false;
-			}
-		}
-
-		function getStartPiointWatch(players, state) {
-			let watcher = players.filter(player => {
-				return player.watcher;
+	_setPlayers(players, state) {
+		if (players !== null) {
+			players.forEach((val) => {
+				state.setPlayer(this._numCreature++, val);
 			});
+			return true;
+		} else {
+			return false;
+		}
+	}
 
-			if (watcher.length !== 1) {
-				return false;
+	_setEnemys(enemys, state) {
+		if (enemys !== null) {
+			enemys.forEach((val) => {
+				state.setEnemy(this._numCreature++, val);
+			});
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	_getStartPiointWatch(players, state) {
+		let watcher = players.filter(player => {
+			return player.watcher;
+		});
+
+		if (watcher.length !== 1) {
+			return false;
+		} else {
+			watcher = watcher[0];
+		}
+
+		const size = World.getSize(state);
+
+		let x = watcher.coor.x;
+		let y = watcher.coor.y;
+		let startPointWatch = {};
+
+		startPointWatch.x = findX(x, size);
+		startPointWatch.y = findY(y, size);
+
+		return startPointWatch;
+
+		function findX (x, size) {
+			let newX = 0;
+
+			if (x < Math.floor(size.heightBlocks / 2)) {
+				newX = 0;
+			} else if (x >= (GLOBAL_SETTING.numBlocks.height - Math.floor(size.heightBlocks / 2))) {
+				newX = GLOBAL_SETTING.numBlocks.height - Math.floor(size.heightBlocks / 2);
 			} else {
-				watcher = watcher[0];
+				newX = x - Math.floor(size.heightBlocks / 2) + 1;
 			}
 
-			const size = World.getSize(state);
+			return newX;
+		}
 
-			let x = watcher.coor.x;
-			let y = watcher.coor.y;
-			let startPointWatch = {};
+		function findY (y, size) {
+			let newY = 0;
 
-			startPointWatch.x = findX(x, size);
-			startPointWatch.y = findY(y, size);
-
-			return startPointWatch;
-
-			function findX (x, size) {
-				let newX = 0;
-
-				if (x < Math.floor(size.heightBlocks / 2)) {
-					newX = 0;
-				} else if (x >= (GLOBAL_SETTING.numBlocks.height - Math.floor(size.heightBlocks / 2))) {
-					newX = GLOBAL_SETTING.numBlocks.height - Math.floor(size.heightBlocks / 2);
-				} else {
-					newX = x - Math.floor(size.heightBlocks / 2) + 1;
-				}
-
-				return newX;
+			if (y < Math.floor(size.widthBlocks / 2)) {
+				newY = 0;
+			} else if (y >= (GLOBAL_SETTING.numBlocks.width - Math.floor(size.widthBlocks / 2))) {
+				newY = GLOBAL_SETTING.numBlocks.width - Math.floor(size.widthBlocks / 2);
+			} else {
+				newY = y - Math.floor(size.widthBlocks / 2) + 1;
 			}
 
-			function findY (y, size) {
-				let newY = 0;
-
-				if (y < Math.floor(size.widthBlocks / 2)) {
-					newY = 0;
-				} else if (y >= (GLOBAL_SETTING.numBlocks.width - Math.floor(size.widthBlocks / 2))) {
-					newY = GLOBAL_SETTING.numBlocks.width - Math.floor(size.widthBlocks / 2);
-				} else {
-					newY = y - Math.floor(size.widthBlocks / 2) + 1;
-				}
-
-				return newY;
-			}
+			return newY;
 		}
 	}
 
@@ -713,7 +721,6 @@ module.exports = class ControllerGame {
 	}
 
 	tactOfGame(onlyRender = false) {
-
 		this.world.renderWorld();
 
 		if (onlyRender === false) {
@@ -725,6 +732,32 @@ module.exports = class ControllerGame {
 		}
 
 		return true;
+	}
+}
+
+/***/ }),
+
+/***/ "./resources/js/modules/globalClass/state/inerState/events/StorCustomEvents.js":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/modules/globalClass/state/inerState/events/StorCustomEvents.js ***!
+  \*************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = class StorCustomEvents {
+	constructor() {
+		this._eventBias = new CustomEvent('bias', {
+			detail: {
+				direction: null
+			}
+		});
+	}
+
+	getEventBias() {
+		return this._eventBias;
 	}
 }
 
@@ -896,6 +929,32 @@ module.exports = class Place {
 
 /***/ }),
 
+/***/ "./resources/js/modules/globalClass/state/inerState/stackTemp/stackTempClassName.js":
+/*!******************************************************************************************!*\
+  !*** ./resources/js/modules/globalClass/state/inerState/stackTemp/stackTempClassName.js ***!
+  \******************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = class stackTempClassName {
+	constructor() {
+		this._stack = [];
+	}
+
+	addTemp() {
+
+	}
+
+	removeTemp() {
+
+	}
+}
+
+/***/ }),
+
 /***/ "./resources/js/modules/globalClass/state/state.js":
 /*!*********************************************************!*\
   !*** ./resources/js/modules/globalClass/state/state.js ***!
@@ -907,6 +966,8 @@ module.exports = class Place {
 
 
 const Place = __webpack_require__(/*! ./inerState/place/place.js */ "./resources/js/modules/globalClass/state/inerState/place/place.js");
+const StackTempClassName = __webpack_require__(/*! ./inerState/stackTemp/stackTempClassName.js */ "./resources/js/modules/globalClass/state/inerState/stackTemp/stackTempClassName.js");
+const StorCustomEvents = __webpack_require__(/*! ./inerState/events/StorCustomEvents.js */ "./resources/js/modules/globalClass/state/inerState/events/StorCustomEvents.js")
 
 const Player = __webpack_require__(/*! ../../creatures/player.js */ "./resources/js/modules/creatures/player.js");
 const Enemy = __webpack_require__(/*! ../../creatures/enemy.js */ "./resources/js/modules/creatures/enemy.js");
@@ -922,7 +983,7 @@ module.exports = class State {
 		this._creature = [];
 
 		this._pointWatch = {};
-		this._startPointWatch = {x:0, y:0};
+		this._startPointWatch = new Coor(0, 0);
 		this._bias = null;
 
 		this._weaponDiv = null;
@@ -933,6 +994,14 @@ module.exports = class State {
 			firstFindSize: true,
 			sizeG: null
 		};
+
+		this._stackTempClassName = new StackTempClassName();
+
+		this._events = new StorCustomEvents();
+	}
+
+	getEventBias() {
+		return this._events.getEventBias();
 	}
 
 	getSizeWorld() {
@@ -1021,8 +1090,8 @@ module.exports = class State {
 		return true;
 	}
 
-	changePointWatch(bais) {
-		switch(bais) {
+	changePointWatch(bias) {
+		switch(bias) {
 			case 'right':
 				this._pointWatch.y++;
 				break;
@@ -1054,8 +1123,8 @@ module.exports = class State {
 		return this._startPointWatch;
 	}
 
-	changeStartPointWatch(bais) {
-		switch(bais) {
+	changeStartPointWatch(bias) {
+		switch(bias) {
 			case 'right':
 				this._startPointWatch.y++;
 				break;
@@ -1111,6 +1180,46 @@ module.exports = class State {
 
 /***/ }),
 
+/***/ "./resources/js/modules/globalClass/timers/tempClassName.js":
+/*!******************************************************************!*\
+  !*** ./resources/js/modules/globalClass/timers/tempClassName.js ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = class tempClassName {
+	constructor (item, time, className) {
+		this.item = item;
+		this.time = time;
+		this.className = className;
+
+		this.timer = null;
+
+		this._setUpClass(item, time, className);
+	}
+
+	_setUpClass() {
+		this.item.classList.add(this.className);
+
+		this.timer = setTimeout(() => {
+			if (this.item.classList.contains(this.className)) {
+				this.item.classList.remove(this.className);
+			}
+		}, this.time);
+
+		this.__destructor();
+	}
+
+	__destructor() {
+		delete this;
+	}
+}
+
+/***/ }),
+
 /***/ "./resources/js/modules/globalClass/world.js":
 /*!***************************************************!*\
   !*** ./resources/js/modules/globalClass/world.js ***!
@@ -1122,7 +1231,6 @@ module.exports = class State {
 
 
 const GLOBAL_SETTING = new (__webpack_require__(/*! ../setting/globalSetting.js */ "./resources/js/modules/setting/globalSetting.js"))();
-const State = __webpack_require__(/*! ./state/state.js */ "./resources/js/modules/globalClass/state/state.js")
 
 const Coor = __webpack_require__(/*! ../structOfDate/coordinate.js */ "./resources/js/modules/structOfDate/coordinate.js");
 
@@ -1130,7 +1238,8 @@ module.exports = class World {
 	constructor(state) {
 		this.state = state;
 		this.size = World.getSize(state);
-		this.afterWorldRenderDoing = [];
+
+		this.eventBias = state.getEventBias();
 	}
 
 	static getSize(state) {
@@ -1172,20 +1281,11 @@ module.exports = class World {
 		return creatures;
 	}
 
-	setAfterWorldRenderDoing(func) {
-		this.afterWorldRenderDoing.push(func);
-	}
-
-	doAfterWorldRenderDoing() {
-		this.afterWorldRenderDoing.forEach((func) => {
-			func();
-		});
-	}
-
 	renderWorld(startRender) {
 		const state = this.state;
 		const size = this.size;
 		const bias = state.getBias(true);
+		const eventBias = this.eventBias;
 
 		if (bias === null && startRender === true) {
 			let world = getEmptyWorld();
@@ -1195,9 +1295,13 @@ module.exports = class World {
 			pushNewWorld(world);
 
 			return world;
-		} else if (canIBias(size, state, bias) === true) {
+		} else if (canIBias(size, state, bias) === true && bias !== null) {
+
+			despetchBiasEvent(bias, state);
+
 			biasRender(this, bias);
 			state.changeStartPointWatch(bias);
+
 		}
 
 		return true;
@@ -1289,8 +1393,6 @@ module.exports = class World {
 			} else {
 				return false;
 			}
-
-			world.doAfterWorldRenderDoing();
 
 			state.changePointWatch(bias);
 			return true;
@@ -1429,6 +1531,14 @@ module.exports = class World {
 			creature.visable.was = true;
 			creature.visable.now = false;
 		}
+
+		function despetchBiasEvent(bias, state) {
+			eventBias.detail.direction = bias;
+			state.getWeaponDiv().dispatchEvent(eventBias);
+			eventBias.detail.direction = null;
+
+			return true;
+		}
 	}
 }
 
@@ -1447,9 +1557,10 @@ module.exports = class World {
 	task:
 		0.bias weapon after bais world
 		1.reRender without bais and reRender All world
+		3.optimization vawe
 */
 function startGame() {
-	const GLOBAL_SETTING = new __webpack_require__(/*! ./setting/globalSetting.js */ "./resources/js/modules/setting/globalSetting.js");
+	const GLOBAL_SETTING = new (__webpack_require__(/*! ./setting/globalSetting.js */ "./resources/js/modules/setting/globalSetting.js"))();
 	const ControllerGame = __webpack_require__(/*! ./globalClass/game.js */ "./resources/js/modules/globalClass/game.js");
 
 	const game = new ControllerGame([{
@@ -1467,14 +1578,13 @@ function startGame() {
 	let timer = false;
 
 	document.onkeydown = function (e) {
-
 		if (timer) {
 			return 0;
 		} else {
 			timer = true;
 			setTimeout(() => {
 				timer = false;
-			}, 50);
+			}, GLOBAL_SETTING.timeOfTactPlayer);
 		}
 
 		if (e.keyCode === 68) {
@@ -1499,10 +1609,11 @@ function startGame() {
 
 	setInterval(() => {
 		game.tactOfGame();
-	}, 200)
+	}, GLOBAL_SETTING.timeOfTactOther);
 
 	console.log(state);
 }
+
 
 startGame();
 
@@ -1524,6 +1635,11 @@ module.exports = class GLOBAL_SETTING {
 	constructor() {
 		this.sizeBlock = new Size(30, 30);
 		this.numBlocks = new Size(2 ** 10, 2 ** 10);
+
+		this.timeOfTactPlayer = 10;
+		this.timeOfTactOther = 400;
+
+		this.timeAnimationWeapon = 2000;
 	}
 }
 

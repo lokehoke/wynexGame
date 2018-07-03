@@ -1,7 +1,6 @@
 'use strict';
 
 const GLOBAL_SETTING = new (require('../setting/globalSetting.js'))();
-const State = require('./state/state.js')
 
 const Coor = require('../structOfDate/coordinate.js');
 
@@ -9,7 +8,8 @@ module.exports = class World {
 	constructor(state) {
 		this.state = state;
 		this.size = World.getSize(state);
-		this.afterWorldRenderDoing = [];
+
+		this.eventBias = state.getEventBias();
 	}
 
 	static getSize(state) {
@@ -51,20 +51,11 @@ module.exports = class World {
 		return creatures;
 	}
 
-	setAfterWorldRenderDoing(func) {
-		this.afterWorldRenderDoing.push(func);
-	}
-
-	doAfterWorldRenderDoing() {
-		this.afterWorldRenderDoing.forEach((func) => {
-			func();
-		});
-	}
-
 	renderWorld(startRender) {
 		const state = this.state;
 		const size = this.size;
 		const bias = state.getBias(true);
+		const eventBias = this.eventBias;
 
 		if (bias === null && startRender === true) {
 			let world = getEmptyWorld();
@@ -74,9 +65,13 @@ module.exports = class World {
 			pushNewWorld(world);
 
 			return world;
-		} else if (canIBias(size, state, bias) === true) {
+		} else if (canIBias(size, state, bias) === true && bias !== null) {
+
+			despetchBiasEvent(bias, state);
+
 			biasRender(this, bias);
 			state.changeStartPointWatch(bias);
+
 		}
 
 		return true;
@@ -168,8 +163,6 @@ module.exports = class World {
 			} else {
 				return false;
 			}
-
-			world.doAfterWorldRenderDoing();
 
 			state.changePointWatch(bias);
 			return true;
@@ -307,6 +300,14 @@ module.exports = class World {
 		function visableHideCreature(creature) {
 			creature.visable.was = true;
 			creature.visable.now = false;
+		}
+
+		function despetchBiasEvent(bias, state) {
+			eventBias.detail.direction = bias;
+			state.getWeaponDiv().dispatchEvent(eventBias);
+			eventBias.detail.direction = null;
+
+			return true;
 		}
 	}
 }

@@ -3,9 +3,10 @@
 	task:
 		0.bias weapon after bais world
 		1.reRender without bais and reRender All world
+		3.optimization vawe
 */
 function startGame() {
-	const GLOBAL_SETTING = new require('./setting/globalSetting.js');
+	const GLOBAL_SETTING = new (require('./setting/globalSetting.js'))();
 	const ControllerGame = require('./globalClass/game.js');
 
 	const game = new ControllerGame([{
@@ -23,14 +24,13 @@ function startGame() {
 	let timer = false;
 
 	document.onkeydown = function (e) {
-
 		if (timer) {
 			return 0;
 		} else {
 			timer = true;
 			setTimeout(() => {
 				timer = false;
-			}, 50);
+			}, GLOBAL_SETTING.timeOfTactPlayer);
 		}
 
 		if (e.keyCode === 68) {
@@ -55,9 +55,10 @@ function startGame() {
 
 	setInterval(() => {
 		game.tactOfGame();
-	}, 200)
+	}, GLOBAL_SETTING.timeOfTactOther);
 
 	console.log(state);
 }
+
 
 startGame();
