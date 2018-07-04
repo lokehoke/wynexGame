@@ -4,24 +4,26 @@ const Place = require('./inerState/place/place.js');
 const StackTempClassName = require('./inerState/stackTemp/stackTempClassName.js');
 const StorCustomEvents = require('./inerState/events/StorCustomEvents.js')
 
-const Player = require('../../creatures/player.js');
-const Enemy = require('../../creatures/enemy.js');
+const Player = require('../../inerObjects/player.js');
+const Enemy = require('../../inerObjects/enemy.js');
+const Weapon = require('../../inerObjects/weapon.js');
 
 const Coor = require('../../structOfDate/coordinate.js');
 
 module.exports = class State {
 	constructor (config) {
+		this._numInerBlock = 0;
 
 		this._place = new Place(config);
 		this._place.addRoom();
 
 		this._creature = [];
+		this._weapons = {};
 
 		this._pointWatch = {};
 		this._startPointWatch = new Coor(0, 0);
 		this._bias = null;
 
-		this._weaponDiv = null;
 		this._worldDiv = null;
 		this._worldObject = null;
 
@@ -33,6 +35,12 @@ module.exports = class State {
 		this._stackTempClassName = new StackTempClassName();
 
 		this._events = new StorCustomEvents();
+	}
+
+	deleteWeapon(id = 0) {
+		let weapon = this._weapons[id];
+		this._place[weapon.coor.x][weapon.coor.y] = this._place.createNewBlock(weapon.idBackBlock);
+		delete this._weapons[id];
 	}
 
 	getEventBias() {
@@ -53,16 +61,32 @@ module.exports = class State {
 		return true;
 	}
 
-	setPlayer(id = 0 , val) {
-		this._creature[id] = new Player(id, this, val.watcher, val.coor, val.type);
-		this._place[val.coor.x][val.coor.y] = this._creature[id];
+	setPlayer(val) {
+		this._creature[this._numInerBlock] = new Player(this._numInerBlock, this, val.watcher, val.coor, val.type);
+		this._place[val.coor.x][val.coor.y] = this._creature[this._numInerBlock++];
 		return true;
 	}
 
-	setEnemy(id = 0 , val) {
-		this._creature[id] = new Enemy(id, this, val.coor, val.type);
-		this._place.setCell(val.coor.x, val.coor.y, this._creature[id]);
+	setEnemy(val) {
+		this._creature[this._numInerBlock] = new Enemy(this._numInerBlock, this, val.coor, val.type);
+		this._place.setCell(val.coor.x, val.coor.y, this._creature[this._numInerBlock++]);
 		return true;
+	}
+
+	setWeapon(val) {
+		let position = this._place[val.coor.x][val.coor.y];
+
+
+		if (position.patency) {
+			let weapon = new Weapon(this._numInerBlock, this, val.owner, val.coor);
+			this._weapons[this._numInerBlock++] = weapon;
+			this._place[val.coor.x][val.coor.y] = weapon;
+			return weapon;
+		} else if (position.health) {
+			position.getDemage(val.owner);
+		} else {
+			return null;
+		}
 	}
 
 	getCreature(id = 0) {
@@ -98,6 +122,12 @@ module.exports = class State {
 	changeCoorPlayer(coor, id = 0) {
 		this._creature[id].coor.x = coor.x;
 		this._creature[id].coor.y = coor.y;
+		return true;
+	}
+
+	changeCoorWeapon(coor, id = 0) {
+		this._weapons[id].coor.x = coor.x;
+		this._weapons[id].coor.y = coor.y;
 		return true;
 	}
 
@@ -177,11 +207,6 @@ module.exports = class State {
 		return true;
 	}
 
-	setWeaponDiv(weaponDiv) {
-		this._weaponDiv = weaponDiv;
-		return true;
-	}
-
 	setWorldDiv(worldDiv) {
 		this._worldDiv = worldDiv;
 		return true;
@@ -189,10 +214,6 @@ module.exports = class State {
 
 	getWorldDiv() {
 		return this._worldDiv;
-	}
-
-	getWeaponDiv() {
-		return this._weaponDiv;
 	}
 
 	setWorldObject(obj) {

@@ -1,10 +1,5 @@
 'use strict';
-/*
-	task:
-		0.bias weapon after bais world
-		1.reRender without bais and reRender All world
-		3.optimization vawe
-*/
+
 function startGame() {
 	const GLOBAL_SETTING = new (require('./setting/globalSetting.js'))();
 	const ControllerGame = require('./globalClass/game.js');

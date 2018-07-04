@@ -7,34 +7,19 @@ const GLOBAL_SETTING = new GLOBAL_SETTING_CLASS();
 
 module.exports = class ControllerGame {
 	constructor (players = null, enemy = []) {
-		this._numCreature = 0;
-
 		this.state = new State(GLOBAL_SETTING.numBlocks);
 		this._setPlayers(players, this.state);
 
 		this._definedAndSetStartPointWatch(players);
 
-		enemy = enemy.concat(World.makeAroayWihtEnemy(1000, this.state));
+		enemy = enemy.concat(World.makeAroayWihtEnemy(GLOBAL_SETTING.numEnemy, this.state));
 		this._setEnemys(enemy, this.state);
 
 		this.world = new World(this.state);
 		const worldDiv = this.world.renderWorld(true);
-		this.weaponDiv = createWeaponDiv();
-		this.weaponDiv.addEventListener('bias', (e) => {
-			
-		});
 
-		this.state.setWeaponDiv(this.weaponDiv);
 		this.state.setWorldDiv(worldDiv);
 		this.state.setWorldObject(this.world);
-
-
-		function createWeaponDiv() {
-			let weapon = document.createElement('div');
-			weapon.className = 'weapon';
-			document.querySelector('body').appendChild(weapon);
-			return weapon;
-		}
 	}
 
 	_definedAndSetStartPointWatch(players) {
@@ -50,7 +35,7 @@ module.exports = class ControllerGame {
 	_setPlayers(players, state) {
 		if (players !== null) {
 			players.forEach((val) => {
-				state.setPlayer(this._numCreature++, val);
+				state.setPlayer(val);
 			});
 			return true;
 		} else {
@@ -61,7 +46,7 @@ module.exports = class ControllerGame {
 	_setEnemys(enemys, state) {
 		if (enemys !== null) {
 			enemys.forEach((val) => {
-				state.setEnemy(this._numCreature++, val);
+				state.setEnemy(val);
 			});
 			return true;
 		} else {

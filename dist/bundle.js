@@ -86,506 +86,6 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/js/modules/creatures/creature.js":
-/*!****************************************************!*\
-  !*** ./resources/js/modules/creatures/creature.js ***!
-  \****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-const GLOBAL_SETTING = new (__webpack_require__(/*! ../setting/globalSetting.js */ "./resources/js/modules/setting/globalSetting.js"))();
-
-const Coor = __webpack_require__(/*! ../structOfDate/coordinate.js */ "./resources/js/modules/structOfDate/coordinate.js");
-const ExCoor = __webpack_require__(/*! ../structOfDate/ExCoordinate.js */ "./resources/js/modules/structOfDate/ExCoordinate.js");
-
-const ControllerBlock = __webpack_require__(/*! ../globalClass/state/inerState/place/blocks/controllerBlock.js */ "./resources/js/modules/globalClass/state/inerState/place/blocks/controllerBlock.js");
-
-const World = __webpack_require__(/*! ../globalClass/world.js */ "./resources/js/modules/globalClass/world.js");
-
-const tempClassName = __webpack_require__(/*! ../globalClass/timers/tempClassName.js */ "./resources/js/modules/globalClass/timers/tempClassName.js");
-
-module.exports = class Creature {
-	constructor (id, state, coor) {
-		this.isCreature = true;
-		this.patency = false;
-		this.nesting = true;
-		this.state = state;
-		this.id = id;
-		this.coor = coor;
-
-		this.visable = {};
-		this.visable.was = false;
-		this.visable.now = false;
-		this.visable = this._identifyVisable({newX: coor.x, newY: coor.y}, state);
-
-		this.classNameCSS = '';
-		this.classNameBackBlock = 'dirt';
-		this.idBackBlock = 1;
-		this.DOMObject = null;
-
-		this.health = 100;
-		this.attackDamage = 20;
-		this.attackRange = 100;
-		this.pursuitRange = 50;
-
-		state.setCoorPlayer(coor, id);
-	}
-
-	movePerformance(direction) {
-		if (direction === 'rand') {
-			const state = this.state;
-			const watcher = state.getWatcher();
-			const watcherX = watcher.coor.x;
-			const watcherY = watcher.coor.y;
-			const x = this.coor.x;
-			const y = this.coor.y;
-			const range = this.pursuitRange;
-			if (
-				watcherX > x - range
-			&&
-				watcherX < x + range
-			&&
-				watcherY < y + range
-			&&
-				watcherY > y -range
-			){
-				this._approximatingToWatcher();
-			} else {
-				this._randMove();
-			}
-		} else {
-			this._move(direction);
-		}
-	}
-
-	doAttack(direction) {
-		const creature = this;
-		const state = this.state;
-		const world = state.getWorldObject();
-
-		makeAnimation(direction);
-		checkCreatureForAttack(direction);
-
-		function makeAnimation(direction) {
-			/* bais listen in game.js */
-			const coor = creature.DOMObject.getBoundingClientRect();
-
-			let weapon = document.createElement('div');
-			weapon.className = 'stackWeaponBall';
-			weapon.style.left = coor.x + 'px';
-			weapon.style.top = coor.y + 'px';
-
-			creature.state.getWeaponDiv().appendChild(weapon);
-
-			setTimeout(() => {
-				let needCoor = 0;
-				let max = 0;
-				switch(direction) {
-					case 'left':
-						needCoor = coor.x - creature.attackRange * GLOBAL_SETTING.sizeBlock.width;
-						weapon.style.left = (needCoor < 0 ? 0 : needCoor) + 'px';
-						break;
-					case 'right':
-						needCoor = coor.x + creature.attackRange * GLOBAL_SETTING.sizeBlock.width;
-						max = GLOBAL_SETTING.sizeBlock.width * (World.getSize(state).widthBlocks - 1);
-						weapon.style.left = (needCoor > max ? max : needCoor) + 'px';
-						break;
-					case 'up':
-						needCoor = coor.y - creature.attackRange * GLOBAL_SETTING.sizeBlock.height;
-						weapon.style.top = (needCoor < 0 ? 0 : needCoor ) + 'px';
-						break;
-					case 'down':
-						needCoor = coor.y + creature.attackRange * GLOBAL_SETTING.sizeBlock.height;
-						max = GLOBAL_SETTING.sizeBlock.height * (World.getSize(state).heightBlocks - 1);
-						weapon.style.top = (needCoor > max ? max : needCoor) + 'px';
-						break;
-				}
-				setTimeout(() => {
-					weapon.remove();
-				} ,GLOBAL_SETTING.timeAnimationWeapon);
-			}, 0);
-		}
-
-		function checkCreatureForAttack(direction) {
-		}
-	}
-
-	_identifyVisable(coor, state) {
-		const visable = {};
-		if (this.watcher === true) {
-			visable.now = true;
-			visable.was = true;
-		} else {
-			const startPointWatch = this.state.getStartPiointWatch();
-			const size = World.getSize(state);
-			visable.was = this.visable.now;
-			if (coor.newX - startPointWatch.x < size.heightBlocks
-			&&
-				coor.newY - startPointWatch.y < size.widthBlocks
-			&&
-				coor.newX - startPointWatch.x >= 0
-			&&
-				coor.newY - startPointWatch.y >= 0
-			) {
-				visable.now = true;
-			} else {
-				visable.now = false;
-			}
-		}
-		return visable;
-	}
-
-	_move(direction) {
-		const id = this.id;
-		const ownObject = this;
-		const state = this.state;
-
-
-		let x = state.getCreature(id).coor.x;
-		let y = state.getCreature(id).coor.y;
-
-		let curCoor = new ExCoor(x, y, x, y);
-
-		let newPosition = null;
-
-		switch(direction) {
-			case 'right':
-				if (GLOBAL_SETTING.numBlocks.width <= curCoor.y+1) {
-					return false;
-				} else {
-					curCoor.newY++;
-					newPosition = state.getCellPlace({x:curCoor.x, y:(curCoor.y+1)});
-				}
-				break;
-			case 'left':
-				if (0 > curCoor.y - 1) {
-					return false;
-				} else {
-					curCoor.newY--;
-					newPosition = state.getCellPlace({x:curCoor.x, y:(curCoor.y-1)});
-				}
-				break;
-			case 'up':
-				if (0 > curCoor.x-1) {
-					return false;
-				} else {
-					curCoor.newX--;
-					newPosition = state.getCellPlace({x:(curCoor.x-1), y:curCoor.y});
-				}
-				break;
-			case 'down':
-				if (GLOBAL_SETTING.numBlocks.height <= curCoor.x+1) {
-					return false;
-				} else {
-					curCoor.newX++;
-					newPosition = state.getCellPlace({x:(curCoor.x+1), y:curCoor.y});
-				}
-				break;
-			default:
-				throw 'empty direction on move creature: ' + this.id;
-		}
-
-		if (newPosition.patency === true) {
-			return moving(curCoor, this);
-		} else {
-			return false;
-		}
-
-		function moving(coor, creature) {
-			if (creature.watcher === true) {
-				movingPointAndBais(coor, creature, direction);
-			}
-
-			const state = creature.state;
-
-			creature.visable = creature._identifyVisable(coor, state);
-			creature._movingVisableSwapingIcon(coor, state);
-			changeCoordinate(creature.state.getCreature(id), coor);
-			return true;
-
-			function changeCoordinate(player, coor) {
-				player.state.setCellPlace({
-					x: player.state.getCreature(id).coor.x,
-					y: player.state.getCreature(id).coor.y
-				}, ControllerBlock.getBlockObject(player.idBackBlock));
-
-				player.state.changeCoorPlayer({
-					x: coor.newX,
-					y: coor.newY
-				}, id);
-
-				player.state.setCellPlace({
-					x: coor.newX,
-					y: coor.newY
-				}, player);
-
-				player.coor.x = coor.newX;
-				player.coor.y = coor.newY;
-			}
-
-			function movingPointAndBais(coor, creature, direction) {
-				creature.state.setBias(direction);
-				creature.state.setPointWatch({x:coor.newX, y:coor.newY}, creature);
-			}
-		}
-	}
-
-	_randMove() {
-		let digit = Math.floor(Math.random() * 4) + 1;
-		let direction = '';
-		switch(digit) {
-			case 1:
-				direction = 'left';
-				break;
-			case 2:
-				direction = 'right';
-				break;
-			case 3:
-				direction = 'up';
-				break;
-			case 4:
-				direction = 'down';
-				break;
-		}
-		this._move(direction);
-		return true;
-	}
-
-	_approximatingToWatcher() {
-		const creature = this;
-		const range = creature.pursuitRange;
-		const side = (((range * 2) + 1) + 2); // (+1) - creature, (+2) - border
-		const state = creature.state;
-		const place = state.getAllPlace();
-		const startX = creature.coor.x - range;
-		const startY = creature.coor.y - range;
-		const watcher = state.getWatcher();
-
-		let localPlace = getLocalPlace();
-		let direction = wave(localPlace);
-
-		if (direction === false) {
-			creature._randMove();
-		} else {
-			creature._move(direction);
-		}
-
-		function getLocalPlace() {
-			let localPlace = [];
-
-			let cell = null;
-
-			for (let i = 0; i < side; i++) {
-				localPlace[i] = [];
-
-				for (let j = 0; j < side; j++) {
-					if (i === 0 || i === side - 1 || j === 0 || j === side - 1) {
-						localPlace[i][j] = -1;
-					} else {
-						if (place[startX + i] !== undefined && place[startX + i][startY + j] !== undefined){
-							cell = place[startX + i][startY + j];
-							if (cell === creature) {
-								localPlace[i][j] = 0;
-								localPlace.own = {
-									i: i,
-									j: j
-								}
-							} else if (cell === watcher) {
-								localPlace[i][j] = -2;
-							} else if (cell.patency === true) {
-								localPlace[i][j] = Infinity;
-							} else {
-								localPlace[i][j] = -1;
-							}
-						} else {
-							localPlace[i][j] = -1;
-						}
-					}
-				}
-			}
-
-			return localPlace;
-		}
-
-		function wave(localPlace) {
-			const ownX = localPlace.own.i;
-			const ownY = localPlace.own.j;
-
-			let cur = 0;
-			let wayExist = false;
-			let findWatcher = false;
-			let coorWatcher = new Coor();
-			let locCoor = new Coor();
-
-			do {
-				wayExist = false;
-
-				for (let i = 0; i < side; i++) {
-					if (findWatcher) {
-						break;
-					}
-
-					for (let j = 0; j < side; j++) {
-						if (localPlace[i][j] === cur) {
-							if (localPlace[i + 1][j] > cur + 1) {
-								localPlace[i + 1][j] = cur + 1;
-								wayExist = true;
-							}
-							if (localPlace[i - 1][j] > cur + 1) {
-								localPlace[i - 1][j] = cur + 1;
-								wayExist = true;
-							}
-							if (localPlace[i][j + 1] > cur + 1) {
-								localPlace[i][j + 1] = cur + 1;
-								wayExist = true;
-							}
-							if (localPlace[i][j - 1] > cur + 1) {
-								localPlace[i][j - 1] = cur + 1;
-								wayExist = true;
-							}
-							if (localPlace[locCoor.x = i - 1][locCoor.y = j] === -2
-							||  localPlace[locCoor.x = i + 1][locCoor.y = j] === -2
-							||  localPlace[locCoor.x = i][locCoor.y = j + 1] === -2
-							||  localPlace[locCoor.x = i][locCoor.y = j - 1] === -2
-							){
-								findWatcher = true;
-								coorWatcher.x = locCoor.x;
-								coorWatcher.y = locCoor.y;
-								break;
-							}
-						}
-					}
-				}
-
-				cur++;
-			} while (wayExist && !findWatcher);
-
-			if (findWatcher) {
-				for (let i = cur; i >= 0; i--) {
-					if (localPlace[coorWatcher.x + 1][coorWatcher.y] === i - 1) {
-						coorWatcher.x++;
-						if (i === 1) {
-							return 'up';
-						}
-					}
-					if (localPlace[coorWatcher.x - 1][coorWatcher.y] === i - 1) {
-						coorWatcher.x--;
-						if (i === 1) {
-							return 'down';
-						}
-					}
-					if (localPlace[coorWatcher.x][coorWatcher.y + 1] === i - 1) {
-						coorWatcher.y++;
-						if (i === 1) {
-							return 'left';
-						}
-					}
-					if (localPlace[coorWatcher.x][coorWatcher.y - 1] === i - 1) {
-						coorWatcher.y--;
-						if (i === 1) {
-							return 'right';
-						}
-					}
-				}
-			} else {
-				return false;
-			}
-		}
-	}
-
-	_movingVisableSwapingIcon(coor, state) {
-		const startPointWatch = this.state.getStartPiointWatch();
-		const world = this.state.getWorldDiv();
-		const size = World.getSize(state);
-
-		let div = getBlockWithCreature(this);
-
-		if (this.visable.was === true) {
-			this.DOMObject.children[0].remove();
-			this.DOMObject = null;
-		}
-
-		if (this.visable.now === true) {
-			world.children[coor.newX - startPointWatch.x].children[coor.newY - startPointWatch.y].appendChild(div);
-			this.DOMObject = div.parentNode;
-		}
-
-		return true;
-
-		function getBlockWithCreature(creature) {
-			let div = document.createElement('div');
-			div.className = creature.classNameCSS;
-			return div;
-		}
-	}
-}
-
-/***/ }),
-
-/***/ "./resources/js/modules/creatures/enemy.js":
-/*!*************************************************!*\
-  !*** ./resources/js/modules/creatures/enemy.js ***!
-  \*************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-const Creature = __webpack_require__(/*! ./creature */ "./resources/js/modules/creatures/creature.js");
-
-module.exports = class Enemy extends Creature {
-	constructor (id, state, coor) {
-		super(id, state, coor);
-		this.type = 'enemy';
-		this.classNameCSS = 'slimeEnemy';
-		this.watcher = false;
-	}
-}
-
-/***/ }),
-
-/***/ "./resources/js/modules/creatures/player.js":
-/*!**************************************************!*\
-  !*** ./resources/js/modules/creatures/player.js ***!
-  \**************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-const Creature = __webpack_require__(/*! ./creature */ "./resources/js/modules/creatures/creature.js");
-
-module.exports = class Player extends Creature {
-	constructor (id, state, watcher, coor, profession) {
-		super(id, state, coor);
-		this.type = 'player';
-
-		if (watcher === true){
-			this.watcher = true;
-			state.setPointWatch(coor, this);
-			this.visable = {
-				was: true,
-				now: true
-			};
-		} else {
-			this.watcher = false;
-		}
-
-		switch(profession) {
-			case 'mage':
-				this.classNameCSS = 'magePlayer';
-				break;
-		}
-	}
-}
-
-/***/ }),
-
 /***/ "./resources/js/modules/globalClass/game.js":
 /*!**************************************************!*\
   !*** ./resources/js/modules/globalClass/game.js ***!
@@ -603,34 +103,19 @@ const GLOBAL_SETTING = new GLOBAL_SETTING_CLASS();
 
 module.exports = class ControllerGame {
 	constructor (players = null, enemy = []) {
-		this._numCreature = 0;
-
 		this.state = new State(GLOBAL_SETTING.numBlocks);
 		this._setPlayers(players, this.state);
 
 		this._definedAndSetStartPointWatch(players);
 
-		enemy = enemy.concat(World.makeAroayWihtEnemy(1000, this.state));
+		enemy = enemy.concat(World.makeAroayWihtEnemy(GLOBAL_SETTING.numEnemy, this.state));
 		this._setEnemys(enemy, this.state);
 
 		this.world = new World(this.state);
 		const worldDiv = this.world.renderWorld(true);
-		this.weaponDiv = createWeaponDiv();
-		this.weaponDiv.addEventListener('bias', (e) => {
-			
-		});
 
-		this.state.setWeaponDiv(this.weaponDiv);
 		this.state.setWorldDiv(worldDiv);
 		this.state.setWorldObject(this.world);
-
-
-		function createWeaponDiv() {
-			let weapon = document.createElement('div');
-			weapon.className = 'weapon';
-			document.querySelector('body').appendChild(weapon);
-			return weapon;
-		}
 	}
 
 	_definedAndSetStartPointWatch(players) {
@@ -646,7 +131,7 @@ module.exports = class ControllerGame {
 	_setPlayers(players, state) {
 		if (players !== null) {
 			players.forEach((val) => {
-				state.setPlayer(this._numCreature++, val);
+				state.setPlayer(val);
 			});
 			return true;
 		} else {
@@ -657,7 +142,7 @@ module.exports = class ControllerGame {
 	_setEnemys(enemys, state) {
 		if (enemys !== null) {
 			enemys.forEach((val) => {
-				state.setEnemy(this._numCreature++, val);
+				state.setEnemy(val);
 			});
 			return true;
 		} else {
@@ -925,6 +410,10 @@ module.exports = class Place {
 	getAllPlace() {
 		return this;
 	}
+
+	createNewBlock(id = 0) {
+		return ControllerBlock.getBlockObject(id);
+	}
 }
 
 /***/ }),
@@ -969,24 +458,26 @@ const Place = __webpack_require__(/*! ./inerState/place/place.js */ "./resources
 const StackTempClassName = __webpack_require__(/*! ./inerState/stackTemp/stackTempClassName.js */ "./resources/js/modules/globalClass/state/inerState/stackTemp/stackTempClassName.js");
 const StorCustomEvents = __webpack_require__(/*! ./inerState/events/StorCustomEvents.js */ "./resources/js/modules/globalClass/state/inerState/events/StorCustomEvents.js")
 
-const Player = __webpack_require__(/*! ../../creatures/player.js */ "./resources/js/modules/creatures/player.js");
-const Enemy = __webpack_require__(/*! ../../creatures/enemy.js */ "./resources/js/modules/creatures/enemy.js");
+const Player = __webpack_require__(/*! ../../inerObjects/player.js */ "./resources/js/modules/inerObjects/player.js");
+const Enemy = __webpack_require__(/*! ../../inerObjects/enemy.js */ "./resources/js/modules/inerObjects/enemy.js");
+const Weapon = __webpack_require__(/*! ../../inerObjects/weapon.js */ "./resources/js/modules/inerObjects/weapon.js");
 
 const Coor = __webpack_require__(/*! ../../structOfDate/coordinate.js */ "./resources/js/modules/structOfDate/coordinate.js");
 
 module.exports = class State {
 	constructor (config) {
+		this._numInerBlock = 0;
 
 		this._place = new Place(config);
 		this._place.addRoom();
 
 		this._creature = [];
+		this._weapons = {};
 
 		this._pointWatch = {};
 		this._startPointWatch = new Coor(0, 0);
 		this._bias = null;
 
-		this._weaponDiv = null;
 		this._worldDiv = null;
 		this._worldObject = null;
 
@@ -998,6 +489,12 @@ module.exports = class State {
 		this._stackTempClassName = new StackTempClassName();
 
 		this._events = new StorCustomEvents();
+	}
+
+	deleteWeapon(id = 0) {
+		let weapon = this._weapons[id];
+		this._place[weapon.coor.x][weapon.coor.y] = this._place.createNewBlock(weapon.idBackBlock);
+		delete this._weapons[id];
 	}
 
 	getEventBias() {
@@ -1018,16 +515,32 @@ module.exports = class State {
 		return true;
 	}
 
-	setPlayer(id = 0 , val) {
-		this._creature[id] = new Player(id, this, val.watcher, val.coor, val.type);
-		this._place[val.coor.x][val.coor.y] = this._creature[id];
+	setPlayer(val) {
+		this._creature[this._numInerBlock] = new Player(this._numInerBlock, this, val.watcher, val.coor, val.type);
+		this._place[val.coor.x][val.coor.y] = this._creature[this._numInerBlock++];
 		return true;
 	}
 
-	setEnemy(id = 0 , val) {
-		this._creature[id] = new Enemy(id, this, val.coor, val.type);
-		this._place.setCell(val.coor.x, val.coor.y, this._creature[id]);
+	setEnemy(val) {
+		this._creature[this._numInerBlock] = new Enemy(this._numInerBlock, this, val.coor, val.type);
+		this._place.setCell(val.coor.x, val.coor.y, this._creature[this._numInerBlock++]);
 		return true;
+	}
+
+	setWeapon(val) {
+		let position = this._place[val.coor.x][val.coor.y];
+
+
+		if (position.patency) {
+			let weapon = new Weapon(this._numInerBlock, this, val.owner, val.coor);
+			this._weapons[this._numInerBlock++] = weapon;
+			this._place[val.coor.x][val.coor.y] = weapon;
+			return weapon;
+		} else if (position.health) {
+			position.getDemage(val.owner);
+		} else {
+			return null;
+		}
 	}
 
 	getCreature(id = 0) {
@@ -1063,6 +576,12 @@ module.exports = class State {
 	changeCoorPlayer(coor, id = 0) {
 		this._creature[id].coor.x = coor.x;
 		this._creature[id].coor.y = coor.y;
+		return true;
+	}
+
+	changeCoorWeapon(coor, id = 0) {
+		this._weapons[id].coor.x = coor.x;
+		this._weapons[id].coor.y = coor.y;
 		return true;
 	}
 
@@ -1142,11 +661,6 @@ module.exports = class State {
 		return true;
 	}
 
-	setWeaponDiv(weaponDiv) {
-		this._weaponDiv = weaponDiv;
-		return true;
-	}
-
 	setWorldDiv(worldDiv) {
 		this._worldDiv = worldDiv;
 		return true;
@@ -1154,10 +668,6 @@ module.exports = class State {
 
 	getWorldDiv() {
 		return this._worldDiv;
-	}
-
-	getWeaponDiv() {
-		return this._weaponDiv;
 	}
 
 	setWorldObject(obj) {
@@ -1175,46 +685,6 @@ module.exports = class State {
 		} else {
 			return null;
 		}
-	}
-}
-
-/***/ }),
-
-/***/ "./resources/js/modules/globalClass/timers/tempClassName.js":
-/*!******************************************************************!*\
-  !*** ./resources/js/modules/globalClass/timers/tempClassName.js ***!
-  \******************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = class tempClassName {
-	constructor (item, time, className) {
-		this.item = item;
-		this.time = time;
-		this.className = className;
-
-		this.timer = null;
-
-		this._setUpClass(item, time, className);
-	}
-
-	_setUpClass() {
-		this.item.classList.add(this.className);
-
-		this.timer = setTimeout(() => {
-			if (this.item.classList.contains(this.className)) {
-				this.item.classList.remove(this.className);
-			}
-		}, this.time);
-
-		this.__destructor();
-	}
-
-	__destructor() {
-		delete this;
 	}
 }
 
@@ -1534,7 +1004,7 @@ module.exports = class World {
 
 		function despetchBiasEvent(bias, state) {
 			eventBias.detail.direction = bias;
-			state.getWeaponDiv().dispatchEvent(eventBias);
+			document.dispatchEvent(eventBias);
 			eventBias.detail.direction = null;
 
 			return true;
@@ -1553,12 +1023,7 @@ module.exports = class World {
 
 "use strict";
 
-/*
-	task:
-		0.bias weapon after bais world
-		1.reRender without bais and reRender All world
-		3.optimization vawe
-*/
+
 function startGame() {
 	const GLOBAL_SETTING = new (__webpack_require__(/*! ./setting/globalSetting.js */ "./resources/js/modules/setting/globalSetting.js"))();
 	const ControllerGame = __webpack_require__(/*! ./globalClass/game.js */ "./resources/js/modules/globalClass/game.js");
@@ -1619,6 +1084,630 @@ startGame();
 
 /***/ }),
 
+/***/ "./resources/js/modules/inerObjects/creature.js":
+/*!******************************************************!*\
+  !*** ./resources/js/modules/inerObjects/creature.js ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+const InnerObject = __webpack_require__(/*! ./innerObject.js */ "./resources/js/modules/inerObjects/innerObject.js");
+const Weapon = __webpack_require__(/*! ./weapon.js */ "./resources/js/modules/inerObjects/weapon.js");
+
+const GLOBAL_SETTING = new (__webpack_require__(/*! ../setting/globalSetting.js */ "./resources/js/modules/setting/globalSetting.js"))();
+
+const Coor = __webpack_require__(/*! ../structOfDate/coordinate.js */ "./resources/js/modules/structOfDate/coordinate.js");
+const ExCoor = __webpack_require__(/*! ../structOfDate/ExCoordinate.js */ "./resources/js/modules/structOfDate/ExCoordinate.js");
+
+const ControllerBlock = __webpack_require__(/*! ../globalClass/state/inerState/place/blocks/controllerBlock.js */ "./resources/js/modules/globalClass/state/inerState/place/blocks/controllerBlock.js");
+
+const World = __webpack_require__(/*! ../globalClass/world.js */ "./resources/js/modules/globalClass/world.js");
+
+module.exports = class Creature extends InnerObject {
+	constructor (id, state, coor) {
+		super(id, state, coor);
+		this.isCreature = true;
+
+		this.health = 100;
+		this.attackDamage = 20;
+		this.attackRange = 10;
+		this.pursuitRange = 50;
+
+		state.setCoorPlayer(coor, id);
+	}
+
+	movePerformance(direction) {
+		if (direction === 'rand') {
+			const state = this.state;
+			const watcher = state.getWatcher();
+			const watcherX = watcher.coor.x;
+			const watcherY = watcher.coor.y;
+			const x = this.coor.x;
+			const y = this.coor.y;
+			const range = this.pursuitRange;
+			if (
+				watcherX > x - range
+			&&
+				watcherX < x + range
+			&&
+				watcherY < y + range
+			&&
+				watcherY > y -range
+			){
+				this._approximatingToWatcher();
+			} else {
+				this._randMove();
+			}
+		} else {
+			this._move(direction);
+		}
+	}
+
+	doAttack(direction) {
+		const creature = this;
+		const state = this.state;
+		const world = state.getWorldObject();
+
+		let coor = new ExCoor(this.coor.x, this.coor.y, this.coor.x, this.coor.y);
+
+		renderWeapon(direction, coor);
+
+		async function renderWeapon(direction, coor) {
+			let nextBlock = true;
+			let weapon = null;
+
+			coor = defineCoor(direction, coor);
+
+			weapon = state.setWeapon({
+				coor: {
+					x: coor.newX,
+					y: coor.newY
+				},
+				owner: creature
+			});
+
+			if (weapon == null) {
+				return false;
+			} else {
+				weapon.coor.x = coor.x;
+				weapon.coor.y = coor.y;
+
+				let range = creature.attackRange;
+
+				do {
+					nextBlock = await biasWeapon(weapon, direction);
+				} while ((nextBlock.patency || nextBlock === true) && range--);
+
+				if (creature.state.getCellPlace(creature.coor) !== creature) {
+					creature.state.setCellPlace(creature.coor, creature);
+				}
+
+				if (nextBlock.isCreature) {
+					nextBlock.getDemage(creature);
+				}
+
+				weapon.die();
+			}
+		}
+
+		async function biasWeapon(weapon, direction) {
+			await smallTime();
+			return weapon.movePerformance(direction);
+		}
+
+		function smallTime() {
+			return new Promise(resolve => {
+				setTimeout(() => {
+					resolve('resolved');
+				}, 20);
+			});
+		}
+
+		function defineCoor(direction, coor) {
+			coor.x = coor.newX;
+			coor.y = coor.newY;
+
+			switch(direction) {
+				case 'left':
+					coor.newY--;
+					break;
+				case 'right':
+					coor.newY++	;
+					break;
+				case 'up':
+					coor.newX--;
+					break;
+				case 'down':
+					coor.newX++;
+					break;
+			}
+
+			return coor;
+		}
+	}
+
+	_randMove() {
+		let digit = Math.floor(Math.random() * 4) + 1;
+		let direction = '';
+		switch(digit) {
+			case 1:
+				direction = 'left';
+				break;
+			case 2:
+				direction = 'right';
+				break;
+			case 3:
+				direction = 'up';
+				break;
+			case 4:
+				direction = 'down';
+				break;
+		}
+		this._move(direction);
+		return true;
+	}
+
+	_approximatingToWatcher() {
+		const creature = this;
+		const range = creature.pursuitRange;
+		const side = (((range * 2) + 1) + 2); // (+1) - creature, (+2) - border
+		const state = creature.state;
+		const place = state.getAllPlace();
+		const startX = creature.coor.x - range;
+		const startY = creature.coor.y - range;
+		const watcher = state.getWatcher();
+
+		let localPlace = getLocalPlace();
+		let direction = wave(localPlace);
+
+		if (direction === false) {
+			creature._randMove();
+		} else {
+			creature._move(direction);
+		}
+
+		function getLocalPlace() {
+			let localPlace = [];
+
+			let cell = null;
+
+			for (let i = 0; i < side; i++) {
+				localPlace[i] = [];
+
+				for (let j = 0; j < side; j++) {
+					if (i === 0 || i === side - 1 || j === 0 || j === side - 1) {
+						localPlace[i][j] = -1;
+					} else {
+						if (place[startX + i] !== undefined && place[startX + i][startY + j] !== undefined){
+							cell = place[startX + i][startY + j];
+							if (cell === creature) {
+								localPlace[i][j] = 0;
+								localPlace.own = {
+									i: i,
+									j: j
+								}
+							} else if (cell === watcher) {
+								localPlace[i][j] = -2;
+							} else if (cell.patency === true) {
+								localPlace[i][j] = Infinity;
+							} else {
+								localPlace[i][j] = -1;
+							}
+						} else {
+							localPlace[i][j] = -1;
+						}
+					}
+				}
+			}
+
+			return localPlace;
+		}
+
+		function wave(localPlace) {
+			const ownX = localPlace.own.i;
+			const ownY = localPlace.own.j;
+
+			let cur = 0;
+			let wayExist = false;
+			let findWatcher = false;
+			let coorWatcher = new Coor();
+			let locCoor = new Coor();
+
+			do {
+				wayExist = false;
+
+				for (let i = 0; i < side; i++) {
+					if (findWatcher) {
+						break;
+					}
+
+					for (let j = 0; j < side; j++) {
+						if (localPlace[i][j] === cur) {
+							if (localPlace[i + 1][j] > cur + 1) {
+								localPlace[i + 1][j] = cur + 1;
+								wayExist = true;
+							}
+							if (localPlace[i - 1][j] > cur + 1) {
+								localPlace[i - 1][j] = cur + 1;
+								wayExist = true;
+							}
+							if (localPlace[i][j + 1] > cur + 1) {
+								localPlace[i][j + 1] = cur + 1;
+								wayExist = true;
+							}
+							if (localPlace[i][j - 1] > cur + 1) {
+								localPlace[i][j - 1] = cur + 1;
+								wayExist = true;
+							}
+							if (localPlace[locCoor.x = i - 1][locCoor.y = j] === -2
+							||  localPlace[locCoor.x = i + 1][locCoor.y = j] === -2
+							||  localPlace[locCoor.x = i][locCoor.y = j + 1] === -2
+							||  localPlace[locCoor.x = i][locCoor.y = j - 1] === -2
+							){
+								findWatcher = true;
+								coorWatcher.x = locCoor.x;
+								coorWatcher.y = locCoor.y;
+								break;
+							}
+						}
+					}
+				}
+
+				cur++;
+			} while (wayExist && !findWatcher);
+
+			if (findWatcher) {
+				for (let i = cur; i >= 0; i--) {
+					if (localPlace[coorWatcher.x + 1][coorWatcher.y] === i - 1) {
+						coorWatcher.x++;
+						if (i === 1) {
+							return 'up';
+						}
+					}
+					if (localPlace[coorWatcher.x - 1][coorWatcher.y] === i - 1) {
+						coorWatcher.x--;
+						if (i === 1) {
+							return 'down';
+						}
+					}
+					if (localPlace[coorWatcher.x][coorWatcher.y + 1] === i - 1) {
+						coorWatcher.y++;
+						if (i === 1) {
+							return 'left';
+						}
+					}
+					if (localPlace[coorWatcher.x][coorWatcher.y - 1] === i - 1) {
+						coorWatcher.y--;
+						if (i === 1) {
+							return 'right';
+						}
+					}
+				}
+			} else {
+				return false;
+			}
+		}
+	}
+
+	getDemage(creature) {
+		console.log(creature);
+	}
+}
+
+/***/ }),
+
+/***/ "./resources/js/modules/inerObjects/enemy.js":
+/*!***************************************************!*\
+  !*** ./resources/js/modules/inerObjects/enemy.js ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+const Creature = __webpack_require__(/*! ./creature */ "./resources/js/modules/inerObjects/creature.js");
+
+module.exports = class Enemy extends Creature {
+	constructor (id, state, coor) {
+		super(id, state, coor);
+		this.type = 'enemy';
+		this.classNameCSS = 'slimeEnemy';
+		this.watcher = false;
+	}
+}
+
+/***/ }),
+
+/***/ "./resources/js/modules/inerObjects/innerObject.js":
+/*!*********************************************************!*\
+  !*** ./resources/js/modules/inerObjects/innerObject.js ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+const GLOBAL_SETTING = new (__webpack_require__(/*! ../setting/globalSetting.js */ "./resources/js/modules/setting/globalSetting.js"))();
+
+const Coor = __webpack_require__(/*! ../structOfDate/coordinate.js */ "./resources/js/modules/structOfDate/coordinate.js");
+const ExCoor = __webpack_require__(/*! ../structOfDate/ExCoordinate.js */ "./resources/js/modules/structOfDate/ExCoordinate.js");
+
+const ControllerBlock = __webpack_require__(/*! ../globalClass/state/inerState/place/blocks/controllerBlock.js */ "./resources/js/modules/globalClass/state/inerState/place/blocks/controllerBlock.js");
+
+const World = __webpack_require__(/*! ../globalClass/world.js */ "./resources/js/modules/globalClass/world.js");
+
+module.exports = class InnerObject {
+	constructor (id, state, coor) {
+		this.nesting = true;
+		this.patency = false;
+		this.state = state;
+		this.coor = coor;
+		this.id = id;
+
+		this.visable = {};
+		this.visable.was = false;
+		this.visable.now = false;
+		this.visable = this._identifyVisable({newX: coor.x, newY: coor.y}, state);
+
+		this.classNameCSS = '';
+		this.classNameBackBlock = 'dirt';
+		this.idBackBlock = 1;
+		this.DOMObject = null;
+	}
+
+	movePerformance(direction) {
+		return this._move(direction);
+	}
+
+	_identifyVisable(coor, state) {
+		const visable = {};
+		if (this.watcher === true) {
+			visable.now = true;
+			visable.was = true;
+		} else {
+			const startPointWatch = this.state.getStartPiointWatch();
+			const size = World.getSize(state);
+			visable.was = this.visable.now;
+			if (coor.newX - startPointWatch.x < size.heightBlocks
+			&&
+				coor.newY - startPointWatch.y < size.widthBlocks
+			&&
+				coor.newX - startPointWatch.x >= 0
+			&&
+				coor.newY - startPointWatch.y >= 0
+			) {
+				visable.now = true;
+			} else {
+				visable.now = false;
+			}
+		}
+
+		if (this.type === 'weapon' && this.born) {
+			this.born = false;
+			visable.was = false;
+		}
+
+		return visable;
+	}
+
+	_move(direction) {
+		const id = this.id;
+		const ownObject = this;
+		const state = this.state;
+
+
+		let x = this.coor.x;
+		let y = this.coor.y;
+
+		let curCoor = new ExCoor(x, y, x, y);
+
+		let newPosition = null;
+
+		switch(direction) {
+			case 'right':
+				if (GLOBAL_SETTING.numBlocks.width <= curCoor.y+1) {
+					return false;
+				} else {
+					curCoor.newY++;
+					newPosition = state.getCellPlace({x:curCoor.x, y:(curCoor.y+1)});
+				}
+				break;
+			case 'left':
+				if (0 > curCoor.y - 1) {
+					return false;
+				} else {
+					curCoor.newY--;
+					newPosition = state.getCellPlace({x:curCoor.x, y:(curCoor.y-1)});
+				}
+				break;
+			case 'up':
+				if (0 > curCoor.x-1) {
+					return false;
+				} else {
+					curCoor.newX--;
+					newPosition = state.getCellPlace({x:(curCoor.x-1), y:curCoor.y});
+				}
+				break;
+			case 'down':
+				if (GLOBAL_SETTING.numBlocks.height <= curCoor.x+1) {
+					return false;
+				} else {
+					curCoor.newX++;
+					newPosition = state.getCellPlace({x:(curCoor.x+1), y:curCoor.y});
+				}
+				break;
+			default:
+				throw 'empty direction on move creature: ' + this.id;
+		}
+
+		if (newPosition.patency || this.born) {
+			return moving(curCoor, this);
+		} else {
+			return newPosition;
+		}
+
+		function moving(coor, creature) {
+			if (creature.watcher === true) {
+				movingPointAndBais(coor, creature, direction);
+			}
+
+			const state = creature.state;
+
+			creature.visable = creature._identifyVisable(coor, state);
+			creature._movingVisableSwapingIcon(coor, state);
+			changeCoordinate(creature, coor);
+			return true;
+
+			function changeCoordinate(player, coor) {
+				player.state.setCellPlace({
+					x: player.coor.x,
+					y: player.coor.y
+				}, ControllerBlock.getBlockObject(player.idBackBlock));
+
+				if (player.isCreature) {
+					player.state.changeCoorPlayer({
+						x: coor.newX,
+						y: coor.newY
+					}, id);
+				} else {
+					player.state.changeCoorWeapon({
+						x: coor.newX,
+						y: coor.newY
+					}, id);
+				}
+
+				player.state.setCellPlace({
+					x: coor.newX,
+					y: coor.newY
+				}, player);
+
+				player.coor.x = coor.newX;
+				player.coor.y = coor.newY;
+			}
+
+			function movingPointAndBais(coor, creature, direction) {
+				creature.state.setBias(direction);
+				creature.state.setPointWatch({x:coor.newX, y:coor.newY}, creature);
+			}
+		}
+	}
+
+	_movingVisableSwapingIcon(coor, state) {
+		const startPointWatch = this.state.getStartPiointWatch();
+		const world = this.state.getWorldDiv();
+		const size = World.getSize(state);
+
+		let div = getBlockWithCreature(this);
+
+		if (this.visable.was === true) {
+			this.DOMObject.children[0].remove();
+			this.DOMObject = null;
+		}
+
+		if (this.visable.now === true) {
+			world.children[coor.newX - startPointWatch.x].children[coor.newY - startPointWatch.y].appendChild(div);
+			this.DOMObject = div.parentNode;
+		}
+
+		return true;
+
+		function getBlockWithCreature(creature) {
+			let div = document.createElement('div');
+			div.className = creature.classNameCSS;
+			return div;
+		}
+	}
+}
+
+/***/ }),
+
+/***/ "./resources/js/modules/inerObjects/player.js":
+/*!****************************************************!*\
+  !*** ./resources/js/modules/inerObjects/player.js ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+const Creature = __webpack_require__(/*! ./creature */ "./resources/js/modules/inerObjects/creature.js");
+
+module.exports = class Player extends Creature {
+	constructor (id, state, watcher, coor, profession) {
+		super(id, state, coor);
+		this.type = 'player';
+
+		if (watcher === true){
+			this.watcher = true;
+			state.setPointWatch(coor, this);
+			this.visable = {
+				was: true,
+				now: true
+			};
+		} else {
+			this.watcher = false;
+		}
+
+		switch(profession) {
+			case 'mage':
+				this.classNameCSS = 'magePlayer';
+				break;
+		}
+	}
+}
+
+/***/ }),
+
+/***/ "./resources/js/modules/inerObjects/weapon.js":
+/*!****************************************************!*\
+  !*** ./resources/js/modules/inerObjects/weapon.js ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+const InnerObject = __webpack_require__(/*! ./innerObject.js */ "./resources/js/modules/inerObjects/innerObject.js");
+
+const GLOBAL_SETTING = new (__webpack_require__(/*! ../setting/globalSetting.js */ "./resources/js/modules/setting/globalSetting.js"))();
+
+const Coor = __webpack_require__(/*! ../structOfDate/coordinate.js */ "./resources/js/modules/structOfDate/coordinate.js");
+const ExCoor = __webpack_require__(/*! ../structOfDate/ExCoordinate.js */ "./resources/js/modules/structOfDate/ExCoordinate.js");
+
+const ControllerBlock = __webpack_require__(/*! ../globalClass/state/inerState/place/blocks/controllerBlock.js */ "./resources/js/modules/globalClass/state/inerState/place/blocks/controllerBlock.js");
+
+const World = __webpack_require__(/*! ../globalClass/world.js */ "./resources/js/modules/globalClass/world.js");
+
+
+module.exports = class Weapon extends InnerObject {
+	constructor (id, state, owner, coor) {
+		super(id, state, coor);
+		this.isCreature = false;
+		this.owner = owner;
+
+		this.type = 'weapon';
+		this.born = true;
+
+		this.classNameCSS = 'weapon';
+	}
+
+	die() {
+		if (this.DOMObject.children[0]) {
+			this.DOMObject.children[0].remove();
+		}
+		this.state.deleteWeapon(this.id);
+	}
+}
+
+/***/ }),
+
 /***/ "./resources/js/modules/setting/globalSetting.js":
 /*!*******************************************************!*\
   !*** ./resources/js/modules/setting/globalSetting.js ***!
@@ -1635,6 +1724,8 @@ module.exports = class GLOBAL_SETTING {
 	constructor() {
 		this.sizeBlock = new Size(30, 30);
 		this.numBlocks = new Size(2 ** 10, 2 ** 10);
+
+		this.numEnemy = 2000;
 
 		this.timeOfTactPlayer = 10;
 		this.timeOfTactOther = 400;

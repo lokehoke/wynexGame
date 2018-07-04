@@ -59,4 +59,8 @@ module.exports = class Place {
 	getAllPlace() {
 		return this;
 	}
+
+	createNewBlock(id = 0) {
+		return ControllerBlock.getBlockObject(id);
+	}
 }

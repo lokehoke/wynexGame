@@ -304,7 +304,7 @@ module.exports = class World {
 
 		function despetchBiasEvent(bias, state) {
 			eventBias.detail.direction = bias;
-			state.getWeaponDiv().dispatchEvent(eventBias);
+			document.dispatchEvent(eventBias);
 			eventBias.detail.direction = null;
 
 			return true;

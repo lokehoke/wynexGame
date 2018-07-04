@@ -29,6 +29,15 @@
 					background-position: -2px 8px;
 					background-repeat: no-repeat;
 				}
+
+				&.weapon {
+					background: url('/resources/img/weaponTextures/stackWeaponBall.svg');
+					width: 30px;
+					height: 30px;
+					background-size: 250%;
+					background-position: 4px 5px;
+					background-repeat: no-repeat;
+				}
 			}
 		}
 
@@ -49,19 +58,5 @@
 		.chest {
 			background: #74FD59;
 		}
-	}
-}
-
-.weapon {
-	.stackWeaponBall {
-		position: absolute;
-		width: 30px;
-		height: 30px;
-		background: url('/resources/img/weaponTextures/stackWeaponBall.svg');
-		background-size: 250%;
-		background-position: 7px 7px;
-		background-repeat: no-repeat;
-		z-index: 10;
-		transition: top 2s, left 2s;
 	}
 }
