@@ -190,4 +190,11 @@ module.exports = class InnerObject {
 			return div;
 		}
 	}
+
+	die() {
+		if (this.DOMObject.children[0]) {
+			this.DOMObject.children[0].remove();
+		}
+		this.state.deleteCreature(this.id);
+	}
 }

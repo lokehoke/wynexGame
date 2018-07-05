@@ -109,17 +109,22 @@ module.exports = class ControllerGame {
 		return this.state;
 	}
 
-	tactOfGame(onlyRender = false) {
+	async tactOfGame(onlyRender = false) {
 		this.world.renderWorld();
 
-		if (onlyRender === false) {
+		if (!onlyRender) {
 			this.state._creature.forEach((item) => {
 				if (item.watcher !== true) {
-					item.movePerformance('rand');
+					moveEnemy(item);
 				}
 			});
 		}
 
 		return true;
+
+		async function moveEnemy(item) {
+			await item.movePerformance('rand');
+			return true;
+		}
 	}
 }

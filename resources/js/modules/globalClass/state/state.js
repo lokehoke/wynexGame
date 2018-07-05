@@ -43,6 +43,12 @@ module.exports = class State {
 		delete this._weapons[id];
 	}
 
+	deleteCreature(id = 0) {
+		let creature = this._creature[id];
+		this._place[creature.coor.x][creature.coor.y] = this._place.createNewBlock(creature.idBackBlock);
+		delete this._creature[id];
+	}
+
 	getEventBias() {
 		return this._events.getEventBias();
 	}

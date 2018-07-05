@@ -205,18 +205,23 @@ module.exports = class ControllerGame {
 		return this.state;
 	}
 
-	tactOfGame(onlyRender = false) {
+	async tactOfGame(onlyRender = false) {
 		this.world.renderWorld();
 
-		if (onlyRender === false) {
+		if (!onlyRender) {
 			this.state._creature.forEach((item) => {
 				if (item.watcher !== true) {
-					item.movePerformance('rand');
+					moveEnemy(item);
 				}
 			});
 		}
 
 		return true;
+
+		async function moveEnemy(item) {
+			await item.movePerformance('rand');
+			return true;
+		}
 	}
 }
 
@@ -495,6 +500,12 @@ module.exports = class State {
 		let weapon = this._weapons[id];
 		this._place[weapon.coor.x][weapon.coor.y] = this._place.createNewBlock(weapon.idBackBlock);
 		delete this._weapons[id];
+	}
+
+	deleteCreature(id = 0) {
+		let creature = this._creature[id];
+		this._place[creature.coor.x][creature.coor.y] = this._place.createNewBlock(creature.idBackBlock);
+		delete this._creature[id];
 	}
 
 	getEventBias() {
@@ -1393,7 +1404,15 @@ module.exports = class Creature extends InnerObject {
 	}
 
 	getDemage(creature) {
-		console.log(creature);
+		if (this.health > 0) {
+			this.health -= creature.attackDamage;
+
+			if (this.health <= 0) {
+				this.die();
+			}
+		} else {
+			throw "zombie";
+		}
 	}
 }
 
@@ -1622,6 +1641,13 @@ module.exports = class InnerObject {
 			return div;
 		}
 	}
+
+	die() {
+		if (this.DOMObject.children[0]) {
+			this.DOMObject.children[0].remove();
+		}
+		this.state.deleteCreature(this.id);
+	}
 }
 
 /***/ }),
@@ -1727,10 +1753,8 @@ module.exports = class GLOBAL_SETTING {
 
 		this.numEnemy = 2000;
 
-		this.timeOfTactPlayer = 10;
-		this.timeOfTactOther = 400;
-
-		this.timeAnimationWeapon = 2000;
+		this.timeOfTactPlayer = 50;
+		this.timeOfTactOther = 200;
 	}
 }
 

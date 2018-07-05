@@ -9,9 +9,7 @@ module.exports = class GLOBAL_SETTING {
 
 		this.numEnemy = 2000;
 
-		this.timeOfTactPlayer = 10;
-		this.timeOfTactOther = 400;
-
-		this.timeAnimationWeapon = 2000;
+		this.timeOfTactPlayer = 50;
+		this.timeOfTactOther = 200;
 	}
 }

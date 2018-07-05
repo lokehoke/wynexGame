@@ -299,6 +299,14 @@ module.exports = class Creature extends InnerObject {
 	}
 
 	getDemage(creature) {
-		console.log(creature);
+		if (this.health > 0) {
+			this.health -= creature.attackDamage;
+
+			if (this.health <= 0) {
+				this.die();
+			}
+		} else {
+			throw "zombie";
+		}
 	}
 }
