@@ -110,6 +110,10 @@ module.exports = class ControllerGame {
 	}
 
 	async tactOfGame(onlyRender = false) {
+		if (!this.state.gameIsActive()) {
+			throw "game is end";
+		}
+
 		this.world.renderWorld();
 
 		if (!onlyRender) {

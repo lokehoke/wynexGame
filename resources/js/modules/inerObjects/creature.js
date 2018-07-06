@@ -17,6 +17,8 @@ module.exports = class Creature extends InnerObject {
 		super(id, state, coor);
 		this.isCreature = true;
 
+		this.live = true;
+
 		this.health = 100;
 		this.attackDamage = 20;
 		this.attackRange = 10;
@@ -26,6 +28,10 @@ module.exports = class Creature extends InnerObject {
 	}
 
 	movePerformance(direction) {
+		if (!this.live) {
+			throw "zombi moving!";
+		}
+
 		if (direction === 'rand') {
 			const state = this.state;
 			const watcher = state.getWatcher();
@@ -53,6 +59,10 @@ module.exports = class Creature extends InnerObject {
 	}
 
 	doAttack(direction) {
+		if (!this.live) {
+			throw "zombi atack!";
+		}
+
 		const creature = this;
 		const state = this.state;
 		const world = state.getWorldObject();
@@ -75,21 +85,24 @@ module.exports = class Creature extends InnerObject {
 				owner: creature
 			});
 
-			if (weapon == null) {
+			if (weapon === null) {
 				return false;
 			} else {
 				weapon.coor.x = coor.x;
 				weapon.coor.y = coor.y;
 
-				let range = creature.attackRange;
+				let range = creature.attackRange - 1;
+
+				weapon.movePerformance(direction);
+
+				if (creature.state.getCellPlace(creature.coor) !== creature) {
+					creature.state.setCellPlace(creature.coor, creature);
+				}
 
 				do {
 					nextBlock = await biasWeapon(weapon, direction);
 				} while ((nextBlock.patency || nextBlock === true) && range--);
 
-				if (creature.state.getCellPlace(creature.coor) !== creature) {
-					creature.state.setCellPlace(creature.coor, creature);
-				}
 
 				if (nextBlock.isCreature) {
 					nextBlock.getDemage(creature);
@@ -166,13 +179,18 @@ module.exports = class Creature extends InnerObject {
 		const startY = creature.coor.y - range;
 		const watcher = state.getWatcher();
 
+		let canIattack = false;
+
 		let localPlace = getLocalPlace();
 		let direction = wave(localPlace);
 
+
 		if (direction === false) {
 			creature._randMove();
-		} else {
+		} else if (!canIattack) {
 			creature._move(direction);
+		} else {
+			creature.doAttack(direction);
 		}
 
 		function getLocalPlace() {
@@ -265,6 +283,10 @@ module.exports = class Creature extends InnerObject {
 				cur++;
 			} while (wayExist && !findWatcher);
 
+			if (cur === 1) {
+				canIattack = true;
+			}
+
 			if (findWatcher) {
 				for (let i = cur; i >= 0; i--) {
 					if (localPlace[coorWatcher.x + 1][coorWatcher.y] === i - 1) {
@@ -303,6 +325,7 @@ module.exports = class Creature extends InnerObject {
 			this.health -= creature.attackDamage;
 
 			if (this.health <= 0) {
+				this.live = false;
 				this.die();
 			}
 		} else {

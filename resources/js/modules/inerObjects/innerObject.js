@@ -192,9 +192,14 @@ module.exports = class InnerObject {
 	}
 
 	die() {
+		if (this.watcher) {
+			this.state.endGame();
+		}
+
 		if (this.DOMObject.children[0]) {
 			this.DOMObject.children[0].remove();
 		}
+
 		this.state.deleteCreature(this.id);
 	}
 }

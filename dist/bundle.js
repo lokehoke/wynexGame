@@ -206,6 +206,10 @@ module.exports = class ControllerGame {
 	}
 
 	async tactOfGame(onlyRender = false) {
+		if (!this.state.gameIsActive()) {
+			throw "game is end";
+		}
+
 		this.world.renderWorld();
 
 		if (!onlyRender) {
@@ -244,10 +248,16 @@ module.exports = class StorCustomEvents {
 				direction: null
 			}
 		});
+
+		this._eventEndGame = new CustomEvent('endGame');
 	}
 
 	getEventBias() {
 		return this._eventBias;
+	}
+
+	getEventEndGame() {
+		return this._eventEndGame;
 	}
 }
 
@@ -471,6 +481,8 @@ const Coor = __webpack_require__(/*! ../../structOfDate/coordinate.js */ "./reso
 
 module.exports = class State {
 	constructor (config) {
+		this._activeGame = true;
+
 		this._numInerBlock = 0;
 
 		this._place = new Place(config);
@@ -496,6 +508,16 @@ module.exports = class State {
 		this._events = new StorCustomEvents();
 	}
 
+	endGame() {
+		document.dispatchEvent(this._events.getEventEndGame());
+		this._activeGame = false;
+		return true;
+	}
+
+	gameIsActive() {
+		return this._activeGame;
+	}
+
 	deleteWeapon(id = 0) {
 		let weapon = this._weapons[id];
 		this._place[weapon.coor.x][weapon.coor.y] = this._place.createNewBlock(weapon.idBackBlock);
@@ -510,6 +532,10 @@ module.exports = class State {
 
 	getEventBias() {
 		return this._events.getEventBias();
+	}
+
+	getEventEndGame() {
+		return this._events.getEventEndGame();
 	}
 
 	getSizeWorld() {
@@ -541,14 +567,21 @@ module.exports = class State {
 	setWeapon(val) {
 		let position = this._place[val.coor.x][val.coor.y];
 
-
 		if (position.patency) {
 			let weapon = new Weapon(this._numInerBlock, this, val.owner, val.coor);
+
 			this._weapons[this._numInerBlock++] = weapon;
 			this._place[val.coor.x][val.coor.y] = weapon;
+
 			return weapon;
 		} else if (position.health) {
+			if (this.getCellPlace(val.owner.coor) !== val.owner) {
+				this.setCellPlace(val.owner.coor, val.owner);
+			}
+
 			position.getDemage(val.owner);
+
+			return null;
 		} else {
 			return null;
 		}
@@ -1122,6 +1155,8 @@ module.exports = class Creature extends InnerObject {
 		super(id, state, coor);
 		this.isCreature = true;
 
+		this.live = true;
+
 		this.health = 100;
 		this.attackDamage = 20;
 		this.attackRange = 10;
@@ -1131,6 +1166,10 @@ module.exports = class Creature extends InnerObject {
 	}
 
 	movePerformance(direction) {
+		if (!this.live) {
+			throw "zombi moving!";
+		}
+
 		if (direction === 'rand') {
 			const state = this.state;
 			const watcher = state.getWatcher();
@@ -1158,6 +1197,10 @@ module.exports = class Creature extends InnerObject {
 	}
 
 	doAttack(direction) {
+		if (!this.live) {
+			throw "zombi atack!";
+		}
+
 		const creature = this;
 		const state = this.state;
 		const world = state.getWorldObject();
@@ -1180,21 +1223,24 @@ module.exports = class Creature extends InnerObject {
 				owner: creature
 			});
 
-			if (weapon == null) {
+			if (weapon === null) {
 				return false;
 			} else {
 				weapon.coor.x = coor.x;
 				weapon.coor.y = coor.y;
 
-				let range = creature.attackRange;
+				let range = creature.attackRange - 1;
+
+				weapon.movePerformance(direction);
+
+				if (creature.state.getCellPlace(creature.coor) !== creature) {
+					creature.state.setCellPlace(creature.coor, creature);
+				}
 
 				do {
 					nextBlock = await biasWeapon(weapon, direction);
 				} while ((nextBlock.patency || nextBlock === true) && range--);
 
-				if (creature.state.getCellPlace(creature.coor) !== creature) {
-					creature.state.setCellPlace(creature.coor, creature);
-				}
 
 				if (nextBlock.isCreature) {
 					nextBlock.getDemage(creature);
@@ -1271,13 +1317,18 @@ module.exports = class Creature extends InnerObject {
 		const startY = creature.coor.y - range;
 		const watcher = state.getWatcher();
 
+		let canIattack = false;
+
 		let localPlace = getLocalPlace();
 		let direction = wave(localPlace);
 
+
 		if (direction === false) {
 			creature._randMove();
-		} else {
+		} else if (!canIattack) {
 			creature._move(direction);
+		} else {
+			creature.doAttack(direction);
 		}
 
 		function getLocalPlace() {
@@ -1370,6 +1421,10 @@ module.exports = class Creature extends InnerObject {
 				cur++;
 			} while (wayExist && !findWatcher);
 
+			if (cur === 1) {
+				canIattack = true;
+			}
+
 			if (findWatcher) {
 				for (let i = cur; i >= 0; i--) {
 					if (localPlace[coorWatcher.x + 1][coorWatcher.y] === i - 1) {
@@ -1408,6 +1463,7 @@ module.exports = class Creature extends InnerObject {
 			this.health -= creature.attackDamage;
 
 			if (this.health <= 0) {
+				this.live = false;
 				this.die();
 			}
 		} else {
@@ -1643,9 +1699,14 @@ module.exports = class InnerObject {
 	}
 
 	die() {
+		if (this.watcher) {
+			this.state.endGame();
+		}
+
 		if (this.DOMObject.children[0]) {
 			this.DOMObject.children[0].remove();
 		}
+
 		this.state.deleteCreature(this.id);
 	}
 }
@@ -1668,6 +1729,7 @@ module.exports = class Player extends Creature {
 	constructor (id, state, watcher, coor, profession) {
 		super(id, state, coor);
 		this.type = 'player';
+		this.health = 10000;
 
 		if (watcher === true){
 			this.watcher = true;
@@ -1749,9 +1811,9 @@ const Size = __webpack_require__(/*! ../structOfDate/size.js */ "./resources/js/
 module.exports = class GLOBAL_SETTING {
 	constructor() {
 		this.sizeBlock = new Size(30, 30);
-		this.numBlocks = new Size(2 ** 10, 2 ** 10);
+		this.numBlocks = new Size(2 ** 4, 2 ** 4);
 
-		this.numEnemy = 2000;
+		this.numEnemy = 5;
 
 		this.timeOfTactPlayer = 50;
 		this.timeOfTactOther = 200;

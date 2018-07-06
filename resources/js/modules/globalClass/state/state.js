@@ -12,6 +12,8 @@ const Coor = require('../../structOfDate/coordinate.js');
 
 module.exports = class State {
 	constructor (config) {
+		this._activeGame = true;
+
 		this._numInerBlock = 0;
 
 		this._place = new Place(config);
@@ -37,6 +39,16 @@ module.exports = class State {
 		this._events = new StorCustomEvents();
 	}
 
+	endGame() {
+		document.dispatchEvent(this._events.getEventEndGame());
+		this._activeGame = false;
+		return true;
+	}
+
+	gameIsActive() {
+		return this._activeGame;
+	}
+
 	deleteWeapon(id = 0) {
 		let weapon = this._weapons[id];
 		this._place[weapon.coor.x][weapon.coor.y] = this._place.createNewBlock(weapon.idBackBlock);
@@ -51,6 +63,10 @@ module.exports = class State {
 
 	getEventBias() {
 		return this._events.getEventBias();
+	}
+
+	getEventEndGame() {
+		return this._events.getEventEndGame();
 	}
 
 	getSizeWorld() {
@@ -82,14 +98,21 @@ module.exports = class State {
 	setWeapon(val) {
 		let position = this._place[val.coor.x][val.coor.y];
 
-
 		if (position.patency) {
 			let weapon = new Weapon(this._numInerBlock, this, val.owner, val.coor);
+
 			this._weapons[this._numInerBlock++] = weapon;
 			this._place[val.coor.x][val.coor.y] = weapon;
+
 			return weapon;
 		} else if (position.health) {
+			if (this.getCellPlace(val.owner.coor) !== val.owner) {
+				this.setCellPlace(val.owner.coor, val.owner);
+			}
+
 			position.getDemage(val.owner);
+
+			return null;
 		} else {
 			return null;
 		}

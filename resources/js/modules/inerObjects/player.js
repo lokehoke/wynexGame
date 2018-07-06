@@ -6,6 +6,7 @@ module.exports = class Player extends Creature {
 	constructor (id, state, watcher, coor, profession) {
 		super(id, state, coor);
 		this.type = 'player';
+		this.health = 10000;
 
 		if (watcher === true){
 			this.watcher = true;

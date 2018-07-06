@@ -7,9 +7,15 @@ module.exports = class StorCustomEvents {
 				direction: null
 			}
 		});
+
+		this._eventEndGame = new CustomEvent('endGame');
 	}
 
 	getEventBias() {
 		return this._eventBias;
+	}
+
+	getEventEndGame() {
+		return this._eventEndGame;
 	}
 }
