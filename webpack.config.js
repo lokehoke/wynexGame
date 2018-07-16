@@ -1,17 +1,18 @@
 'use strict';
 
-module.exports = {
-	entry: {
-		bundle: './resources/js/modules/index.js',
-		styles: './resources/css/sass/index.scss'
-	},
-	output: {
-		path: __dirname + "/dist/",
-	},
-	// mode: 'production',
-	mode: 'development',
+var config = {
 	watch: true,
 	devtool: 'source-map',
+	// mode: 'production',
+	mode: 'development'
+};
+
+var style = Object.assign({}, config, {
+	entry: './src/styles/sass/index.scss',
+	output: {
+    	path: __dirname + '/public/resources/css/',
+    	filename: 'style.js'
+  	},
 	module: {
 		rules: [{
 			test: /\.scss$/,
@@ -28,4 +29,14 @@ module.exports = {
 			}]
 		}]
 	}
-};
+});
+
+var engine = Object.assign({}, config, {
+	entry: './src/gameSrcJs/engine/wEngine.js',
+	output: {
+		path: __dirname + '/public/resources/js/',
+		filename: 'bundle.js'
+	}
+});
+
+module.exports = [style, engine];

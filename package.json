@@ -1,0 +1,31 @@
+{
+  "name": "wynexgame",
+  "version": "0.0.1",
+  "description": "2d game view from above",
+  "main": "webpack.config.js",
+  "dependencies": {
+    "css-loader": "^0.28.11",
+    "node-sass": "^4.9.0",
+    "sass-loader": "^7.0.3",
+    "style-loader": "^0.21.0",
+    "webpack": "^4.12.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lpkehoke/wynexGame.git"
+  },
+  "keywords": [
+    "2d",
+    "game"
+  ],
+  "author": "lpkehoke",
+  "license": "GPL-3.0+",
+  "bugs": {
+    "url": "https://github.com/Lpkehoke/wynexGame/issues"
+  },
+  "homepage": "https://github.com/Lpkehoke/wynexGame#readme"
+}
