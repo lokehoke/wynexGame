@@ -22,6 +22,36 @@ module.exports = class ControllerGame {
 		this.state.setWorldObject(this.world);
 	}
 
+	getState() {
+		return this.state;
+	}
+
+	async tactOfGame(onlyRender = false) {
+		if (!this.state.gameIsActive()) {
+			throw "game is end";
+		}
+
+		const state = this.getState();
+
+		this.world.renderWorld();
+
+		if (!onlyRender) {
+			moveAllenemy();
+		}
+
+		async function moveEnemy(item) {
+			await item.movePerformance('rand');
+		}
+
+		async function moveAllenemy() {
+			state.getAllCreature().forEach((item) => {
+				if (item.watcher !== true) {
+					moveEnemy(item);
+				}
+			});
+		}
+	}
+
 	_definedAndSetStartPointWatch(players) {
 		const startPoint = this._getStartPiointWatch(players, this.state);
 
@@ -105,36 +135,4 @@ module.exports = class ControllerGame {
 		}
 	}
 
-	getState() {
-		return this.state;
-	}
-
-	async tactOfGame(onlyRender = false) {
-		if (!this.state.gameIsActive()) {
-			throw "game is end";
-		}
-
-		const state = this.getState();
-
-		this.world.renderWorld();
-
-		if (!onlyRender) {
-			moveAllenemy();
-		}
-
-		return true;
-
-		async function moveEnemy(item) {
-			await item.movePerformance('rand');
-			return true;
-		}
-
-		async function moveAllenemy() {
-			state.getAllCreature().forEach((item) => {
-				if (item.watcher !== true) {
-					moveEnemy(item);
-				}
-			});
-		}
-	}
 }

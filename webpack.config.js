@@ -39,4 +39,22 @@ var engine = Object.assign({}, config, {
 	}
 });
 
-module.exports = [style, engine];
+var interfaceGame = Object.assign({}, config, {
+	entry: './src/gameSrcJs/interface/interface.jsx',
+	output: {
+    	path: __dirname + '/public/resources/js/',
+    	filename: 'interface.js'
+  	},
+	module: {
+		rules: [{
+			test: /\.(js|jsx)$/,
+			exclude: /node_modules/,
+			use: ['babel-loader']
+		}]
+	},
+	resolve: {
+		extensions: ['*', '.js', '.jsx']
+	}
+});
+
+module.exports = [style, engine, interfaceGame];
