@@ -1,6 +1,6 @@
 'use strict';
 
-const GLOBAL_SETTING = new (require('../setting/globalSetting.js'))();
+const GLOBAL_SETTING = (require('../setting/globalSetting.js'));
 
 const Coor = require('../structOfDate/coordinate.js');
 const ExCoor = require('../structOfDate/ExCoordinate.js');
@@ -16,6 +16,8 @@ module.exports = class InnerObject {
 		this.state = state;
 		this.coor = coor;
 		this.id = id;
+
+		this.live = false;
 
 		this.visable = {};
 		this.visable.was = false;
@@ -191,13 +193,22 @@ module.exports = class InnerObject {
 		}
 	}
 
-	die() {
+	die(creature) {
 		if (this.watcher) {
 			this.state.endGame();
 		}
 
 		if (this.DOMObject.children[0]) {
 			this.DOMObject.children[0].remove();
+		}
+
+		if (this.live) {
+			let event = this.state.getEventDyeCreature();
+
+			event.detail.from = creature;
+			event.detail.who = this;
+
+			document.dispatchEvent(event);
 		}
 
 		this.state.deleteCreature(this.id);

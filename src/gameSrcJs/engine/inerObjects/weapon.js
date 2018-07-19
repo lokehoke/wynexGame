@@ -2,7 +2,7 @@
 
 const InnerObject = require('./innerObject.js');
 
-const GLOBAL_SETTING = new (require('../setting/globalSetting.js'))();
+const GLOBAL_SETTING = (require('../setting/globalSetting.js'));
 
 const Coor = require('../structOfDate/coordinate.js');
 const ExCoor = require('../structOfDate/ExCoordinate.js');
@@ -25,7 +25,7 @@ module.exports = class Weapon extends InnerObject {
 	}
 
 	die() {
-		if (this.DOMObject.children[0]) {
+		if (this.DOMObject && this.DOMObject.children[0]) {
 			this.DOMObject.children[0].remove();
 		}
 		this.state.deleteWeapon(this.id);

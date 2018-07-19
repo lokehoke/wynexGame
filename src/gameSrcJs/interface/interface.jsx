@@ -1,7 +1,8 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+'use strict';
 
-ReactDOM.render(
-  <h1>Hello, world!</h1>,
-  document.getElementById('interface')
-);
+const React = require('react');
+const ReactDOM = require('react-dom');
+
+const GameInterface = require('./gameInterface/gameInterface.jsx');
+
+ReactDOM.render(<GameInterface />, document.getElementById('interface'));

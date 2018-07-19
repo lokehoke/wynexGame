@@ -1,6 +1,6 @@
 'use strict';
 (function startGame() {
-	const GLOBAL_SETTING = new (require('./setting/globalSetting.js'))();
+	const GLOBAL_SETTING = (require('./setting/globalSetting.js'));
 	const ControllerGame = require('./globalClass/game.js');
 
 	const game = new ControllerGame([{

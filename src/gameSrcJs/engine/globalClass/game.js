@@ -2,8 +2,7 @@
 
 const State = require('./state/state.js');
 const World = require('./world.js');
-const GLOBAL_SETTING_CLASS = require('../setting/globalSetting.js');
-const GLOBAL_SETTING = new GLOBAL_SETTING_CLASS();
+const GLOBAL_SETTING = require('../setting/globalSetting.js');
 
 module.exports = class ControllerGame {
 	constructor (players = null, enemy = []) {
@@ -66,10 +65,31 @@ module.exports = class ControllerGame {
 		if (players !== null) {
 			players.forEach((val) => {
 				state.setPlayer(val);
+
+				if (val.watcher) {
+					despetchStartHP();
+				}
 			});
+
 			return true;
 		} else {
 			return false;
+		}
+
+		function despetchStartHP() {
+			let event = state.getEventMainGetHP();
+
+			event.detail.fromO = {
+				id: 'gameStartRefresh'
+			};
+
+			let hp = GLOBAL_SETTING.standartPlayer.maxHP;
+
+			event.detail.num = hp;
+			event.detail.max = hp;
+			event.detail.cur = hp;
+
+			document.dispatchEvent(event);
 		}
 	}
 
@@ -78,6 +98,7 @@ module.exports = class ControllerGame {
 			enemys.forEach((val) => {
 				state.setEnemy(val);
 			});
+
 			return true;
 		} else {
 			return false;
@@ -99,6 +120,7 @@ module.exports = class ControllerGame {
 
 		let x = watcher.coor.x;
 		let y = watcher.coor.y;
+
 		let startPointWatch = {};
 
 		startPointWatch.x = findX(x, size);

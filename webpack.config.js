@@ -10,9 +10,9 @@ var config = {
 var style = Object.assign({}, config, {
 	entry: './src/styles/sass/index.scss',
 	output: {
-    	path: __dirname + '/public/resources/css/',
-    	filename: 'style.js'
-  	},
+		path: __dirname + '/public/resources/css/',
+		filename: 'style.js'
+	},
 	module: {
 		rules: [{
 			test: /\.scss$/,
@@ -42,9 +42,9 @@ var engine = Object.assign({}, config, {
 var interfaceGame = Object.assign({}, config, {
 	entry: './src/gameSrcJs/interface/interface.jsx',
 	output: {
-    	path: __dirname + '/public/resources/js/',
-    	filename: 'interface.js'
-  	},
+		path: __dirname + '/public/resources/js/',
+		filename: 'interface.js'
+	},
 	module: {
 		rules: [{
 			test: /\.(js|jsx)$/,

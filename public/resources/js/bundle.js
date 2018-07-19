@@ -98,8 +98,7 @@
 
 const State = __webpack_require__(/*! ./state/state.js */ "./src/gameSrcJs/engine/globalClass/state/state.js");
 const World = __webpack_require__(/*! ./world.js */ "./src/gameSrcJs/engine/globalClass/world.js");
-const GLOBAL_SETTING_CLASS = __webpack_require__(/*! ../setting/globalSetting.js */ "./src/gameSrcJs/engine/setting/globalSetting.js");
-const GLOBAL_SETTING = new GLOBAL_SETTING_CLASS();
+const GLOBAL_SETTING = __webpack_require__(/*! ../setting/globalSetting.js */ "./src/gameSrcJs/engine/setting/globalSetting.js");
 
 module.exports = class ControllerGame {
 	constructor (players = null, enemy = []) {
@@ -162,10 +161,31 @@ module.exports = class ControllerGame {
 		if (players !== null) {
 			players.forEach((val) => {
 				state.setPlayer(val);
+
+				if (val.watcher) {
+					despetchStartHP();
+				}
 			});
+
 			return true;
 		} else {
 			return false;
+		}
+
+		function despetchStartHP() {
+			let event = state.getEventMainGetHP();
+
+			event.detail.fromO = {
+				id: 'gameStartRefresh'
+			};
+
+			let hp = GLOBAL_SETTING.standartPlayer.maxHP;
+
+			event.detail.num = hp;
+			event.detail.max = hp;
+			event.detail.cur = hp;
+
+			document.dispatchEvent(event);
 		}
 	}
 
@@ -174,6 +194,7 @@ module.exports = class ControllerGame {
 			enemys.forEach((val) => {
 				state.setEnemy(val);
 			});
+
 			return true;
 		} else {
 			return false;
@@ -195,6 +216,7 @@ module.exports = class ControllerGame {
 
 		let x = watcher.coor.x;
 		let y = watcher.coor.y;
+
 		let startPointWatch = {};
 
 		startPointWatch.x = findX(x, size);
@@ -245,6 +267,8 @@ module.exports = class ControllerGame {
 "use strict";
 
 
+const ChangeStatistic = __webpack_require__(/*! ./../../../../structOfDate/changeStatistic.js */ "./src/gameSrcJs/engine/structOfDate/changeStatistic.js");
+
 module.exports = class StorCustomEvents {
 	constructor() {
 		this._eventBias = new CustomEvent('bias', {
@@ -254,6 +278,17 @@ module.exports = class StorCustomEvents {
 		});
 
 		this._eventEndGame = new CustomEvent('endGame');
+
+		this._eventMainGetDamage = new CustomEvent('mainGetDamage', this._getObjChangeStatistic() );
+
+		this._eventDyeCreature = new CustomEvent('dyeCreature', {
+			detail: {
+				from: null,
+				who: null
+			}
+		});
+
+		this._eventMainGetHP = new CustomEvent('mainGetHP', this._getObjChangeStatistic() );
 	}
 
 	getEventBias() {
@@ -262,6 +297,24 @@ module.exports = class StorCustomEvents {
 
 	getEventEndGame() {
 		return this._eventEndGame;
+	}
+
+	getEventMainGetDamage() {
+		return this._eventMainGetDamage;
+	}
+
+	getEventDyeCreature() {
+		return this._eventDyeCreature;
+	}
+
+	getEventMainGetHP() {
+		return this._eventMainGetHP;
+	}
+
+	_getObjChangeStatistic() {
+		let obj = {};
+		obj.detail = new ChangeStatistic()
+		return obj;
 	}
 }
 
@@ -487,7 +540,7 @@ module.exports = class State {
 	constructor (config) {
 		this._activeGame = true;
 
-		this._numInerBlock = 0;
+		this._numInerBlock = 0; // for id
 
 		this._place = new Place(config);
 		this._place.addRoom();
@@ -516,6 +569,18 @@ module.exports = class State {
 		document.dispatchEvent(this._events.getEventEndGame());
 		this._activeGame = false;
 		return true;
+	}
+
+	getEventMainGetHP() {
+		return this._events.getEventMainGetHP();
+	}
+
+	getEventMainGetDamage() {
+		return this._events.getEventMainGetDamage();
+	}
+
+	getEventDyeCreature() {
+		return this._events.getEventDyeCreature();
 	}
 
 	gameIsActive() {
@@ -578,7 +643,7 @@ module.exports = class State {
 			this._place[val.coor.x][val.coor.y] = weapon;
 
 			return weapon;
-		} else if (position.health) {
+		} else if (position.HP) {
 			if (this.getCellPlace(val.owner.coor) !== val.owner) {
 				this.setCellPlace(val.owner.coor, val.owner);
 			}
@@ -641,6 +706,7 @@ module.exports = class State {
 	getBias(remove) {
 		if (this._bias !== undefined) {
 			let OldValue = this._bias;
+
 			if (remove === true) {
 				this._bias = null;
 			}
@@ -748,7 +814,7 @@ module.exports = class State {
 "use strict";
 
 
-const GLOBAL_SETTING = new (__webpack_require__(/*! ../setting/globalSetting.js */ "./src/gameSrcJs/engine/setting/globalSetting.js"))();
+const GLOBAL_SETTING = (__webpack_require__(/*! ../setting/globalSetting.js */ "./src/gameSrcJs/engine/setting/globalSetting.js"));
 
 const Coor = __webpack_require__(/*! ../structOfDate/coordinate.js */ "./src/gameSrcJs/engine/structOfDate/coordinate.js");
 
@@ -765,8 +831,8 @@ module.exports = class World {
 
 		if (firstFindSize === true){
 
-			const widthBlocks = Math.floor(window.innerWidth / GLOBAL_SETTING.sizeBlock.width);
-			const heightBlocks = Math.floor(window.innerHeight / GLOBAL_SETTING.sizeBlock.height);
+			const widthBlocks = Math.floor((window.innerWidth - 200) / GLOBAL_SETTING.sizeBlock.width);
+			const heightBlocks = Math.floor((window.innerHeight - 200) / GLOBAL_SETTING.sizeBlock.height);
 
 			let sizeG = {
 				widthBlocks: (widthBlocks < GLOBAL_SETTING.numBlocks.width ? widthBlocks : GLOBAL_SETTING.numBlocks.width),
@@ -1075,7 +1141,7 @@ module.exports = class World {
 const InnerObject = __webpack_require__(/*! ./innerObject.js */ "./src/gameSrcJs/engine/inerObjects/innerObject.js");
 const Weapon = __webpack_require__(/*! ./weapon.js */ "./src/gameSrcJs/engine/inerObjects/weapon.js");
 
-const GLOBAL_SETTING = new (__webpack_require__(/*! ../setting/globalSetting.js */ "./src/gameSrcJs/engine/setting/globalSetting.js"))();
+const GLOBAL_SETTING = (__webpack_require__(/*! ../setting/globalSetting.js */ "./src/gameSrcJs/engine/setting/globalSetting.js"));
 
 const Coor = __webpack_require__(/*! ../structOfDate/coordinate.js */ "./src/gameSrcJs/engine/structOfDate/coordinate.js");
 const ExCoor = __webpack_require__(/*! ../structOfDate/ExCoordinate.js */ "./src/gameSrcJs/engine/structOfDate/ExCoordinate.js");
@@ -1091,10 +1157,11 @@ module.exports = class Creature extends InnerObject {
 
 		this.live = true;
 
-		this.health = 100;
-		this.attackDamage = 20;
-		this.attackRange = 10;
-		this.pursuitRange = 50;
+		this.maxHP = GLOBAL_SETTING.standartEnemy.maxHP;
+		this.HP = GLOBAL_SETTING.standartEnemy.maxHP;
+
+		this.attackDamage = GLOBAL_SETTING.standartEnemy.attackDamage;
+		this.attackRange = GLOBAL_SETTING.standartEnemy.attackRange;
 
 		state.setCoorPlayer(coor, id);
 	}
@@ -1119,7 +1186,7 @@ module.exports = class Creature extends InnerObject {
 			&&
 				watcherY < y + range
 			&&
-				watcherY > y -range
+				watcherY > y - range
 			){
 				this._approximatingToWatcher();
 			} else {
@@ -1393,16 +1460,18 @@ module.exports = class Creature extends InnerObject {
 	}
 
 	getDemage(creature) {
-		if (this.health > 0) {
-			this.health -= creature.attackDamage;
+		if (this.HP > 0) {
+			this.HP -= creature.attackDamage;
 
-			if (this.health <= 0) {
+			if (this.HP <= 0) {
 				this.live = false;
-				this.die();
+				this.die(creature);
 			}
 		} else {
 			throw "zombie";
 		}
+
+		return creature.attackDamage;
 	}
 }
 
@@ -1419,6 +1488,7 @@ module.exports = class Creature extends InnerObject {
 
 
 const Creature = __webpack_require__(/*! ./creature */ "./src/gameSrcJs/engine/inerObjects/creature.js");
+const GLOBAL_SETTING = (__webpack_require__(/*! ../setting/globalSetting.js */ "./src/gameSrcJs/engine/setting/globalSetting.js"));
 
 module.exports = class Enemy extends Creature {
 	constructor (id, state, coor) {
@@ -1426,6 +1496,7 @@ module.exports = class Enemy extends Creature {
 		this.type = 'enemy';
 		this.classNameCSS = 'slimeEnemy';
 		this.watcher = false;
+		this.pursuitRange = GLOBAL_SETTING.standartEnemy.pursuitRange;
 	}
 }
 
@@ -1441,7 +1512,7 @@ module.exports = class Enemy extends Creature {
 "use strict";
 
 
-const GLOBAL_SETTING = new (__webpack_require__(/*! ../setting/globalSetting.js */ "./src/gameSrcJs/engine/setting/globalSetting.js"))();
+const GLOBAL_SETTING = (__webpack_require__(/*! ../setting/globalSetting.js */ "./src/gameSrcJs/engine/setting/globalSetting.js"));
 
 const Coor = __webpack_require__(/*! ../structOfDate/coordinate.js */ "./src/gameSrcJs/engine/structOfDate/coordinate.js");
 const ExCoor = __webpack_require__(/*! ../structOfDate/ExCoordinate.js */ "./src/gameSrcJs/engine/structOfDate/ExCoordinate.js");
@@ -1457,6 +1528,8 @@ module.exports = class InnerObject {
 		this.state = state;
 		this.coor = coor;
 		this.id = id;
+
+		this.live = false;
 
 		this.visable = {};
 		this.visable.was = false;
@@ -1632,13 +1705,22 @@ module.exports = class InnerObject {
 		}
 	}
 
-	die() {
+	die(creature) {
 		if (this.watcher) {
 			this.state.endGame();
 		}
 
 		if (this.DOMObject.children[0]) {
 			this.DOMObject.children[0].remove();
+		}
+
+		if (this.live) {
+			let event = this.state.getEventDyeCreature();
+
+			event.detail.from = creature;
+			event.detail.who = this;
+
+			document.dispatchEvent(event);
 		}
 
 		this.state.deleteCreature(this.id);
@@ -1658,15 +1740,23 @@ module.exports = class InnerObject {
 
 
 const Creature = __webpack_require__(/*! ./creature */ "./src/gameSrcJs/engine/inerObjects/creature.js");
+const GLOBAL_SETTING = (__webpack_require__(/*! ../setting/globalSetting.js */ "./src/gameSrcJs/engine/setting/globalSetting.js"));
 
 module.exports = class Player extends Creature {
 	constructor (id, state, watcher, coor, profession) {
 		super(id, state, coor);
+
 		this.type = 'player';
-		this.health = 10000;
+
+		this.maxHP = GLOBAL_SETTING.standartPlayer.maxHP;
+		this.HP = GLOBAL_SETTING.standartPlayer.maxHP;
+
+		this.attackDamage = GLOBAL_SETTING.standartPlayer.attackDamage;
+		this.attackRange = GLOBAL_SETTING.standartPlayer.attackRange;
 
 		if (watcher === true){
 			this.watcher = true;
+
 			state.setPointWatch(coor, this);
 			this.visable = {
 				was: true,
@@ -1681,6 +1771,21 @@ module.exports = class Player extends Creature {
 				this.classNameCSS = 'magePlayer';
 				break;
 		}
+	}
+
+	getDemage(creature) {
+		let damage = super.getDemage(creature);
+		let event = this.state.getEventMainGetDamage();
+
+		event.detail.fromO = creature;
+		event.detail.num = damage;
+		event.detail.max = this.maxHP;
+		event.detail.cur = this.HP;
+		event.detail.type = 'hp';
+
+		document.dispatchEvent(event);
+
+		return damage;
 	}
 }
 
@@ -1698,7 +1803,7 @@ module.exports = class Player extends Creature {
 
 const InnerObject = __webpack_require__(/*! ./innerObject.js */ "./src/gameSrcJs/engine/inerObjects/innerObject.js");
 
-const GLOBAL_SETTING = new (__webpack_require__(/*! ../setting/globalSetting.js */ "./src/gameSrcJs/engine/setting/globalSetting.js"))();
+const GLOBAL_SETTING = (__webpack_require__(/*! ../setting/globalSetting.js */ "./src/gameSrcJs/engine/setting/globalSetting.js"));
 
 const Coor = __webpack_require__(/*! ../structOfDate/coordinate.js */ "./src/gameSrcJs/engine/structOfDate/coordinate.js");
 const ExCoor = __webpack_require__(/*! ../structOfDate/ExCoordinate.js */ "./src/gameSrcJs/engine/structOfDate/ExCoordinate.js");
@@ -1721,7 +1826,7 @@ module.exports = class Weapon extends InnerObject {
 	}
 
 	die() {
-		if (this.DOMObject.children[0]) {
+		if (this.DOMObject && this.DOMObject.children[0]) {
 			this.DOMObject.children[0].remove();
 		}
 		this.state.deleteWeapon(this.id);
@@ -1742,15 +1847,26 @@ module.exports = class Weapon extends InnerObject {
 
 const Size = __webpack_require__(/*! ../structOfDate/size.js */ "./src/gameSrcJs/engine/structOfDate/size.js");
 
-module.exports = class GLOBAL_SETTING {
-	constructor() {
-		this.sizeBlock = new Size(30, 30);
-		this.numBlocks = new Size(2 ** 10, 2 ** 10);
+module.exports = {
+	sizeBlock: new Size(30, 30),
+	numBlocks: new Size(2 ** 10, 2 ** 10),
 
-		this.numEnemy = 1000;
+	numEnemy: 1000,
 
-		this.timeOfTactPlayer = 50;
-		this.timeOfTactOther = 200;
+	timeOfTactPlayer: 50,
+	timeOfTactOther: 200,
+
+	standartPlayer: {
+		maxHP: 10000,
+		attackDamage: 50,
+		attackRange: 10
+	},
+
+	standartEnemy: {
+		maxHP: 100,
+		attackDamage: 10,
+		attackRange: 10,
+		pursuitRange: 50
 	}
 }
 
@@ -1773,6 +1889,28 @@ module.exports = class ExCoor extends Coor {
 		super(x, y);
 		this.newX = newX;
 		this.newY = newY;
+	}
+}
+
+/***/ }),
+
+/***/ "./src/gameSrcJs/engine/structOfDate/changeStatistic.js":
+/*!**************************************************************!*\
+  !*** ./src/gameSrcJs/engine/structOfDate/changeStatistic.js ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = class ChangeStatistic {
+	constructor(fromO = null, num = 0, max = 0, cur = 0, type = 'hp') {
+		this.fromO = fromO;
+		this.num = num;
+		this.max = max;
+		this.cur = cur;
+		this.type = type;
 	}
 }
 
@@ -1826,7 +1964,7 @@ module.exports = class Size {
 "use strict";
 
 (function startGame() {
-	const GLOBAL_SETTING = new (__webpack_require__(/*! ./setting/globalSetting.js */ "./src/gameSrcJs/engine/setting/globalSetting.js"))();
+	const GLOBAL_SETTING = (__webpack_require__(/*! ./setting/globalSetting.js */ "./src/gameSrcJs/engine/setting/globalSetting.js"));
 	const ControllerGame = __webpack_require__(/*! ./globalClass/game.js */ "./src/gameSrcJs/engine/globalClass/game.js");
 
 	const game = new ControllerGame([{

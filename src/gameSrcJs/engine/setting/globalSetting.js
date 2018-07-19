@@ -2,14 +2,25 @@
 
 const Size = require('../structOfDate/size.js');
 
-module.exports = class GLOBAL_SETTING {
-	constructor() {
-		this.sizeBlock = new Size(30, 30);
-		this.numBlocks = new Size(2 ** 10, 2 ** 10);
+module.exports = {
+	sizeBlock: new Size(30, 30),
+	numBlocks: new Size(2 ** 10, 2 ** 10),
 
-		this.numEnemy = 1000;
+	numEnemy: 1000,
 
-		this.timeOfTactPlayer = 50;
-		this.timeOfTactOther = 200;
+	timeOfTactPlayer: 50,
+	timeOfTactOther: 200,
+
+	standartPlayer: {
+		maxHP: 10000,
+		attackDamage: 50,
+		attackRange: 10
+	},
+
+	standartEnemy: {
+		maxHP: 100,
+		attackDamage: 10,
+		attackRange: 10,
+		pursuitRange: 50
 	}
 }

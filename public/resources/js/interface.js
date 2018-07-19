@@ -19986,6 +19986,368 @@ if (false) {} else {
 
 /***/ }),
 
+/***/ "./src/gameSrcJs/interface/gameInterface/gameInterface.jsx":
+/*!*****************************************************************!*\
+  !*** ./src/gameSrcJs/interface/gameInterface/gameInterface.jsx ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+var ReactDOM = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+
+var Header = __webpack_require__(/*! ./header/header.jsx */ "./src/gameSrcJs/interface/gameInterface/header/header.jsx");
+
+module.exports = function (_React$Component) {
+	_inherits(GameIntarfface, _React$Component);
+
+	function GameIntarfface() {
+		_classCallCheck(this, GameIntarfface);
+
+		return _possibleConstructorReturn(this, (GameIntarfface.__proto__ || Object.getPrototypeOf(GameIntarfface)).apply(this, arguments));
+	}
+
+	_createClass(GameIntarfface, [{
+		key: 'render',
+		value: function render() {
+			return React.createElement(Header, null);
+		}
+	}]);
+
+	return GameIntarfface;
+}(React.Component);
+
+/***/ }),
+
+/***/ "./src/gameSrcJs/interface/gameInterface/header/header.jsx":
+/*!*****************************************************************!*\
+  !*** ./src/gameSrcJs/interface/gameInterface/header/header.jsx ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+var ReactDOM = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+
+var HeaderIcon = __webpack_require__(/*! ./innerHeader/headerIcon/HeaderIcon.jsx */ "./src/gameSrcJs/interface/gameInterface/header/innerHeader/headerIcon/HeaderIcon.jsx");
+var HeaderStatus = __webpack_require__(/*! ./innerHeader/headerStatus/headerStatus.jsx */ "./src/gameSrcJs/interface/gameInterface/header/innerHeader/headerStatus/headerStatus.jsx");
+var HeaderSkils = __webpack_require__(/*! ./innerHeader/headerSkils/headerSkils.jsx */ "./src/gameSrcJs/interface/gameInterface/header/innerHeader/headerSkils/headerSkils.jsx");
+
+module.exports = function (_React$Component) {
+	_inherits(Header, _React$Component);
+
+	function Header() {
+		_classCallCheck(this, Header);
+
+		return _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).apply(this, arguments));
+	}
+
+	_createClass(Header, [{
+		key: 'render',
+		value: function render() {
+			return React.createElement(
+				'header',
+				{ className: 'header' },
+				React.createElement(HeaderIcon, null),
+				React.createElement(HeaderStatus, null),
+				React.createElement(HeaderSkils, null)
+			);
+		}
+	}]);
+
+	return Header;
+}(React.Component);
+
+/***/ }),
+
+/***/ "./src/gameSrcJs/interface/gameInterface/header/innerHeader/headerIcon/HeaderIcon.jsx":
+/*!********************************************************************************************!*\
+  !*** ./src/gameSrcJs/interface/gameInterface/header/innerHeader/headerIcon/HeaderIcon.jsx ***!
+  \********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+var ReactDOM = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+
+module.exports = function (_React$Component) {
+	_inherits(HeaderIcon, _React$Component);
+
+	function HeaderIcon() {
+		_classCallCheck(this, HeaderIcon);
+
+		return _possibleConstructorReturn(this, (HeaderIcon.__proto__ || Object.getPrototypeOf(HeaderIcon)).apply(this, arguments));
+	}
+
+	_createClass(HeaderIcon, [{
+		key: 'render',
+		value: function render() {
+			return React.createElement(
+				'div',
+				{ className: 'header__icon' },
+				React.createElement('img', {
+					src: '/resources/img/interface/mage_iconV2.nesvg.png',
+					width: '100',
+					height: '100'
+				})
+			);
+		}
+	}]);
+
+	return HeaderIcon;
+}(React.Component);
+
+/***/ }),
+
+/***/ "./src/gameSrcJs/interface/gameInterface/header/innerHeader/headerSkils/headerSkils.jsx":
+/*!**********************************************************************************************!*\
+  !*** ./src/gameSrcJs/interface/gameInterface/header/innerHeader/headerSkils/headerSkils.jsx ***!
+  \**********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+var ReactDOM = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+
+module.exports = function (_React$Component) {
+	_inherits(HeaderSkils, _React$Component);
+
+	function HeaderSkils() {
+		_classCallCheck(this, HeaderSkils);
+
+		return _possibleConstructorReturn(this, (HeaderSkils.__proto__ || Object.getPrototypeOf(HeaderSkils)).apply(this, arguments));
+	}
+
+	_createClass(HeaderSkils, [{
+		key: 'render',
+		value: function render() {
+			return React.createElement(
+				'div',
+				{ className: 'header__skils' },
+				React.createElement('div', null),
+				React.createElement('div', null),
+				React.createElement('div', null),
+				React.createElement('div', null),
+				React.createElement('div', null),
+				React.createElement('div', null),
+				React.createElement('div', null),
+				React.createElement('div', null)
+			);
+		}
+	}]);
+
+	return HeaderSkils;
+}(React.Component);
+
+/***/ }),
+
+/***/ "./src/gameSrcJs/interface/gameInterface/header/innerHeader/headerStatus/headerStatus.jsx":
+/*!************************************************************************************************!*\
+  !*** ./src/gameSrcJs/interface/gameInterface/header/innerHeader/headerStatus/headerStatus.jsx ***!
+  \************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+var ReactDOM = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+
+var Line = __webpack_require__(/*! ./line/line.jsx */ "./src/gameSrcJs/interface/gameInterface/header/innerHeader/headerStatus/line/line.jsx");
+
+module.exports = function (_React$Component) {
+	_inherits(HeaderStatus, _React$Component);
+
+	function HeaderStatus() {
+		_classCallCheck(this, HeaderStatus);
+
+		return _possibleConstructorReturn(this, (HeaderStatus.__proto__ || Object.getPrototypeOf(HeaderStatus)).apply(this, arguments));
+	}
+
+	_createClass(HeaderStatus, [{
+		key: 'render',
+		value: function render() {
+			return React.createElement(
+				'div',
+				{ className: 'header__status' },
+				React.createElement(Line, { type: 'hp' }),
+				React.createElement(Line, { type: 'mp' })
+			);
+		}
+	}]);
+
+	return HeaderStatus;
+}(React.Component);
+
+/***/ }),
+
+/***/ "./src/gameSrcJs/interface/gameInterface/header/innerHeader/headerStatus/line/line.jsx":
+/*!*********************************************************************************************!*\
+  !*** ./src/gameSrcJs/interface/gameInterface/header/innerHeader/headerStatus/line/line.jsx ***!
+  \*********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+var ReactDOM = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+
+module.exports = function (_React$Component) {
+	_inherits(Line, _React$Component);
+
+	function Line(props) {
+		_classCallCheck(this, Line);
+
+		var _this = _possibleConstructorReturn(this, (Line.__proto__ || Object.getPrototypeOf(Line)).call(this, props));
+
+		_this.state = {
+			fromO: null,
+			num: 0,
+			max: 0,
+			cur: 0,
+			type: _this.props.type
+		};
+		return _this;
+	}
+
+	_createClass(Line, [{
+		key: 'componentDidMount',
+		value: function componentDidMount() {
+			var _this2 = this;
+
+			if (this.state.type === 'hp') {
+				document.addEventListener('mainGetHP', function (e) {
+					return _this2._add(e);
+				});
+				document.addEventListener('mainGetDamage', function (e) {
+					return _this2._add(e);
+				});
+			} else if (this.state.type === 'mp') {
+				document.addEventListener('mainGetMP', function (e) {
+					return _this2._add(e);
+				});
+			}
+		}
+	}, {
+		key: 'componentWillUnmount',
+		value: function componentWillUnmount() {
+			var _this3 = this;
+
+			if (this.state.type === 'hp') {
+				document.removeEventListener('mainGetHP', function (e) {
+					return _this3._add(e);
+				});
+				document.removeEventListener('mainGetDamage', function (e) {
+					return _this3._add(e);
+				});
+			} else if (this.state.type === 'mp') {
+				document.removeEventListener('mainGetMP', function (e) {
+					return _this3._add(e);
+				});
+			}
+		}
+	}, {
+		key: 'render',
+		value: function render() {
+			var proc = (this.state.max ? this.state.cur / this.state.max * 200 : 0) + 'px';
+
+			return React.createElement(
+				'div',
+				{ className: 'header__status-line' },
+				React.createElement(
+					'div',
+					{ className: 'status-line__container' },
+					React.createElement('div', { className: this.props.type, style: { width: proc } })
+				),
+				React.createElement(
+					'div',
+					{ className: 'status-line__maxCur' },
+					this.state.cur,
+					' / ',
+					this.state.max
+				),
+				React.createElement(
+					'span',
+					null,
+					this.props.type
+				)
+			);
+		}
+	}, {
+		key: '_add',
+		value: function _add(e) {
+			this.setState(e.detail);
+		}
+	}]);
+
+	return Line;
+}(React.Component);
+
+/***/ }),
+
 /***/ "./src/gameSrcJs/interface/interface.jsx":
 /*!***********************************************!*\
   !*** ./src/gameSrcJs/interface/interface.jsx ***!
@@ -19996,21 +20358,12 @@ if (false) {} else {
 "use strict";
 
 
-var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+var ReactDOM = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 
-var _react2 = _interopRequireDefault(_react);
+var GameInterface = __webpack_require__(/*! ./gameInterface/gameInterface.jsx */ "./src/gameSrcJs/interface/gameInterface/gameInterface.jsx");
 
-var _reactDom = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-_reactDom2.default.render(_react2.default.createElement(
-  'h1',
-  null,
-  'Hello, world!'
-), document.getElementById('interface'));
+ReactDOM.render(React.createElement(GameInterface, null), document.getElementById('interface'));
 
 /***/ })
 

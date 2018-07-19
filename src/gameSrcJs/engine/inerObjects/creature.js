@@ -3,7 +3,7 @@
 const InnerObject = require('./innerObject.js');
 const Weapon = require('./weapon.js');
 
-const GLOBAL_SETTING = new (require('../setting/globalSetting.js'))();
+const GLOBAL_SETTING = (require('../setting/globalSetting.js'));
 
 const Coor = require('../structOfDate/coordinate.js');
 const ExCoor = require('../structOfDate/ExCoordinate.js');
@@ -19,10 +19,11 @@ module.exports = class Creature extends InnerObject {
 
 		this.live = true;
 
-		this.health = 100;
-		this.attackDamage = 20;
-		this.attackRange = 10;
-		this.pursuitRange = 50;
+		this.maxHP = GLOBAL_SETTING.standartEnemy.maxHP;
+		this.HP = GLOBAL_SETTING.standartEnemy.maxHP;
+
+		this.attackDamage = GLOBAL_SETTING.standartEnemy.attackDamage;
+		this.attackRange = GLOBAL_SETTING.standartEnemy.attackRange;
 
 		state.setCoorPlayer(coor, id);
 	}
@@ -47,7 +48,7 @@ module.exports = class Creature extends InnerObject {
 			&&
 				watcherY < y + range
 			&&
-				watcherY > y -range
+				watcherY > y - range
 			){
 				this._approximatingToWatcher();
 			} else {
@@ -321,15 +322,17 @@ module.exports = class Creature extends InnerObject {
 	}
 
 	getDemage(creature) {
-		if (this.health > 0) {
-			this.health -= creature.attackDamage;
+		if (this.HP > 0) {
+			this.HP -= creature.attackDamage;
 
-			if (this.health <= 0) {
+			if (this.HP <= 0) {
 				this.live = false;
-				this.die();
+				this.die(creature);
 			}
 		} else {
 			throw "zombie";
 		}
+
+		return creature.attackDamage;
 	}
 }

@@ -14,7 +14,7 @@ module.exports = class State {
 	constructor (config) {
 		this._activeGame = true;
 
-		this._numInerBlock = 0;
+		this._numInerBlock = 0; // for id
 
 		this._place = new Place(config);
 		this._place.addRoom();
@@ -43,6 +43,18 @@ module.exports = class State {
 		document.dispatchEvent(this._events.getEventEndGame());
 		this._activeGame = false;
 		return true;
+	}
+
+	getEventMainGetHP() {
+		return this._events.getEventMainGetHP();
+	}
+
+	getEventMainGetDamage() {
+		return this._events.getEventMainGetDamage();
+	}
+
+	getEventDyeCreature() {
+		return this._events.getEventDyeCreature();
 	}
 
 	gameIsActive() {
@@ -105,7 +117,7 @@ module.exports = class State {
 			this._place[val.coor.x][val.coor.y] = weapon;
 
 			return weapon;
-		} else if (position.health) {
+		} else if (position.HP) {
 			if (this.getCellPlace(val.owner.coor) !== val.owner) {
 				this.setCellPlace(val.owner.coor, val.owner);
 			}
@@ -168,6 +180,7 @@ module.exports = class State {
 	getBias(remove) {
 		if (this._bias !== undefined) {
 			let OldValue = this._bias;
+
 			if (remove === true) {
 				this._bias = null;
 			}
