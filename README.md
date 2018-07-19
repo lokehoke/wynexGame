@@ -12,7 +12,7 @@ yarn run p
 yarn install
 ```
 
-2.Start server (1337 port) 
+2.Start server (1337 port)
 ```bash
 yarn run p
 ```
