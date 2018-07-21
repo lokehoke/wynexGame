@@ -4,14 +4,13 @@ var config = {
 	watch: true,
 	devtool: 'source-map',
 	// mode: 'production',
-	mode: 'development'
-};
-
-var style = Object.assign({}, config, {
-	entry: './src/styles/sass/index.scss',
+	mode: 'development',
+	entry: {
+		main: ['./src/styles/sass/index.scss', './src/gameSrcJs/interface/interface.jsx', './src/gameSrcJs/engine/wEngine.js']
+	},
 	output: {
-		path: __dirname + '/public/resources/css/',
-		filename: 'style.js'
+		path: __dirname + '/public/resources/js/',
+		filename: 'bundle.js'
 	},
 	module: {
 		rules: [{
@@ -27,34 +26,17 @@ var style = Object.assign({}, config, {
 					sourceMap: true
 				}
 			}]
-		}]
-	}
-});
-
-var engine = Object.assign({}, config, {
-	entry: './src/gameSrcJs/engine/wEngine.js',
-	output: {
-		path: __dirname + '/public/resources/js/',
-		filename: 'bundle.js'
-	}
-});
-
-var interfaceGame = Object.assign({}, config, {
-	entry: './src/gameSrcJs/interface/interface.jsx',
-	output: {
-		path: __dirname + '/public/resources/js/',
-		filename: 'interface.js'
-	},
-	module: {
-		rules: [{
+		}, {
 			test: /\.(js|jsx)$/,
 			exclude: /node_modules/,
-			use: ['babel-loader']
+			use: {
+				loader: 'babel-loader',
+				options: {
+					presets: ["env", "react"]
+				}
+			}
 		}]
-	},
-	resolve: {
-		extensions: ['*', '.js', '.jsx']
 	}
-});
+};
 
-module.exports = [style, engine, interfaceGame];
+module.exports = config;

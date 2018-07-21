@@ -96,17 +96,12 @@ module.exports = class Creature extends InnerObject {
 
 				weapon.movePerformance(direction);
 
-				if (creature.state.getCellPlace(creature.coor) !== creature) {
-					creature.state.setCellPlace(creature.coor, creature);
-				}
-
 				do {
 					nextBlock = await biasWeapon(weapon, direction);
-				} while ((nextBlock.patency || nextBlock === true) && range--);
+				} while (((nextBlock.patency && !nextBlock.getVisiter()) || nextBlock === true) && range--);
 
-
-				if (nextBlock.isCreature) {
-					nextBlock.getDemage(creature);
+				if (nextBlock !== true && nextBlock.getVisiter()) {
+					nextBlock.getVisiter().getDemage(creature);
 				}
 
 				weapon.die();
@@ -206,17 +201,17 @@ module.exports = class Creature extends InnerObject {
 					if (i === 0 || i === side - 1 || j === 0 || j === side - 1) {
 						localPlace[i][j] = -1;
 					} else {
-						if (place[startX + i] !== undefined && place[startX + i][startY + j] !== undefined){
+						if (place[startX + i] !== undefined && place[startX + i][startY + j] !== undefined) {
 							cell = place[startX + i][startY + j];
-							if (cell === creature) {
+							if (cell.getVisiter() === creature) {
 								localPlace[i][j] = 0;
 								localPlace.own = {
 									i: i,
 									j: j
 								}
-							} else if (cell === watcher) {
+							} else if (cell.patency === true && cell.getVisiter() === watcher) {
 								localPlace[i][j] = -2;
-							} else if (cell.patency === true) {
+							} else if (cell.patency === true && !cell.getVisiter()) {
 								localPlace[i][j] = Infinity;
 							} else {
 								localPlace[i][j] = -1;

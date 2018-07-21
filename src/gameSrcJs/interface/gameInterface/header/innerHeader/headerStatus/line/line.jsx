@@ -1,7 +1,6 @@
 'use strict';
 
 const React = require('react');
-const ReactDOM = require('react-dom');
 
 module.exports = class Line extends React.Component {
 	constructor(props) {

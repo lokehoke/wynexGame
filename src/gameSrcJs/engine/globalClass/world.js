@@ -259,17 +259,15 @@ module.exports = class World {
 				}
 			}
 
-			if (blockObject.nesting === true) {
-				block.className = 'standartPlace ' + blockObject.classNameBackBlock;
+			block.className = 'standartPlace ' + blockObject.classNameCSS;
 
-				if (blockObject.isCreature === true) {
-					getCreature(block, blockObject, coor);
-					blockObject.DOMObject = block;
+			if (blockObject.getVisiter()) {
+				if (blockObject.getVisiter()) {
+					getCreature(block, blockObject.getVisiter(), coor);
+					blockObject.getVisiter().DOMObject = block;
 				}
 
 				changeVisableCreature();
-			} else {
-				block.className = 'standartPlace ' + blockObject.classNameCSS;
 			}
 
 			return block;
@@ -288,8 +286,8 @@ module.exports = class World {
 			}
 
 			function changeVisableCreature() {
-				blockObject.visable = {
-					was: blockObject.visable.now,
+				blockObject.getVisiter().visable = {
+					was: blockObject.getVisiter().visable.now,
 					now: true
 				}
 

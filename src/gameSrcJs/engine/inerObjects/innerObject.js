@@ -25,8 +25,6 @@ module.exports = class InnerObject {
 		this.visable = this._identifyVisable({newX: coor.x, newY: coor.y}, state);
 
 		this.classNameCSS = '';
-		this.classNameBackBlock = 'dirt';
-		this.idBackBlock = 1;
 		this.DOMObject = null;
 	}
 
@@ -69,7 +67,6 @@ module.exports = class InnerObject {
 		const id = this.id;
 		const ownObject = this;
 		const state = this.state;
-
 
 		let x = this.coor.x;
 		let y = this.coor.y;
@@ -115,7 +112,7 @@ module.exports = class InnerObject {
 				throw 'empty direction on move creature: ' + this.id;
 		}
 
-		if (newPosition.patency || this.born) {
+		if ((newPosition.patency && !newPosition.getVisiter())) {
 			return moving(curCoor, this);
 		} else {
 			return newPosition;
@@ -123,7 +120,7 @@ module.exports = class InnerObject {
 
 		function moving(coor, creature) {
 			if (creature.watcher === true) {
-				movingPointAndBais(coor, creature, direction);
+				movingPointAndBias(coor, creature, direction);
 			}
 
 			const state = creature.state;
@@ -131,36 +128,18 @@ module.exports = class InnerObject {
 			creature.visable = creature._identifyVisable(coor, state);
 			creature._movingVisableSwapingIcon(coor, state);
 			changeCoordinate(creature, coor);
+
 			return true;
 
 			function changeCoordinate(player, coor) {
-				player.state.setCellPlace({
-					x: player.coor.x,
-					y: player.coor.y
-				}, ControllerBlock.getBlockObject(player.idBackBlock));
-
-				if (player.isCreature) {
-					player.state.changeCoorPlayer({
-						x: coor.newX,
-						y: coor.newY
-					}, id);
+				if (player.type === 'weapon') {
+					player.state.changeCoordinateWeapon(player, coor);
 				} else {
-					player.state.changeCoorWeapon({
-						x: coor.newX,
-						y: coor.newY
-					}, id);
+					player.state.changeCoordinateCreature(player, coor);
 				}
-
-				player.state.setCellPlace({
-					x: coor.newX,
-					y: coor.newY
-				}, player);
-
-				player.coor.x = coor.newX;
-				player.coor.y = coor.newY;
 			}
 
-			function movingPointAndBais(coor, creature, direction) {
+			function movingPointAndBias(coor, creature, direction) {
 				creature.state.setBias(direction);
 				creature.state.setPointWatch({x:coor.newX, y:coor.newY}, creature);
 			}

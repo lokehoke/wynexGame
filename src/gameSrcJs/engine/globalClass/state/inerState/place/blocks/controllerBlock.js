@@ -1,4 +1,5 @@
 'use strict';
+
 const BorderBlock = require('./borderblock.js');
 const DirtBlock = require('./dirtblock.js');
 

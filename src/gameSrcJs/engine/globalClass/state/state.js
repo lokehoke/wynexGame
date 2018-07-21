@@ -61,18 +61,6 @@ module.exports = class State {
 		return this._activeGame;
 	}
 
-	deleteWeapon(id = 0) {
-		let weapon = this._weapons[id];
-		this._place[weapon.coor.x][weapon.coor.y] = this._place.createNewBlock(weapon.idBackBlock);
-		delete this._weapons[id];
-	}
-
-	deleteCreature(id = 0) {
-		let creature = this._creature[id];
-		this._place[creature.coor.x][creature.coor.y] = this._place.createNewBlock(creature.idBackBlock);
-		delete this._creature[id];
-	}
-
 	getEventBias() {
 		return this._events.getEventBias();
 	}
@@ -89,6 +77,18 @@ module.exports = class State {
 		this._sizeWorld = sizeWorld;
 	}
 
+	deleteWeapon(id = 0) {
+		let weapon = this._weapons[id];
+		this._place[weapon.coor.x][weapon.coor.y].removeWeapon();
+		delete this._weapons[id];
+	}
+
+	deleteCreature(id = 0) {
+		let creature = this._creature[id];
+		this._place[creature.coor.x][creature.coor.y].removeVisiter();
+		delete this._creature[id];
+	}
+
 	setCoorPlayer(coor, num = 0) {
 		this._creature[num] = {};
 		this._creature[num].coor = coor;
@@ -97,37 +97,29 @@ module.exports = class State {
 
 	setPlayer(val) {
 		this._creature[this._numInerBlock] = new Player(this._numInerBlock, this, val.watcher, val.coor, val.type);
-		this._place[val.coor.x][val.coor.y] = this._creature[this._numInerBlock++];
+		this._place[val.coor.x][val.coor.y].addVisiter(this._creature[this._numInerBlock++]);
 		return true;
 	}
 
 	setEnemy(val) {
 		this._creature[this._numInerBlock] = new Enemy(this._numInerBlock, this, val.coor, val.type);
-		this._place.setCell(val.coor.x, val.coor.y, this._creature[this._numInerBlock++]);
+		this._place[val.coor.x][val.coor.y].addVisiter(this._creature[this._numInerBlock++]);
 		return true;
 	}
 
 	setWeapon(val) {
 		let position = this._place[val.coor.x][val.coor.y];
+		let weapon = new Weapon(this._numInerBlock, this, val.owner, val.coor);
 
-		if (position.patency) {
-			let weapon = new Weapon(this._numInerBlock, this, val.owner, val.coor);
+		this._weapons[this._numInerBlock++] = weapon;
 
-			this._weapons[this._numInerBlock++] = weapon;
-			this._place[val.coor.x][val.coor.y] = weapon;
+		position.addWeapon(weapon);
 
-			return weapon;
-		} else if (position.HP) {
-			if (this.getCellPlace(val.owner.coor) !== val.owner) {
-				this.setCellPlace(val.owner.coor, val.owner);
-			}
+		return weapon;
+	}
 
-			position.getDemage(val.owner);
-
-			return null;
-		} else {
-			return null;
-		}
+	setVisiter(coor, creature) {
+		this._place[coor.x][coor.y].visiter = creature;
 	}
 
 	getCreature(id = 0) {
@@ -150,25 +142,32 @@ module.exports = class State {
 		return this._place.getCell(coor.x, coor.y);
 	}
 
+	changeCoordinateCreature(creature, coor) {
+		this._place[coor.x][coor.y].removeVisiter();
+		this._place[coor.newX][coor.newY].addVisiter(creature);
+
+		creature.coor.x = coor.newX;
+		creature.coor.y = coor.newY;
+
+		return true;
+	}
+
+	changeCoordinateWeapon(weapon, coor) {
+		this._place[coor.x][coor.y].removeWeapon();
+		this._place[coor.newX][coor.newY].addWeapon(weapon);
+
+		weapon.coor.x = coor.newX;
+		weapon.coor.y = coor.newY;
+
+		return true;
+	}
+
 	setCellPlace(coor, val) {
 		if (val.isCreature === true) {
-			val.idBackBlock = this._place.getCell(coor.x, coor.y).idBlock;
-			val.classNameBackBlock = this._place.getCell(coor.x, coor.y).classNameCSS;
+			throw "legacy pursues!!!!!";
 		}
 
 		this._place.setCell(coor.x, coor.y, val);
-		return true;
-	}
-
-	changeCoorPlayer(coor, id = 0) {
-		this._creature[id].coor.x = coor.x;
-		this._creature[id].coor.y = coor.y;
-		return true;
-	}
-
-	changeCoorWeapon(coor, id = 0) {
-		this._weapons[id].coor.x = coor.x;
-		this._weapons[id].coor.y = coor.y;
 		return true;
 	}
 

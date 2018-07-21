@@ -12,7 +12,7 @@ module.exports = {
 	timeOfTactOther: 200,
 
 	standartPlayer: {
-		maxHP: 10000,
+		maxHP: 100000,
 		attackDamage: 50,
 		attackRange: 10
 	},
@@ -23,4 +23,4 @@ module.exports = {
 		attackRange: 10,
 		pursuitRange: 50
 	}
-}
+};

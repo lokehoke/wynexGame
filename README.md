@@ -1,7 +1,11 @@
 # wynexGame
 
 ## Try to play
-Start server on port 1337
+1. Install packages
+```bash
+yarn install
+```
+2. Start server on port 1337
 ```bash
 yarn run p
 ```
@@ -17,7 +21,7 @@ yarn install
 yarn run p
 ```
 
-3.Turn on webpack
+3.Turn on webpack (other terminal)
 ```bash
 yarn run b
 ```

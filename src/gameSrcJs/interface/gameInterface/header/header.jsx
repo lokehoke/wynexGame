@@ -1,7 +1,6 @@
 'use strict';
 
 const React = require('react');
-const ReactDOM = require('react-dom');
 
 const HeaderIcon = require('./innerHeader/headerIcon/HeaderIcon.jsx');
 const HeaderStatus = require('./innerHeader/headerStatus/headerStatus.jsx');

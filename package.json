@@ -4,8 +4,10 @@
 	"description": "2d game view from above",
 	"main": "index.js",
 	"dependencies": {
+		"babel-polyfill": "^6.26.0",
 		"react": "^16.4.1",
-		"react-dom": "^16.4.1"
+		"react-dom": "^16.4.1",
+		"reset-css": "^4.0.1"
 	},
 	"devDependencies": {
 		"babel-core": "latest",
