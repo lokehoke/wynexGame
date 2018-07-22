@@ -1,15 +1,13 @@
 'use strict';
 
-const InnerObject = require('./innerObject.js');
+const InnerObject = require('../innerObject.js');
 
-const GLOBAL_SETTING = (require('../setting/globalSetting.js'));
+const Coor = require('../../structOfDate/coordinate.js');
+const ExCoor = require('../../structOfDate/ExCoordinate.js');
 
-const Coor = require('../structOfDate/coordinate.js');
-const ExCoor = require('../structOfDate/ExCoordinate.js');
+const ControllerBlock = require('../../globalClass/state/inerState/place/blocks/controllerBlock.js');
 
-const ControllerBlock = require('../globalClass/state/inerState/place/blocks/controllerBlock.js');
-
-const World = require('../globalClass/world.js');
+const World = require('../../globalClass/world.js');
 
 
 module.exports = class Weapon extends InnerObject {

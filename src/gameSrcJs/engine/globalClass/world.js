@@ -183,8 +183,8 @@ module.exports = class World {
 						newY = y + size.widthBlocks;
 					}
 
-					if (place[i][newY].getVisiter() && place[i][newY].getVisiter().isCreature === true) {
-						visableHideCreature(place[i][newY].getVisiter());
+					if (place[i][newY].getShowObj() && place[i][newY].getShowObj().visabalingInerObject === true) {
+						visableHideCreature(place[i][newY].getShowObj());
 					}
 
 					let block = null;
@@ -229,8 +229,8 @@ module.exports = class World {
 
 					let block = getBlock(place[x][i], {newX:x,newY:i}, true, row.children[i-y]);
 
-					if (place[newX][i].getVisiter() && place[newX][i].getVisiter().isCreature === true) {
-						visableHideCreature(place[newX][i].getVisiter());
+					if (place[newX][i].getShowObj() && place[newX][i].getShowObj().visabalingInerObject === true) {
+						visableHideCreature(place[newX][i].getShowObj());
 					}
 				}
 
@@ -260,11 +260,9 @@ module.exports = class World {
 
 			block.className = 'standartPlace ' + blockObject.classNameCSS;
 
-			if (blockObject.getVisiter()) {
-				if (blockObject.getVisiter()) {
-					getCreature(block, blockObject.getVisiter(), coor);
-					blockObject.getVisiter().DOMObject = block;
-				}
+			if (blockObject.getShowObj()) {
+				getCreature(block, blockObject.getShowObj(), coor);
+				blockObject.getShowObj().DOMObject = block;
 
 				changeVisableCreature();
 			}
@@ -285,8 +283,8 @@ module.exports = class World {
 			}
 
 			function changeVisableCreature() {
-				blockObject.getVisiter().visable = {
-					was: blockObject.getVisiter().visable.now,
+				blockObject.getShowObj().visable = {
+					was: blockObject.getShowObj().visable.now,
 					now: true
 				}
 

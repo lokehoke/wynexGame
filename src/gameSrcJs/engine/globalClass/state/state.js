@@ -1,22 +1,29 @@
 'use strict';
 
+const GLOBAL_SETTING = require('../../setting/globalSetting.js');
+
 const Place = require('./inerState/place/place.js');
 const StackTempClassName = require('./inerState/stackTemp/stackTempClassName.js');
 const StorCustomEvents = require('./inerState/events/StorCustomEvents.js')
 
-const Player = require('../../inerObjects/player.js');
-const Enemy = require('../../inerObjects/enemy.js');
-const Weapon = require('../../inerObjects/weapon.js');
+const Player = require('../../inerObjects/creatures/player.js');
+const Enemy = require('../../inerObjects/creatures/enemy.js');
+const Weapon = require('../../inerObjects/weapons/weapon.js');
 
 const Coor = require('../../structOfDate/coordinate.js');
 
+const AllItems = require('../../inerObjects/items/allItems.js');
+
 module.exports = class State {
-	constructor (config) {
+	constructor () {
+		this._settings = GLOBAL_SETTING;
+
 		this._activeGame = true;
 
-		this._numInerBlock = 0; // for id
+		this._numInerBlock = 0; // for id creature, weapon
+		this._numItems = 0; // for id item
 
-		this._place = new Place(config);
+		this._place = new Place(this._settings.numBlocks);
 		this._place.addRoom();
 
 		this._creature = [];
@@ -37,6 +44,16 @@ module.exports = class State {
 		this._stackTempClassName = new StackTempClassName();
 
 		this._events = new StorCustomEvents();
+
+		this._allItems = new AllItems();
+	}
+
+	getSetting() {
+		return this._settings;
+	}
+
+	createItem(id, coor) {
+		return this._allItems.getItem(this._numItems++, this, coor, id);
 	}
 
 	endGame() {

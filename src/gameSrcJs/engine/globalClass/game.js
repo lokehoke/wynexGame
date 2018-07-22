@@ -2,16 +2,16 @@
 
 const State = require('./state/state.js');
 const World = require('./world.js');
-const GLOBAL_SETTING = require('../setting/globalSetting.js');
 
 module.exports = class ControllerGame {
 	constructor (players = null, enemy = []) {
-		this.state = new State(GLOBAL_SETTING.numBlocks);
+		this.state = new State();
+		this._settings = this.state.getSetting();
 		this._setPlayers(players, this.state);
 
 		this._definedAndSetStartPointWatch(players);
 
-		enemy = enemy.concat(World.makeAroayWihtEnemy(GLOBAL_SETTING.numEnemy, this.state));
+		enemy = enemy.concat(World.makeAroayWihtEnemy(this._settings.numEnemy, this.state));
 		this._setEnemys(enemy, this.state);
 
 		this.world = new World(this.state);
@@ -62,6 +62,8 @@ module.exports = class ControllerGame {
 	}
 
 	_setPlayers(players, state) {
+		let setting = this._settings;
+
 		if (players !== null) {
 			players.forEach((val) => {
 				state.setPlayer(val);
@@ -83,7 +85,7 @@ module.exports = class ControllerGame {
 				id: 'gameStartRefresh'
 			};
 
-			let hp = GLOBAL_SETTING.standartPlayer.maxHP;
+			let hp = setting.standartPlayer.maxHP;
 
 			event.detail.num = hp;
 			event.detail.max = hp;
@@ -110,6 +112,8 @@ module.exports = class ControllerGame {
 			return player.watcher;
 		});
 
+		let setting = this._settings;
+
 		if (watcher.length !== 1) {
 			return false;
 		} else {
@@ -133,8 +137,8 @@ module.exports = class ControllerGame {
 
 			if (x < Math.floor(size.heightBlocks / 2)) {
 				newX = 0;
-			} else if (x >= (GLOBAL_SETTING.numBlocks.height - Math.floor(size.heightBlocks / 2))) {
-				newX = GLOBAL_SETTING.numBlocks.height - Math.floor(size.heightBlocks / 2);
+			} else if (x >= (setting.numBlocks.height - Math.floor(size.heightBlocks / 2))) {
+				newX = setting.numBlocks.height - Math.floor(size.heightBlocks / 2);
 			} else {
 				newX = x - Math.floor(size.heightBlocks / 2) + 1;
 			}
@@ -147,8 +151,8 @@ module.exports = class ControllerGame {
 
 			if (y < Math.floor(size.widthBlocks / 2)) {
 				newY = 0;
-			} else if (y >= (GLOBAL_SETTING.numBlocks.width - Math.floor(size.widthBlocks / 2))) {
-				newY = GLOBAL_SETTING.numBlocks.width - Math.floor(size.widthBlocks / 2);
+			} else if (y >= (setting.numBlocks.width - Math.floor(size.widthBlocks / 2))) {
+				newY = setting.numBlocks.width - Math.floor(size.widthBlocks / 2);
 			} else {
 				newY = y - Math.floor(size.widthBlocks / 2) + 1;
 			}

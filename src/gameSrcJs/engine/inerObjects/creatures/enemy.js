@@ -1,7 +1,6 @@
 'use strict';
 
-const Creature = require('./creature');
-const GLOBAL_SETTING = (require('../setting/globalSetting.js'));
+const Creature = require('./creature.js');
 
 module.exports = class Enemy extends Creature {
 	constructor (id, state, coor) {
@@ -9,6 +8,8 @@ module.exports = class Enemy extends Creature {
 		this.type = 'enemy';
 		this.classNameCSS = 'slimeEnemy';
 		this.watcher = false;
-		this.pursuitRange = GLOBAL_SETTING.standartEnemy.pursuitRange;
+		this.pursuitRange = this._settings.standartEnemy.pursuitRange;
+
+		this._items.push(state.createItem(1, coor));
 	}
 }

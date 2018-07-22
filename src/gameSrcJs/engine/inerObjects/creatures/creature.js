@@ -1,29 +1,30 @@
 'use strict';
 
-const InnerObject = require('./innerObject.js');
-const Weapon = require('./weapon.js');
+const InnerObject = require('./../innerObject.js');
+const Weapon = require('./../weapons/weapon.js');
 
-const GLOBAL_SETTING = (require('../setting/globalSetting.js'));
+const Coor = require('./../../structOfDate/coordinate.js');
+const ExCoor = require('./../../structOfDate/ExCoordinate.js');
 
-const Coor = require('../structOfDate/coordinate.js');
-const ExCoor = require('../structOfDate/ExCoordinate.js');
+const ControllerBlock = require('./../../globalClass/state/inerState/place/blocks/controllerBlock.js');
 
-const ControllerBlock = require('../globalClass/state/inerState/place/blocks/controllerBlock.js');
-
-const World = require('../globalClass/world.js');
+const World = require('./../../globalClass/world.js');
 
 module.exports = class Creature extends InnerObject {
 	constructor (id, state, coor) {
 		super(id, state, coor);
+
 		this.isCreature = true;
 
 		this.live = true;
 
-		this.maxHP = GLOBAL_SETTING.standartEnemy.maxHP;
-		this.HP = GLOBAL_SETTING.standartEnemy.maxHP;
+		this.maxHP = this._settings.standartEnemy.maxHP;
+		this.HP = this._settings.standartEnemy.maxHP;
 
-		this.attackDamage = GLOBAL_SETTING.standartEnemy.attackDamage;
-		this.attackRange = GLOBAL_SETTING.standartEnemy.attackRange;
+		this.attackDamage = this._settings.standartEnemy.attackDamage;
+		this.attackRange = this._settings.standartEnemy.attackRange;
+
+		this._items = [];
 
 		state.setCoorPlayer(coor, id);
 	}

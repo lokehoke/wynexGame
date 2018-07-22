@@ -1,7 +1,6 @@
 'use strict';
 
-const Creature = require('./creature');
-const GLOBAL_SETTING = (require('../setting/globalSetting.js'));
+const Creature = require('./creature.js');
 
 module.exports = class Player extends Creature {
 	constructor (id, state, watcher, coor, profession) {
@@ -9,11 +8,11 @@ module.exports = class Player extends Creature {
 
 		this.type = 'player';
 
-		this.maxHP = GLOBAL_SETTING.standartPlayer.maxHP;
-		this.HP = GLOBAL_SETTING.standartPlayer.maxHP;
+		this.maxHP = this._settings.standartPlayer.maxHP;
+		this.HP = this._settings.standartPlayer.maxHP;
 
-		this.attackDamage = GLOBAL_SETTING.standartPlayer.attackDamage;
-		this.attackRange = GLOBAL_SETTING.standartPlayer.attackRange;
+		this.attackDamage = this._settings.standartPlayer.attackDamage;
+		this.attackRange = this._settings.standartPlayer.attackRange;
 
 		if (watcher === true){
 			this.watcher = true;

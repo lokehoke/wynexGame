@@ -31205,7 +31205,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 var State = __webpack_require__(/*! ./state/state.js */ "./src/gameSrcJs/engine/globalClass/state/state.js");
 var World = __webpack_require__(/*! ./world.js */ "./src/gameSrcJs/engine/globalClass/world.js");
-var GLOBAL_SETTING = __webpack_require__(/*! ../setting/globalSetting.js */ "./src/gameSrcJs/engine/setting/globalSetting.js");
 
 module.exports = function () {
 	function ControllerGame() {
@@ -31214,12 +31213,13 @@ module.exports = function () {
 
 		_classCallCheck(this, ControllerGame);
 
-		this.state = new State(GLOBAL_SETTING.numBlocks);
+		this.state = new State();
+		this._settings = this.state.getSetting();
 		this._setPlayers(players, this.state);
 
 		this._definedAndSetStartPointWatch(players);
 
-		enemy = enemy.concat(World.makeAroayWihtEnemy(GLOBAL_SETTING.numEnemy, this.state));
+		enemy = enemy.concat(World.makeAroayWihtEnemy(this._settings.numEnemy, this.state));
 		this._setEnemys(enemy, this.state);
 
 		this.world = new World(this.state);
@@ -31336,6 +31336,8 @@ module.exports = function () {
 	}, {
 		key: '_setPlayers',
 		value: function _setPlayers(players, state) {
+			var setting = this._settings;
+
 			if (players !== null) {
 				players.forEach(function (val) {
 					state.setPlayer(val);
@@ -31357,7 +31359,7 @@ module.exports = function () {
 					id: 'gameStartRefresh'
 				};
 
-				var hp = GLOBAL_SETTING.standartPlayer.maxHP;
+				var hp = setting.standartPlayer.maxHP;
 
 				event.detail.num = hp;
 				event.detail.max = hp;
@@ -31386,6 +31388,8 @@ module.exports = function () {
 				return player.watcher;
 			});
 
+			var setting = this._settings;
+
 			if (watcher.length !== 1) {
 				return false;
 			} else {
@@ -31409,8 +31413,8 @@ module.exports = function () {
 
 				if (x < Math.floor(size.heightBlocks / 2)) {
 					newX = 0;
-				} else if (x >= GLOBAL_SETTING.numBlocks.height - Math.floor(size.heightBlocks / 2)) {
-					newX = GLOBAL_SETTING.numBlocks.height - Math.floor(size.heightBlocks / 2);
+				} else if (x >= setting.numBlocks.height - Math.floor(size.heightBlocks / 2)) {
+					newX = setting.numBlocks.height - Math.floor(size.heightBlocks / 2);
 				} else {
 					newX = x - Math.floor(size.heightBlocks / 2) + 1;
 				}
@@ -31423,8 +31427,8 @@ module.exports = function () {
 
 				if (y < Math.floor(size.widthBlocks / 2)) {
 					newY = 0;
-				} else if (y >= GLOBAL_SETTING.numBlocks.width - Math.floor(size.widthBlocks / 2)) {
-					newY = GLOBAL_SETTING.numBlocks.width - Math.floor(size.widthBlocks / 2);
+				} else if (y >= setting.numBlocks.width - Math.floor(size.widthBlocks / 2)) {
+					newY = setting.numBlocks.width - Math.floor(size.widthBlocks / 2);
 				} else {
 					newY = y - Math.floor(size.widthBlocks / 2) + 1;
 				}
@@ -31539,7 +31543,7 @@ module.exports = function () {
 		this.nesting = false;
 		this.isCreature = false;
 
-		this.items = [];
+		this._items = [];
 
 		this._visiter = null;
 		this._weapon = null;
@@ -31584,6 +31588,23 @@ module.exports = function () {
 		value: function removeWeapon() {
 			this._weapon = null;
 			return true;
+		}
+	}, {
+		key: "getShowObj",
+		value: function getShowObj() {
+			if (this._visiter) {
+				return this._visiter;
+			} else if (this._weapon) {
+				return this._weapon;
+			} else if (this._items.length > 1) {
+				console.log(1);
+				// return ;
+			} else if (this._items.length) {
+				console.log(2);
+				// return ;
+			} else {
+				return null;
+			}
 		}
 	}]);
 
@@ -31853,25 +31874,32 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+var GLOBAL_SETTING = __webpack_require__(/*! ../../setting/globalSetting.js */ "./src/gameSrcJs/engine/setting/globalSetting.js");
+
 var Place = __webpack_require__(/*! ./inerState/place/place.js */ "./src/gameSrcJs/engine/globalClass/state/inerState/place/place.js");
 var StackTempClassName = __webpack_require__(/*! ./inerState/stackTemp/stackTempClassName.js */ "./src/gameSrcJs/engine/globalClass/state/inerState/stackTemp/stackTempClassName.js");
 var StorCustomEvents = __webpack_require__(/*! ./inerState/events/StorCustomEvents.js */ "./src/gameSrcJs/engine/globalClass/state/inerState/events/StorCustomEvents.js");
 
-var Player = __webpack_require__(/*! ../../inerObjects/player.js */ "./src/gameSrcJs/engine/inerObjects/player.js");
-var Enemy = __webpack_require__(/*! ../../inerObjects/enemy.js */ "./src/gameSrcJs/engine/inerObjects/enemy.js");
-var Weapon = __webpack_require__(/*! ../../inerObjects/weapon.js */ "./src/gameSrcJs/engine/inerObjects/weapon.js");
+var Player = __webpack_require__(/*! ../../inerObjects/creatures/player.js */ "./src/gameSrcJs/engine/inerObjects/creatures/player.js");
+var Enemy = __webpack_require__(/*! ../../inerObjects/creatures/enemy.js */ "./src/gameSrcJs/engine/inerObjects/creatures/enemy.js");
+var Weapon = __webpack_require__(/*! ../../inerObjects/weapons/weapon.js */ "./src/gameSrcJs/engine/inerObjects/weapons/weapon.js");
 
 var Coor = __webpack_require__(/*! ../../structOfDate/coordinate.js */ "./src/gameSrcJs/engine/structOfDate/coordinate.js");
 
+var AllItems = __webpack_require__(/*! ../../inerObjects/items/allItems.js */ "./src/gameSrcJs/engine/inerObjects/items/allItems.js");
+
 module.exports = function () {
-	function State(config) {
+	function State() {
 		_classCallCheck(this, State);
+
+		this._settings = GLOBAL_SETTING;
 
 		this._activeGame = true;
 
-		this._numInerBlock = 0; // for id
+		this._numInerBlock = 0; // for id creature, weapon
+		this._numItems = 0; // for id item
 
-		this._place = new Place(config);
+		this._place = new Place(this._settings.numBlocks);
 		this._place.addRoom();
 
 		this._creature = [];
@@ -31892,9 +31920,21 @@ module.exports = function () {
 		this._stackTempClassName = new StackTempClassName();
 
 		this._events = new StorCustomEvents();
+
+		this._allItems = new AllItems();
 	}
 
 	_createClass(State, [{
+		key: 'getSetting',
+		value: function getSetting() {
+			return this._settings;
+		}
+	}, {
+		key: 'createItem',
+		value: function createItem(id, coor) {
+			return this._allItems.getItem(this._numItems++, this, coor, id);
+		}
+	}, {
 		key: 'endGame',
 		value: function endGame() {
 			document.dispatchEvent(this._events.getEventEndGame());
@@ -32331,8 +32371,8 @@ module.exports = function () {
 							newY = y + size.widthBlocks;
 						}
 
-						if (place[i][newY].getVisiter() && place[i][newY].getVisiter().isCreature === true) {
-							visableHideCreature(place[i][newY].getVisiter());
+						if (place[i][newY].getShowObj() && place[i][newY].getShowObj().visabalingInerObject === true) {
+							visableHideCreature(place[i][newY].getShowObj());
 						}
 
 						var block = null;
@@ -32376,8 +32416,8 @@ module.exports = function () {
 
 						var block = getBlock(place[x][i], { newX: x, newY: i }, true, row.children[i - y]);
 
-						if (place[newX][i].getVisiter() && place[newX][i].getVisiter().isCreature === true) {
-							visableHideCreature(place[newX][i].getVisiter());
+						if (place[newX][i].getShowObj() && place[newX][i].getShowObj().visabalingInerObject === true) {
+							visableHideCreature(place[newX][i].getShowObj());
 						}
 					}
 
@@ -32408,11 +32448,9 @@ module.exports = function () {
 
 				block.className = 'standartPlace ' + blockObject.classNameCSS;
 
-				if (blockObject.getVisiter()) {
-					if (blockObject.getVisiter()) {
-						getCreature(block, blockObject.getVisiter(), coor);
-						blockObject.getVisiter().DOMObject = block;
-					}
+				if (blockObject.getShowObj()) {
+					getCreature(block, blockObject.getShowObj(), coor);
+					blockObject.getShowObj().DOMObject = block;
 
 					changeVisableCreature();
 				}
@@ -32433,8 +32471,8 @@ module.exports = function () {
 				}
 
 				function changeVisableCreature() {
-					blockObject.getVisiter().visable = {
-						was: blockObject.getVisiter().visable.now,
+					blockObject.getShowObj().visable = {
+						was: blockObject.getShowObj().visable.now,
 						now: true
 					};
 
@@ -32503,10 +32541,10 @@ module.exports = function () {
 
 /***/ }),
 
-/***/ "./src/gameSrcJs/engine/inerObjects/creature.js":
-/*!******************************************************!*\
-  !*** ./src/gameSrcJs/engine/inerObjects/creature.js ***!
-  \******************************************************/
+/***/ "./src/gameSrcJs/engine/inerObjects/creatures/creature.js":
+/*!****************************************************************!*\
+  !*** ./src/gameSrcJs/engine/inerObjects/creatures/creature.js ***!
+  \****************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -32523,17 +32561,15 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var InnerObject = __webpack_require__(/*! ./innerObject.js */ "./src/gameSrcJs/engine/inerObjects/innerObject.js");
-var Weapon = __webpack_require__(/*! ./weapon.js */ "./src/gameSrcJs/engine/inerObjects/weapon.js");
+var InnerObject = __webpack_require__(/*! ./../innerObject.js */ "./src/gameSrcJs/engine/inerObjects/innerObject.js");
+var Weapon = __webpack_require__(/*! ./../weapons/weapon.js */ "./src/gameSrcJs/engine/inerObjects/weapons/weapon.js");
 
-var GLOBAL_SETTING = __webpack_require__(/*! ../setting/globalSetting.js */ "./src/gameSrcJs/engine/setting/globalSetting.js");
+var Coor = __webpack_require__(/*! ./../../structOfDate/coordinate.js */ "./src/gameSrcJs/engine/structOfDate/coordinate.js");
+var ExCoor = __webpack_require__(/*! ./../../structOfDate/ExCoordinate.js */ "./src/gameSrcJs/engine/structOfDate/ExCoordinate.js");
 
-var Coor = __webpack_require__(/*! ../structOfDate/coordinate.js */ "./src/gameSrcJs/engine/structOfDate/coordinate.js");
-var ExCoor = __webpack_require__(/*! ../structOfDate/ExCoordinate.js */ "./src/gameSrcJs/engine/structOfDate/ExCoordinate.js");
+var ControllerBlock = __webpack_require__(/*! ./../../globalClass/state/inerState/place/blocks/controllerBlock.js */ "./src/gameSrcJs/engine/globalClass/state/inerState/place/blocks/controllerBlock.js");
 
-var ControllerBlock = __webpack_require__(/*! ../globalClass/state/inerState/place/blocks/controllerBlock.js */ "./src/gameSrcJs/engine/globalClass/state/inerState/place/blocks/controllerBlock.js");
-
-var World = __webpack_require__(/*! ../globalClass/world.js */ "./src/gameSrcJs/engine/globalClass/world.js");
+var World = __webpack_require__(/*! ./../../globalClass/world.js */ "./src/gameSrcJs/engine/globalClass/world.js");
 
 module.exports = function (_InnerObject) {
 	_inherits(Creature, _InnerObject);
@@ -32547,11 +32583,13 @@ module.exports = function (_InnerObject) {
 
 		_this.live = true;
 
-		_this.maxHP = GLOBAL_SETTING.standartEnemy.maxHP;
-		_this.HP = GLOBAL_SETTING.standartEnemy.maxHP;
+		_this.maxHP = _this._settings.standartEnemy.maxHP;
+		_this.HP = _this._settings.standartEnemy.maxHP;
 
-		_this.attackDamage = GLOBAL_SETTING.standartEnemy.attackDamage;
-		_this.attackRange = GLOBAL_SETTING.standartEnemy.attackRange;
+		_this.attackDamage = _this._settings.standartEnemy.attackDamage;
+		_this.attackRange = _this._settings.standartEnemy.attackRange;
+
+		_this._items = [];
 
 		state.setCoorPlayer(coor, id);
 		return _this;
@@ -32914,10 +32952,10 @@ module.exports = function (_InnerObject) {
 
 /***/ }),
 
-/***/ "./src/gameSrcJs/engine/inerObjects/enemy.js":
-/*!***************************************************!*\
-  !*** ./src/gameSrcJs/engine/inerObjects/enemy.js ***!
-  \***************************************************/
+/***/ "./src/gameSrcJs/engine/inerObjects/creatures/enemy.js":
+/*!*************************************************************!*\
+  !*** ./src/gameSrcJs/engine/inerObjects/creatures/enemy.js ***!
+  \*************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -32930,8 +32968,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Creature = __webpack_require__(/*! ./creature */ "./src/gameSrcJs/engine/inerObjects/creature.js");
-var GLOBAL_SETTING = __webpack_require__(/*! ../setting/globalSetting.js */ "./src/gameSrcJs/engine/setting/globalSetting.js");
+var Creature = __webpack_require__(/*! ./creature.js */ "./src/gameSrcJs/engine/inerObjects/creatures/creature.js");
 
 module.exports = function (_Creature) {
 	_inherits(Enemy, _Creature);
@@ -32944,11 +32981,94 @@ module.exports = function (_Creature) {
 		_this.type = 'enemy';
 		_this.classNameCSS = 'slimeEnemy';
 		_this.watcher = false;
-		_this.pursuitRange = GLOBAL_SETTING.standartEnemy.pursuitRange;
+		_this.pursuitRange = _this._settings.standartEnemy.pursuitRange;
+
+		_this._items.push(state.createItem(1, coor));
 		return _this;
 	}
 
 	return Enemy;
+}(Creature);
+
+/***/ }),
+
+/***/ "./src/gameSrcJs/engine/inerObjects/creatures/player.js":
+/*!**************************************************************!*\
+  !*** ./src/gameSrcJs/engine/inerObjects/creatures/player.js ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Creature = __webpack_require__(/*! ./creature.js */ "./src/gameSrcJs/engine/inerObjects/creatures/creature.js");
+
+module.exports = function (_Creature) {
+		_inherits(Player, _Creature);
+
+		function Player(id, state, watcher, coor, profession) {
+				_classCallCheck(this, Player);
+
+				var _this = _possibleConstructorReturn(this, (Player.__proto__ || Object.getPrototypeOf(Player)).call(this, id, state, coor));
+
+				_this.type = 'player';
+
+				_this.maxHP = _this._settings.standartPlayer.maxHP;
+				_this.HP = _this._settings.standartPlayer.maxHP;
+
+				_this.attackDamage = _this._settings.standartPlayer.attackDamage;
+				_this.attackRange = _this._settings.standartPlayer.attackRange;
+
+				if (watcher === true) {
+						_this.watcher = true;
+
+						state.setPointWatch(coor, _this);
+						_this.visable = {
+								was: true,
+								now: true
+						};
+				} else {
+						_this.watcher = false;
+				}
+
+				switch (profession) {
+						case 'mage':
+								_this.classNameCSS = 'magePlayer';
+								break;
+				}
+				return _this;
+		}
+
+		_createClass(Player, [{
+				key: 'getDemage',
+				value: function getDemage(creature) {
+						var damage = _get(Player.prototype.__proto__ || Object.getPrototypeOf(Player.prototype), 'getDemage', this).call(this, creature);
+						var event = this.state.getEventMainGetDamage();
+
+						event.detail.fromO = creature;
+						event.detail.num = damage;
+						event.detail.max = this.maxHP;
+						event.detail.cur = this.HP;
+						event.detail.type = 'hp';
+
+						document.dispatchEvent(event);
+
+						return damage;
+				}
+		}]);
+
+		return Player;
 }(Creature);
 
 /***/ }),
@@ -32967,7 +33087,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var GLOBAL_SETTING = __webpack_require__(/*! ../setting/globalSetting.js */ "./src/gameSrcJs/engine/setting/globalSetting.js");
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var Coor = __webpack_require__(/*! ../structOfDate/coordinate.js */ "./src/gameSrcJs/engine/structOfDate/coordinate.js");
 var ExCoor = __webpack_require__(/*! ../structOfDate/ExCoordinate.js */ "./src/gameSrcJs/engine/structOfDate/ExCoordinate.js");
@@ -32976,59 +33098,21 @@ var ControllerBlock = __webpack_require__(/*! ../globalClass/state/inerState/pla
 
 var World = __webpack_require__(/*! ../globalClass/world.js */ "./src/gameSrcJs/engine/globalClass/world.js");
 
-module.exports = function () {
+var TempleInerObj = __webpack_require__(/*! ./templeInerObj.js */ "./src/gameSrcJs/engine/inerObjects/templeInerObj.js");
+
+module.exports = function (_TempleInerObj) {
+	_inherits(InnerObject, _TempleInerObj);
+
 	function InnerObject(id, state, coor) {
 		_classCallCheck(this, InnerObject);
 
-		this.nesting = true;
-		this.patency = false;
-		this.state = state;
-		this.coor = coor;
-		this.id = id;
-
-		this.live = false;
-
-		this.visable = {};
-		this.visable.was = false;
-		this.visable.now = false;
-		this.visable = this._identifyVisable({ newX: coor.x, newY: coor.y }, state);
-
-		this.classNameCSS = '';
-		this.DOMObject = null;
+		return _possibleConstructorReturn(this, (InnerObject.__proto__ || Object.getPrototypeOf(InnerObject)).call(this, id, state, coor));
 	}
 
 	_createClass(InnerObject, [{
 		key: 'movePerformance',
 		value: function movePerformance(direction) {
 			return this._move(direction);
-		}
-	}, {
-		key: '_identifyVisable',
-		value: function _identifyVisable(coor, state) {
-			var visable = {};
-
-			if (this.watcher === true) {
-				visable.now = true;
-				visable.was = true;
-			} else {
-				var startPointWatch = this.state.getStartPiointWatch();
-				var size = World.getSize(state);
-
-				visable.was = this.visable.now;
-
-				if (coor.newX - startPointWatch.x < size.heightBlocks && coor.newY - startPointWatch.y < size.widthBlocks && coor.newX - startPointWatch.x >= 0 && coor.newY - startPointWatch.y >= 0) {
-					visable.now = true;
-				} else {
-					visable.now = false;
-				}
-			}
-
-			if (this.type === 'weapon' && this.born) {
-				this.born = false;
-				visable.was = false;
-			}
-
-			return visable;
 		}
 	}, {
 		key: '_move',
@@ -33046,7 +33130,7 @@ module.exports = function () {
 
 			switch (direction) {
 				case 'right':
-					if (GLOBAL_SETTING.numBlocks.width <= curCoor.y + 1) {
+					if (this._settings.numBlocks.width <= curCoor.y + 1) {
 						return false;
 					} else {
 						curCoor.newY++;
@@ -33070,7 +33154,7 @@ module.exports = function () {
 					}
 					break;
 				case 'down':
-					if (GLOBAL_SETTING.numBlocks.height <= curCoor.x + 1) {
+					if (this._settings.numBlocks.height <= curCoor.x + 1) {
 						return false;
 					} else {
 						curCoor.newX++;
@@ -33166,14 +33250,49 @@ module.exports = function () {
 	}]);
 
 	return InnerObject;
+}(TempleInerObj);
+
+/***/ }),
+
+/***/ "./src/gameSrcJs/engine/inerObjects/items/allItems.js":
+/*!************************************************************!*\
+  !*** ./src/gameSrcJs/engine/inerObjects/items/allItems.js ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var RemainsPack = __webpack_require__(/*! ./remains/remainsPack.js */ "./src/gameSrcJs/engine/inerObjects/items/remains/remainsPack.js");
+
+module.exports = function () {
+	function AllItems() {
+		_classCallCheck(this, AllItems);
+
+		this._remainsPack = new RemainsPack();
+	}
+
+	_createClass(AllItems, [{
+		key: 'getItem',
+		value: function getItem(id, state, coor, idOwn) {
+			return this._remainsPack.getItem(id, state, coor, idOwn);
+		}
+	}]);
+
+	return AllItems;
 }();
 
 /***/ }),
 
-/***/ "./src/gameSrcJs/engine/inerObjects/player.js":
-/*!****************************************************!*\
-  !*** ./src/gameSrcJs/engine/inerObjects/player.js ***!
-  \****************************************************/
+/***/ "./src/gameSrcJs/engine/inerObjects/items/remains/remainsPack.js":
+/*!***********************************************************************!*\
+  !*** ./src/gameSrcJs/engine/inerObjects/items/remains/remainsPack.js ***!
+  \***********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -33182,80 +33301,40 @@ module.exports = function () {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+var Slime = __webpack_require__(/*! ./slime/itemSlime.js */ "./src/gameSrcJs/engine/inerObjects/items/remains/slime/itemSlime.js");
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+module.exports = function () {
+	function RemainsPack() {
+		_classCallCheck(this, RemainsPack);
 
-var Creature = __webpack_require__(/*! ./creature */ "./src/gameSrcJs/engine/inerObjects/creature.js");
-var GLOBAL_SETTING = __webpack_require__(/*! ../setting/globalSetting.js */ "./src/gameSrcJs/engine/setting/globalSetting.js");
+		this._slime = Slime;
+	}
 
-module.exports = function (_Creature) {
-		_inherits(Player, _Creature);
-
-		function Player(id, state, watcher, coor, profession) {
-				_classCallCheck(this, Player);
-
-				var _this = _possibleConstructorReturn(this, (Player.__proto__ || Object.getPrototypeOf(Player)).call(this, id, state, coor));
-
-				_this.type = 'player';
-
-				_this.maxHP = GLOBAL_SETTING.standartPlayer.maxHP;
-				_this.HP = GLOBAL_SETTING.standartPlayer.maxHP;
-
-				_this.attackDamage = GLOBAL_SETTING.standartPlayer.attackDamage;
-				_this.attackRange = GLOBAL_SETTING.standartPlayer.attackRange;
-
-				if (watcher === true) {
-						_this.watcher = true;
-
-						state.setPointWatch(coor, _this);
-						_this.visable = {
-								was: true,
-								now: true
-						};
-				} else {
-						_this.watcher = false;
-				}
-
-				switch (profession) {
-						case 'mage':
-								_this.classNameCSS = 'magePlayer';
-								break;
-				}
-				return _this;
+	_createClass(RemainsPack, [{
+		key: 'getItem',
+		value: function getItem(id, state, coor, idOwn) {
+			if (idOwn === 1) {
+				return new Slime(id, state, coor);
+			}
 		}
+	}, {
+		key: 'getSlimeClass',
+		value: function getSlimeClass() {
+			return this._slime;
+		}
+	}]);
 
-		_createClass(Player, [{
-				key: 'getDemage',
-				value: function getDemage(creature) {
-						var damage = _get(Player.prototype.__proto__ || Object.getPrototypeOf(Player.prototype), 'getDemage', this).call(this, creature);
-						var event = this.state.getEventMainGetDamage();
-
-						event.detail.fromO = creature;
-						event.detail.num = damage;
-						event.detail.max = this.maxHP;
-						event.detail.cur = this.HP;
-						event.detail.type = 'hp';
-
-						document.dispatchEvent(event);
-
-						return damage;
-				}
-		}]);
-
-		return Player;
-}(Creature);
+	return RemainsPack;
+}();
 
 /***/ }),
 
-/***/ "./src/gameSrcJs/engine/inerObjects/weapon.js":
-/*!****************************************************!*\
-  !*** ./src/gameSrcJs/engine/inerObjects/weapon.js ***!
-  \****************************************************/
+/***/ "./src/gameSrcJs/engine/inerObjects/items/remains/slime/itemSlime.js":
+/*!***************************************************************************!*\
+  !*** ./src/gameSrcJs/engine/inerObjects/items/remains/slime/itemSlime.js ***!
+  \***************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -33270,16 +33349,172 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var InnerObject = __webpack_require__(/*! ./innerObject.js */ "./src/gameSrcJs/engine/inerObjects/innerObject.js");
+var Temple = __webpack_require__(/*! ../../templeItem.js */ "./src/gameSrcJs/engine/inerObjects/items/templeItem.js");
 
-var GLOBAL_SETTING = __webpack_require__(/*! ../setting/globalSetting.js */ "./src/gameSrcJs/engine/setting/globalSetting.js");
+module.exports = function (_Temple) {
+	_inherits(ItemSlime, _Temple);
+
+	function ItemSlime(id, state, coor) {
+		_classCallCheck(this, ItemSlime);
+
+		var _this = _possibleConstructorReturn(this, (ItemSlime.__proto__ || Object.getPrototypeOf(ItemSlime)).call(this, id, state, coor));
+
+		_this._idItem = 1;
+		_this.classNameCSS = 'itemSlime';
+		return _this;
+	}
+
+	_createClass(ItemSlime, [{
+		key: 'getIdItem',
+		value: function getIdItem() {
+			return this._idItem;
+		}
+	}]);
+
+	return ItemSlime;
+}(Temple);
+
+/***/ }),
+
+/***/ "./src/gameSrcJs/engine/inerObjects/items/templeItem.js":
+/*!**************************************************************!*\
+  !*** ./src/gameSrcJs/engine/inerObjects/items/templeItem.js ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var TempleInerObj = __webpack_require__(/*! ../templeInerObj.js */ "./src/gameSrcJs/engine/inerObjects/templeInerObj.js");
+
+module.exports = function (_TempleInerObj) {
+	_inherits(TempleItem, _TempleInerObj);
+
+	function TempleItem(id, state, coor) {
+		_classCallCheck(this, TempleItem);
+
+		var _this = _possibleConstructorReturn(this, (TempleItem.__proto__ || Object.getPrototypeOf(TempleItem)).call(this, id, state, coor));
+
+		_this._idItem = 0;
+		return _this;
+	}
+
+	return TempleItem;
+}(TempleInerObj);
+
+/***/ }),
+
+/***/ "./src/gameSrcJs/engine/inerObjects/templeInerObj.js":
+/*!***********************************************************!*\
+  !*** ./src/gameSrcJs/engine/inerObjects/templeInerObj.js ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var Coor = __webpack_require__(/*! ../structOfDate/coordinate.js */ "./src/gameSrcJs/engine/structOfDate/coordinate.js");
-var ExCoor = __webpack_require__(/*! ../structOfDate/ExCoordinate.js */ "./src/gameSrcJs/engine/structOfDate/ExCoordinate.js");
-
-var ControllerBlock = __webpack_require__(/*! ../globalClass/state/inerState/place/blocks/controllerBlock.js */ "./src/gameSrcJs/engine/globalClass/state/inerState/place/blocks/controllerBlock.js");
 
 var World = __webpack_require__(/*! ../globalClass/world.js */ "./src/gameSrcJs/engine/globalClass/world.js");
+
+module.exports = function () {
+	function InnerObject(id, state, coor) {
+		_classCallCheck(this, InnerObject);
+
+		this.visabalingInerObject = true;
+		this.nesting = true;
+		this.patency = false;
+		this.state = state;
+		this.coor = coor;
+		this.id = id;
+		this.idOwn = null;
+
+		this.live = false;
+
+		this.visable = {};
+		this.visable.was = false;
+		this.visable.now = false;
+		this.visable = this._identifyVisable({ newX: coor.x, newY: coor.y }, state);
+
+		this.classNameCSS = '';
+		this.DOMObject = null;
+
+		this._settings = state.getSetting();
+	}
+
+	_createClass(InnerObject, [{
+		key: '_identifyVisable',
+		value: function _identifyVisable(coor, state) {
+			var visable = {};
+
+			if (this.watcher === true) {
+				visable.now = true;
+				visable.was = true;
+			} else {
+				var startPointWatch = this.state.getStartPiointWatch();
+				var size = World.getSize(state);
+
+				visable.was = this.visable.now;
+
+				if (coor.newX - startPointWatch.x < size.heightBlocks && coor.newY - startPointWatch.y < size.widthBlocks && coor.newX - startPointWatch.x >= 0 && coor.newY - startPointWatch.y >= 0) {
+					visable.now = true;
+				} else {
+					visable.now = false;
+				}
+			}
+
+			if (this.type === 'weapon' && this.born) {
+				this.born = false;
+				visable.was = false;
+			}
+
+			return visable;
+		}
+	}]);
+
+	return InnerObject;
+}();
+
+/***/ }),
+
+/***/ "./src/gameSrcJs/engine/inerObjects/weapons/weapon.js":
+/*!************************************************************!*\
+  !*** ./src/gameSrcJs/engine/inerObjects/weapons/weapon.js ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var InnerObject = __webpack_require__(/*! ../innerObject.js */ "./src/gameSrcJs/engine/inerObjects/innerObject.js");
+
+var Coor = __webpack_require__(/*! ../../structOfDate/coordinate.js */ "./src/gameSrcJs/engine/structOfDate/coordinate.js");
+var ExCoor = __webpack_require__(/*! ../../structOfDate/ExCoordinate.js */ "./src/gameSrcJs/engine/structOfDate/ExCoordinate.js");
+
+var ControllerBlock = __webpack_require__(/*! ../../globalClass/state/inerState/place/blocks/controllerBlock.js */ "./src/gameSrcJs/engine/globalClass/state/inerState/place/blocks/controllerBlock.js");
+
+var World = __webpack_require__(/*! ../../globalClass/world.js */ "./src/gameSrcJs/engine/globalClass/world.js");
 
 module.exports = function (_InnerObject) {
 	_inherits(Weapon, _InnerObject);

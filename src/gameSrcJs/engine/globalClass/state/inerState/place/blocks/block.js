@@ -5,7 +5,7 @@ module.exports = class Block {
 		this.nesting = false;
 		this.isCreature = false;
 
-		this.items = [];
+		this._items = [];
 
 		this._visiter = null;
 		this._weapon = null;
@@ -44,5 +44,21 @@ module.exports = class Block {
 	removeWeapon() {
 		this._weapon = null;
 		return true;
+	}
+
+	getShowObj() {
+		if (this._visiter) {
+			return this._visiter;
+		} else if (this._weapon) {
+			return this._weapon;
+		} else if (this._items.length > 1) {
+			console.log(1);
+			// return ;
+		} else if (this._items.length) {
+			console.log(2);
+			// return ;
+		} else {
+			return null;
+		}
 	}
 }

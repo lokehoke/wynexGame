@@ -1,7 +1,5 @@
 'use strict';
 
-const GLOBAL_SETTING = (require('../setting/globalSetting.js'));
-
 const Coor = require('../structOfDate/coordinate.js');
 const ExCoor = require('../structOfDate/ExCoordinate.js');
 
@@ -9,61 +7,15 @@ const ControllerBlock = require('../globalClass/state/inerState/place/blocks/con
 
 const World = require('../globalClass/world.js');
 
-module.exports = class InnerObject {
+const TempleInerObj = require('./templeInerObj.js');
+
+module.exports = class InnerObject extends TempleInerObj {
 	constructor (id, state, coor) {
-		this.nesting = true;
-		this.patency = false;
-		this.state = state;
-		this.coor = coor;
-		this.id = id;
-
-		this.live = false;
-
-		this.visable = {};
-		this.visable.was = false;
-		this.visable.now = false;
-		this.visable = this._identifyVisable({newX: coor.x, newY: coor.y}, state);
-
-		this.classNameCSS = '';
-		this.DOMObject = null;
+		super(id, state, coor);
 	}
 
 	movePerformance(direction) {
 		return this._move(direction);
-	}
-
-	_identifyVisable(coor, state) {
-		const visable = {};
-
-		if (this.watcher === true) {
-			visable.now = true;
-			visable.was = true;
-		} else {
-			const startPointWatch = this.state.getStartPiointWatch();
-			const size = World.getSize(state);
-
-			visable.was = this.visable.now;
-
-			if (coor.newX - startPointWatch.x < size.heightBlocks
-			&&
-				coor.newY - startPointWatch.y < size.widthBlocks
-			&&
-				coor.newX - startPointWatch.x >= 0
-			&&
-				coor.newY - startPointWatch.y >= 0
-			) {
-				visable.now = true;
-			} else {
-				visable.now = false;
-			}
-		}
-
-		if (this.type === 'weapon' && this.born) {
-			this.born = false;
-			visable.was = false;
-		}
-
-		return visable;
 	}
 
 	_move(direction) {
@@ -80,7 +32,7 @@ module.exports = class InnerObject {
 
 		switch(direction) {
 			case 'right':
-				if (GLOBAL_SETTING.numBlocks.width <= curCoor.y+1) {
+				if (this._settings.numBlocks.width <= curCoor.y+1) {
 					return false;
 				} else {
 					curCoor.newY++;
@@ -104,7 +56,7 @@ module.exports = class InnerObject {
 				}
 				break;
 			case 'down':
-				if (GLOBAL_SETTING.numBlocks.height <= curCoor.x+1) {
+				if (this._settings.numBlocks.height <= curCoor.x+1) {
 					return false;
 				} else {
 					curCoor.newX++;
