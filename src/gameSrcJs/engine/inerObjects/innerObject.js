@@ -136,15 +136,30 @@ module.exports = class InnerObject extends TempleInerObj {
 			this.DOMObject.children[0].remove();
 		}
 
-		if (this.live) {
+		if (!this.live) {
 			let event = this.state.getEventDyeCreature();
 
 			event.detail.from = creature;
 			event.detail.who = this;
 
 			document.dispatchEvent(event);
+
+			this._dropItems();
 		}
 
 		this.state.deleteCreature(this.id);
+	}
+
+	_dropItems() {
+		let items = this._items;
+		let div = document.createElement('div');
+
+		if (items.length > 1) {
+			div.className = 'stockItems';
+		} else if (items.length === 1) {
+			div.className = items[0].classNameCSS;
+		}
+
+		this.DOMObject.appendChild(div);
 	}
 }
