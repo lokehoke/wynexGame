@@ -6,7 +6,7 @@ module.exports = {
 	sizeBlock: new Size(30, 30),
 	numBlocks: new Size(2 ** 10, 2 ** 10),
 
-	numEnemy: 1000,
+	numEnemy: 2000,
 
 	timeOfTactPlayer: 50,
 	timeOfTactOther: 200,

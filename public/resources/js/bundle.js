@@ -31550,6 +31550,8 @@ module.exports = function () {
 		value: function addVisiter(creature) {
 			if (this._visiter) {
 				throw "two visiter in 1 place";
+			} else if (!this.patency) {
+				throw "cant set creature, patency!";
 			} else {
 				this._visiter = creature;
 			}
@@ -31559,8 +31561,12 @@ module.exports = function () {
 	}, {
 		key: "removeVisiter",
 		value: function removeVisiter() {
-			this._visiter = null;
-			return true;
+			if (this._visiter === null) {
+				throw "empty, visiter not found!";
+			} else {
+				this._visiter = null;
+				return true;
+			}
 		}
 	}, {
 		key: "getVisiter",
@@ -31966,15 +31972,27 @@ module.exports = function () {
 		key: 'setPlayer',
 		value: function setPlayer(val) {
 			this._creature[this._numInerBlock] = new Player(this._numInerBlock, this, val.watcher, val.coor, val.type);
-			this._place[val.coor.x][val.coor.y].addVisiter(this._creature[this._numInerBlock++]);
-			return true;
+			try {
+				this._place[val.coor.x][val.coor.y].addVisiter(this._creature[this._numInerBlock++]);
+				return true;
+			} catch (e) {
+				console.log(e);
+				delete this._creature[this._numInerBlock - 1];
+				return false;
+			}
 		}
 	}, {
 		key: 'setEnemy',
 		value: function setEnemy(val) {
 			this._creature[this._numInerBlock] = new Enemy(this._numInerBlock, this, val.coor, val.type);
-			this._place[val.coor.x][val.coor.y].addVisiter(this._creature[this._numInerBlock++]);
-			return true;
+			try {
+				this._place[val.coor.x][val.coor.y].addVisiter(this._creature[this._numInerBlock++]);
+				return true;
+			} catch (e) {
+				console.log(e);
+				delete this._creature[this._numInerBlock - 1];
+				return false;
+			}
 		}
 	}, {
 		key: 'setWeapon',
@@ -31991,7 +32009,7 @@ module.exports = function () {
 	}, {
 		key: 'setVisiter',
 		value: function setVisiter(coor, creature) {
-			this._place[coor.x][coor.y].visiter = creature;
+			this._place[coor.x][coor.y].addVisiter(creature);
 		}
 	}, {
 		key: 'getCreature',
@@ -32313,8 +32331,8 @@ module.exports = function () {
 							newY = y + size.widthBlocks;
 						}
 
-						if (place[i][newY].isCreature === true) {
-							visableHideCreature(place[i][newY]);
+						if (place[i][newY].getVisiter() && place[i][newY].getVisiter().isCreature === true) {
+							visableHideCreature(place[i][newY].getVisiter());
 						}
 
 						var block = null;
@@ -32358,8 +32376,8 @@ module.exports = function () {
 
 						var block = getBlock(place[x][i], { newX: x, newY: i }, true, row.children[i - y]);
 
-						if (place[newX][i].isCreature === true) {
-							visableHideCreature(place[newX][i]);
+						if (place[newX][i].getVisiter() && place[newX][i].getVisiter().isCreature === true) {
+							visableHideCreature(place[newX][i].getVisiter());
 						}
 					}
 
@@ -32453,7 +32471,7 @@ module.exports = function () {
 				};
 
 				state.setFirstFindSize({
-					firstFindSize: true,
+					firstFindSize: false,
 					sizeG: sizeG
 				});
 
@@ -32988,13 +33006,16 @@ module.exports = function () {
 		key: '_identifyVisable',
 		value: function _identifyVisable(coor, state) {
 			var visable = {};
+
 			if (this.watcher === true) {
 				visable.now = true;
 				visable.was = true;
 			} else {
 				var startPointWatch = this.state.getStartPiointWatch();
 				var size = World.getSize(state);
+
 				visable.was = this.visable.now;
+
 				if (coor.newX - startPointWatch.x < size.heightBlocks && coor.newY - startPointWatch.y < size.widthBlocks && coor.newX - startPointWatch.x >= 0 && coor.newY - startPointWatch.y >= 0) {
 					visable.now = true;
 				} else {
@@ -33309,7 +33330,7 @@ module.exports = {
 	sizeBlock: new Size(30, 30),
 	numBlocks: new Size(Math.pow(2, 10), Math.pow(2, 10)),
 
-	numEnemy: 1000,
+	numEnemy: 2000,
 
 	timeOfTactPlayer: 50,
 	timeOfTactOther: 200,
@@ -33459,74 +33480,86 @@ module.exports = function Size() {
 "use strict";
 
 
-(function () {
-	'use strict';
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	__webpack_require__(/*! babel-polyfill */ "./node_modules/babel-polyfill/lib/index.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-	function startGame() {
-		var GLOBAL_SETTING = __webpack_require__(/*! ./setting/globalSetting.js */ "./src/gameSrcJs/engine/setting/globalSetting.js");
-		var ControllerGame = __webpack_require__(/*! ./globalClass/game.js */ "./src/gameSrcJs/engine/globalClass/game.js");
+__webpack_require__(/*! babel-polyfill */ "./node_modules/babel-polyfill/lib/index.js");
 
-		var game = new ControllerGame([{
-			coor: {
-				x: 1,
-				y: 1
-			},
-			type: 'mage',
-			watcher: true
-		}]);
+module.exports = function () {
+	function WEnginAPI() {
+		_classCallCheck(this, WEnginAPI);
 
-		var state = game.getState();
-		var player = state.getCreature(0);
+		this._GLOBAL_SETTING = __webpack_require__(/*! ./setting/globalSetting.js */ "./src/gameSrcJs/engine/setting/globalSetting.js");
+		this._ControllerGame = __webpack_require__(/*! ./globalClass/game.js */ "./src/gameSrcJs/engine/globalClass/game.js");
 
-		var timer = false;
+		this._game = null;
 
-		document.onkeydown = function (e) {
-			e.preventDefault();
-			if (timer) {
-				return 0;
-			} else {
-				timer = true;
-				setTimeout(function () {
-					timer = false;
-				}, GLOBAL_SETTING.timeOfTactPlayer);
-			}
-
-			if (e.keyCode === 68) {
-				player.movePerformance('right');
-			} else if (e.keyCode === 83) {
-				player.movePerformance('down');
-			} else if (e.keyCode === 87) {
-				player.movePerformance('up');
-			} else if (e.keyCode === 65) {
-				player.movePerformance('left');
-			} else if (e.keyCode === 39) {
-				player.doAttack('right');
-			} else if (e.keyCode === 40) {
-				player.doAttack('down');
-			} else if (e.keyCode === 38) {
-				player.doAttack('up');
-			} else if (e.keyCode === 37) {
-				player.doAttack('left');
-			}
-			game.tactOfGame(true);
-			return false;
-		};
-
-		setInterval(function () {
-			game.tactOfGame();
-		}, GLOBAL_SETTING.timeOfTactOther);
-
-		console.log(state);
+		this._state = null;
+		this._player = null;
 	}
 
-	var game = new Promise(function () {
-		setTimeout(function () {
-			startGame();
-		}, 0);
-	});
-})();
+	_createClass(WEnginAPI, [{
+		key: 'startGame',
+		value: function startGame() {
+			var _this = this;
+
+			this._game = new this._ControllerGame([{
+				coor: {
+					x: 1,
+					y: 1
+				},
+				type: 'mage',
+				watcher: true
+			}]);
+
+			this._state = this._game.getState();
+			this._player = this._state.getCreature(0);
+
+			var timer = false;
+
+			document.onkeydown = function (e) {
+				e.preventDefault();
+				if (timer) {
+					return 0;
+				} else {
+					timer = true;
+					setTimeout(function () {
+						timer = false;
+					}, _this._GLOBAL_SETTING.timeOfTactPlayer);
+				}
+
+				if (e.keyCode === 68) {
+					_this._player.movePerformance('right');
+				} else if (e.keyCode === 83) {
+					_this._player.movePerformance('down');
+				} else if (e.keyCode === 87) {
+					_this._player.movePerformance('up');
+				} else if (e.keyCode === 65) {
+					_this._player.movePerformance('left');
+				} else if (e.keyCode === 39) {
+					_this._player.doAttack('right');
+				} else if (e.keyCode === 40) {
+					_this._player.doAttack('down');
+				} else if (e.keyCode === 38) {
+					_this._player.doAttack('up');
+				} else if (e.keyCode === 37) {
+					_this._player.doAttack('left');
+				}
+				_this._game.tactOfGame(true);
+				return false;
+			};
+
+			setInterval(function () {
+				_this._game.tactOfGame();
+			}, this._GLOBAL_SETTING.timeOfTactOther);
+
+			console.log(this._state);
+		}
+	}]);
+
+	return WEnginAPI;
+}();
 
 /***/ }),
 
@@ -33898,12 +33931,18 @@ module.exports = function (_React$Component) {
 "use strict";
 
 
+var WEngineAPI = __webpack_require__(/*! ./../engine/wEngine.js */ "./src/gameSrcJs/engine/wEngine.js");
+
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 var ReactDOM = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 
 var GameInterface = __webpack_require__(/*! ./gameInterface/gameInterface.jsx */ "./src/gameSrcJs/interface/gameInterface/gameInterface.jsx");
 
 ReactDOM.render(React.createElement(GameInterface, null), document.getElementById('interface'));
+
+var game = new WEngineAPI();
+
+game.startGame();
 
 /***/ }),
 
@@ -33938,15 +33977,14 @@ if(false) {}
 /***/ }),
 
 /***/ 0:
-/*!********************************************************************************************************************!*\
-  !*** multi ./src/styles/sass/index.scss ./src/gameSrcJs/interface/interface.jsx ./src/gameSrcJs/engine/wEngine.js ***!
-  \********************************************************************************************************************/
+/*!**********************************************************************************!*\
+  !*** multi ./src/styles/sass/index.scss ./src/gameSrcJs/interface/interface.jsx ***!
+  \**********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! ./src/styles/sass/index.scss */"./src/styles/sass/index.scss");
-__webpack_require__(/*! ./src/gameSrcJs/interface/interface.jsx */"./src/gameSrcJs/interface/interface.jsx");
-module.exports = __webpack_require__(/*! ./src/gameSrcJs/engine/wEngine.js */"./src/gameSrcJs/engine/wEngine.js");
+module.exports = __webpack_require__(/*! ./src/gameSrcJs/interface/interface.jsx */"./src/gameSrcJs/interface/interface.jsx");
 
 
 /***/ })

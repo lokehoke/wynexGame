@@ -26,7 +26,7 @@ module.exports = class World {
 			};
 
 			state.setFirstFindSize({
-				firstFindSize: true,
+				firstFindSize: false,
 				sizeG: sizeG
 			});
 
@@ -183,9 +183,8 @@ module.exports = class World {
 						newY = y + size.widthBlocks;
 					}
 
-
-					if (place[i][newY].isCreature === true) {
-						visableHideCreature(place[i][newY]);
+					if (place[i][newY].getVisiter() && place[i][newY].getVisiter().isCreature === true) {
+						visableHideCreature(place[i][newY].getVisiter());
 					}
 
 					let block = null;
@@ -230,8 +229,8 @@ module.exports = class World {
 
 					let block = getBlock(place[x][i], {newX:x,newY:i}, true, row.children[i-y]);
 
-					if (place[newX][i].isCreature === true) {
-						visableHideCreature(place[newX][i]);
+					if (place[newX][i].getVisiter() && place[newX][i].getVisiter().isCreature === true) {
+						visableHideCreature(place[newX][i].getVisiter());
 					}
 				}
 

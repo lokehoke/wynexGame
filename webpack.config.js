@@ -6,7 +6,7 @@ var config = {
 	// mode: 'production',
 	mode: 'development',
 	entry: {
-		main: ['./src/styles/sass/index.scss', './src/gameSrcJs/interface/interface.jsx', './src/gameSrcJs/engine/wEngine.js']
+		main: ['./src/styles/sass/index.scss', './src/gameSrcJs/interface/interface.jsx']
 	},
 	output: {
 		path: __dirname + '/public/resources/js/',

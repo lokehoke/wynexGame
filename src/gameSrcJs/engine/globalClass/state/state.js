@@ -97,14 +97,26 @@ module.exports = class State {
 
 	setPlayer(val) {
 		this._creature[this._numInerBlock] = new Player(this._numInerBlock, this, val.watcher, val.coor, val.type);
-		this._place[val.coor.x][val.coor.y].addVisiter(this._creature[this._numInerBlock++]);
-		return true;
+		try {
+			this._place[val.coor.x][val.coor.y].addVisiter(this._creature[this._numInerBlock++]);
+			return true;
+		} catch (e){
+			console.log(e);
+			delete this._creature[this._numInerBlock - 1];
+			return false;
+		}
 	}
 
 	setEnemy(val) {
 		this._creature[this._numInerBlock] = new Enemy(this._numInerBlock, this, val.coor, val.type);
-		this._place[val.coor.x][val.coor.y].addVisiter(this._creature[this._numInerBlock++]);
-		return true;
+		try {
+			this._place[val.coor.x][val.coor.y].addVisiter(this._creature[this._numInerBlock++]);
+			return true;
+		} catch (e) {
+			console.log(e);
+			delete this._creature[this._numInerBlock - 1];
+			return false;
+		}
 	}
 
 	setWeapon(val) {
@@ -119,7 +131,7 @@ module.exports = class State {
 	}
 
 	setVisiter(coor, creature) {
-		this._place[coor.x][coor.y].visiter = creature;
+		this._place[coor.x][coor.y].addVisiter(creature);
 	}
 
 	getCreature(id = 0) {

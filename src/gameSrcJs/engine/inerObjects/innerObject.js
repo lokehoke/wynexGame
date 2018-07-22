@@ -34,13 +34,16 @@ module.exports = class InnerObject {
 
 	_identifyVisable(coor, state) {
 		const visable = {};
+
 		if (this.watcher === true) {
 			visable.now = true;
 			visable.was = true;
 		} else {
 			const startPointWatch = this.state.getStartPiointWatch();
 			const size = World.getSize(state);
+
 			visable.was = this.visable.now;
+
 			if (coor.newX - startPointWatch.x < size.heightBlocks
 			&&
 				coor.newY - startPointWatch.y < size.widthBlocks

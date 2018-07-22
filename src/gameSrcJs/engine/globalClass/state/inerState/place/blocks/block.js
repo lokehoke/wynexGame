@@ -14,6 +14,8 @@ module.exports = class Block {
 	addVisiter(creature) {
 		if (this._visiter) {
 			throw "two visiter in 1 place";
+		} else if (!this.patency) {
+			throw "cant set creature, patency!";
 		} else {
 			this._visiter = creature;
 		}
@@ -22,8 +24,12 @@ module.exports = class Block {
 	}
 
 	removeVisiter() {
-		this._visiter = null;
-		return true;
+		if (this._visiter === null) {
+			throw "empty, visiter not found!";
+		} else {
+			this._visiter = null;
+			return true;
+		}
 	}
 
 	getVisiter() {

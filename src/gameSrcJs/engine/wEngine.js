@@ -1,12 +1,20 @@
-(function () {
-	'use strict';
-	require("babel-polyfill");
+'use strict';
 
-	function startGame() {
-		const GLOBAL_SETTING = require('./setting/globalSetting.js');
-		const ControllerGame = require('./globalClass/game.js');
+require("babel-polyfill");
 
-		const game = new ControllerGame([{
+module.exports = class WEnginAPI {
+	constructor() {
+		this._GLOBAL_SETTING = require('./setting/globalSetting.js');
+		this._ControllerGame = require('./globalClass/game.js');
+
+		this._game = null;
+
+		this._state = null;
+		this._player = null;
+	}
+
+	startGame() {
+		this._game = new this._ControllerGame([{
 			coor: {
 				x: 1,
 				y: 1
@@ -15,12 +23,12 @@
 			watcher: true
 		}]);
 
-		const state = game.getState();
-		const player = state.getCreature(0);
+		this._state = this._game.getState();
+		this._player = this._state.getCreature(0);
 
 		let timer = false;
 
-		document.onkeydown = function (e) {
+		document.onkeydown = (e) => {
 			e.preventDefault();
 			if (timer) {
 				return 0;
@@ -28,40 +36,34 @@
 				timer = true;
 				setTimeout(() => {
 					timer = false;
-				}, GLOBAL_SETTING.timeOfTactPlayer);
+				}, this._GLOBAL_SETTING.timeOfTactPlayer);
 			}
 
 			if (e.keyCode === 68) {
-				player.movePerformance('right');
+				this._player.movePerformance('right');
 			} else if (e.keyCode === 83) {
-				player.movePerformance('down');
+				this._player.movePerformance('down');
 			} else if (e.keyCode === 87) {
-				player.movePerformance('up');
+				this._player.movePerformance('up');
 			} else if (e.keyCode === 65) {
-				player.movePerformance('left');
+				this._player.movePerformance('left');
 			} else if (e.keyCode === 39) {
-				player.doAttack('right');
+				this._player.doAttack('right');
 			} else if (e.keyCode === 40) {
-				player.doAttack('down');
+				this._player.doAttack('down');
 			} else if (e.keyCode === 38) {
-				player.doAttack('up');
+				this._player.doAttack('up');
 			} else if (e.keyCode === 37) {
-				player.doAttack('left');
+				this._player.doAttack('left');
 			}
-			game.tactOfGame(true);
+			this._game.tactOfGame(true);
 			return false;
 		}
 
 		setInterval(() => {
-			game.tactOfGame();
-		}, GLOBAL_SETTING.timeOfTactOther);
+			this._game.tactOfGame();
+		}, this._GLOBAL_SETTING.timeOfTactOther);
 
-		console.log(state);
+		console.log(this._state);
 	}
-
-	let game = new Promise(() => {
-		setTimeout(()=> {
-			startGame();
-		}, 0);
-	});
-})();
+}
