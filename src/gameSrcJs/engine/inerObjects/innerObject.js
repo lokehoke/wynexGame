@@ -114,7 +114,14 @@ module.exports = class InnerObject extends TempleInerObj {
 		}
 
 		if (this.visable.now === true) {
-			world.children[coor.newX - startPointWatch.x].children[coor.newY - startPointWatch.y].appendChild(div);
+			let block = world.children[coor.newX - startPointWatch.x].children[coor.newY - startPointWatch.y];
+
+			if(block.children) {
+				block.insertBefore(div, block.firstChild);
+			} else {
+				block.appendChild(div);
+			}
+
 			this.DOMObject = div.parentNode;
 		}
 
@@ -160,6 +167,16 @@ module.exports = class InnerObject extends TempleInerObj {
 			div.className = items[0].classNameCSS;
 		}
 
+		this.state.dropItems(this);
+
 		this.DOMObject.appendChild(div);
+	}
+
+	giveItems() {
+		let items = this._items;
+
+		this._items = [];
+
+		return items;
 	}
 }

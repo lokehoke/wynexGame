@@ -56,6 +56,12 @@ module.exports = class State {
 		return this._allItems.getItem(this._numItems++, this, coor, id);
 	}
 
+	dropItems(creature) {
+		let items = creature.giveItems();
+		this._place[creature.coor.x][creature.coor.y]._items = this._place[creature.coor.x][creature.coor.y]._items.concat(items);
+		return true;
+	}
+
 	endGame() {
 		document.dispatchEvent(this._events.getEventEndGame());
 		this._activeGame = false;

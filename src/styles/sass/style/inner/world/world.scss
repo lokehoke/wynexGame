@@ -23,6 +23,7 @@
 					background-size: 70%;
 					background-position: 5px 1px;
 					background-repeat: no-repeat;
+					z-index: 5;
 				}
 
 				&.slimeEnemy {
@@ -30,6 +31,7 @@
 					background-size: 200%;
 					background-position: -2px 8px;
 					background-repeat: no-repeat;
+					z-index: 5;
 				}
 
 				&.weapon {
