@@ -109,7 +109,9 @@ module.exports = class InnerObject extends TempleInerObj {
 		let div = getBlockWithCreature(this);
 
 		if (this.visable.was === true) {
-			this.DOMObject.children[0].remove();
+			[].forEach.call(this.DOMObject.children, ((item) => {
+				item.remove();
+			}));
 			this.DOMObject = null;
 		}
 

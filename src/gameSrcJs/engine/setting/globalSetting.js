@@ -4,9 +4,9 @@ const Size = require('../structOfDate/size.js');
 
 module.exports = {
 	sizeBlock: new Size(30, 30),
-	numBlocks: new Size(2 ** 5, 2 ** 5),
+	numBlocks: new Size(2 ** 10, 2 ** 10),
 
-	numEnemy: 1,
+	numEnemy: 500,
 
 	timeOfTactPlayer: 50,
 	timeOfTactOther: 200,

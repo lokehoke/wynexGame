@@ -22,6 +22,17 @@ module.exports = class StorCustomEvents {
 		});
 
 		this._eventMainGetHP = new CustomEvent('mainGetHP', this._getObjChangeStatistic() );
+
+		this._eventMainStepOnItem = new CustomEvent('mainStepOn', {
+			detail: {
+				withItems: false,
+				items: []
+			}
+		})
+	}
+
+	getEventMainStepOn() {
+		return this._eventMainStepOnItem;
 	}
 
 	getEventBias() {

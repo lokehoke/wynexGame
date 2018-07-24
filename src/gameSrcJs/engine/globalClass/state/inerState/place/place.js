@@ -10,7 +10,7 @@ module.exports = class Place {
 		for (let i = 0; i < N; i++) {
 			this[i] = [];
 			for (let j = 0; j < M; j++) {
-				if (i === 0 || i + 1 === N || j === 0 || j + 1 === M){
+				if (i < 3 || i + 1 > N - 3 || j < 3 || j + 1 > M - 3){
 					this[i][j] = ControllerBlock.getBlockObject(2);
 				} else {
 					this[i][j] = ControllerBlock.getBlockObject(1);

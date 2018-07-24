@@ -120,6 +120,7 @@ module.exports = class State {
 
 	setPlayer(val) {
 		this._creature[this._numInerBlock] = new Player(this._numInerBlock, this, val.watcher, val.coor, val.type);
+
 		try {
 			this._place[val.coor.x][val.coor.y].addVisiter(this._creature[this._numInerBlock++]);
 			return true;
@@ -132,6 +133,7 @@ module.exports = class State {
 
 	setEnemy(val) {
 		this._creature[this._numInerBlock] = new Enemy(this._numInerBlock, this, val.coor, val.type);
+
 		try {
 			this._place[val.coor.x][val.coor.y].addVisiter(this._creature[this._numInerBlock++]);
 			return true;
@@ -151,10 +153,6 @@ module.exports = class State {
 		position.addWeapon(weapon);
 
 		return weapon;
-	}
-
-	setVisiter(coor, creature) {
-		this._place[coor.x][coor.y].addVisiter(creature);
 	}
 
 	getCreature(id = 0) {
@@ -184,6 +182,19 @@ module.exports = class State {
 		creature.coor.x = coor.newX;
 		creature.coor.y = coor.newY;
 
+		if (creature.watcher) {
+			let event = this._events.getEventMainStepOn();
+
+			if (this._place[coor.newX][coor.newY]._items[0] && creature.watcher) {
+				event.detail.withItems = true;
+				event.detail.items = this._place[coor.newX][coor.newY]._items;
+			} else if (creature.watcher) {
+				event.detail.withItems = false;
+				event.detail.items = [];
+			}
+
+			document.dispatchEvent(event);
+		}
 		return true;
 	}
 

@@ -17,8 +17,8 @@ module.exports = class World {
 
 		if (firstFindSize === true){
 
-			const widthBlocks = Math.floor((window.innerWidth - 200) / GLOBAL_SETTING.sizeBlock.width);
-			const heightBlocks = Math.floor((window.innerHeight - 200) / GLOBAL_SETTING.sizeBlock.height);
+			const widthBlocks = Math.floor((window.innerWidth) / GLOBAL_SETTING.sizeBlock.width);
+			const heightBlocks = Math.floor((window.innerHeight) / GLOBAL_SETTING.sizeBlock.height);
 
 			let sizeG = {
 				widthBlocks: (widthBlocks < GLOBAL_SETTING.numBlocks.width ? widthBlocks : GLOBAL_SETTING.numBlocks.width),

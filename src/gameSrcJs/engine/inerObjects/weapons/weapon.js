@@ -23,9 +23,11 @@ module.exports = class Weapon extends InnerObject {
 	}
 
 	die() {
+
 		if (this.DOMObject && this.DOMObject.children[0]) {
 			this.DOMObject.children[0].remove();
 		}
+
 		this.state.deleteWeapon(this.id);
 	}
 }

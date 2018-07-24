@@ -16,8 +16,8 @@ module.exports = class WEnginAPI {
 	startGame() {
 		this._game = new this._ControllerGame([{
 			coor: {
-				x: 1,
-				y: 1
+				x: 100,
+				y: 100
 			},
 			type: 'mage',
 			watcher: true

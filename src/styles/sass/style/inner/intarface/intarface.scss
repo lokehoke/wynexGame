@@ -1,6 +1,4 @@
 .interface {
-	padding: 0;
-	margin: 0;
 	position: absolute;
 	z-index: 1000;
 	width: 100%;
@@ -33,7 +31,7 @@
 				.status-line__container {
 					width: 200px;
 					height: 20px;
-					border: 1px solid #85309A;
+					border: 1px solid $purple;
 					margin: 5px;
 					border-radius: 5px;
 
@@ -45,11 +43,11 @@
 						transition-duration: 100ms;
 
 						&.mp {
-							background: #44E1FD;
+							background: $blue;
 						}
 
 						&.hp {
-							background: #FF3232;
+							background: $red;
 						}
 					}
 				}
@@ -60,15 +58,42 @@
 			}
 		}
 
-		.header__skils {
+		.header__items-wrapper {
 			display: flex;
+			justify-content: flex-end;
+			flex-grow: 1;
 
-			div {
-				border: 1px solid #85309A;
+			.header__items {
+				.header__items-row {
+					display: flex;
+
+					.header__item {
+						width: 30px;
+						height: 30px;
+						margin: 5px;
+						background-color: $grey;
+						border: 1px solid $purple;
+						border-radius: 5px;
+
+					}
+				}
+			}
+
+			.header__backpack {
+				width: 70px;
+				height: 70px;
+				margin: 5px;
+				background-color: $grey;
+				border: 1px solid $purple;
 				border-radius: 5px;
-				width: 100px;
-				height: 100px;
-				margin: 0 10px;
+				background-image: url('/resources/img/interface/backpack.png');
+				background-repeat: no-repeat;
+				background-position: 10px;
+				background-size: 70%;
+
+				&.active {
+					background-color: $greyLight;
+				}
 			}
 		}
 	}

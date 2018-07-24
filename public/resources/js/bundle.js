@@ -9923,7 +9923,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "/* http://meyerweb.com/eric/tools/css/reset/\n   v4.0 | 20180602\n   License: none (public domain)\n*/\nhtml, body, div, span, applet, object, iframe,\nh1, h2, h3, h4, h5, h6, p, blockquote, pre,\na, abbr, acronym, address, big, cite, code,\ndel, dfn, em, img, ins, kbd, q, s, samp,\nsmall, strike, strong, sub, sup, tt, var,\nb, u, i, center,\ndl, dt, dd, ol, ul, li,\nfieldset, form, label, legend,\ntable, caption, tbody, tfoot, thead, tr, th, td,\narticle, aside, canvas, details, embed,\nfigure, figcaption, footer, header, hgroup,\nmain, menu, nav, output, ruby, section, summary,\ntime, mark, audio, video {\n  margin: 0;\n  padding: 0;\n  border: 0;\n  font-size: 100%;\n  font: inherit;\n  vertical-align: baseline; }\n\n/* HTML5 display-role reset for older browsers */\narticle, aside, details, figcaption, figure,\nfooter, header, hgroup, main, menu, nav, section {\n  display: block; }\n\n/* HTML5 hidden-attribute fix for newer browsers */\n*[hidden] {\n  display: none; }\n\nbody {\n  line-height: 1; }\n\nol, ul {\n  list-style: none; }\n\nblockquote, q {\n  quotes: none; }\n\nblockquote:before, blockquote:after,\nq:before, q:after {\n  content: '';\n  content: none; }\n\ntable {\n  border-collapse: collapse;\n  border-spacing: 0; }\n\n* {\n  padding: 0;\n  margin: 0;\n  box-sizing: border-box; }\n\nbutton {\n  cursor: pointer; }\n\nhtml, body {\n  width: 100%; }\n\nh1 {\n  margin: 0;\n  padding: 0; }\n\nhtml,\nbody,\n.wrapper,\n.world {\n  display: flex;\n  background: #000; }\n\n.world {\n  padding: 100px;\n  flex-direction: column;\n  background: #000;\n  background-image: url(\"/resources/img/worldTextures/dark-bg.jpg\"); }\n  .world .row {\n    display: flex; }\n    .world .row .standartPlace {\n      width: 30px;\n      height: 30px;\n      position: relative; }\n      .world .row .standartPlace div {\n        position: absolute;\n        width: 100%;\n        height: 100%;\n        z-index: 2; }\n        .world .row .standartPlace div.magePlayer {\n          background-image: url(/resources/img/iconCreature/player/mage.png);\n          background-size: 70%;\n          background-position: 5px 1px;\n          background-repeat: no-repeat;\n          z-index: 5; }\n        .world .row .standartPlace div.slimeEnemy {\n          background-image: url(/resources/img/iconCreature/enemy/slime.svg);\n          background-size: 200%;\n          background-position: -2px 8px;\n          background-repeat: no-repeat;\n          z-index: 5; }\n        .world .row .standartPlace div.weapon {\n          background: url(\"/resources/img/weaponTextures/stackWeaponBall.svg\");\n          width: 30px;\n          height: 30px;\n          background-size: 250%;\n          background-position: 4px 5px;\n          background-repeat: no-repeat; }\n        .world .row .standartPlace div.itemSlime {\n          background: url(\"/resources/img/items/itemSlime.png\");\n          width: 30px;\n          height: 30px;\n          background-size: 100%;\n          background-position: 2px 2px;\n          background-repeat: no-repeat;\n          transform: rotate(30deg); }\n    .world .row .border {\n      background-image: url(/resources/img/worldTextures/border.svg);\n      background-size: 200%;\n      background-position: 5px 4px;\n      background-repeat: no-repeat;\n      background-color: black; }\n    .world .row .dirt {\n      background-image: url(/resources/img/worldTextures/road.svg);\n      background-size: 200%;\n      background-repeat: no-repeat; }\n    .world .row .chest {\n      background: #74FD59; }\n\n.interface {\n  padding: 0;\n  margin: 0;\n  position: absolute;\n  z-index: 1000;\n  width: 100%;\n  height: 100%;\n  color: white;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between; }\n  .interface .header {\n    height: 100px;\n    width: 100%;\n    display: flex; }\n    .interface .header .header__icon {\n      width: 100px;\n      height: 100px; }\n    .interface .header .header__status {\n      width: 240px;\n      height: 100px; }\n      .interface .header .header__status .header__status-line {\n        display: flex;\n        align-items: center;\n        position: relative;\n        justify-content: center; }\n        .interface .header .header__status .header__status-line .status-line__container {\n          width: 200px;\n          height: 20px;\n          border: 1px solid #85309A;\n          margin: 5px;\n          border-radius: 5px; }\n          .interface .header .header__status .header__status-line .status-line__container div {\n            height: 18px;\n            border-radius: 5px;\n            margin-left: -1px;\n            transition-property: width;\n            transition-duration: 100ms; }\n            .interface .header .header__status .header__status-line .status-line__container div.mp {\n              background: #44E1FD; }\n            .interface .header .header__status .header__status-line .status-line__container div.hp {\n              background: #FF3232; }\n        .interface .header .header__status .header__status-line .status-line__maxCur {\n          position: absolute; }\n    .interface .header .header__skils {\n      display: flex; }\n      .interface .header .header__skils div {\n        border: 1px solid #85309A;\n        border-radius: 5px;\n        width: 100px;\n        height: 100px;\n        margin: 0 10px; }\n  .interface .footer .footer__items {\n    display: flex; }\n    .interface .footer .footer__items div {\n      border: 1px solid #85309A;\n      border-radius: 5px;\n      width: 100px;\n      height: 100px;\n      margin: 0 10px; }\n", "", {"version":3,"sources":["C:/OSPanel/domains/wynexGame/src/styles/sass/node_modules/reset-css/reset.css","C:/OSPanel/domains/wynexGame/src/styles/sass/src/styles/sass/defaults/defaults.scss","C:/OSPanel/domains/wynexGame/src/styles/sass/src/styles/sass/style/inner/world/world.scss","C:/OSPanel/domains/wynexGame/src/styles/sass/src/styles/sass/style/inner/intarface/intarface.scss"],"names":[],"mappings":"AAAA;;;EAGE;AAEF;;;;;;;;;;;;;EAaC,UAAS;EACT,WAAU;EACV,UAAS;EACT,gBAAe;EACf,cAAa;EACb,yBAAwB,EACxB;;AACD,iDAAiD;AACjD;;EAEC,eAAc,EACd;;AACD,mDAAmD;AACnD;EACI,cAAa,EAChB;;AACD;EACC,eAAc,EACd;;AACD;EACC,iBAAgB,EAChB;;AACD;EACC,aAAY,EACZ;;AACD;;EAEC,YAAW;EACX,cAAa,EACb;;AACD;EACC,0BAAyB;EACzB,kBAAiB,EACjB;;ACjDD;EACC,WAAU;EACV,UAAS;EACT,uBAAsB,EACtB;;AAED;EACC,gBAAe,EACf;;AAGD;EACC,YAAW,EACX;;AAED;EACC,UAAS;EACT,WAAU,EACV;;AAGD;;;;EAIC,cAAa;EACb,iBAAgB,EAChB;;AC7BD;EACC,eAAc;EACd,uBAAsB;EACtB,iBAAgB;EAChB,kEAAiE,EAuEjE;EA3ED;IAOE,cAAa,EAmEb;IA1EF;MAUG,YAAW;MACX,aAAY;MACZ,mBAAkB,EA2ClB;MAvDH;QAeI,mBAAkB;QAClB,YAAW;QACX,aAAY;QACZ,WAAU,EAoCV;QAtDJ;UAqBK,mEAAkE;UAClE,qBAAoB;UACpB,6BAA4B;UAC5B,6BAA4B;UAC5B,WAAU,EACV;QA1BL;UA6BK,mEAAkE;UAClE,sBAAqB;UACrB,8BAA6B;UAC7B,6BAA4B;UAC5B,WAAU,EACV;QAlCL;UAqCK,qEAAoE;UACpE,YAAW;UACX,aAAY;UACZ,sBAAqB;UACrB,6BAA4B;UAC5B,6BAA4B,EAC5B;QA3CL;UA8CK,sDAAqD;UACrD,YAAW;UACX,aAAY;UACZ,sBAAqB;UACrB,6BAA4B;UAC5B,6BAA4B;UAC5B,yBAAwB,EACxB;IArDL;MA0DG,+DAA8D;MAC9D,sBAAqB;MACrB,6BAA4B;MAC5B,6BAA4B;MAC5B,wBAAuB,EACvB;IA/DH;MAkEG,6DAA4D;MAC5D,sBAAqB;MACrB,6BAA4B,EAC5B;IArEH;MAwEG,oBAAmB,EACnB;;ACzEH;EACC,WAAU;EACV,UAAS;EACT,mBAAkB;EAClB,cAAa;EACb,YAAW;EACX,aAAY;EACZ,aAAY;EACZ,cAAa;EACb,uBAAsB;EACtB,+BAA8B,EA8E9B;EAxFD;IAaE,cAAa;IACb,YAAW;IACX,cAAa,EA0Db;IAzEF;MAkBG,aAAY;MACZ,cAAa,EACb;IApBH;MAuBG,aAAY;MACZ,cAAa,EAoCb;MA5DH;QA2BI,cAAa;QACb,oBAAmB;QACnB,mBAAkB;QAClB,wBAAuB,EA6BvB;QA3DJ;UAiCK,aAAY;UACZ,aAAY;UACZ,0BAAyB;UACzB,YAAW;UACX,mBAAkB,EAiBlB;UAtDL;YAwCM,aAAY;YACZ,mBAAkB;YAClB,kBAAiB;YACjB,2BAA0B;YAC1B,2BAA0B,EAS1B;YArDN;cA+CO,oBAAmB,EACnB;YAhDP;cAmDO,oBAAmB,EACnB;QApDP;UAyDK,mBAAkB,EAClB;IA1DL;MA+DG,cAAa,EASb;MAxEH;QAkEI,0BAAyB;QACzB,mBAAkB;QAClB,aAAY;QACZ,cAAa;QACb,eAAc,EACd;EAvEJ;IA6EG,cAAa,EASb;IAtFH;MAgFI,0BAAyB;MACzB,mBAAkB;MAClB,aAAY;MACZ,cAAa;MACb,eAAc,EACd","file":"index.scss","sourcesContent":["/* http://meyerweb.com/eric/tools/css/reset/\n   v4.0 | 20180602\n   License: none (public domain)\n*/\n\nhtml, body, div, span, applet, object, iframe,\nh1, h2, h3, h4, h5, h6, p, blockquote, pre,\na, abbr, acronym, address, big, cite, code,\ndel, dfn, em, img, ins, kbd, q, s, samp,\nsmall, strike, strong, sub, sup, tt, var,\nb, u, i, center,\ndl, dt, dd, ol, ul, li,\nfieldset, form, label, legend,\ntable, caption, tbody, tfoot, thead, tr, th, td,\narticle, aside, canvas, details, embed,\nfigure, figcaption, footer, header, hgroup,\nmain, menu, nav, output, ruby, section, summary,\ntime, mark, audio, video {\n\tmargin: 0;\n\tpadding: 0;\n\tborder: 0;\n\tfont-size: 100%;\n\tfont: inherit;\n\tvertical-align: baseline;\n}\n/* HTML5 display-role reset for older browsers */\narticle, aside, details, figcaption, figure,\nfooter, header, hgroup, main, menu, nav, section {\n\tdisplay: block;\n}\n/* HTML5 hidden-attribute fix for newer browsers */\n*[hidden] {\n    display: none;\n}\nbody {\n\tline-height: 1;\n}\nol, ul {\n\tlist-style: none;\n}\nblockquote, q {\n\tquotes: none;\n}\nblockquote:before, blockquote:after,\nq:before, q:after {\n\tcontent: '';\n\tcontent: none;\n}\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n","@import 'reset-css';\r\n\r\n* {\r\n\tpadding: 0;\r\n\tmargin: 0;\r\n\tbox-sizing: border-box;\r\n}\r\n\r\nbutton {\r\n\tcursor: pointer;\r\n}\r\n\r\n\r\nhtml, body {\r\n\twidth: 100%;\r\n}\r\n\r\nh1 {\r\n\tmargin: 0;\r\n\tpadding: 0;\r\n}\r\n\r\n\r\nhtml,\r\nbody,\r\n.wrapper,\r\n.world {\r\n\tdisplay: flex;\r\n\tbackground: #000;\r\n}",".world {\r\n\tpadding: 100px;\r\n\tflex-direction: column;\r\n\tbackground: #000;\r\n\tbackground-image: url('/resources/img/worldTextures/dark-bg.jpg');\r\n\r\n\t.row {\r\n\t\tdisplay: flex;\r\n\r\n\t\t.standartPlace {\r\n\t\t\twidth: 30px;\r\n\t\t\theight: 30px;\r\n\t\t\tposition: relative;\r\n\r\n\t\t\tdiv {\r\n\t\t\t\tposition: absolute;\r\n\t\t\t\twidth: 100%;\r\n\t\t\t\theight: 100%;\r\n\t\t\t\tz-index: 2;\r\n\r\n\t\t\t\t&.magePlayer {\r\n\t\t\t\t\tbackground-image: url(/resources/img/iconCreature/player/mage.png);\r\n\t\t\t\t\tbackground-size: 70%;\r\n\t\t\t\t\tbackground-position: 5px 1px;\r\n\t\t\t\t\tbackground-repeat: no-repeat;\r\n\t\t\t\t\tz-index: 5;\r\n\t\t\t\t}\r\n\r\n\t\t\t\t&.slimeEnemy {\r\n\t\t\t\t\tbackground-image: url(/resources/img/iconCreature/enemy/slime.svg);\r\n\t\t\t\t\tbackground-size: 200%;\r\n\t\t\t\t\tbackground-position: -2px 8px;\r\n\t\t\t\t\tbackground-repeat: no-repeat;\r\n\t\t\t\t\tz-index: 5;\r\n\t\t\t\t}\r\n\r\n\t\t\t\t&.weapon {\r\n\t\t\t\t\tbackground: url('/resources/img/weaponTextures/stackWeaponBall.svg');\r\n\t\t\t\t\twidth: 30px;\r\n\t\t\t\t\theight: 30px;\r\n\t\t\t\t\tbackground-size: 250%;\r\n\t\t\t\t\tbackground-position: 4px 5px;\r\n\t\t\t\t\tbackground-repeat: no-repeat;\r\n\t\t\t\t}\r\n\r\n\t\t\t\t&.itemSlime {\r\n\t\t\t\t\tbackground: url('/resources/img/items/itemSlime.png');\r\n\t\t\t\t\twidth: 30px;\r\n\t\t\t\t\theight: 30px;\r\n\t\t\t\t\tbackground-size: 100%;\r\n\t\t\t\t\tbackground-position: 2px 2px;\r\n\t\t\t\t\tbackground-repeat: no-repeat;\r\n\t\t\t\t\ttransform: rotate(30deg);\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t}\r\n\r\n\t\t.border {\r\n\t\t\tbackground-image: url(/resources/img/worldTextures/border.svg);\r\n\t\t\tbackground-size: 200%;\r\n\t\t\tbackground-position: 5px 4px;\r\n\t\t\tbackground-repeat: no-repeat;\r\n\t\t\tbackground-color: black;\r\n\t\t}\r\n\r\n\t\t.dirt {\r\n\t\t\tbackground-image: url(/resources/img/worldTextures/road.svg);\r\n\t\t\tbackground-size: 200%;\r\n\t\t\tbackground-repeat: no-repeat;\r\n\t\t}\r\n\r\n\t\t.chest {\r\n\t\t\tbackground: #74FD59;\r\n\t\t}\r\n\t}\r\n}",".interface {\r\n\tpadding: 0;\r\n\tmargin: 0;\r\n\tposition: absolute;\r\n\tz-index: 1000;\r\n\twidth: 100%;\r\n\theight: 100%;\r\n\tcolor: white;\r\n\tdisplay: flex;\r\n\tflex-direction: column;\r\n\tjustify-content: space-between;\r\n\r\n\t.header {\r\n\t\theight: 100px;\r\n\t\twidth: 100%;\r\n\t\tdisplay: flex;\r\n\r\n\t\t.header__icon {\r\n\t\t\twidth: 100px;\r\n\t\t\theight: 100px;\r\n\t\t}\r\n\r\n\t\t.header__status {\r\n\t\t\twidth: 240px;\r\n\t\t\theight: 100px;\r\n\r\n\t\t\t.header__status-line {\r\n\t\t\t\tdisplay: flex;\r\n\t\t\t\talign-items: center;\r\n\t\t\t\tposition: relative;\r\n\t\t\t\tjustify-content: center;\r\n\r\n\t\t\t\t.status-line__container {\r\n\t\t\t\t\twidth: 200px;\r\n\t\t\t\t\theight: 20px;\r\n\t\t\t\t\tborder: 1px solid #85309A;\r\n\t\t\t\t\tmargin: 5px;\r\n\t\t\t\t\tborder-radius: 5px;\r\n\r\n\t\t\t\t\tdiv {\r\n\t\t\t\t\t\theight: 18px;\r\n\t\t\t\t\t\tborder-radius: 5px;\r\n\t\t\t\t\t\tmargin-left: -1px;\r\n\t\t\t\t\t\ttransition-property: width;\r\n\t\t\t\t\t\ttransition-duration: 100ms;\r\n\r\n\t\t\t\t\t\t&.mp {\r\n\t\t\t\t\t\t\tbackground: #44E1FD;\r\n\t\t\t\t\t\t}\r\n\r\n\t\t\t\t\t\t&.hp {\r\n\t\t\t\t\t\t\tbackground: #FF3232;\r\n\t\t\t\t\t\t}\r\n\t\t\t\t\t}\r\n\t\t\t\t}\r\n\r\n\t\t\t\t.status-line__maxCur {\r\n\t\t\t\t\tposition: absolute;\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t}\r\n\r\n\t\t.header__skils {\r\n\t\t\tdisplay: flex;\r\n\r\n\t\t\tdiv {\r\n\t\t\t\tborder: 1px solid #85309A;\r\n\t\t\t\tborder-radius: 5px;\r\n\t\t\t\twidth: 100px;\r\n\t\t\t\theight: 100px;\r\n\t\t\t\tmargin: 0 10px;\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n\r\n\t.footer {\r\n\t\t.footer__items {\r\n\t\t\tdisplay: flex;\r\n\r\n\t\t\tdiv {\r\n\t\t\t\tborder: 1px solid #85309A;\r\n\t\t\t\tborder-radius: 5px;\r\n\t\t\t\twidth: 100px;\r\n\t\t\t\theight: 100px;\r\n\t\t\t\tmargin: 0 10px;\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n}"],"sourceRoot":""}]);
+exports.push([module.i, "/* http://meyerweb.com/eric/tools/css/reset/\n   v4.0 | 20180602\n   License: none (public domain)\n*/\nhtml, body, div, span, applet, object, iframe,\nh1, h2, h3, h4, h5, h6, p, blockquote, pre,\na, abbr, acronym, address, big, cite, code,\ndel, dfn, em, img, ins, kbd, q, s, samp,\nsmall, strike, strong, sub, sup, tt, var,\nb, u, i, center,\ndl, dt, dd, ol, ul, li,\nfieldset, form, label, legend,\ntable, caption, tbody, tfoot, thead, tr, th, td,\narticle, aside, canvas, details, embed,\nfigure, figcaption, footer, header, hgroup,\nmain, menu, nav, output, ruby, section, summary,\ntime, mark, audio, video {\n  margin: 0;\n  padding: 0;\n  border: 0;\n  font-size: 100%;\n  font: inherit;\n  vertical-align: baseline; }\n\n/* HTML5 display-role reset for older browsers */\narticle, aside, details, figcaption, figure,\nfooter, header, hgroup, main, menu, nav, section {\n  display: block; }\n\n/* HTML5 hidden-attribute fix for newer browsers */\n*[hidden] {\n  display: none; }\n\nbody {\n  line-height: 1; }\n\nol, ul {\n  list-style: none; }\n\nblockquote, q {\n  quotes: none; }\n\nblockquote:before, blockquote:after,\nq:before, q:after {\n  content: '';\n  content: none; }\n\ntable {\n  border-collapse: collapse;\n  border-spacing: 0; }\n\n* {\n  padding: 0;\n  margin: 0;\n  box-sizing: border-box; }\n\nbutton {\n  cursor: pointer; }\n\nhtml, body {\n  width: 100%; }\n\nh1 {\n  margin: 0;\n  padding: 0; }\n\nhtml,\nbody,\n.wrapper,\n.world {\n  display: flex;\n  background: #000; }\n\n.world {\n  flex-direction: column;\n  background: #000;\n  background-image: url(\"/resources/img/worldTextures/dark-bg.jpg\"); }\n  .world .row {\n    display: flex; }\n    .world .row .standartPlace {\n      width: 30px;\n      height: 30px;\n      position: relative; }\n      .world .row .standartPlace div {\n        position: absolute;\n        width: 100%;\n        height: 100%;\n        z-index: 2; }\n        .world .row .standartPlace div.magePlayer {\n          background-image: url(/resources/img/iconCreature/player/mage.png);\n          background-size: 70%;\n          background-position: 5px 1px;\n          background-repeat: no-repeat;\n          z-index: 5; }\n        .world .row .standartPlace div.slimeEnemy {\n          background-image: url(/resources/img/iconCreature/enemy/slime.svg);\n          background-size: 200%;\n          background-position: -2px 8px;\n          background-repeat: no-repeat;\n          z-index: 5; }\n        .world .row .standartPlace div.weapon {\n          background: url(\"/resources/img/weaponTextures/stackWeaponBall.svg\");\n          width: 30px;\n          height: 30px;\n          background-size: 250%;\n          background-position: 4px 5px;\n          background-repeat: no-repeat; }\n        .world .row .standartPlace div.itemSlime {\n          background: url(\"/resources/img/items/itemSlime.png\");\n          width: 30px;\n          height: 30px;\n          background-size: 100%;\n          background-position: 2px 2px;\n          background-repeat: no-repeat;\n          transform: rotate(30deg); }\n    .world .row .border {\n      background-image: url(/resources/img/worldTextures/border.svg);\n      background-size: 200%;\n      background-position: 5px 4px;\n      background-repeat: no-repeat;\n      background-color: black; }\n    .world .row .dirt {\n      background-image: url(/resources/img/worldTextures/road.svg);\n      background-size: 200%;\n      background-repeat: no-repeat; }\n    .world .row .chest {\n      background: #74FD59; }\n\n.interface {\n  position: absolute;\n  z-index: 1000;\n  width: 100%;\n  height: 100%;\n  color: white;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between; }\n  .interface .header {\n    height: 100px;\n    width: 100%;\n    display: flex; }\n    .interface .header .header__icon {\n      width: 100px;\n      height: 100px; }\n    .interface .header .header__status {\n      width: 240px;\n      height: 100px; }\n      .interface .header .header__status .header__status-line {\n        display: flex;\n        align-items: center;\n        position: relative;\n        justify-content: center; }\n        .interface .header .header__status .header__status-line .status-line__container {\n          width: 200px;\n          height: 20px;\n          border: 1px solid #83199D;\n          margin: 5px;\n          border-radius: 5px; }\n          .interface .header .header__status .header__status-line .status-line__container div {\n            height: 18px;\n            border-radius: 5px;\n            margin-left: -1px;\n            transition-property: width;\n            transition-duration: 100ms; }\n            .interface .header .header__status .header__status-line .status-line__container div.mp {\n              background: #44E1FD; }\n            .interface .header .header__status .header__status-line .status-line__container div.hp {\n              background: #FF3232; }\n        .interface .header .header__status .header__status-line .status-line__maxCur {\n          position: absolute; }\n    .interface .header .header__items-wrapper {\n      display: flex;\n      justify-content: flex-end;\n      flex-grow: 1; }\n      .interface .header .header__items-wrapper .header__items .header__items-row {\n        display: flex; }\n        .interface .header .header__items-wrapper .header__items .header__items-row .header__item {\n          width: 30px;\n          height: 30px;\n          margin: 5px;\n          background-color: #A8A4A4;\n          border: 1px solid #83199D;\n          border-radius: 5px; }\n      .interface .header .header__items-wrapper .header__backpack {\n        width: 70px;\n        height: 70px;\n        margin: 5px;\n        background-color: #A8A4A4;\n        border: 1px solid #83199D;\n        border-radius: 5px;\n        background-image: url(\"/resources/img/interface/backpack.png\");\n        background-repeat: no-repeat;\n        background-position: 10px;\n        background-size: 70%; }\n        .interface .header .header__items-wrapper .header__backpack.active {\n          background-color: #DDDDDD; }\n  .interface .footer .footer__items {\n    display: flex; }\n    .interface .footer .footer__items div {\n      border: 1px solid #85309A;\n      border-radius: 5px;\n      width: 100px;\n      height: 100px;\n      margin: 0 10px; }\n", "", {"version":3,"sources":["C:/OSPanel/domains/wynexGame/src/styles/sass/node_modules/reset-css/reset.css","C:/OSPanel/domains/wynexGame/src/styles/sass/src/styles/sass/defaults/defaults.scss","C:/OSPanel/domains/wynexGame/src/styles/sass/src/styles/sass/style/inner/world/world.scss","C:/OSPanel/domains/wynexGame/src/styles/sass/src/styles/sass/style/inner/intarface/intarface.scss","C:/OSPanel/domains/wynexGame/src/styles/sass/src/styles/sass/color/color.scss"],"names":[],"mappings":"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","file":"index.scss","sourcesContent":["/* http://meyerweb.com/eric/tools/css/reset/\n   v4.0 | 20180602\n   License: none (public domain)\n*/\n\nhtml, body, div, span, applet, object, iframe,\nh1, h2, h3, h4, h5, h6, p, blockquote, pre,\na, abbr, acronym, address, big, cite, code,\ndel, dfn, em, img, ins, kbd, q, s, samp,\nsmall, strike, strong, sub, sup, tt, var,\nb, u, i, center,\ndl, dt, dd, ol, ul, li,\nfieldset, form, label, legend,\ntable, caption, tbody, tfoot, thead, tr, th, td,\narticle, aside, canvas, details, embed,\nfigure, figcaption, footer, header, hgroup,\nmain, menu, nav, output, ruby, section, summary,\ntime, mark, audio, video {\n\tmargin: 0;\n\tpadding: 0;\n\tborder: 0;\n\tfont-size: 100%;\n\tfont: inherit;\n\tvertical-align: baseline;\n}\n/* HTML5 display-role reset for older browsers */\narticle, aside, details, figcaption, figure,\nfooter, header, hgroup, main, menu, nav, section {\n\tdisplay: block;\n}\n/* HTML5 hidden-attribute fix for newer browsers */\n*[hidden] {\n    display: none;\n}\nbody {\n\tline-height: 1;\n}\nol, ul {\n\tlist-style: none;\n}\nblockquote, q {\n\tquotes: none;\n}\nblockquote:before, blockquote:after,\nq:before, q:after {\n\tcontent: '';\n\tcontent: none;\n}\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n","@import 'reset-css';\r\n\r\n* {\r\n\tpadding: 0;\r\n\tmargin: 0;\r\n\tbox-sizing: border-box;\r\n}\r\n\r\nbutton {\r\n\tcursor: pointer;\r\n}\r\n\r\n\r\nhtml, body {\r\n\twidth: 100%;\r\n}\r\n\r\nh1 {\r\n\tmargin: 0;\r\n\tpadding: 0;\r\n}\r\n\r\n\r\nhtml,\r\nbody,\r\n.wrapper,\r\n.world {\r\n\tdisplay: flex;\r\n\tbackground: #000;\r\n}",".world {\r\n\tflex-direction: column;\r\n\tbackground: #000;\r\n\tbackground-image: url('/resources/img/worldTextures/dark-bg.jpg');\r\n\r\n\t.row {\r\n\t\tdisplay: flex;\r\n\r\n\t\t.standartPlace {\r\n\t\t\twidth: 30px;\r\n\t\t\theight: 30px;\r\n\t\t\tposition: relative;\r\n\r\n\t\t\tdiv {\r\n\t\t\t\tposition: absolute;\r\n\t\t\t\twidth: 100%;\r\n\t\t\t\theight: 100%;\r\n\t\t\t\tz-index: 2;\r\n\r\n\t\t\t\t&.magePlayer {\r\n\t\t\t\t\tbackground-image: url(/resources/img/iconCreature/player/mage.png);\r\n\t\t\t\t\tbackground-size: 70%;\r\n\t\t\t\t\tbackground-position: 5px 1px;\r\n\t\t\t\t\tbackground-repeat: no-repeat;\r\n\t\t\t\t\tz-index: 5;\r\n\t\t\t\t}\r\n\r\n\t\t\t\t&.slimeEnemy {\r\n\t\t\t\t\tbackground-image: url(/resources/img/iconCreature/enemy/slime.svg);\r\n\t\t\t\t\tbackground-size: 200%;\r\n\t\t\t\t\tbackground-position: -2px 8px;\r\n\t\t\t\t\tbackground-repeat: no-repeat;\r\n\t\t\t\t\tz-index: 5;\r\n\t\t\t\t}\r\n\r\n\t\t\t\t&.weapon {\r\n\t\t\t\t\tbackground: url('/resources/img/weaponTextures/stackWeaponBall.svg');\r\n\t\t\t\t\twidth: 30px;\r\n\t\t\t\t\theight: 30px;\r\n\t\t\t\t\tbackground-size: 250%;\r\n\t\t\t\t\tbackground-position: 4px 5px;\r\n\t\t\t\t\tbackground-repeat: no-repeat;\r\n\t\t\t\t}\r\n\r\n\t\t\t\t&.itemSlime {\r\n\t\t\t\t\tbackground: url('/resources/img/items/itemSlime.png');\r\n\t\t\t\t\twidth: 30px;\r\n\t\t\t\t\theight: 30px;\r\n\t\t\t\t\tbackground-size: 100%;\r\n\t\t\t\t\tbackground-position: 2px 2px;\r\n\t\t\t\t\tbackground-repeat: no-repeat;\r\n\t\t\t\t\ttransform: rotate(30deg);\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t}\r\n\r\n\t\t.border {\r\n\t\t\tbackground-image: url(/resources/img/worldTextures/border.svg);\r\n\t\t\tbackground-size: 200%;\r\n\t\t\tbackground-position: 5px 4px;\r\n\t\t\tbackground-repeat: no-repeat;\r\n\t\t\tbackground-color: black;\r\n\t\t}\r\n\r\n\t\t.dirt {\r\n\t\t\tbackground-image: url(/resources/img/worldTextures/road.svg);\r\n\t\t\tbackground-size: 200%;\r\n\t\t\tbackground-repeat: no-repeat;\r\n\t\t}\r\n\r\n\t\t.chest {\r\n\t\t\tbackground: #74FD59;\r\n\t\t}\r\n\t}\r\n}",".interface {\r\n\tposition: absolute;\r\n\tz-index: 1000;\r\n\twidth: 100%;\r\n\theight: 100%;\r\n\tcolor: white;\r\n\tdisplay: flex;\r\n\tflex-direction: column;\r\n\tjustify-content: space-between;\r\n\r\n\t.header {\r\n\t\theight: 100px;\r\n\t\twidth: 100%;\r\n\t\tdisplay: flex;\r\n\r\n\t\t.header__icon {\r\n\t\t\twidth: 100px;\r\n\t\t\theight: 100px;\r\n\t\t}\r\n\r\n\t\t.header__status {\r\n\t\t\twidth: 240px;\r\n\t\t\theight: 100px;\r\n\r\n\t\t\t.header__status-line {\r\n\t\t\t\tdisplay: flex;\r\n\t\t\t\talign-items: center;\r\n\t\t\t\tposition: relative;\r\n\t\t\t\tjustify-content: center;\r\n\r\n\t\t\t\t.status-line__container {\r\n\t\t\t\t\twidth: 200px;\r\n\t\t\t\t\theight: 20px;\r\n\t\t\t\t\tborder: 1px solid $purple;\r\n\t\t\t\t\tmargin: 5px;\r\n\t\t\t\t\tborder-radius: 5px;\r\n\r\n\t\t\t\t\tdiv {\r\n\t\t\t\t\t\theight: 18px;\r\n\t\t\t\t\t\tborder-radius: 5px;\r\n\t\t\t\t\t\tmargin-left: -1px;\r\n\t\t\t\t\t\ttransition-property: width;\r\n\t\t\t\t\t\ttransition-duration: 100ms;\r\n\r\n\t\t\t\t\t\t&.mp {\r\n\t\t\t\t\t\t\tbackground: $blue;\r\n\t\t\t\t\t\t}\r\n\r\n\t\t\t\t\t\t&.hp {\r\n\t\t\t\t\t\t\tbackground: $red;\r\n\t\t\t\t\t\t}\r\n\t\t\t\t\t}\r\n\t\t\t\t}\r\n\r\n\t\t\t\t.status-line__maxCur {\r\n\t\t\t\t\tposition: absolute;\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t}\r\n\r\n\t\t.header__items-wrapper {\r\n\t\t\tdisplay: flex;\r\n\t\t\tjustify-content: flex-end;\r\n\t\t\tflex-grow: 1;\r\n\r\n\t\t\t.header__items {\r\n\t\t\t\t.header__items-row {\r\n\t\t\t\t\tdisplay: flex;\r\n\r\n\t\t\t\t\t.header__item {\r\n\t\t\t\t\t\twidth: 30px;\r\n\t\t\t\t\t\theight: 30px;\r\n\t\t\t\t\t\tmargin: 5px;\r\n\t\t\t\t\t\tbackground-color: $grey;\r\n\t\t\t\t\t\tborder: 1px solid $purple;\r\n\t\t\t\t\t\tborder-radius: 5px;\r\n\r\n\t\t\t\t\t}\r\n\t\t\t\t}\r\n\t\t\t}\r\n\r\n\t\t\t.header__backpack {\r\n\t\t\t\twidth: 70px;\r\n\t\t\t\theight: 70px;\r\n\t\t\t\tmargin: 5px;\r\n\t\t\t\tbackground-color: $grey;\r\n\t\t\t\tborder: 1px solid $purple;\r\n\t\t\t\tborder-radius: 5px;\r\n\t\t\t\tbackground-image: url('/resources/img/interface/backpack.png');\r\n\t\t\t\tbackground-repeat: no-repeat;\r\n\t\t\t\tbackground-position: 10px;\r\n\t\t\t\tbackground-size: 70%;\r\n\r\n\t\t\t\t&.active {\r\n\t\t\t\t\tbackground-color: $greyLight;\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n\r\n\t.footer {\r\n\t\t.footer__items {\r\n\t\t\tdisplay: flex;\r\n\r\n\t\t\tdiv {\r\n\t\t\t\tborder: 1px solid #85309A;\r\n\t\t\t\tborder-radius: 5px;\r\n\t\t\t\twidth: 100px;\r\n\t\t\t\theight: 100px;\r\n\t\t\t\tmargin: 0 10px;\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n}","$greyLight : #DDDDDD;\r\n$grey : #A8A4A4;\r\n$purple : #83199D;\r\n$blue : #44E1FD;\r\n$red : #FF3232;"],"sourceRoot":""}]);
 
 // exports
 
@@ -31481,9 +31481,21 @@ module.exports = function () {
 		});
 
 		this._eventMainGetHP = new CustomEvent('mainGetHP', this._getObjChangeStatistic());
+
+		this._eventMainStepOnItem = new CustomEvent('mainStepOn', {
+			detail: {
+				withItems: false,
+				items: []
+			}
+		});
 	}
 
 	_createClass(StorCustomEvents, [{
+		key: 'getEventMainStepOn',
+		value: function getEventMainStepOn() {
+			return this._eventMainStepOnItem;
+		}
+	}, {
 		key: 'getEventBias',
 		value: function getEventBias() {
 			return this._eventBias;
@@ -31757,7 +31769,7 @@ module.exports = function () {
 		for (var i = 0; i < N; i++) {
 			this[i] = [];
 			for (var j = 0; j < M; j++) {
-				if (i === 0 || i + 1 === N || j === 0 || j + 1 === M) {
+				if (i < 3 || i + 1 > N - 3 || j < 3 || j + 1 > M - 3) {
 					this[i][j] = ControllerBlock.getBlockObject(2);
 				} else {
 					this[i][j] = ControllerBlock.getBlockObject(1);
@@ -32018,6 +32030,7 @@ module.exports = function () {
 		key: 'setPlayer',
 		value: function setPlayer(val) {
 			this._creature[this._numInerBlock] = new Player(this._numInerBlock, this, val.watcher, val.coor, val.type);
+
 			try {
 				this._place[val.coor.x][val.coor.y].addVisiter(this._creature[this._numInerBlock++]);
 				return true;
@@ -32031,6 +32044,7 @@ module.exports = function () {
 		key: 'setEnemy',
 		value: function setEnemy(val) {
 			this._creature[this._numInerBlock] = new Enemy(this._numInerBlock, this, val.coor, val.type);
+
 			try {
 				this._place[val.coor.x][val.coor.y].addVisiter(this._creature[this._numInerBlock++]);
 				return true;
@@ -32051,11 +32065,6 @@ module.exports = function () {
 			position.addWeapon(weapon);
 
 			return weapon;
-		}
-	}, {
-		key: 'setVisiter',
-		value: function setVisiter(coor, creature) {
-			this._place[coor.x][coor.y].addVisiter(creature);
 		}
 	}, {
 		key: 'getCreature',
@@ -32092,6 +32101,19 @@ module.exports = function () {
 			creature.coor.x = coor.newX;
 			creature.coor.y = coor.newY;
 
+			if (creature.watcher) {
+				var event = this._events.getEventMainStepOn();
+
+				if (this._place[coor.newX][coor.newY]._items[0] && creature.watcher) {
+					event.detail.withItems = true;
+					event.detail.items = this._place[coor.newX][coor.newY]._items;
+				} else if (creature.watcher) {
+					event.detail.withItems = false;
+					event.detail.items = [];
+				}
+
+				document.dispatchEvent(event);
+			}
 			return true;
 		}
 	}, {
@@ -32506,8 +32528,8 @@ module.exports = function () {
 
 			if (firstFindSize === true) {
 
-				var widthBlocks = Math.floor((window.innerWidth - 200) / GLOBAL_SETTING.sizeBlock.width);
-				var heightBlocks = Math.floor((window.innerHeight - 200) / GLOBAL_SETTING.sizeBlock.height);
+				var widthBlocks = Math.floor(window.innerWidth / GLOBAL_SETTING.sizeBlock.width);
+				var heightBlocks = Math.floor(window.innerHeight / GLOBAL_SETTING.sizeBlock.height);
 
 				var sizeG = {
 					widthBlocks: widthBlocks < GLOBAL_SETTING.numBlocks.width ? widthBlocks : GLOBAL_SETTING.numBlocks.width,
@@ -33214,7 +33236,9 @@ module.exports = function (_TempleInerObj) {
 			var div = getBlockWithCreature(this);
 
 			if (this.visable.was === true) {
-				this.DOMObject.children[0].remove();
+				[].forEach.call(this.DOMObject.children, function (item) {
+					item.remove();
+				});
 				this.DOMObject = null;
 			}
 
@@ -33577,9 +33601,11 @@ module.exports = function (_InnerObject) {
 	_createClass(Weapon, [{
 		key: 'die',
 		value: function die() {
+
 			if (this.DOMObject && this.DOMObject.children[0]) {
 				this.DOMObject.children[0].remove();
 			}
+
 			this.state.deleteWeapon(this.id);
 		}
 	}]);
@@ -33603,9 +33629,9 @@ var Size = __webpack_require__(/*! ../structOfDate/size.js */ "./src/gameSrcJs/e
 
 module.exports = {
 	sizeBlock: new Size(30, 30),
-	numBlocks: new Size(Math.pow(2, 5), Math.pow(2, 5)),
+	numBlocks: new Size(Math.pow(2, 10), Math.pow(2, 10)),
 
-	numEnemy: 1,
+	numEnemy: 500,
 
 	timeOfTactPlayer: 50,
 	timeOfTactOther: 200,
@@ -33781,8 +33807,8 @@ module.exports = function () {
 
 			this._game = new this._ControllerGame([{
 				coor: {
-					x: 1,
-					y: 1
+					x: 100,
+					y: 100
 				},
 				type: 'mage',
 				watcher: true
@@ -33903,7 +33929,7 @@ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 var HeaderIcon = __webpack_require__(/*! ./innerHeader/headerIcon/HeaderIcon.jsx */ "./src/gameSrcJs/interface/gameInterface/header/innerHeader/headerIcon/HeaderIcon.jsx");
 var HeaderStatus = __webpack_require__(/*! ./innerHeader/headerStatus/headerStatus.jsx */ "./src/gameSrcJs/interface/gameInterface/header/innerHeader/headerStatus/headerStatus.jsx");
-var HeaderSkils = __webpack_require__(/*! ./innerHeader/headerSkils/headerSkils.jsx */ "./src/gameSrcJs/interface/gameInterface/header/innerHeader/headerSkils/headerSkils.jsx");
+var HeaderItems = __webpack_require__(/*! ./innerHeader/headerItems/headerItems.jsx */ "./src/gameSrcJs/interface/gameInterface/header/innerHeader/headerItems/headerItems.jsx");
 
 module.exports = function (_React$Component) {
 	_inherits(Header, _React$Component);
@@ -33922,7 +33948,7 @@ module.exports = function (_React$Component) {
 				{ className: 'header' },
 				React.createElement(HeaderIcon, null),
 				React.createElement(HeaderStatus, null),
-				React.createElement(HeaderSkils, null)
+				React.createElement(HeaderItems, null)
 			);
 		}
 	}]);
@@ -33982,9 +34008,9 @@ module.exports = function (_React$Component) {
 
 /***/ }),
 
-/***/ "./src/gameSrcJs/interface/gameInterface/header/innerHeader/headerSkils/headerSkils.jsx":
+/***/ "./src/gameSrcJs/interface/gameInterface/header/innerHeader/headerItems/headerItems.jsx":
 /*!**********************************************************************************************!*\
-  !*** ./src/gameSrcJs/interface/gameInterface/header/innerHeader/headerSkils/headerSkils.jsx ***!
+  !*** ./src/gameSrcJs/interface/gameInterface/header/innerHeader/headerItems/headerItems.jsx ***!
   \**********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -34001,36 +34027,71 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-var ReactDOM = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 
 module.exports = function (_React$Component) {
-	_inherits(HeaderSkils, _React$Component);
+	_inherits(HeaderItems, _React$Component);
 
-	function HeaderSkils() {
-		_classCallCheck(this, HeaderSkils);
+	function HeaderItems(props) {
+		_classCallCheck(this, HeaderItems);
 
-		return _possibleConstructorReturn(this, (HeaderSkils.__proto__ || Object.getPrototypeOf(HeaderSkils)).apply(this, arguments));
+		var _this = _possibleConstructorReturn(this, (HeaderItems.__proto__ || Object.getPrototypeOf(HeaderItems)).call(this, props));
+
+		_this.state = {
+			items: [],
+			active: false
+		};
+		return _this;
 	}
 
-	_createClass(HeaderSkils, [{
+	_createClass(HeaderItems, [{
 		key: 'render',
 		value: function render() {
 			return React.createElement(
 				'div',
-				{ className: 'header__skils' },
-				React.createElement('div', null),
-				React.createElement('div', null),
-				React.createElement('div', null),
-				React.createElement('div', null),
-				React.createElement('div', null),
-				React.createElement('div', null),
-				React.createElement('div', null),
-				React.createElement('div', null)
+				{ className: 'header__items-wrapper' },
+				React.createElement(
+					'div',
+					{ className: 'header__items' },
+					React.createElement(
+						'div',
+						{ className: 'header__items-row' },
+						React.createElement('div', { className: 'header__item' }),
+						React.createElement('div', { className: 'header__item' }),
+						React.createElement('div', { className: 'header__item' })
+					),
+					React.createElement(
+						'div',
+						{ className: 'header__items-row' },
+						React.createElement('div', { className: 'header__item' }),
+						React.createElement('div', { className: 'header__item' }),
+						React.createElement('div', { className: 'header__item' })
+					)
+				),
+				React.createElement('div', { className: this.state.active ? 'header__backpack active' : 'header__backpack' })
 			);
+		}
+	}, {
+		key: 'componentDidMount',
+		value: function componentDidMount() {
+			var _this2 = this;
+
+			document.addEventListener('mainStepOn', function (e) {
+				if (e.detail.withItems) {
+					_this2.setState({
+						items: e.detail.items,
+						active: true
+					});
+				} else {
+					_this2.setState({
+						items: [],
+						active: false
+					});
+				}
+			});
 		}
 	}]);
 
-	return HeaderSkils;
+	return HeaderItems;
 }(React.Component);
 
 /***/ }),
