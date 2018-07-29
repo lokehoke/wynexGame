@@ -166,7 +166,7 @@ module.exports = class InnerObject extends TempleInerObj {
 		if (items.length > 1) {
 			div.className = 'stockItems';
 		} else if (items.length === 1) {
-			div.className = items[0].classNameCSS;
+			div.className = items[0].item.classNameCSS;
 		}
 
 		this.state.dropItems(this);

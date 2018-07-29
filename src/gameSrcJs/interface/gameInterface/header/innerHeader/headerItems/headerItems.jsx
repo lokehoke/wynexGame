@@ -2,6 +2,8 @@
 
 const React = require('react');
 
+const Item = require('../../../commonComponent/item.jsx');
+
 module.exports = class HeaderItems extends React.Component {
 	constructor(props) {
 		super(props);
@@ -12,21 +14,23 @@ module.exports = class HeaderItems extends React.Component {
 	}
 
 	render() {
+		let bpClassName = (this.state.active ? 'header__backpack active' : 'header__backpack');
+
 		return (
 			<div className="header__items-wrapper">
 				<div className="header__items">
 					<div className="header__items-row">
-						<div className="header__item"></div>
-						<div className="header__item"></div>
-						<div className="header__item"></div>
+						<Item />
+						<Item />
+						<Item />
 					</div>
 					<div className="header__items-row">
-						<div className="header__item"></div>
-						<div className="header__item"></div>
-						<div className="header__item"></div>
+						<Item />
+						<Item />
+						<Item />
 					</div>
 				</div>
-				<div className={(this.state.active ? 'header__backpack active' : 'header__backpack')}></div>
+				<div className={bpClassName} onClick={this.props.openPopUp}></div>
 			</div>
 		);
 	}

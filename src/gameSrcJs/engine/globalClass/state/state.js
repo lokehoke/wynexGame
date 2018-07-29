@@ -46,6 +46,7 @@ module.exports = class State {
 		this._events = new StorCustomEvents();
 
 		this._allItems = new AllItems();
+		this._stepOnItem = [];
 	}
 
 	getSetting() {
@@ -146,10 +147,9 @@ module.exports = class State {
 
 	setWeapon(val) {
 		let position = this._place[val.coor.x][val.coor.y];
+
 		let weapon = new Weapon(this._numInerBlock, this, val.owner, val.coor);
-
 		this._weapons[this._numInerBlock++] = weapon;
-
 		position.addWeapon(weapon);
 
 		return weapon;
@@ -193,9 +193,15 @@ module.exports = class State {
 				event.detail.items = [];
 			}
 
+			this._stepOnItem = event.detail.items;
+
 			document.dispatchEvent(event);
 		}
 		return true;
+	}
+
+	getStepOnItem() {
+		return this._stepOnItem;
 	}
 
 	changeCoordinateWeapon(weapon, coor) {

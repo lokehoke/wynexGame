@@ -7,8 +7,7 @@ const ReactDOM = require('react-dom');
 
 const GameInterface = require('./gameInterface/gameInterface.jsx');
 
-ReactDOM.render(<GameInterface />, document.getElementById('interface'));
-
 const game = new WEngineAPI();
+const state = game.startGame();
 
-game.startGame();
+ReactDOM.render(<GameInterface stateGame={state}/>, document.getElementById('interface'));

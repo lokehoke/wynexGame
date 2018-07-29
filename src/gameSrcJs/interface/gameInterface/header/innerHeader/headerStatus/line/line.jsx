@@ -5,11 +5,21 @@ const React = require('react');
 module.exports = class Line extends React.Component {
 	constructor(props) {
 		super(props);
+
+		let watcher = this.props.stateGame.getWatcher();
+		let max = 0;
+		let cur = 0;
+
+		if (this.props.type === 'hp') {
+			max = watcher.maxHP;
+			cur = watcher.HP;
+		}
+
 		this.state = {
 			fromO: null,
 			num: 0,
-			max: 0,
-			cur: 0,
+			max: max,
+			cur: cur,
 			type: this.props.type
 		};
 	}

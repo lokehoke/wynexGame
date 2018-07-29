@@ -10,6 +10,9 @@ module.exports = class Enemy extends Creature {
 		this.watcher = false;
 		this.pursuitRange = this._settings.standartEnemy.pursuitRange;
 
-		this._items.push(state.createItem(1, coor));
+		this._items.push({
+			item: state.createItem(1, coor),
+			num: 1
+		});
 	}
 }

@@ -55,7 +55,7 @@ module.exports = class Block {
 			console.log(1);
 			// return ;
 		} else if (this._items.length) {
-			return this._items[0];
+			return this._items[0].item;
 		} else {
 			return null;
 		}

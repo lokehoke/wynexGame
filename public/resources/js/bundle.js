@@ -9923,7 +9923,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "/* http://meyerweb.com/eric/tools/css/reset/\n   v4.0 | 20180602\n   License: none (public domain)\n*/\nhtml, body, div, span, applet, object, iframe,\nh1, h2, h3, h4, h5, h6, p, blockquote, pre,\na, abbr, acronym, address, big, cite, code,\ndel, dfn, em, img, ins, kbd, q, s, samp,\nsmall, strike, strong, sub, sup, tt, var,\nb, u, i, center,\ndl, dt, dd, ol, ul, li,\nfieldset, form, label, legend,\ntable, caption, tbody, tfoot, thead, tr, th, td,\narticle, aside, canvas, details, embed,\nfigure, figcaption, footer, header, hgroup,\nmain, menu, nav, output, ruby, section, summary,\ntime, mark, audio, video {\n  margin: 0;\n  padding: 0;\n  border: 0;\n  font-size: 100%;\n  font: inherit;\n  vertical-align: baseline; }\n\n/* HTML5 display-role reset for older browsers */\narticle, aside, details, figcaption, figure,\nfooter, header, hgroup, main, menu, nav, section {\n  display: block; }\n\n/* HTML5 hidden-attribute fix for newer browsers */\n*[hidden] {\n  display: none; }\n\nbody {\n  line-height: 1; }\n\nol, ul {\n  list-style: none; }\n\nblockquote, q {\n  quotes: none; }\n\nblockquote:before, blockquote:after,\nq:before, q:after {\n  content: '';\n  content: none; }\n\ntable {\n  border-collapse: collapse;\n  border-spacing: 0; }\n\n* {\n  padding: 0;\n  margin: 0;\n  box-sizing: border-box; }\n\nbutton {\n  cursor: pointer; }\n\nhtml, body {\n  width: 100%; }\n\nh1 {\n  margin: 0;\n  padding: 0; }\n\nhtml,\nbody,\n.wrapper,\n.world {\n  display: flex;\n  background: #000; }\n\n.world {\n  flex-direction: column;\n  background: #000;\n  background-image: url(\"/resources/img/worldTextures/dark-bg.jpg\"); }\n  .world .row {\n    display: flex; }\n    .world .row .standartPlace {\n      width: 30px;\n      height: 30px;\n      position: relative; }\n      .world .row .standartPlace div {\n        position: absolute;\n        width: 100%;\n        height: 100%;\n        z-index: 2; }\n        .world .row .standartPlace div.magePlayer {\n          background-image: url(/resources/img/iconCreature/player/mage.png);\n          background-size: 70%;\n          background-position: 5px 1px;\n          background-repeat: no-repeat;\n          z-index: 5; }\n        .world .row .standartPlace div.slimeEnemy {\n          background-image: url(/resources/img/iconCreature/enemy/slime.svg);\n          background-size: 200%;\n          background-position: -2px 8px;\n          background-repeat: no-repeat;\n          z-index: 5; }\n        .world .row .standartPlace div.weapon {\n          background: url(\"/resources/img/weaponTextures/stackWeaponBall.svg\");\n          width: 30px;\n          height: 30px;\n          background-size: 250%;\n          background-position: 4px 5px;\n          background-repeat: no-repeat; }\n        .world .row .standartPlace div.itemSlime {\n          background: url(\"/resources/img/items/itemSlime.png\");\n          width: 30px;\n          height: 30px;\n          background-size: 100%;\n          background-position: 2px 2px;\n          background-repeat: no-repeat;\n          transform: rotate(30deg); }\n    .world .row .border {\n      background-image: url(/resources/img/worldTextures/border.svg);\n      background-size: 200%;\n      background-position: 5px 4px;\n      background-repeat: no-repeat;\n      background-color: black; }\n    .world .row .dirt {\n      background-image: url(/resources/img/worldTextures/road.svg);\n      background-size: 200%;\n      background-repeat: no-repeat; }\n    .world .row .chest {\n      background: #74FD59; }\n\n.interface {\n  position: absolute;\n  z-index: 1000;\n  width: 100%;\n  height: 100%;\n  color: white;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between; }\n  .interface .header {\n    height: 100px;\n    width: 100%;\n    display: flex; }\n    .interface .header .header__icon {\n      width: 100px;\n      height: 100px; }\n    .interface .header .header__status {\n      width: 240px;\n      height: 100px; }\n      .interface .header .header__status .header__status-line {\n        display: flex;\n        align-items: center;\n        position: relative;\n        justify-content: center; }\n        .interface .header .header__status .header__status-line .status-line__container {\n          width: 200px;\n          height: 20px;\n          border: 1px solid #83199D;\n          margin: 5px;\n          border-radius: 5px; }\n          .interface .header .header__status .header__status-line .status-line__container div {\n            height: 18px;\n            border-radius: 5px;\n            margin-left: -1px;\n            transition-property: width;\n            transition-duration: 100ms; }\n            .interface .header .header__status .header__status-line .status-line__container div.mp {\n              background: #44E1FD; }\n            .interface .header .header__status .header__status-line .status-line__container div.hp {\n              background: #FF3232; }\n        .interface .header .header__status .header__status-line .status-line__maxCur {\n          position: absolute; }\n    .interface .header .header__items-wrapper {\n      display: flex;\n      justify-content: flex-end;\n      flex-grow: 1; }\n      .interface .header .header__items-wrapper .header__items .header__items-row {\n        display: flex; }\n        .interface .header .header__items-wrapper .header__items .header__items-row .header__item {\n          width: 30px;\n          height: 30px;\n          margin: 5px;\n          background-color: #A8A4A4;\n          border: 1px solid #83199D;\n          border-radius: 5px; }\n      .interface .header .header__items-wrapper .header__backpack {\n        width: 70px;\n        height: 70px;\n        margin: 5px;\n        background-color: #A8A4A4;\n        border: 1px solid #83199D;\n        border-radius: 5px;\n        background-image: url(\"/resources/img/interface/backpack.png\");\n        background-repeat: no-repeat;\n        background-position: 10px;\n        background-size: 70%; }\n        .interface .header .header__items-wrapper .header__backpack.active {\n          background-color: #DDDDDD; }\n  .interface .footer .footer__items {\n    display: flex; }\n    .interface .footer .footer__items div {\n      border: 1px solid #85309A;\n      border-radius: 5px;\n      width: 100px;\n      height: 100px;\n      margin: 0 10px; }\n", "", {"version":3,"sources":["C:/OSPanel/domains/wynexGame/src/styles/sass/node_modules/reset-css/reset.css","C:/OSPanel/domains/wynexGame/src/styles/sass/src/styles/sass/defaults/defaults.scss","C:/OSPanel/domains/wynexGame/src/styles/sass/src/styles/sass/style/inner/world/world.scss","C:/OSPanel/domains/wynexGame/src/styles/sass/src/styles/sass/style/inner/intarface/intarface.scss","C:/OSPanel/domains/wynexGame/src/styles/sass/src/styles/sass/color/color.scss"],"names":[],"mappings":"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","file":"index.scss","sourcesContent":["/* http://meyerweb.com/eric/tools/css/reset/\n   v4.0 | 20180602\n   License: none (public domain)\n*/\n\nhtml, body, div, span, applet, object, iframe,\nh1, h2, h3, h4, h5, h6, p, blockquote, pre,\na, abbr, acronym, address, big, cite, code,\ndel, dfn, em, img, ins, kbd, q, s, samp,\nsmall, strike, strong, sub, sup, tt, var,\nb, u, i, center,\ndl, dt, dd, ol, ul, li,\nfieldset, form, label, legend,\ntable, caption, tbody, tfoot, thead, tr, th, td,\narticle, aside, canvas, details, embed,\nfigure, figcaption, footer, header, hgroup,\nmain, menu, nav, output, ruby, section, summary,\ntime, mark, audio, video {\n\tmargin: 0;\n\tpadding: 0;\n\tborder: 0;\n\tfont-size: 100%;\n\tfont: inherit;\n\tvertical-align: baseline;\n}\n/* HTML5 display-role reset for older browsers */\narticle, aside, details, figcaption, figure,\nfooter, header, hgroup, main, menu, nav, section {\n\tdisplay: block;\n}\n/* HTML5 hidden-attribute fix for newer browsers */\n*[hidden] {\n    display: none;\n}\nbody {\n\tline-height: 1;\n}\nol, ul {\n\tlist-style: none;\n}\nblockquote, q {\n\tquotes: none;\n}\nblockquote:before, blockquote:after,\nq:before, q:after {\n\tcontent: '';\n\tcontent: none;\n}\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n","@import 'reset-css';\r\n\r\n* {\r\n\tpadding: 0;\r\n\tmargin: 0;\r\n\tbox-sizing: border-box;\r\n}\r\n\r\nbutton {\r\n\tcursor: pointer;\r\n}\r\n\r\n\r\nhtml, body {\r\n\twidth: 100%;\r\n}\r\n\r\nh1 {\r\n\tmargin: 0;\r\n\tpadding: 0;\r\n}\r\n\r\n\r\nhtml,\r\nbody,\r\n.wrapper,\r\n.world {\r\n\tdisplay: flex;\r\n\tbackground: #000;\r\n}",".world {\r\n\tflex-direction: column;\r\n\tbackground: #000;\r\n\tbackground-image: url('/resources/img/worldTextures/dark-bg.jpg');\r\n\r\n\t.row {\r\n\t\tdisplay: flex;\r\n\r\n\t\t.standartPlace {\r\n\t\t\twidth: 30px;\r\n\t\t\theight: 30px;\r\n\t\t\tposition: relative;\r\n\r\n\t\t\tdiv {\r\n\t\t\t\tposition: absolute;\r\n\t\t\t\twidth: 100%;\r\n\t\t\t\theight: 100%;\r\n\t\t\t\tz-index: 2;\r\n\r\n\t\t\t\t&.magePlayer {\r\n\t\t\t\t\tbackground-image: url(/resources/img/iconCreature/player/mage.png);\r\n\t\t\t\t\tbackground-size: 70%;\r\n\t\t\t\t\tbackground-position: 5px 1px;\r\n\t\t\t\t\tbackground-repeat: no-repeat;\r\n\t\t\t\t\tz-index: 5;\r\n\t\t\t\t}\r\n\r\n\t\t\t\t&.slimeEnemy {\r\n\t\t\t\t\tbackground-image: url(/resources/img/iconCreature/enemy/slime.svg);\r\n\t\t\t\t\tbackground-size: 200%;\r\n\t\t\t\t\tbackground-position: -2px 8px;\r\n\t\t\t\t\tbackground-repeat: no-repeat;\r\n\t\t\t\t\tz-index: 5;\r\n\t\t\t\t}\r\n\r\n\t\t\t\t&.weapon {\r\n\t\t\t\t\tbackground: url('/resources/img/weaponTextures/stackWeaponBall.svg');\r\n\t\t\t\t\twidth: 30px;\r\n\t\t\t\t\theight: 30px;\r\n\t\t\t\t\tbackground-size: 250%;\r\n\t\t\t\t\tbackground-position: 4px 5px;\r\n\t\t\t\t\tbackground-repeat: no-repeat;\r\n\t\t\t\t}\r\n\r\n\t\t\t\t&.itemSlime {\r\n\t\t\t\t\tbackground: url('/resources/img/items/itemSlime.png');\r\n\t\t\t\t\twidth: 30px;\r\n\t\t\t\t\theight: 30px;\r\n\t\t\t\t\tbackground-size: 100%;\r\n\t\t\t\t\tbackground-position: 2px 2px;\r\n\t\t\t\t\tbackground-repeat: no-repeat;\r\n\t\t\t\t\ttransform: rotate(30deg);\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t}\r\n\r\n\t\t.border {\r\n\t\t\tbackground-image: url(/resources/img/worldTextures/border.svg);\r\n\t\t\tbackground-size: 200%;\r\n\t\t\tbackground-position: 5px 4px;\r\n\t\t\tbackground-repeat: no-repeat;\r\n\t\t\tbackground-color: black;\r\n\t\t}\r\n\r\n\t\t.dirt {\r\n\t\t\tbackground-image: url(/resources/img/worldTextures/road.svg);\r\n\t\t\tbackground-size: 200%;\r\n\t\t\tbackground-repeat: no-repeat;\r\n\t\t}\r\n\r\n\t\t.chest {\r\n\t\t\tbackground: #74FD59;\r\n\t\t}\r\n\t}\r\n}",".interface {\r\n\tposition: absolute;\r\n\tz-index: 1000;\r\n\twidth: 100%;\r\n\theight: 100%;\r\n\tcolor: white;\r\n\tdisplay: flex;\r\n\tflex-direction: column;\r\n\tjustify-content: space-between;\r\n\r\n\t.header {\r\n\t\theight: 100px;\r\n\t\twidth: 100%;\r\n\t\tdisplay: flex;\r\n\r\n\t\t.header__icon {\r\n\t\t\twidth: 100px;\r\n\t\t\theight: 100px;\r\n\t\t}\r\n\r\n\t\t.header__status {\r\n\t\t\twidth: 240px;\r\n\t\t\theight: 100px;\r\n\r\n\t\t\t.header__status-line {\r\n\t\t\t\tdisplay: flex;\r\n\t\t\t\talign-items: center;\r\n\t\t\t\tposition: relative;\r\n\t\t\t\tjustify-content: center;\r\n\r\n\t\t\t\t.status-line__container {\r\n\t\t\t\t\twidth: 200px;\r\n\t\t\t\t\theight: 20px;\r\n\t\t\t\t\tborder: 1px solid $purple;\r\n\t\t\t\t\tmargin: 5px;\r\n\t\t\t\t\tborder-radius: 5px;\r\n\r\n\t\t\t\t\tdiv {\r\n\t\t\t\t\t\theight: 18px;\r\n\t\t\t\t\t\tborder-radius: 5px;\r\n\t\t\t\t\t\tmargin-left: -1px;\r\n\t\t\t\t\t\ttransition-property: width;\r\n\t\t\t\t\t\ttransition-duration: 100ms;\r\n\r\n\t\t\t\t\t\t&.mp {\r\n\t\t\t\t\t\t\tbackground: $blue;\r\n\t\t\t\t\t\t}\r\n\r\n\t\t\t\t\t\t&.hp {\r\n\t\t\t\t\t\t\tbackground: $red;\r\n\t\t\t\t\t\t}\r\n\t\t\t\t\t}\r\n\t\t\t\t}\r\n\r\n\t\t\t\t.status-line__maxCur {\r\n\t\t\t\t\tposition: absolute;\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t}\r\n\r\n\t\t.header__items-wrapper {\r\n\t\t\tdisplay: flex;\r\n\t\t\tjustify-content: flex-end;\r\n\t\t\tflex-grow: 1;\r\n\r\n\t\t\t.header__items {\r\n\t\t\t\t.header__items-row {\r\n\t\t\t\t\tdisplay: flex;\r\n\r\n\t\t\t\t\t.header__item {\r\n\t\t\t\t\t\twidth: 30px;\r\n\t\t\t\t\t\theight: 30px;\r\n\t\t\t\t\t\tmargin: 5px;\r\n\t\t\t\t\t\tbackground-color: $grey;\r\n\t\t\t\t\t\tborder: 1px solid $purple;\r\n\t\t\t\t\t\tborder-radius: 5px;\r\n\r\n\t\t\t\t\t}\r\n\t\t\t\t}\r\n\t\t\t}\r\n\r\n\t\t\t.header__backpack {\r\n\t\t\t\twidth: 70px;\r\n\t\t\t\theight: 70px;\r\n\t\t\t\tmargin: 5px;\r\n\t\t\t\tbackground-color: $grey;\r\n\t\t\t\tborder: 1px solid $purple;\r\n\t\t\t\tborder-radius: 5px;\r\n\t\t\t\tbackground-image: url('/resources/img/interface/backpack.png');\r\n\t\t\t\tbackground-repeat: no-repeat;\r\n\t\t\t\tbackground-position: 10px;\r\n\t\t\t\tbackground-size: 70%;\r\n\r\n\t\t\t\t&.active {\r\n\t\t\t\t\tbackground-color: $greyLight;\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n\r\n\t.footer {\r\n\t\t.footer__items {\r\n\t\t\tdisplay: flex;\r\n\r\n\t\t\tdiv {\r\n\t\t\t\tborder: 1px solid #85309A;\r\n\t\t\t\tborder-radius: 5px;\r\n\t\t\t\twidth: 100px;\r\n\t\t\t\theight: 100px;\r\n\t\t\t\tmargin: 0 10px;\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n}","$greyLight : #DDDDDD;\r\n$grey : #A8A4A4;\r\n$purple : #83199D;\r\n$blue : #44E1FD;\r\n$red : #FF3232;"],"sourceRoot":""}]);
+exports.push([module.i, "/* http://meyerweb.com/eric/tools/css/reset/\n   v4.0 | 20180602\n   License: none (public domain)\n*/\nhtml, body, div, span, applet, object, iframe,\nh1, h2, h3, h4, h5, h6, p, blockquote, pre,\na, abbr, acronym, address, big, cite, code,\ndel, dfn, em, img, ins, kbd, q, s, samp,\nsmall, strike, strong, sub, sup, tt, var,\nb, u, i, center,\ndl, dt, dd, ol, ul, li,\nfieldset, form, label, legend,\ntable, caption, tbody, tfoot, thead, tr, th, td,\narticle, aside, canvas, details, embed,\nfigure, figcaption, footer, header, hgroup,\nmain, menu, nav, output, ruby, section, summary,\ntime, mark, audio, video {\n  margin: 0;\n  padding: 0;\n  border: 0;\n  font-size: 100%;\n  font: inherit;\n  vertical-align: baseline; }\n\n/* HTML5 display-role reset for older browsers */\narticle, aside, details, figcaption, figure,\nfooter, header, hgroup, main, menu, nav, section {\n  display: block; }\n\n/* HTML5 hidden-attribute fix for newer browsers */\n*[hidden] {\n  display: none; }\n\nbody {\n  line-height: 1; }\n\nol, ul {\n  list-style: none; }\n\nblockquote, q {\n  quotes: none; }\n\nblockquote:before, blockquote:after,\nq:before, q:after {\n  content: '';\n  content: none; }\n\ntable {\n  border-collapse: collapse;\n  border-spacing: 0; }\n\n* {\n  padding: 0;\n  margin: 0;\n  box-sizing: border-box; }\n\nbutton {\n  cursor: pointer; }\n\nhtml, body {\n  width: 100%; }\n\nh1 {\n  margin: 0;\n  padding: 0; }\n\nhtml,\nbody,\n.wrapper,\n.world {\n  display: flex;\n  background: #000; }\n\n.world {\n  flex-direction: column;\n  background: #000;\n  background-image: url(\"/resources/img/worldTextures/dark-bg.jpg\"); }\n  .world .row {\n    display: flex; }\n    .world .row .standartPlace {\n      width: 30px;\n      height: 30px;\n      position: relative; }\n      .world .row .standartPlace div {\n        position: absolute;\n        width: 100%;\n        height: 100%;\n        z-index: 2; }\n        .world .row .standartPlace div.magePlayer {\n          background-image: url(/resources/img/iconCreature/player/mage.png);\n          background-size: 70%;\n          background-position: 5px 1px;\n          background-repeat: no-repeat;\n          z-index: 5; }\n        .world .row .standartPlace div.slimeEnemy {\n          background-image: url(/resources/img/iconCreature/enemy/slime.svg);\n          background-size: 200%;\n          background-position: -2px 8px;\n          background-repeat: no-repeat;\n          z-index: 5; }\n        .world .row .standartPlace div.weapon {\n          background: url(\"/resources/img/weaponTextures/stackWeaponBall.svg\");\n          width: 30px;\n          height: 30px;\n          background-size: 250%;\n          background-position: 4px 5px;\n          background-repeat: no-repeat; }\n        .world .row .standartPlace div.itemSlime {\n          background: url(\"/resources/img/items/itemSlime.png\");\n          width: 30px;\n          height: 30px;\n          background-size: 100%;\n          background-position: 2px 2px;\n          background-repeat: no-repeat;\n          transform: rotate(30deg); }\n    .world .row .border {\n      background-image: url(/resources/img/worldTextures/border.svg);\n      background-size: 200%;\n      background-position: 5px 4px;\n      background-repeat: no-repeat;\n      background-color: black; }\n    .world .row .dirt {\n      background-image: url(/resources/img/worldTextures/road.svg);\n      background-size: 200%;\n      background-repeat: no-repeat; }\n    .world .row .chest {\n      background: #74FD59; }\n\n.__item {\n  width: 30px;\n  height: 30px;\n  margin: 5px;\n  background-color: #A8A4A4;\n  border: 1px solid #83199D;\n  border-radius: 5px;\n  cursor: pointer; }\n\n.inerInterface {\n  width: 100%;\n  height: 100%; }\n\n.interface {\n  position: absolute;\n  z-index: 1000;\n  width: 100%;\n  height: 100%;\n  color: white;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between; }\n  .interface .header {\n    height: 80px;\n    width: 100%;\n    display: flex;\n    position: relative; }\n    .interface .header .header__icon {\n      width: 70px;\n      height: 70px;\n      background-color: #A8A4A4;\n      border: 1px solid #83199D;\n      border-radius: 5px;\n      padding: 5px;\n      margin: 5px; }\n    .interface .header .header__status {\n      width: 240px;\n      height: 70px;\n      margin: 5px 0;\n      background-color: #A8A4A4;\n      border: 1px solid #83199D;\n      border-radius: 5px;\n      display: flex;\n      flex-direction: column;\n      justify-content: space-between; }\n      .interface .header .header__status .header__status-line {\n        display: flex;\n        align-items: center;\n        position: relative;\n        justify-content: center; }\n        .interface .header .header__status .header__status-line .status-line__container {\n          width: 200px;\n          height: 20px;\n          background-color: #A8A4A4;\n          border: 1px solid #83199D;\n          border-radius: 5px;\n          margin: 5px; }\n          .interface .header .header__status .header__status-line .status-line__container div {\n            height: 18px;\n            border-radius: 5px;\n            margin-left: -1px;\n            transition-property: width;\n            transition-duration: 100ms; }\n            .interface .header .header__status .header__status-line .status-line__container div.mp {\n              background: #44E1FD; }\n            .interface .header .header__status .header__status-line .status-line__container div.hp {\n              background: #FF3232; }\n        .interface .header .header__status .header__status-line .status-line__maxCur {\n          position: absolute; }\n    .interface .header .header__items-wrapper {\n      display: flex;\n      justify-content: flex-end;\n      flex-grow: 1; }\n      .interface .header .header__items-wrapper .header__items .header__items-row {\n        display: flex; }\n      .interface .header .header__items-wrapper .header__backpack {\n        width: 70px;\n        height: 70px;\n        margin: 5px;\n        background-color: #A8A4A4;\n        border: 1px solid #83199D;\n        border-radius: 5px;\n        background-image: url(\"/resources/img/interface/backpack.png\");\n        background-repeat: no-repeat;\n        background-position: 10px;\n        background-size: 70%;\n        cursor: pointer; }\n        .interface .header .header__items-wrapper .header__backpack.active {\n          background-color: #DDDDDD; }\n  .interface .wrapPopUp {\n    width: 100%;\n    height: 100%;\n    display: flex;\n    position: absolute;\n    top: 0;\n    justify-content: center;\n    align-items: center; }\n    .interface .wrapPopUp .popUp {\n      background-color: #A8A4A4;\n      border: 1px solid #83199D;\n      border-radius: 5px;\n      padding: 20px 50px;\n      width: 700px;\n      height: 500px;\n      display: flex; }\n      .interface .wrapPopUp .popUp .leftColumn {\n        width: 40px;\n        display: flex;\n        flex-direction: column; }\n        .interface .wrapPopUp .popUp .leftColumn .subColumn {\n          background-color: #A8A4A4;\n          border: 1px solid #83199D;\n          border-radius: 5px;\n          border-radius: 5px 0 0 5px;\n          height: 40px;\n          background-repeat: no-repeat;\n          cursor: pointer; }\n          .interface .wrapPopUp .popUp .leftColumn .subColumn:nth-child(n+2) {\n            border-top: 0; }\n          .interface .wrapPopUp .popUp .leftColumn .subColumn.active {\n            border-right: 0; }\n          .interface .wrapPopUp .popUp .leftColumn .subColumn.inventory {\n            background-image: url(\"/resources/img/interface/backpack.png\");\n            background-position: 2px;\n            background-size: 90%; }\n      .interface .wrapPopUp .popUp .mainWindow {\n        width: 560px; }\n        .interface .wrapPopUp .popUp .mainWindow .popUp__inventory {\n          width: 100%;\n          background-color: #A8A4A4;\n          border: 1px solid #83199D;\n          border-radius: 5px;\n          height: 100%;\n          border-radius: 0 5px 5px 0;\n          border-left: 0; }\n          .interface .wrapPopUp .popUp .mainWindow .popUp__inventory .inventory__items {\n            width: 100%;\n            height: 100%;\n            display: flex;\n            flex-wrap: wrap;\n            padding: 0 30px;\n            justify-content: center;\n            align-items: center; }\n        .interface .wrapPopUp .popUp .mainWindow .popUp___wrappWindow {\n          text-align: center; }\n          .interface .wrapPopUp .popUp .mainWindow .popUp___wrappWindow .wrapWindow__title {\n            margin: 12px 0;\n            text-align: center; }\n", "", {"version":3,"sources":["C:/OSPanel/domains/wynexGame/src/styles/sass/node_modules/reset-css/reset.css","C:/OSPanel/domains/wynexGame/src/styles/sass/src/styles/sass/defaults/defaults.scss","C:/OSPanel/domains/wynexGame/src/styles/sass/src/styles/sass/style/inner/world/world.scss","C:/OSPanel/domains/wynexGame/src/styles/sass/src/styles/sass/style/inner/intarface/commonComponents/commonComponents.scss","C:/OSPanel/domains/wynexGame/src/styles/sass/src/styles/sass/mixin/mixin.scss","C:/OSPanel/domains/wynexGame/src/styles/sass/src/styles/sass/color/color.scss","C:/OSPanel/domains/wynexGame/src/styles/sass/src/styles/sass/style/inner/intarface/intarface.scss","C:/OSPanel/domains/wynexGame/src/styles/sass/src/styles/sass/style/inner/intarface/header/header.scss","C:/OSPanel/domains/wynexGame/src/styles/sass/src/styles/sass/style/inner/intarface/popUp/popUp.scss"],"names":[],"mappings":"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","file":"index.scss","sourcesContent":["/* http://meyerweb.com/eric/tools/css/reset/\n   v4.0 | 20180602\n   License: none (public domain)\n*/\n\nhtml, body, div, span, applet, object, iframe,\nh1, h2, h3, h4, h5, h6, p, blockquote, pre,\na, abbr, acronym, address, big, cite, code,\ndel, dfn, em, img, ins, kbd, q, s, samp,\nsmall, strike, strong, sub, sup, tt, var,\nb, u, i, center,\ndl, dt, dd, ol, ul, li,\nfieldset, form, label, legend,\ntable, caption, tbody, tfoot, thead, tr, th, td,\narticle, aside, canvas, details, embed,\nfigure, figcaption, footer, header, hgroup,\nmain, menu, nav, output, ruby, section, summary,\ntime, mark, audio, video {\n\tmargin: 0;\n\tpadding: 0;\n\tborder: 0;\n\tfont-size: 100%;\n\tfont: inherit;\n\tvertical-align: baseline;\n}\n/* HTML5 display-role reset for older browsers */\narticle, aside, details, figcaption, figure,\nfooter, header, hgroup, main, menu, nav, section {\n\tdisplay: block;\n}\n/* HTML5 hidden-attribute fix for newer browsers */\n*[hidden] {\n    display: none;\n}\nbody {\n\tline-height: 1;\n}\nol, ul {\n\tlist-style: none;\n}\nblockquote, q {\n\tquotes: none;\n}\nblockquote:before, blockquote:after,\nq:before, q:after {\n\tcontent: '';\n\tcontent: none;\n}\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n","@import 'reset-css';\r\n\r\n* {\r\n\tpadding: 0;\r\n\tmargin: 0;\r\n\tbox-sizing: border-box;\r\n}\r\n\r\nbutton {\r\n\tcursor: pointer;\r\n}\r\n\r\n\r\nhtml, body {\r\n\twidth: 100%;\r\n}\r\n\r\nh1 {\r\n\tmargin: 0;\r\n\tpadding: 0;\r\n}\r\n\r\n\r\nhtml,\r\nbody,\r\n.wrapper,\r\n.world {\r\n\tdisplay: flex;\r\n\tbackground: #000;\r\n}",".world {\r\n\tflex-direction: column;\r\n\tbackground: #000;\r\n\tbackground-image: url('/resources/img/worldTextures/dark-bg.jpg');\r\n\r\n\t.row {\r\n\t\tdisplay: flex;\r\n\r\n\t\t.standartPlace {\r\n\t\t\twidth: 30px;\r\n\t\t\theight: 30px;\r\n\t\t\tposition: relative;\r\n\r\n\t\t\tdiv {\r\n\t\t\t\tposition: absolute;\r\n\t\t\t\twidth: 100%;\r\n\t\t\t\theight: 100%;\r\n\t\t\t\tz-index: 2;\r\n\r\n\t\t\t\t&.magePlayer {\r\n\t\t\t\t\tbackground-image: url(/resources/img/iconCreature/player/mage.png);\r\n\t\t\t\t\tbackground-size: 70%;\r\n\t\t\t\t\tbackground-position: 5px 1px;\r\n\t\t\t\t\tbackground-repeat: no-repeat;\r\n\t\t\t\t\tz-index: 5;\r\n\t\t\t\t}\r\n\r\n\t\t\t\t&.slimeEnemy {\r\n\t\t\t\t\tbackground-image: url(/resources/img/iconCreature/enemy/slime.svg);\r\n\t\t\t\t\tbackground-size: 200%;\r\n\t\t\t\t\tbackground-position: -2px 8px;\r\n\t\t\t\t\tbackground-repeat: no-repeat;\r\n\t\t\t\t\tz-index: 5;\r\n\t\t\t\t}\r\n\r\n\t\t\t\t&.weapon {\r\n\t\t\t\t\tbackground: url('/resources/img/weaponTextures/stackWeaponBall.svg');\r\n\t\t\t\t\twidth: 30px;\r\n\t\t\t\t\theight: 30px;\r\n\t\t\t\t\tbackground-size: 250%;\r\n\t\t\t\t\tbackground-position: 4px 5px;\r\n\t\t\t\t\tbackground-repeat: no-repeat;\r\n\t\t\t\t}\r\n\r\n\t\t\t\t&.itemSlime {\r\n\t\t\t\t\tbackground: url('/resources/img/items/itemSlime.png');\r\n\t\t\t\t\twidth: 30px;\r\n\t\t\t\t\theight: 30px;\r\n\t\t\t\t\tbackground-size: 100%;\r\n\t\t\t\t\tbackground-position: 2px 2px;\r\n\t\t\t\t\tbackground-repeat: no-repeat;\r\n\t\t\t\t\ttransform: rotate(30deg);\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t}\r\n\r\n\t\t.border {\r\n\t\t\tbackground-image: url(/resources/img/worldTextures/border.svg);\r\n\t\t\tbackground-size: 200%;\r\n\t\t\tbackground-position: 5px 4px;\r\n\t\t\tbackground-repeat: no-repeat;\r\n\t\t\tbackground-color: black;\r\n\t\t}\r\n\r\n\t\t.dirt {\r\n\t\t\tbackground-image: url(/resources/img/worldTextures/road.svg);\r\n\t\t\tbackground-size: 200%;\r\n\t\t\tbackground-repeat: no-repeat;\r\n\t\t}\r\n\r\n\t\t.chest {\r\n\t\t\tbackground: #74FD59;\r\n\t\t}\r\n\t}\r\n}",".__item {\r\n\twidth: 30px;\r\n\theight: 30px;\r\n\tmargin: 5px;\r\n\t@include stdBlock();\r\n\tcursor: pointer;\r\n}","@mixin stdBlock() {\r\n\tbackground-color: $grey;\r\n\tborder: 1px solid $purple;\r\n\tborder-radius: 5px;\r\n}","$greyLight : #DDDDDD;\r\n$grey : #A8A4A4;\r\n$purple : #83199D;\r\n$blue : #44E1FD;\r\n$red : #FF3232;","@import './commonComponents/commonComponents.scss';\r\n\r\n.inerInterface {\r\n\twidth: 100%;\r\n\theight: 100%;\r\n\r\n}\r\n.interface {\r\n\tposition: absolute;\r\n\tz-index: 1000;\r\n\twidth: 100%;\r\n\theight: 100%;\r\n\tcolor: white;\r\n\tdisplay: flex;\r\n\tflex-direction: column;\r\n\tjustify-content: space-between;\r\n\r\n\t@import './header/header.scss';\r\n\t@import './popUp/popUp.scss';\r\n}\r\n",".header {\r\n\theight: 80px;\r\n\twidth: 100%;\r\n\tdisplay: flex;\r\n\tposition: relative;\r\n\r\n\t.header__icon {\r\n\t\twidth: 70px;\r\n\t\theight: 70px;\r\n\t\t@include stdBlock();\r\n\t\tpadding: 5px;\r\n\t\tmargin: 5px;\r\n\t}\r\n\r\n\t.header__status {\r\n\t\twidth: 240px;\r\n\t\theight: 70px;\r\n\t\tmargin: 5px 0;\r\n\t\t@include stdBlock();\r\n\t\tdisplay: flex;\r\n\t\tflex-direction: column;\r\n\t\tjustify-content: space-between;\r\n\r\n\t\t.header__status-line {\r\n\t\t\tdisplay: flex;\r\n\t\t\talign-items: center;\r\n\t\t\tposition: relative;\r\n\t\t\tjustify-content: center;\r\n\r\n\r\n\t\t\t.status-line__container {\r\n\t\t\t\twidth: 200px;\r\n\t\t\t\theight: 20px;\r\n\t\t\t\t@include stdBlock();\r\n\t\t\t\tmargin: 5px;\r\n\r\n\r\n\t\t\t\tdiv {\r\n\t\t\t\t\theight: 18px;\r\n\t\t\t\t\tborder-radius: 5px;\r\n\t\t\t\t\tmargin-left: -1px;\r\n\t\t\t\t\ttransition-property: width;\r\n\t\t\t\t\ttransition-duration: 100ms;\r\n\r\n\t\t\t\t\t&.mp {\r\n\t\t\t\t\t\tbackground: $blue;\r\n\t\t\t\t\t}\r\n\r\n\t\t\t\t\t&.hp {\r\n\t\t\t\t\t\tbackground: $red;\r\n\t\t\t\t\t}\r\n\t\t\t\t}\r\n\t\t\t}\r\n\r\n\t\t\t.status-line__maxCur {\r\n\t\t\t\tposition: absolute;\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n\r\n\t.header__items-wrapper {\r\n\t\tdisplay: flex;\r\n\t\tjustify-content: flex-end;\r\n\t\tflex-grow: 1;\r\n\r\n\t\t.header__items {\r\n\t\t\t.header__items-row {\r\n\t\t\t\tdisplay: flex;\r\n\t\t\t}\r\n\t\t}\r\n\r\n\t\t.header__backpack {\r\n\t\t\twidth: 70px;\r\n\t\t\theight: 70px;\r\n\t\t\tmargin: 5px;\r\n\t\t\t@include stdBlock();\r\n\t\t\tbackground-image: url('/resources/img/interface/backpack.png');\r\n\t\t\tbackground-repeat: no-repeat;\r\n\t\t\tbackground-position: 10px;\r\n\t\t\tbackground-size: 70%;\r\n\t\t\tcursor: pointer;\r\n\r\n\t\t\t&.active {\r\n\t\t\t\tbackground-color: $greyLight;\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n}",".wrapPopUp {\r\n\twidth: 100%;\r\n\theight: 100%;\r\n\tdisplay: flex;\r\n\tposition: absolute;\r\n\ttop: 0;\r\n\tjustify-content: center;\r\n\talign-items: center;\r\n\r\n\t.popUp {\r\n\t\t@include stdBlock();\r\n\t\tpadding: 20px 50px;\r\n\t\twidth: 700px;\r\n\t\theight: 500px;\r\n\t\tdisplay: flex;\r\n\r\n\t\t.leftColumn {\r\n\t\t\twidth: 40px;\r\n\t\t\tdisplay: flex;\r\n\t\t\tflex-direction: column;\r\n\r\n\t\t\t.subColumn {\r\n\t\t\t\t@include stdBlock();\r\n\t\t\t\tborder-radius: 5px 0 0 5px;\r\n\t\t\t\theight: 40px;\r\n\t\t\t\tbackground-repeat: no-repeat;\r\n\t\t\t\tcursor: pointer;\r\n\r\n\t\t\t\t&:nth-child(n+2) {\r\n\t\t\t\t\tborder-top: 0;\r\n\t\t\t\t}\r\n\r\n\t\t\t\t&.active {\r\n\t\t\t\t\tborder-right: 0;\r\n\t\t\t\t}\r\n\r\n\t\t\t\t&.inventory {\r\n\t\t\t\t\tbackground-image: url('/resources/img/interface/backpack.png');\r\n\t\t\t\t\tbackground-position: 2px;\r\n\t\t\t\t\tbackground-size: 90%;\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t}\r\n\r\n\t\t.mainWindow {\r\n\t\t\twidth: 560px;\r\n\r\n\t\t\t.popUp__inventory {\r\n\t\t\t\twidth: 100%;\r\n\t\t\t\t@include stdBlock();\r\n\t\t\t\theight: 100%;\r\n\t\t\t\tborder-radius: 0 5px 5px 0;\r\n\t\t\t\tborder-left: 0;\r\n\r\n\t\t\t\t.inventory__items {\r\n\t\t\t\t\twidth: 100%;\r\n\t\t\t\t\theight: 100%;\r\n\t\t\t\t\tdisplay: flex;\r\n\t\t\t\t\tflex-wrap: wrap;\r\n\t\t\t\t\tpadding: 0 30px;\r\n\t\t\t\t\tjustify-content: center;\r\n\t\t\t\t\talign-items: center;\r\n\t\t\t\t}\r\n\t\t\t}\r\n\r\n\t\t\t.popUp___wrappWindow {\r\n\t\t\t\ttext-align: center;\r\n\r\n\t\t\t\t.wrapWindow__title {\r\n\t\t\t\t\tmargin: 12px 0;\r\n\t\t\t\t\ttext-align: center;\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n}"],"sourceRoot":""}]);
 
 // exports
 
@@ -31612,7 +31612,7 @@ module.exports = function () {
 				console.log(1);
 				// return ;
 			} else if (this._items.length) {
-				return this._items[0];
+				return this._items[0].item;
 			} else {
 				return null;
 			}
@@ -31933,6 +31933,7 @@ module.exports = function () {
 		this._events = new StorCustomEvents();
 
 		this._allItems = new AllItems();
+		this._stepOnItem = [];
 	}
 
 	_createClass(State, [{
@@ -32058,10 +32059,9 @@ module.exports = function () {
 		key: 'setWeapon',
 		value: function setWeapon(val) {
 			var position = this._place[val.coor.x][val.coor.y];
+
 			var weapon = new Weapon(this._numInerBlock, this, val.owner, val.coor);
-
 			this._weapons[this._numInerBlock++] = weapon;
-
 			position.addWeapon(weapon);
 
 			return weapon;
@@ -32112,9 +32112,16 @@ module.exports = function () {
 					event.detail.items = [];
 				}
 
+				this._stepOnItem = event.detail.items;
+
 				document.dispatchEvent(event);
 			}
 			return true;
+		}
+	}, {
+		key: 'getStepOnItem',
+		value: function getStepOnItem() {
+			return this._stepOnItem;
 		}
 	}, {
 		key: 'changeCoordinateWeapon',
@@ -32665,42 +32672,31 @@ module.exports = function (_InnerObject) {
 
 									weapon = state.setWeapon({
 										coor: {
-											x: coor.newX,
-											y: coor.newY
+											x: coor.x,
+											y: coor.y
 										},
 										owner: creature
 									});
-
-									if (!(weapon === null)) {
-										_context.next = 8;
-										break;
-									}
-
-									return _context.abrupt('return', false);
-
-								case 8:
-									weapon.coor.x = coor.x;
-									weapon.coor.y = coor.y;
 
 									range = creature.attackRange - 1;
 
 
 									weapon.movePerformance(direction);
 
-								case 12:
-									_context.next = 14;
+								case 6:
+									_context.next = 8;
 									return biasWeapon(weapon, direction);
 
-								case 14:
+								case 8:
 									nextBlock = _context.sent;
 
-								case 15:
+								case 9:
 									if ((nextBlock.patency && !nextBlock.getVisiter() || nextBlock === true) && range--) {
-										_context.next = 12;
+										_context.next = 6;
 										break;
 									}
 
-								case 16:
+								case 10:
 
 									if (nextBlock !== true && nextBlock.getVisiter()) {
 										nextBlock.getVisiter().getDemage(creature);
@@ -32708,7 +32704,7 @@ module.exports = function (_InnerObject) {
 
 									weapon.die();
 
-								case 18:
+								case 12:
 								case 'end':
 									return _context.stop();
 							}
@@ -33011,7 +33007,10 @@ module.exports = function (_Creature) {
 		_this.watcher = false;
 		_this.pursuitRange = _this._settings.standartEnemy.pursuitRange;
 
-		_this._items.push(state.createItem(1, coor));
+		_this._items.push({
+			item: state.createItem(1, coor),
+			num: 1
+		});
 		return _this;
 	}
 
@@ -33295,7 +33294,7 @@ module.exports = function (_TempleInerObj) {
 			if (items.length > 1) {
 				div.className = 'stockItems';
 			} else if (items.length === 1) {
-				div.className = items[0].classNameCSS;
+				div.className = items[0].item.classNameCSS;
 			}
 
 			this.state.dropItems(this);
@@ -33807,8 +33806,8 @@ module.exports = function () {
 
 			this._game = new this._ControllerGame([{
 				coor: {
-					x: 100,
-					y: 100
+					x: 3,
+					y: 3
 				},
 				type: 'mage',
 				watcher: true
@@ -33856,11 +33855,54 @@ module.exports = function () {
 			}, this._GLOBAL_SETTING.timeOfTactOther);
 
 			console.log(this._state);
+
+			return this._state;
 		}
 	}]);
 
 	return WEnginAPI;
 }();
+
+/***/ }),
+
+/***/ "./src/gameSrcJs/interface/gameInterface/commonComponent/item.jsx":
+/*!************************************************************************!*\
+  !*** ./src/gameSrcJs/interface/gameInterface/commonComponent/item.jsx ***!
+  \************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+module.exports = function (_React$Component) {
+	_inherits(Item, _React$Component);
+
+	function Item() {
+		_classCallCheck(this, Item);
+
+		return _possibleConstructorReturn(this, (Item.__proto__ || Object.getPrototypeOf(Item)).apply(this, arguments));
+	}
+
+	_createClass(Item, [{
+		key: 'render',
+		value: function render() {
+			return React.createElement('div', { className: '__item' });
+		}
+	}]);
+
+	return Item;
+}(React.Component);
 
 /***/ }),
 
@@ -33886,19 +33928,66 @@ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 var Header = __webpack_require__(/*! ./header/header.jsx */ "./src/gameSrcJs/interface/gameInterface/header/header.jsx");
 
+var PopUp = __webpack_require__(/*! ./popUp/popUp.jsx */ "./src/gameSrcJs/interface/gameInterface/popUp/popUp.jsx");
+
 module.exports = function (_React$Component) {
 	_inherits(GameIntarfface, _React$Component);
 
-	function GameIntarfface() {
+	function GameIntarfface(props) {
 		_classCallCheck(this, GameIntarfface);
 
-		return _possibleConstructorReturn(this, (GameIntarfface.__proto__ || Object.getPrototypeOf(GameIntarfface)).apply(this, arguments));
+		var _this = _possibleConstructorReturn(this, (GameIntarfface.__proto__ || Object.getPrototypeOf(GameIntarfface)).call(this, props));
+
+		_this.state = {
+			popUp: false
+		};
+
+		_this._openPopUp = _this._openPopUp.bind(_this);
+		_this._closePopUp = _this._closePopUp.bind(_this);
+		return _this;
 	}
 
 	_createClass(GameIntarfface, [{
 		key: 'render',
 		value: function render() {
-			return React.createElement(Header, null);
+			var popUp = null;
+
+			if (this.state.popUp) {
+				popUp = React.createElement(PopUp, {
+					closePopUp: this._closePopUp,
+					stateGame: this.props.stateGame
+				});
+			}
+
+			return React.createElement(
+				'div',
+				{ className: 'inerInterface' },
+				popUp,
+				React.createElement(Header, {
+					openPopUp: this._openPopUp,
+					stateGame: this.props.stateGame
+				})
+			);
+		}
+	}, {
+		key: '_openPopUp',
+		value: function _openPopUp(type) {
+			var state = Object.assign({}, this.state, {
+				popUp: true,
+				type: type
+			});
+
+			this.setState(state);
+		}
+	}, {
+		key: '_closePopUp',
+		value: function _closePopUp() {
+			var state = Object.assign({}, this.state, {
+				popUp: false,
+				type: null
+			});
+
+			this.setState(state);
 		}
 	}]);
 
@@ -33947,8 +34036,8 @@ module.exports = function (_React$Component) {
 				'header',
 				{ className: 'header' },
 				React.createElement(HeaderIcon, null),
-				React.createElement(HeaderStatus, null),
-				React.createElement(HeaderItems, null)
+				React.createElement(HeaderStatus, { stateGame: this.props.stateGame }),
+				React.createElement(HeaderItems, { openPopUp: this.props.openPopUp })
 			);
 		}
 	}]);
@@ -33996,8 +34085,8 @@ module.exports = function (_React$Component) {
 				{ className: 'header__icon' },
 				React.createElement('img', {
 					src: '/resources/img/interface/mage_iconV2.nesvg.png',
-					width: '100',
-					height: '100'
+					width: '60',
+					height: '60'
 				})
 			);
 		}
@@ -34028,6 +34117,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
+var Item = __webpack_require__(/*! ../../../commonComponent/item.jsx */ "./src/gameSrcJs/interface/gameInterface/commonComponent/item.jsx");
+
 module.exports = function (_React$Component) {
 	_inherits(HeaderItems, _React$Component);
 
@@ -34046,6 +34137,8 @@ module.exports = function (_React$Component) {
 	_createClass(HeaderItems, [{
 		key: 'render',
 		value: function render() {
+			var bpClassName = this.state.active ? 'header__backpack active' : 'header__backpack';
+
 			return React.createElement(
 				'div',
 				{ className: 'header__items-wrapper' },
@@ -34055,19 +34148,19 @@ module.exports = function (_React$Component) {
 					React.createElement(
 						'div',
 						{ className: 'header__items-row' },
-						React.createElement('div', { className: 'header__item' }),
-						React.createElement('div', { className: 'header__item' }),
-						React.createElement('div', { className: 'header__item' })
+						React.createElement(Item, null),
+						React.createElement(Item, null),
+						React.createElement(Item, null)
 					),
 					React.createElement(
 						'div',
 						{ className: 'header__items-row' },
-						React.createElement('div', { className: 'header__item' }),
-						React.createElement('div', { className: 'header__item' }),
-						React.createElement('div', { className: 'header__item' })
+						React.createElement(Item, null),
+						React.createElement(Item, null),
+						React.createElement(Item, null)
 					)
 				),
-				React.createElement('div', { className: this.state.active ? 'header__backpack active' : 'header__backpack' })
+				React.createElement('div', { className: bpClassName, onClick: this.props.openPopUp })
 			);
 		}
 	}, {
@@ -34133,8 +34226,8 @@ module.exports = function (_React$Component) {
 			return React.createElement(
 				'div',
 				{ className: 'header__status' },
-				React.createElement(Line, { type: 'hp' }),
-				React.createElement(Line, { type: 'mp' })
+				React.createElement(Line, { type: 'hp', stateGame: this.props.stateGame }),
+				React.createElement(Line, { type: 'mp', stateGame: this.props.stateGame })
 			);
 		}
 	}]);
@@ -34172,11 +34265,20 @@ module.exports = function (_React$Component) {
 
 		var _this = _possibleConstructorReturn(this, (Line.__proto__ || Object.getPrototypeOf(Line)).call(this, props));
 
+		var watcher = _this.props.stateGame.getWatcher();
+		var max = 0;
+		var cur = 0;
+
+		if (_this.props.type === 'hp') {
+			max = watcher.maxHP;
+			cur = watcher.HP;
+		}
+
 		_this.state = {
 			fromO: null,
 			num: 0,
-			max: 0,
-			cur: 0,
+			max: max,
+			cur: cur,
 			type: _this.props.type
 		};
 		return _this;
@@ -34257,6 +34359,405 @@ module.exports = function (_React$Component) {
 
 /***/ }),
 
+/***/ "./src/gameSrcJs/interface/gameInterface/popUp/column/column.jsx":
+/*!***********************************************************************!*\
+  !*** ./src/gameSrcJs/interface/gameInterface/popUp/column/column.jsx ***!
+  \***********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+module.exports = function (_React$Component) {
+	_inherits(Column, _React$Component);
+
+	function Column() {
+		_classCallCheck(this, Column);
+
+		return _possibleConstructorReturn(this, (Column.__proto__ || Object.getPrototypeOf(Column)).apply(this, arguments));
+	}
+
+	_createClass(Column, [{
+		key: 'render',
+		value: function render() {
+			return React.createElement(
+				'div',
+				{ className: 'leftColumn' },
+				React.createElement('div', { className: 'subColumn inventory active' }),
+				React.createElement('div', { className: 'subColumn' }),
+				React.createElement('div', { className: 'subColumn' }),
+				React.createElement('div', { className: 'subColumn' }),
+				React.createElement('div', { className: 'subColumn' }),
+				React.createElement('div', { className: 'subColumn' }),
+				React.createElement('div', { className: 'subColumn' }),
+				React.createElement('div', { className: 'subColumn' }),
+				React.createElement('div', { className: 'subColumn' }),
+				React.createElement('div', { className: 'subColumn' }),
+				React.createElement('div', { className: 'subColumn' }),
+				React.createElement('div', { className: 'subColumn' })
+			);
+		}
+	}]);
+
+	return Column;
+}(React.Component);
+
+/***/ }),
+
+/***/ "./src/gameSrcJs/interface/gameInterface/popUp/popUp.jsx":
+/*!***************************************************************!*\
+  !*** ./src/gameSrcJs/interface/gameInterface/popUp/popUp.jsx ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var Column = __webpack_require__(/*! ./column/column.jsx */ "./src/gameSrcJs/interface/gameInterface/popUp/column/column.jsx");
+var MainWindow = __webpack_require__(/*! ./window/window.jsx */ "./src/gameSrcJs/interface/gameInterface/popUp/window/window.jsx");
+
+module.exports = function (_React$Component) {
+	_inherits(PopUp, _React$Component);
+
+	function PopUp() {
+		_classCallCheck(this, PopUp);
+
+		return _possibleConstructorReturn(this, (PopUp.__proto__ || Object.getPrototypeOf(PopUp)).apply(this, arguments));
+	}
+
+	_createClass(PopUp, [{
+		key: 'render',
+		value: function render() {
+			var _this2 = this;
+
+			return React.createElement(
+				'div',
+				{
+					className: 'wrapPopUp',
+					ref: function ref(wrap) {
+						return _this2._wrap = wrap;
+					}
+				},
+				React.createElement(
+					'div',
+					{ className: 'popUp' },
+					React.createElement(Column, { type: 'inventory' }),
+					React.createElement(MainWindow, {
+						type: 'inventory',
+						stateGame: this.props.stateGame,
+						otherObject: this.props.stateGame.getStepOnItem()
+					}),
+					React.createElement('div', null)
+				)
+			);
+		}
+	}, {
+		key: 'componentDidMount',
+		value: function componentDidMount() {
+			var _this3 = this;
+
+			this._wrap.addEventListener('click', function (e) {
+				if (_this3._wrap === e.target) {
+					_this3.props.closePopUp();
+				}
+			});
+		}
+	}]);
+
+	return PopUp;
+}(React.Component);
+
+/***/ }),
+
+/***/ "./src/gameSrcJs/interface/gameInterface/popUp/window/subWindow/inventory.jsx":
+/*!************************************************************************************!*\
+  !*** ./src/gameSrcJs/interface/gameInterface/popUp/window/subWindow/inventory.jsx ***!
+  \************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var OtherObject = __webpack_require__(/*! ./subInventory/otherObject.jsx */ "./src/gameSrcJs/interface/gameInterface/popUp/window/subWindow/subInventory/otherObject.jsx");
+var Items = __webpack_require__(/*! ./subInventory/items.jsx */ "./src/gameSrcJs/interface/gameInterface/popUp/window/subWindow/subInventory/items.jsx");
+
+module.exports = function (_React$Component) {
+	_inherits(Inventory, _React$Component);
+
+	function Inventory() {
+		_classCallCheck(this, Inventory);
+
+		return _possibleConstructorReturn(this, (Inventory.__proto__ || Object.getPrototypeOf(Inventory)).apply(this, arguments));
+	}
+
+	_createClass(Inventory, [{
+		key: 'render',
+		value: function render() {
+			var otherObject = null;
+			var ownInvntory = React.createElement(Items, {
+				type: 'big',
+				stateGame: this.props.stateGame
+			});
+
+			if (this.props.otherObject.length) {
+				otherObject = React.createElement(OtherObject, null);
+
+				ownInvntory = React.createElement(Items, {
+					type: 'small',
+					stateGame: this.props.stateGame
+				});
+			}
+
+			return React.createElement(
+				'div',
+				{ className: 'popUp__inventory' },
+				otherObject,
+				ownInvntory
+			);
+		}
+	}]);
+
+	return Inventory;
+}(React.Component);
+
+/***/ }),
+
+/***/ "./src/gameSrcJs/interface/gameInterface/popUp/window/subWindow/subInventory/items.jsx":
+/*!*********************************************************************************************!*\
+  !*** ./src/gameSrcJs/interface/gameInterface/popUp/window/subWindow/subInventory/items.jsx ***!
+  \*********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var Item = __webpack_require__(/*! ../../../../commonComponent/item.jsx */ "./src/gameSrcJs/interface/gameInterface/commonComponent/item.jsx");
+
+module.exports = function (_React$Component) {
+	_inherits(Items, _React$Component);
+
+	function Items() {
+		_classCallCheck(this, Items);
+
+		return _possibleConstructorReturn(this, (Items.__proto__ || Object.getPrototypeOf(Items)).apply(this, arguments));
+	}
+
+	_createClass(Items, [{
+		key: 'componentWillMount',
+		value: function componentWillMount() {
+			this.allItems = [];
+
+			var N = 0;
+
+			if (this.props.type === 'big') {
+				N = 120;
+			} else {
+				N = 60;
+			}
+
+			for (var i = 0; i < N; i++) {
+				this.allItems[i] = React.createElement(Item, { key: i });
+			}
+		}
+	}, {
+		key: 'render',
+		value: function render() {
+			return React.createElement(
+				'div',
+				{ className: 'popUp___wrappWindow' },
+				React.createElement(
+					'div',
+					{ className: 'wrapWindow__title' },
+					'\u0418\u043D\u0432\u0435\u043D\u0442\u0430\u0440\u044C'
+				),
+				React.createElement(
+					'div',
+					{ className: 'inventory__items' },
+					this.allItems
+				)
+			);
+		}
+	}]);
+
+	return Items;
+}(React.Component);
+
+/***/ }),
+
+/***/ "./src/gameSrcJs/interface/gameInterface/popUp/window/subWindow/subInventory/otherObject.jsx":
+/*!***************************************************************************************************!*\
+  !*** ./src/gameSrcJs/interface/gameInterface/popUp/window/subWindow/subInventory/otherObject.jsx ***!
+  \***************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var Item = __webpack_require__(/*! ../../../../commonComponent/item.jsx */ "./src/gameSrcJs/interface/gameInterface/commonComponent/item.jsx");
+
+module.exports = function (_React$Component) {
+	_inherits(Items, _React$Component);
+
+	function Items() {
+		_classCallCheck(this, Items);
+
+		return _possibleConstructorReturn(this, (Items.__proto__ || Object.getPrototypeOf(Items)).apply(this, arguments));
+	}
+
+	_createClass(Items, [{
+		key: 'componentWillMount',
+		value: function componentWillMount() {
+			this.allItems = [];
+
+			for (var i = 0; i < 48; i++) {
+				this.allItems[i] = React.createElement(Item, { key: i });
+			}
+		}
+	}, {
+		key: 'render',
+		value: function render() {
+			return React.createElement(
+				'div',
+				{ className: 'popUp___wrappWindow' },
+				React.createElement(
+					'div',
+					{ className: 'wrapWindow__title' },
+					'\u041E\u0441\u0442\u0430\u043D\u043A\u0438'
+				),
+				React.createElement(
+					'div',
+					{ className: 'inventory__items' },
+					this.allItems
+				)
+			);
+		}
+	}]);
+
+	return Items;
+}(React.Component);
+
+/***/ }),
+
+/***/ "./src/gameSrcJs/interface/gameInterface/popUp/window/window.jsx":
+/*!***********************************************************************!*\
+  !*** ./src/gameSrcJs/interface/gameInterface/popUp/window/window.jsx ***!
+  \***********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var Inventory = __webpack_require__(/*! ./subWindow/inventory.jsx */ "./src/gameSrcJs/interface/gameInterface/popUp/window/subWindow/inventory.jsx");
+
+module.exports = function (_React$Component) {
+	_inherits(MainWindow, _React$Component);
+
+	function MainWindow() {
+		_classCallCheck(this, MainWindow);
+
+		return _possibleConstructorReturn(this, (MainWindow.__proto__ || Object.getPrototypeOf(MainWindow)).apply(this, arguments));
+	}
+
+	_createClass(MainWindow, [{
+		key: 'render',
+		value: function render() {
+			var mainWindow = this._getMainWindow();
+
+			return React.createElement(
+				'div',
+				{ className: 'mainWindow' },
+				mainWindow
+			);
+		}
+	}, {
+		key: '_getMainWindow',
+		value: function _getMainWindow() {
+			var mainwindow = {};
+
+			switch (this.props.type) {
+				case "inventory":
+					mainwindow = React.createElement(Inventory, {
+						otherObject: this.props.otherObject,
+						stateGame: this.props.stateGame
+					});
+					break;
+			}
+
+			return mainwindow;
+		}
+	}]);
+
+	return MainWindow;
+}(React.Component);
+
+/***/ }),
+
 /***/ "./src/gameSrcJs/interface/interface.jsx":
 /*!***********************************************!*\
   !*** ./src/gameSrcJs/interface/interface.jsx ***!
@@ -34274,11 +34775,10 @@ var ReactDOM = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/in
 
 var GameInterface = __webpack_require__(/*! ./gameInterface/gameInterface.jsx */ "./src/gameSrcJs/interface/gameInterface/gameInterface.jsx");
 
-ReactDOM.render(React.createElement(GameInterface, null), document.getElementById('interface'));
-
 var game = new WEngineAPI();
+var state = game.startGame();
 
-game.startGame();
+ReactDOM.render(React.createElement(GameInterface, { stateGame: state }), document.getElementById('interface'));
 
 /***/ }),
 

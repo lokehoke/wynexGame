@@ -1,0 +1,7 @@
+.__item {
+	width: 30px;
+	height: 30px;
+	margin: 5px;
+	@include stdBlock();
+	cursor: pointer;
+}

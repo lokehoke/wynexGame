@@ -24,7 +24,7 @@
 	},
 	"scripts": {
 		"b": "webpack",
-		"p": "node index.js"
+		"p": "start http://localhost:1337 && node index.js"
 	},
 	"repository": "git+https://github.com/Lpkehoke/wynexGame.git",
 	"keywords": [

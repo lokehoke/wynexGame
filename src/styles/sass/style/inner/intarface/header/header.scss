@@ -1,0 +1,88 @@
+.header {
+	height: 80px;
+	width: 100%;
+	display: flex;
+	position: relative;
+
+	.header__icon {
+		width: 70px;
+		height: 70px;
+		@include stdBlock();
+		padding: 5px;
+		margin: 5px;
+	}
+
+	.header__status {
+		width: 240px;
+		height: 70px;
+		margin: 5px 0;
+		@include stdBlock();
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+
+		.header__status-line {
+			display: flex;
+			align-items: center;
+			position: relative;
+			justify-content: center;
+
+
+			.status-line__container {
+				width: 200px;
+				height: 20px;
+				@include stdBlock();
+				margin: 5px;
+
+
+				div {
+					height: 18px;
+					border-radius: 5px;
+					margin-left: -1px;
+					transition-property: width;
+					transition-duration: 100ms;
+
+					&.mp {
+						background: $blue;
+					}
+
+					&.hp {
+						background: $red;
+					}
+				}
+			}
+
+			.status-line__maxCur {
+				position: absolute;
+			}
+		}
+	}
+
+	.header__items-wrapper {
+		display: flex;
+		justify-content: flex-end;
+		flex-grow: 1;
+
+		.header__items {
+			.header__items-row {
+				display: flex;
+			}
+		}
+
+		.header__backpack {
+			width: 70px;
+			height: 70px;
+			margin: 5px;
+			@include stdBlock();
+			background-image: url('/resources/img/interface/backpack.png');
+			background-repeat: no-repeat;
+			background-position: 10px;
+			background-size: 70%;
+			cursor: pointer;
+
+			&.active {
+				background-color: $greyLight;
+			}
+		}
+	}
+}

@@ -16,8 +16,8 @@ module.exports = class WEnginAPI {
 	startGame() {
 		this._game = new this._ControllerGame([{
 			coor: {
-				x: 100,
-				y: 100
+				x: 3,
+				y: 3
 			},
 			type: 'mage',
 			watcher: true
@@ -65,5 +65,7 @@ module.exports = class WEnginAPI {
 		}, this._GLOBAL_SETTING.timeOfTactOther);
 
 		console.log(this._state);
+
+		return this._state;
 	}
 }

@@ -81,32 +81,25 @@ module.exports = class Creature extends InnerObject {
 
 			weapon = state.setWeapon({
 				coor: {
-					x: coor.newX,
-					y: coor.newY
+					x: coor.x,
+					y: coor.y
 				},
 				owner: creature
 			});
 
-			if (weapon === null) {
-				return false;
-			} else {
-				weapon.coor.x = coor.x;
-				weapon.coor.y = coor.y;
+			let range = creature.attackRange - 1;
 
-				let range = creature.attackRange - 1;
+			weapon.movePerformance(direction);
 
-				weapon.movePerformance(direction);
+			do {
+				nextBlock = await biasWeapon(weapon, direction);
+			} while (((nextBlock.patency && !nextBlock.getVisiter()) || nextBlock === true) && range--);
 
-				do {
-					nextBlock = await biasWeapon(weapon, direction);
-				} while (((nextBlock.patency && !nextBlock.getVisiter()) || nextBlock === true) && range--);
-
-				if (nextBlock !== true && nextBlock.getVisiter()) {
-					nextBlock.getVisiter().getDemage(creature);
-				}
-
-				weapon.die();
+			if (nextBlock !== true && nextBlock.getVisiter()) {
+				nextBlock.getVisiter().getDemage(creature);
 			}
+
+			weapon.die();
 		}
 
 		async function biasWeapon(weapon, direction) {

@@ -1,0 +1,76 @@
+.wrapPopUp {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	position: absolute;
+	top: 0;
+	justify-content: center;
+	align-items: center;
+
+	.popUp {
+		@include stdBlock();
+		padding: 20px 50px;
+		width: 700px;
+		height: 500px;
+		display: flex;
+
+		.leftColumn {
+			width: 40px;
+			display: flex;
+			flex-direction: column;
+
+			.subColumn {
+				@include stdBlock();
+				border-radius: 5px 0 0 5px;
+				height: 40px;
+				background-repeat: no-repeat;
+				cursor: pointer;
+
+				&:nth-child(n+2) {
+					border-top: 0;
+				}
+
+				&.active {
+					border-right: 0;
+				}
+
+				&.inventory {
+					background-image: url('/resources/img/interface/backpack.png');
+					background-position: 2px;
+					background-size: 90%;
+				}
+			}
+		}
+
+		.mainWindow {
+			width: 560px;
+
+			.popUp__inventory {
+				width: 100%;
+				@include stdBlock();
+				height: 100%;
+				border-radius: 0 5px 5px 0;
+				border-left: 0;
+
+				.inventory__items {
+					width: 100%;
+					height: 100%;
+					display: flex;
+					flex-wrap: wrap;
+					padding: 0 30px;
+					justify-content: center;
+					align-items: center;
+				}
+			}
+
+			.popUp___wrappWindow {
+				text-align: center;
+
+				.wrapWindow__title {
+					margin: 12px 0;
+					text-align: center;
+				}
+			}
+		}
+	}
+}
