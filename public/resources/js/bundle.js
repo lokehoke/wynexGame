@@ -9911,10 +9911,10 @@ module.exports = __webpack_require__(/*! ./modules/_core */ "./node_modules/core
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/index.js?!./node_modules/sass-loader/lib/loader.js?!./src/styles/sass/index.scss":
-/*!***************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader??ref--4-1!./node_modules/sass-loader/lib/loader.js??ref--4-2!./src/styles/sass/index.scss ***!
-  \***************************************************************************************************************************/
+/***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/lib/index.js?!./node_modules/sass-loader/lib/loader.js?!./src/styles/sass/index.scss":
+/*!***********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--4-1!./node_modules/postcss-loader/lib??ref--4-2!./node_modules/sass-loader/lib/loader.js??ref--4-3!./src/styles/sass/index.scss ***!
+  \***********************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9923,7 +9923,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "/* http://meyerweb.com/eric/tools/css/reset/\n   v4.0 | 20180602\n   License: none (public domain)\n*/\nhtml, body, div, span, applet, object, iframe,\nh1, h2, h3, h4, h5, h6, p, blockquote, pre,\na, abbr, acronym, address, big, cite, code,\ndel, dfn, em, img, ins, kbd, q, s, samp,\nsmall, strike, strong, sub, sup, tt, var,\nb, u, i, center,\ndl, dt, dd, ol, ul, li,\nfieldset, form, label, legend,\ntable, caption, tbody, tfoot, thead, tr, th, td,\narticle, aside, canvas, details, embed,\nfigure, figcaption, footer, header, hgroup,\nmain, menu, nav, output, ruby, section, summary,\ntime, mark, audio, video {\n  margin: 0;\n  padding: 0;\n  border: 0;\n  font-size: 100%;\n  font: inherit;\n  vertical-align: baseline; }\n\n/* HTML5 display-role reset for older browsers */\narticle, aside, details, figcaption, figure,\nfooter, header, hgroup, main, menu, nav, section {\n  display: block; }\n\n/* HTML5 hidden-attribute fix for newer browsers */\n*[hidden] {\n  display: none; }\n\nbody {\n  line-height: 1; }\n\nol, ul {\n  list-style: none; }\n\nblockquote, q {\n  quotes: none; }\n\nblockquote:before, blockquote:after,\nq:before, q:after {\n  content: '';\n  content: none; }\n\ntable {\n  border-collapse: collapse;\n  border-spacing: 0; }\n\n* {\n  padding: 0;\n  margin: 0;\n  box-sizing: border-box; }\n\nbutton {\n  cursor: pointer; }\n\nhtml, body {\n  width: 100%; }\n\nh1 {\n  margin: 0;\n  padding: 0; }\n\nhtml,\nbody,\n.wrapper,\n.world {\n  display: flex;\n  background: #000; }\n\n.world {\n  flex-direction: column;\n  background: #000;\n  background-image: url(\"/resources/img/worldTextures/dark-bg.jpg\"); }\n  .world .row {\n    display: flex; }\n    .world .row .standartPlace {\n      width: 30px;\n      height: 30px;\n      position: relative; }\n      .world .row .standartPlace div {\n        position: absolute;\n        width: 100%;\n        height: 100%;\n        z-index: 2; }\n        .world .row .standartPlace div.magePlayer {\n          background-image: url(/resources/img/iconCreature/player/mage.png);\n          background-size: 70%;\n          background-position: 5px 1px;\n          background-repeat: no-repeat;\n          z-index: 5; }\n        .world .row .standartPlace div.slimeEnemy {\n          background-image: url(/resources/img/iconCreature/enemy/slime.svg);\n          background-size: 200%;\n          background-position: -2px 8px;\n          background-repeat: no-repeat;\n          z-index: 5; }\n        .world .row .standartPlace div.weapon {\n          background: url(\"/resources/img/weaponTextures/stackWeaponBall.svg\");\n          width: 30px;\n          height: 30px;\n          background-size: 250%;\n          background-position: 4px 5px;\n          background-repeat: no-repeat; }\n        .world .row .standartPlace div.itemSlime {\n          background: url(\"/resources/img/items/itemSlime.png\");\n          width: 30px;\n          height: 30px;\n          background-size: 100%;\n          background-position: 2px 2px;\n          background-repeat: no-repeat;\n          transform: rotate(30deg); }\n    .world .row .border {\n      background-image: url(/resources/img/worldTextures/border.svg);\n      background-size: 200%;\n      background-position: 5px 4px;\n      background-repeat: no-repeat;\n      background-color: black; }\n    .world .row .dirt {\n      background-image: url(/resources/img/worldTextures/road.svg);\n      background-size: 200%;\n      background-repeat: no-repeat; }\n    .world .row .chest {\n      background: #74FD59; }\n\n.__item {\n  width: 30px;\n  height: 30px;\n  margin: 5px;\n  background-color: #A8A4A4;\n  border: 1px solid #83199D;\n  border-radius: 5px;\n  cursor: pointer; }\n\n.inerInterface {\n  width: 100%;\n  height: 100%; }\n\n.interface {\n  position: absolute;\n  z-index: 1000;\n  width: 100%;\n  height: 100%;\n  color: white;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between; }\n  .interface .header {\n    height: 80px;\n    width: 100%;\n    display: flex;\n    position: relative; }\n    .interface .header .header__icon {\n      width: 70px;\n      height: 70px;\n      background-color: #A8A4A4;\n      border: 1px solid #83199D;\n      border-radius: 5px;\n      padding: 5px;\n      margin: 5px; }\n    .interface .header .header__status {\n      width: 240px;\n      height: 70px;\n      margin: 5px 0;\n      background-color: #A8A4A4;\n      border: 1px solid #83199D;\n      border-radius: 5px;\n      display: flex;\n      flex-direction: column;\n      justify-content: space-between; }\n      .interface .header .header__status .header__status-line {\n        display: flex;\n        align-items: center;\n        position: relative;\n        justify-content: center; }\n        .interface .header .header__status .header__status-line .status-line__container {\n          width: 200px;\n          height: 20px;\n          background-color: #A8A4A4;\n          border: 1px solid #83199D;\n          border-radius: 5px;\n          margin: 5px; }\n          .interface .header .header__status .header__status-line .status-line__container div {\n            height: 18px;\n            border-radius: 5px;\n            margin-left: -1px;\n            transition-property: width;\n            transition-duration: 100ms; }\n            .interface .header .header__status .header__status-line .status-line__container div.mp {\n              background: #44E1FD; }\n            .interface .header .header__status .header__status-line .status-line__container div.hp {\n              background: #FF3232; }\n        .interface .header .header__status .header__status-line .status-line__maxCur {\n          position: absolute; }\n    .interface .header .header__items-wrapper {\n      display: flex;\n      justify-content: flex-end;\n      flex-grow: 1; }\n      .interface .header .header__items-wrapper .header__items .header__items-row {\n        display: flex; }\n      .interface .header .header__items-wrapper .header__backpack {\n        width: 70px;\n        height: 70px;\n        margin: 5px;\n        background-color: #A8A4A4;\n        border: 1px solid #83199D;\n        border-radius: 5px;\n        background-image: url(\"/resources/img/interface/backpack.png\");\n        background-repeat: no-repeat;\n        background-position: 10px;\n        background-size: 70%;\n        cursor: pointer; }\n        .interface .header .header__items-wrapper .header__backpack.active {\n          background-color: #DDDDDD; }\n  .interface .wrapPopUp {\n    width: 100%;\n    height: 100%;\n    display: flex;\n    position: absolute;\n    top: 0;\n    justify-content: center;\n    align-items: center; }\n    .interface .wrapPopUp .popUp {\n      background-color: #A8A4A4;\n      border: 1px solid #83199D;\n      border-radius: 5px;\n      padding: 20px 50px;\n      width: 700px;\n      height: 500px;\n      display: flex; }\n      .interface .wrapPopUp .popUp .leftColumn {\n        width: 40px;\n        display: flex;\n        flex-direction: column; }\n        .interface .wrapPopUp .popUp .leftColumn .subColumn {\n          background-color: #A8A4A4;\n          border: 1px solid #83199D;\n          border-radius: 5px;\n          border-radius: 5px 0 0 5px;\n          height: 40px;\n          background-repeat: no-repeat;\n          cursor: pointer; }\n          .interface .wrapPopUp .popUp .leftColumn .subColumn:nth-child(n+2) {\n            border-top: 0; }\n          .interface .wrapPopUp .popUp .leftColumn .subColumn.active {\n            border-right: 0; }\n          .interface .wrapPopUp .popUp .leftColumn .subColumn.inventory {\n            background-image: url(\"/resources/img/interface/backpack.png\");\n            background-position: 2px;\n            background-size: 90%; }\n      .interface .wrapPopUp .popUp .mainWindow {\n        width: 560px; }\n        .interface .wrapPopUp .popUp .mainWindow .popUp__inventory {\n          width: 100%;\n          background-color: #A8A4A4;\n          border: 1px solid #83199D;\n          border-radius: 5px;\n          height: 100%;\n          border-radius: 0 5px 5px 0;\n          border-left: 0; }\n          .interface .wrapPopUp .popUp .mainWindow .popUp__inventory .inventory__items {\n            width: 100%;\n            height: 100%;\n            display: flex;\n            flex-wrap: wrap;\n            padding: 0 30px;\n            justify-content: center;\n            align-items: center; }\n        .interface .wrapPopUp .popUp .mainWindow .popUp___wrappWindow {\n          text-align: center; }\n          .interface .wrapPopUp .popUp .mainWindow .popUp___wrappWindow .wrapWindow__title {\n            margin: 12px 0;\n            text-align: center; }\n", "", {"version":3,"sources":["C:/OSPanel/domains/wynexGame/src/styles/sass/node_modules/reset-css/reset.css","C:/OSPanel/domains/wynexGame/src/styles/sass/src/styles/sass/defaults/defaults.scss","C:/OSPanel/domains/wynexGame/src/styles/sass/src/styles/sass/style/inner/world/world.scss","C:/OSPanel/domains/wynexGame/src/styles/sass/src/styles/sass/style/inner/intarface/commonComponents/commonComponents.scss","C:/OSPanel/domains/wynexGame/src/styles/sass/src/styles/sass/mixin/mixin.scss","C:/OSPanel/domains/wynexGame/src/styles/sass/src/styles/sass/color/color.scss","C:/OSPanel/domains/wynexGame/src/styles/sass/src/styles/sass/style/inner/intarface/intarface.scss","C:/OSPanel/domains/wynexGame/src/styles/sass/src/styles/sass/style/inner/intarface/header/header.scss","C:/OSPanel/domains/wynexGame/src/styles/sass/src/styles/sass/style/inner/intarface/popUp/popUp.scss"],"names":[],"mappings":"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","file":"index.scss","sourcesContent":["/* http://meyerweb.com/eric/tools/css/reset/\n   v4.0 | 20180602\n   License: none (public domain)\n*/\n\nhtml, body, div, span, applet, object, iframe,\nh1, h2, h3, h4, h5, h6, p, blockquote, pre,\na, abbr, acronym, address, big, cite, code,\ndel, dfn, em, img, ins, kbd, q, s, samp,\nsmall, strike, strong, sub, sup, tt, var,\nb, u, i, center,\ndl, dt, dd, ol, ul, li,\nfieldset, form, label, legend,\ntable, caption, tbody, tfoot, thead, tr, th, td,\narticle, aside, canvas, details, embed,\nfigure, figcaption, footer, header, hgroup,\nmain, menu, nav, output, ruby, section, summary,\ntime, mark, audio, video {\n\tmargin: 0;\n\tpadding: 0;\n\tborder: 0;\n\tfont-size: 100%;\n\tfont: inherit;\n\tvertical-align: baseline;\n}\n/* HTML5 display-role reset for older browsers */\narticle, aside, details, figcaption, figure,\nfooter, header, hgroup, main, menu, nav, section {\n\tdisplay: block;\n}\n/* HTML5 hidden-attribute fix for newer browsers */\n*[hidden] {\n    display: none;\n}\nbody {\n\tline-height: 1;\n}\nol, ul {\n\tlist-style: none;\n}\nblockquote, q {\n\tquotes: none;\n}\nblockquote:before, blockquote:after,\nq:before, q:after {\n\tcontent: '';\n\tcontent: none;\n}\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n","@import 'reset-css';\r\n\r\n* {\r\n\tpadding: 0;\r\n\tmargin: 0;\r\n\tbox-sizing: border-box;\r\n}\r\n\r\nbutton {\r\n\tcursor: pointer;\r\n}\r\n\r\n\r\nhtml, body {\r\n\twidth: 100%;\r\n}\r\n\r\nh1 {\r\n\tmargin: 0;\r\n\tpadding: 0;\r\n}\r\n\r\n\r\nhtml,\r\nbody,\r\n.wrapper,\r\n.world {\r\n\tdisplay: flex;\r\n\tbackground: #000;\r\n}",".world {\r\n\tflex-direction: column;\r\n\tbackground: #000;\r\n\tbackground-image: url('/resources/img/worldTextures/dark-bg.jpg');\r\n\r\n\t.row {\r\n\t\tdisplay: flex;\r\n\r\n\t\t.standartPlace {\r\n\t\t\twidth: 30px;\r\n\t\t\theight: 30px;\r\n\t\t\tposition: relative;\r\n\r\n\t\t\tdiv {\r\n\t\t\t\tposition: absolute;\r\n\t\t\t\twidth: 100%;\r\n\t\t\t\theight: 100%;\r\n\t\t\t\tz-index: 2;\r\n\r\n\t\t\t\t&.magePlayer {\r\n\t\t\t\t\tbackground-image: url(/resources/img/iconCreature/player/mage.png);\r\n\t\t\t\t\tbackground-size: 70%;\r\n\t\t\t\t\tbackground-position: 5px 1px;\r\n\t\t\t\t\tbackground-repeat: no-repeat;\r\n\t\t\t\t\tz-index: 5;\r\n\t\t\t\t}\r\n\r\n\t\t\t\t&.slimeEnemy {\r\n\t\t\t\t\tbackground-image: url(/resources/img/iconCreature/enemy/slime.svg);\r\n\t\t\t\t\tbackground-size: 200%;\r\n\t\t\t\t\tbackground-position: -2px 8px;\r\n\t\t\t\t\tbackground-repeat: no-repeat;\r\n\t\t\t\t\tz-index: 5;\r\n\t\t\t\t}\r\n\r\n\t\t\t\t&.weapon {\r\n\t\t\t\t\tbackground: url('/resources/img/weaponTextures/stackWeaponBall.svg');\r\n\t\t\t\t\twidth: 30px;\r\n\t\t\t\t\theight: 30px;\r\n\t\t\t\t\tbackground-size: 250%;\r\n\t\t\t\t\tbackground-position: 4px 5px;\r\n\t\t\t\t\tbackground-repeat: no-repeat;\r\n\t\t\t\t}\r\n\r\n\t\t\t\t&.itemSlime {\r\n\t\t\t\t\tbackground: url('/resources/img/items/itemSlime.png');\r\n\t\t\t\t\twidth: 30px;\r\n\t\t\t\t\theight: 30px;\r\n\t\t\t\t\tbackground-size: 100%;\r\n\t\t\t\t\tbackground-position: 2px 2px;\r\n\t\t\t\t\tbackground-repeat: no-repeat;\r\n\t\t\t\t\ttransform: rotate(30deg);\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t}\r\n\r\n\t\t.border {\r\n\t\t\tbackground-image: url(/resources/img/worldTextures/border.svg);\r\n\t\t\tbackground-size: 200%;\r\n\t\t\tbackground-position: 5px 4px;\r\n\t\t\tbackground-repeat: no-repeat;\r\n\t\t\tbackground-color: black;\r\n\t\t}\r\n\r\n\t\t.dirt {\r\n\t\t\tbackground-image: url(/resources/img/worldTextures/road.svg);\r\n\t\t\tbackground-size: 200%;\r\n\t\t\tbackground-repeat: no-repeat;\r\n\t\t}\r\n\r\n\t\t.chest {\r\n\t\t\tbackground: #74FD59;\r\n\t\t}\r\n\t}\r\n}",".__item {\r\n\twidth: 30px;\r\n\theight: 30px;\r\n\tmargin: 5px;\r\n\t@include stdBlock();\r\n\tcursor: pointer;\r\n}","@mixin stdBlock() {\r\n\tbackground-color: $grey;\r\n\tborder: 1px solid $purple;\r\n\tborder-radius: 5px;\r\n}","$greyLight : #DDDDDD;\r\n$grey : #A8A4A4;\r\n$purple : #83199D;\r\n$blue : #44E1FD;\r\n$red : #FF3232;","@import './commonComponents/commonComponents.scss';\r\n\r\n.inerInterface {\r\n\twidth: 100%;\r\n\theight: 100%;\r\n\r\n}\r\n.interface {\r\n\tposition: absolute;\r\n\tz-index: 1000;\r\n\twidth: 100%;\r\n\theight: 100%;\r\n\tcolor: white;\r\n\tdisplay: flex;\r\n\tflex-direction: column;\r\n\tjustify-content: space-between;\r\n\r\n\t@import './header/header.scss';\r\n\t@import './popUp/popUp.scss';\r\n}\r\n",".header {\r\n\theight: 80px;\r\n\twidth: 100%;\r\n\tdisplay: flex;\r\n\tposition: relative;\r\n\r\n\t.header__icon {\r\n\t\twidth: 70px;\r\n\t\theight: 70px;\r\n\t\t@include stdBlock();\r\n\t\tpadding: 5px;\r\n\t\tmargin: 5px;\r\n\t}\r\n\r\n\t.header__status {\r\n\t\twidth: 240px;\r\n\t\theight: 70px;\r\n\t\tmargin: 5px 0;\r\n\t\t@include stdBlock();\r\n\t\tdisplay: flex;\r\n\t\tflex-direction: column;\r\n\t\tjustify-content: space-between;\r\n\r\n\t\t.header__status-line {\r\n\t\t\tdisplay: flex;\r\n\t\t\talign-items: center;\r\n\t\t\tposition: relative;\r\n\t\t\tjustify-content: center;\r\n\r\n\r\n\t\t\t.status-line__container {\r\n\t\t\t\twidth: 200px;\r\n\t\t\t\theight: 20px;\r\n\t\t\t\t@include stdBlock();\r\n\t\t\t\tmargin: 5px;\r\n\r\n\r\n\t\t\t\tdiv {\r\n\t\t\t\t\theight: 18px;\r\n\t\t\t\t\tborder-radius: 5px;\r\n\t\t\t\t\tmargin-left: -1px;\r\n\t\t\t\t\ttransition-property: width;\r\n\t\t\t\t\ttransition-duration: 100ms;\r\n\r\n\t\t\t\t\t&.mp {\r\n\t\t\t\t\t\tbackground: $blue;\r\n\t\t\t\t\t}\r\n\r\n\t\t\t\t\t&.hp {\r\n\t\t\t\t\t\tbackground: $red;\r\n\t\t\t\t\t}\r\n\t\t\t\t}\r\n\t\t\t}\r\n\r\n\t\t\t.status-line__maxCur {\r\n\t\t\t\tposition: absolute;\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n\r\n\t.header__items-wrapper {\r\n\t\tdisplay: flex;\r\n\t\tjustify-content: flex-end;\r\n\t\tflex-grow: 1;\r\n\r\n\t\t.header__items {\r\n\t\t\t.header__items-row {\r\n\t\t\t\tdisplay: flex;\r\n\t\t\t}\r\n\t\t}\r\n\r\n\t\t.header__backpack {\r\n\t\t\twidth: 70px;\r\n\t\t\theight: 70px;\r\n\t\t\tmargin: 5px;\r\n\t\t\t@include stdBlock();\r\n\t\t\tbackground-image: url('/resources/img/interface/backpack.png');\r\n\t\t\tbackground-repeat: no-repeat;\r\n\t\t\tbackground-position: 10px;\r\n\t\t\tbackground-size: 70%;\r\n\t\t\tcursor: pointer;\r\n\r\n\t\t\t&.active {\r\n\t\t\t\tbackground-color: $greyLight;\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n}",".wrapPopUp {\r\n\twidth: 100%;\r\n\theight: 100%;\r\n\tdisplay: flex;\r\n\tposition: absolute;\r\n\ttop: 0;\r\n\tjustify-content: center;\r\n\talign-items: center;\r\n\r\n\t.popUp {\r\n\t\t@include stdBlock();\r\n\t\tpadding: 20px 50px;\r\n\t\twidth: 700px;\r\n\t\theight: 500px;\r\n\t\tdisplay: flex;\r\n\r\n\t\t.leftColumn {\r\n\t\t\twidth: 40px;\r\n\t\t\tdisplay: flex;\r\n\t\t\tflex-direction: column;\r\n\r\n\t\t\t.subColumn {\r\n\t\t\t\t@include stdBlock();\r\n\t\t\t\tborder-radius: 5px 0 0 5px;\r\n\t\t\t\theight: 40px;\r\n\t\t\t\tbackground-repeat: no-repeat;\r\n\t\t\t\tcursor: pointer;\r\n\r\n\t\t\t\t&:nth-child(n+2) {\r\n\t\t\t\t\tborder-top: 0;\r\n\t\t\t\t}\r\n\r\n\t\t\t\t&.active {\r\n\t\t\t\t\tborder-right: 0;\r\n\t\t\t\t}\r\n\r\n\t\t\t\t&.inventory {\r\n\t\t\t\t\tbackground-image: url('/resources/img/interface/backpack.png');\r\n\t\t\t\t\tbackground-position: 2px;\r\n\t\t\t\t\tbackground-size: 90%;\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t}\r\n\r\n\t\t.mainWindow {\r\n\t\t\twidth: 560px;\r\n\r\n\t\t\t.popUp__inventory {\r\n\t\t\t\twidth: 100%;\r\n\t\t\t\t@include stdBlock();\r\n\t\t\t\theight: 100%;\r\n\t\t\t\tborder-radius: 0 5px 5px 0;\r\n\t\t\t\tborder-left: 0;\r\n\r\n\t\t\t\t.inventory__items {\r\n\t\t\t\t\twidth: 100%;\r\n\t\t\t\t\theight: 100%;\r\n\t\t\t\t\tdisplay: flex;\r\n\t\t\t\t\tflex-wrap: wrap;\r\n\t\t\t\t\tpadding: 0 30px;\r\n\t\t\t\t\tjustify-content: center;\r\n\t\t\t\t\talign-items: center;\r\n\t\t\t\t}\r\n\t\t\t}\r\n\r\n\t\t\t.popUp___wrappWindow {\r\n\t\t\t\ttext-align: center;\r\n\r\n\t\t\t\t.wrapWindow__title {\r\n\t\t\t\t\tmargin: 12px 0;\r\n\t\t\t\t\ttext-align: center;\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n}"],"sourceRoot":""}]);
+exports.push([module.i, "/* http://meyerweb.com/eric/tools/css/reset/\n   v4.0 | 20180602\n   License: none (public domain)\n*/\nhtml, body, div, span, applet, object, iframe,\nh1, h2, h3, h4, h5, h6, p, blockquote, pre,\na, abbr, acronym, address, big, cite, code,\ndel, dfn, em, img, ins, kbd, q, s, samp,\nsmall, strike, strong, sub, sup, tt, var,\nb, u, i, center,\ndl, dt, dd, ol, ul, li,\nfieldset, form, label, legend,\ntable, caption, tbody, tfoot, thead, tr, th, td,\narticle, aside, canvas, details, embed,\nfigure, figcaption, footer, header, hgroup,\nmain, menu, nav, output, ruby, section, summary,\ntime, mark, audio, video {\n  margin: 0;\n  padding: 0;\n  border: 0;\n  font-size: 100%;\n  font: inherit;\n  vertical-align: baseline; }\n\n/* HTML5 display-role reset for older browsers */\narticle, aside, details, figcaption, figure,\nfooter, header, hgroup, main, menu, nav, section {\n  display: block; }\n\n/* HTML5 hidden-attribute fix for newer browsers */\n*[hidden] {\n  display: none; }\n\nbody {\n  line-height: 1; }\n\nol, ul {\n  list-style: none; }\n\nblockquote, q {\n  quotes: none; }\n\nblockquote:before, blockquote:after,\nq:before, q:after {\n  content: '';\n  content: none; }\n\ntable {\n  border-collapse: collapse;\n  border-spacing: 0; }\n\n* {\n  padding: 0;\n  margin: 0;\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box; }\n\nbutton {\n  cursor: pointer; }\n\nhtml, body {\n  width: 100%; }\n\nh1 {\n  margin: 0;\n  padding: 0; }\n\nhtml,\nbody,\n.wrapper,\n.world {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  background: #000; }\n\n.world {\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  background: #000; }\n  .world .row {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex; }\n    .world .row .standartPlace {\n      width: 30px !important;\n      height: 30px !important;\n      position: relative;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -webkit-box-pack: center;\n          -ms-flex-pack: center;\n              justify-content: center; }\n      .world .row .standartPlace div {\n        position: absolute;\n        width: 100%;\n        height: 100%;\n        z-index: 2; }\n        .world .row .standartPlace div.magePlayer {\n          width: 30px;\n          margin: auto;\n          height: 30px;\n          background-position: -1596px -900px;\n          background-image: url(/resources/img/sprite.png);\n          z-index: 5; }\n        .world .row .standartPlace div.slimeEnemy {\n          width: 30px;\n          margin: auto;\n          height: 21px;\n          background-position: -1626px -900px;\n          background-image: url(/resources/img/sprite.png);\n          z-index: 5; }\n        .world .row .standartPlace div.weapon {\n          width: 25px;\n          height: 25px;\n          background: #2E0D0D;\n          border-radius: 100%; }\n    .world .row .border {\n      width: 256px;\n      margin: auto;\n      height: 256px;\n      background-position: -1200px -900px;\n      background-image: url(/resources/img/sprite.png); }\n    .world .row .dirt {\n      width: 600px;\n      margin: auto;\n      height: 600px;\n      background-position: 0px 0px;\n      background-image: url(/resources/img/sprite.png); }\n\n.__item {\n  width: 30px;\n  height: 30px;\n  margin: 5px;\n  background-color: #A8A4A4;\n  border: 1px solid #83199D;\n  border-radius: 5px;\n  cursor: pointer; }\n\n.itemSlime {\n  -webkit-transform: scale(0.9) rotate(30deg);\n      -ms-transform: scale(0.9) rotate(30deg);\n          transform: scale(0.9) rotate(30deg);\n  width: 34px;\n  margin: auto;\n  height: 34px;\n  background-position: -1562px -900px;\n  background-image: url(/resources/img/sprite.png); }\n\n.inerInterface {\n  width: 100%;\n  height: 100%; }\n\n.interface {\n  position: absolute;\n  z-index: 1000;\n  width: 100%;\n  height: 100%;\n  color: white;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between; }\n  .interface .header {\n    height: 80px;\n    width: 100%;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    position: relative; }\n    .interface .header .header__icon {\n      width: 70px;\n      height: 70px;\n      background-color: #A8A4A4;\n      border: 1px solid #83199D;\n      border-radius: 5px;\n      padding: 5px;\n      margin: 5px; }\n      .interface .header .header__icon .Header__icon-imgDiv {\n        width: 51px;\n        margin: auto;\n        height: 58px;\n        background-position: -1511px -900px;\n        background-image: url(/resources/img/sprite.png); }\n    .interface .header .header__status {\n      width: 240px;\n      height: 70px;\n      margin: 5px 0;\n      background-color: #A8A4A4;\n      border: 1px solid #83199D;\n      border-radius: 5px;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-orient: vertical;\n      -webkit-box-direction: normal;\n          -ms-flex-direction: column;\n              flex-direction: column;\n      -webkit-box-pack: justify;\n          -ms-flex-pack: justify;\n              justify-content: space-between; }\n      .interface .header .header__status .header__status-line {\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-align: center;\n            -ms-flex-align: center;\n                align-items: center;\n        position: relative;\n        -webkit-box-pack: center;\n            -ms-flex-pack: center;\n                justify-content: center; }\n        .interface .header .header__status .header__status-line .status-line__container {\n          width: 200px;\n          height: 20px;\n          background-color: #A8A4A4;\n          border: 1px solid #83199D;\n          border-radius: 5px;\n          margin: 5px; }\n          .interface .header .header__status .header__status-line .status-line__container div {\n            height: 18px;\n            border-radius: 5px;\n            margin-left: -1px;\n            -webkit-transition-property: width;\n            -o-transition-property: width;\n            transition-property: width;\n            -webkit-transition-duration: 100ms;\n                 -o-transition-duration: 100ms;\n                    transition-duration: 100ms; }\n            .interface .header .header__status .header__status-line .status-line__container div.mp {\n              background: #44E1FD; }\n            .interface .header .header__status .header__status-line .status-line__container div.hp {\n              background: #FF3232; }\n        .interface .header .header__status .header__status-line .status-line__maxCur {\n          position: absolute; }\n    .interface .header .header__items-wrapper {\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-pack: end;\n          -ms-flex-pack: end;\n              justify-content: flex-end;\n      -webkit-box-flex: 1;\n          -ms-flex-positive: 1;\n              flex-grow: 1; }\n      .interface .header .header__items-wrapper .header__items .header__items-row {\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex; }\n      .interface .header .header__items-wrapper .header__backpack {\n        background-color: #A8A4A4;\n        border: 1px solid #83199D;\n        border-radius: 5px;\n        height: 70px;\n        width: 70px;\n        margin: 5px;\n        cursor: pointer; }\n        .interface .header .header__items-wrapper .header__backpack.active {\n          background-color: #DDDDDD; }\n        .interface .header .header__items-wrapper .header__backpack .header__backpack-divImg {\n          width: 55px;\n          margin: auto;\n          height: 70px;\n          background-position: -1456px -900px;\n          background-image: url(/resources/img/sprite.png);\n          -webkit-transform: scale(0.8);\n              -ms-transform: scale(0.8);\n                  transform: scale(0.8); }\n  .interface .wrapPopUp {\n    width: 100%;\n    height: 100%;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    position: absolute;\n    top: 0;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center; }\n    .interface .wrapPopUp .popUp {\n      background-color: #A8A4A4;\n      border: 1px solid #83199D;\n      border-radius: 5px;\n      padding: 20px 50px;\n      width: 700px;\n      height: 500px;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex; }\n      .interface .wrapPopUp .popUp .leftColumn {\n        width: 40px;\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-orient: vertical;\n        -webkit-box-direction: normal;\n            -ms-flex-direction: column;\n                flex-direction: column; }\n        .interface .wrapPopUp .popUp .leftColumn .subColumn {\n          background-color: #A8A4A4;\n          border: 1px solid #83199D;\n          border-radius: 5px;\n          border-radius: 5px 0 0 5px;\n          height: 40px;\n          background-repeat: no-repeat;\n          cursor: pointer;\n          position: relative; }\n          .interface .wrapPopUp .popUp .leftColumn .subColumn:nth-child(n+2) {\n            border-top: 0; }\n          .interface .wrapPopUp .popUp .leftColumn .subColumn.active {\n            border-right: 0; }\n          .interface .wrapPopUp .popUp .leftColumn .subColumn .inventory {\n            width: 55px;\n            margin: auto;\n            height: 70px;\n            background-position: -1456px -900px;\n            background-image: url(/resources/img/sprite.png);\n            position: absolute;\n            top: -17px;\n            right: -8px;\n            -webkit-transform: scale(0.4);\n                -ms-transform: scale(0.4);\n                    transform: scale(0.4); }\n      .interface .wrapPopUp .popUp .mainWindow {\n        width: 560px; }\n        .interface .wrapPopUp .popUp .mainWindow .popUp__inventory {\n          width: 100%;\n          background-color: #A8A4A4;\n          border: 1px solid #83199D;\n          border-radius: 5px;\n          height: 100%;\n          border-radius: 0 5px 5px 0;\n          border-left: 0; }\n          .interface .wrapPopUp .popUp .mainWindow .popUp__inventory .inventory__items {\n            width: 100%;\n            height: 100%;\n            display: -webkit-box;\n            display: -ms-flexbox;\n            display: flex;\n            -ms-flex-wrap: wrap;\n                flex-wrap: wrap;\n            padding: 0 30px;\n            -webkit-box-pack: center;\n                -ms-flex-pack: center;\n                    justify-content: center;\n            -webkit-box-align: center;\n                -ms-flex-align: center;\n                    align-items: center; }\n        .interface .wrapPopUp .popUp .mainWindow .popUp___wrappWindow {\n          text-align: center; }\n          .interface .wrapPopUp .popUp .mainWindow .popUp___wrappWindow .wrapWindow__title {\n            margin: 12px 0;\n            text-align: center; }\n", "", {"version":3,"sources":["C:/OSPanel/domains/wynexGame/src/styles/sass/C:/OSPanel/domains/wynexGame/src/styles/sass/C:/OSPanel/domains/wynexGame/node_modules/reset-css/reset.css","C:/OSPanel/domains/wynexGame/src/styles/sass/C:/OSPanel/domains/wynexGame/src/styles/sass/C:/OSPanel/domains/wynexGame/src/styles/sass/defaults/defaults.scss","C:/OSPanel/domains/wynexGame/src/styles/sass/C:/OSPanel/domains/wynexGame/src/styles/sass/C:/OSPanel/domains/wynexGame/src/styles/sass/style/inner/world/world.scss","C:/OSPanel/domains/wynexGame/src/styles/sass/C:/OSPanel/domains/wynexGame/src/styles/sass/C:/OSPanel/domains/wynexGame/src/styles/sprites/sprite.scss","C:/OSPanel/domains/wynexGame/src/styles/sass/C:/OSPanel/domains/wynexGame/src/styles/sass/C:/OSPanel/domains/wynexGame/src/styles/sass/style/inner/intarface/commonComponents/commonComponents.scss","C:/OSPanel/domains/wynexGame/src/styles/sass/C:/OSPanel/domains/wynexGame/src/styles/sass/C:/OSPanel/domains/wynexGame/src/styles/sass/mixin/mixin.scss","C:/OSPanel/domains/wynexGame/src/styles/sass/C:/OSPanel/domains/wynexGame/src/styles/sass/C:/OSPanel/domains/wynexGame/src/styles/sass/color/color.scss","C:/OSPanel/domains/wynexGame/src/styles/sass/C:/OSPanel/domains/wynexGame/src/styles/sass/C:/OSPanel/domains/wynexGame/src/styles/sass/style/inner/intarface/intarface.scss","C:/OSPanel/domains/wynexGame/src/styles/sass/C:/OSPanel/domains/wynexGame/src/styles/sass/C:/OSPanel/domains/wynexGame/src/styles/sass/style/inner/intarface/header/header.scss","C:/OSPanel/domains/wynexGame/src/styles/sass/C:/OSPanel/domains/wynexGame/src/styles/sass/C:/OSPanel/domains/wynexGame/src/styles/sass/style/inner/intarface/popUp/popUp.scss"],"names":[],"mappings":"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","file":"index.scss","sourcesContent":["/* http://meyerweb.com/eric/tools/css/reset/\n   v4.0 | 20180602\n   License: none (public domain)\n*/\n\nhtml, body, div, span, applet, object, iframe,\nh1, h2, h3, h4, h5, h6, p, blockquote, pre,\na, abbr, acronym, address, big, cite, code,\ndel, dfn, em, img, ins, kbd, q, s, samp,\nsmall, strike, strong, sub, sup, tt, var,\nb, u, i, center,\ndl, dt, dd, ol, ul, li,\nfieldset, form, label, legend,\ntable, caption, tbody, tfoot, thead, tr, th, td,\narticle, aside, canvas, details, embed,\nfigure, figcaption, footer, header, hgroup,\nmain, menu, nav, output, ruby, section, summary,\ntime, mark, audio, video {\n\tmargin: 0;\n\tpadding: 0;\n\tborder: 0;\n\tfont-size: 100%;\n\tfont: inherit;\n\tvertical-align: baseline;\n}\n/* HTML5 display-role reset for older browsers */\narticle, aside, details, figcaption, figure,\nfooter, header, hgroup, main, menu, nav, section {\n\tdisplay: block;\n}\n/* HTML5 hidden-attribute fix for newer browsers */\n*[hidden] {\n    display: none;\n}\nbody {\n\tline-height: 1;\n}\nol, ul {\n\tlist-style: none;\n}\nblockquote, q {\n\tquotes: none;\n}\nblockquote:before, blockquote:after,\nq:before, q:after {\n\tcontent: '';\n\tcontent: none;\n}\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n","@import 'reset-css';\r\n\r\n* {\r\n\tpadding: 0;\r\n\tmargin: 0;\r\n\tbox-sizing: border-box;\r\n}\r\n\r\nbutton {\r\n\tcursor: pointer;\r\n}\r\n\r\n\r\nhtml, body {\r\n\twidth: 100%;\r\n}\r\n\r\nh1 {\r\n\tmargin: 0;\r\n\tpadding: 0;\r\n}\r\n\r\n\r\nhtml,\r\nbody,\r\n.wrapper,\r\n.world {\r\n\tdisplay: flex;\r\n\tbackground: #000;\r\n}",".world {\r\n\tflex-direction: column;\r\n\tbackground: #000;\r\n\r\n\t.row {\r\n\t\tdisplay: flex;\r\n\r\n\t\t.standartPlace {\r\n\t\t\twidth: 30px !important;\r\n\t\t\theight: 30px !important;\r\n\t\t\tposition: relative;\r\n\t\t\tdisplay: flex;\r\n\t\t\talign-items: center;\r\n\t\t\tjustify-content: center;\r\n\r\n\t\t\tdiv {\r\n\t\t\t\tposition: absolute;\r\n\t\t\t\twidth: 100%;\r\n\t\t\t\theight: 100%;\r\n\t\t\t\tz-index: 2;\r\n\r\n\t\t\t\t&.magePlayer {\r\n\t\t\t\t\t@include player__unit();\r\n\t\t\t\t\tz-index: 5;\r\n\t\t\t\t}\r\n\r\n\t\t\t\t&.slimeEnemy {\r\n\t\t\t\t\t@include enemy__slime();\r\n\t\t\t\t\tz-index: 5;\r\n\t\t\t\t}\r\n\r\n\t\t\t\t&.weapon {\r\n\t\t\t\t\twidth: 25px;\r\n\t\t\t\t\theight: 25px;\r\n\t\t\t\t\tbackground: #2E0D0D;\r\n\t\t\t\t\tborder-radius: 100%;\r\n\t\t\t\t}\r\n\r\n\t\t\t}\r\n\t\t}\r\n\r\n\t\t.border {\r\n\t\t\t@include border__stdBorder();\r\n\t\t}\r\n\r\n\t\t.dirt {\r\n\t\t\t@include dirt__desert();\r\n\t\t}\r\n\t}\r\n}","\n@mixin border__stdBorder {\n\twidth: 256px;\n\tmargin: auto;\n\theight: 256px;\n\tbackground-position: -1200px -900px;\n\tbackground-image: url(/resources/img/sprite.png);\n}\n\n@mixin dirt__concrete {\n\twidth: 600px;\n\tmargin: auto;\n\theight: 600px;\n\tbackground-position: -1200px 0px;\n\tbackground-image: url(/resources/img/sprite.png);\n}\n\n@mixin dirt__desert {\n\twidth: 600px;\n\tmargin: auto;\n\theight: 600px;\n\tbackground-position: 0px 0px;\n\tbackground-image: url(/resources/img/sprite.png);\n}\n\n@mixin dirt__moquette {\n\twidth: 600px;\n\tmargin: auto;\n\theight: 600px;\n\tbackground-position: -600px 0px;\n\tbackground-image: url(/resources/img/sprite.png);\n}\n\n@mixin dirt__planet {\n\twidth: 600px;\n\tmargin: auto;\n\theight: 600px;\n\tbackground-position: 0px -600px;\n\tbackground-image: url(/resources/img/sprite.png);\n}\n\n@mixin dirt__snow {\n\twidth: 600px;\n\tmargin: auto;\n\theight: 600px;\n\tbackground-position: -600px -600px;\n\tbackground-image: url(/resources/img/sprite.png);\n}\n\n@mixin dirt__wood_light {\n\twidth: 300px;\n\tmargin: auto;\n\theight: 300px;\n\tbackground-position: -1500px -600px;\n\tbackground-image: url(/resources/img/sprite.png);\n}\n\n@mixin dirt__wood {\n\twidth: 300px;\n\tmargin: auto;\n\theight: 300px;\n\tbackground-position: -1200px -600px;\n\tbackground-image: url(/resources/img/sprite.png);\n}\n\n@mixin enemy__slime {\n\twidth: 30px;\n\tmargin: auto;\n\theight: 21px;\n\tbackground-position: -1626px -900px;\n\tbackground-image: url(/resources/img/sprite.png);\n}\n\n@mixin intarface__backpack {\n\twidth: 55px;\n\tmargin: auto;\n\theight: 70px;\n\tbackground-position: -1456px -900px;\n\tbackground-image: url(/resources/img/sprite.png);\n}\n\n@mixin intarface__mageIcon {\n\twidth: 51px;\n\tmargin: auto;\n\theight: 58px;\n\tbackground-position: -1511px -900px;\n\tbackground-image: url(/resources/img/sprite.png);\n}\n\n@mixin item__slime {\n\twidth: 34px;\n\tmargin: auto;\n\theight: 34px;\n\tbackground-position: -1562px -900px;\n\tbackground-image: url(/resources/img/sprite.png);\n}\n\n@mixin player__unit {\n\twidth: 30px;\n\tmargin: auto;\n\theight: 30px;\n\tbackground-position: -1596px -900px;\n\tbackground-image: url(/resources/img/sprite.png);\n}\n\n@mixin weapon__arrow {\n\twidth: 30px;\n\tmargin: auto;\n\theight: 4px;\n\tbackground-position: -1656px -900px;\n\tbackground-image: url(/resources/img/sprite.png);\n}",".__item {\r\n\twidth: 30px;\r\n\theight: 30px;\r\n\tmargin: 5px;\r\n\t@include stdBlock();\r\n\tcursor: pointer;\r\n}\r\n\r\n.itemSlime {\r\n\ttransform: scale(0.9) rotate(30deg);\r\n\t@include item__slime();\r\n}","@mixin stdBlock() {\r\n\tbackground-color: $grey;\r\n\tborder: 1px solid $purple;\r\n\tborder-radius: 5px;\r\n}","$greyLight : #DDDDDD;\r\n$grey : #A8A4A4;\r\n$purple : #83199D;\r\n$blue : #44E1FD;\r\n$red : #FF3232;","@import './commonComponents/commonComponents.scss';\r\n\r\n.inerInterface {\r\n\twidth: 100%;\r\n\theight: 100%;\r\n\r\n}\r\n.interface {\r\n\tposition: absolute;\r\n\tz-index: 1000;\r\n\twidth: 100%;\r\n\theight: 100%;\r\n\tcolor: white;\r\n\tdisplay: flex;\r\n\tflex-direction: column;\r\n\tjustify-content: space-between;\r\n\r\n\t@import './header/header.scss';\r\n\t@import './popUp/popUp.scss';\r\n}\r\n",".header {\r\n\theight: 80px;\r\n\twidth: 100%;\r\n\tdisplay: flex;\r\n\tposition: relative;\r\n\r\n\t.header__icon {\r\n\t\twidth: 70px;\r\n\t\theight: 70px;\r\n\t\t@include stdBlock();\r\n\t\tpadding: 5px;\r\n\t\tmargin: 5px;\r\n\r\n\t\t.Header__icon-imgDiv {\r\n\t\t\t@include intarface__mageIcon();\r\n\t\t}\r\n\t}\r\n\r\n\t.header__status {\r\n\t\twidth: 240px;\r\n\t\theight: 70px;\r\n\t\tmargin: 5px 0;\r\n\t\t@include stdBlock();\r\n\t\tdisplay: flex;\r\n\t\tflex-direction: column;\r\n\t\tjustify-content: space-between;\r\n\r\n\t\t.header__status-line {\r\n\t\t\tdisplay: flex;\r\n\t\t\talign-items: center;\r\n\t\t\tposition: relative;\r\n\t\t\tjustify-content: center;\r\n\r\n\r\n\t\t\t.status-line__container {\r\n\t\t\t\twidth: 200px;\r\n\t\t\t\theight: 20px;\r\n\t\t\t\t@include stdBlock();\r\n\t\t\t\tmargin: 5px;\r\n\r\n\r\n\t\t\t\tdiv {\r\n\t\t\t\t\theight: 18px;\r\n\t\t\t\t\tborder-radius: 5px;\r\n\t\t\t\t\tmargin-left: -1px;\r\n\t\t\t\t\ttransition-property: width;\r\n\t\t\t\t\ttransition-duration: 100ms;\r\n\r\n\t\t\t\t\t&.mp {\r\n\t\t\t\t\t\tbackground: $blue;\r\n\t\t\t\t\t}\r\n\r\n\t\t\t\t\t&.hp {\r\n\t\t\t\t\t\tbackground: $red;\r\n\t\t\t\t\t}\r\n\t\t\t\t}\r\n\t\t\t}\r\n\r\n\t\t\t.status-line__maxCur {\r\n\t\t\t\tposition: absolute;\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n\r\n\t.header__items-wrapper {\r\n\t\tdisplay: flex;\r\n\t\tjustify-content: flex-end;\r\n\t\tflex-grow: 1;\r\n\r\n\t\t.header__items {\r\n\t\t\t.header__items-row {\r\n\t\t\t\tdisplay: flex;\r\n\t\t\t}\r\n\t\t}\r\n\r\n\t\t.header__backpack {\r\n\t\t\t@include stdBlock();\r\n\t\t\theight: 70px;\r\n\t\t\twidth: 70px;\r\n\t\t\tmargin: 5px;\r\n\t\t\tcursor: pointer;\r\n\r\n\t\t\t&.active {\r\n\t\t\t\tbackground-color: $greyLight;\r\n\t\t\t}\r\n\r\n\t\t\t.header__backpack-divImg {\r\n\t\t\t\t@include intarface__backpack();\r\n\t\t\t\ttransform: scale(0.8);\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n}",".wrapPopUp {\r\n\twidth: 100%;\r\n\theight: 100%;\r\n\tdisplay: flex;\r\n\tposition: absolute;\r\n\ttop: 0;\r\n\tjustify-content: center;\r\n\talign-items: center;\r\n\r\n\t.popUp {\r\n\t\t@include stdBlock();\r\n\t\tpadding: 20px 50px;\r\n\t\twidth: 700px;\r\n\t\theight: 500px;\r\n\t\tdisplay: flex;\r\n\r\n\t\t.leftColumn {\r\n\t\t\twidth: 40px;\r\n\t\t\tdisplay: flex;\r\n\t\t\tflex-direction: column;\r\n\r\n\t\t\t.subColumn {\r\n\t\t\t\t@include stdBlock();\r\n\t\t\t\tborder-radius: 5px 0 0 5px;\r\n\t\t\t\theight: 40px;\r\n\t\t\t\tbackground-repeat: no-repeat;\r\n\t\t\t\tcursor: pointer;\r\n\t\t\t\tposition: relative;\r\n\r\n\t\t\t\t&:nth-child(n+2) {\r\n\t\t\t\t\tborder-top: 0;\r\n\t\t\t\t}\r\n\r\n\t\t\t\t&.active {\r\n\t\t\t\t\tborder-right: 0;\r\n\t\t\t\t}\r\n\r\n\t\t\t\t.inventory {\r\n\t\t\t\t\t@include intarface__backpack();\r\n\t\t\t\t\tposition: absolute;\r\n\t\t\t\t\ttop: -17px;\r\n\t\t\t\t\tright: -8px;\r\n\t\t\t\t\ttransform: scale(0.4);\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t}\r\n\r\n\t\t.mainWindow {\r\n\t\t\twidth: 560px;\r\n\r\n\t\t\t.popUp__inventory {\r\n\t\t\t\twidth: 100%;\r\n\t\t\t\t@include stdBlock();\r\n\t\t\t\theight: 100%;\r\n\t\t\t\tborder-radius: 0 5px 5px 0;\r\n\t\t\t\tborder-left: 0;\r\n\r\n\t\t\t\t.inventory__items {\r\n\t\t\t\t\twidth: 100%;\r\n\t\t\t\t\theight: 100%;\r\n\t\t\t\t\tdisplay: flex;\r\n\t\t\t\t\tflex-wrap: wrap;\r\n\t\t\t\t\tpadding: 0 30px;\r\n\t\t\t\t\tjustify-content: center;\r\n\t\t\t\t\talign-items: center;\r\n\t\t\t\t}\r\n\t\t\t}\r\n\r\n\t\t\t.popUp___wrappWindow {\r\n\t\t\t\ttext-align: center;\r\n\r\n\t\t\t\t.wrapWindow__title {\r\n\t\t\t\t\tmargin: 12px 0;\r\n\t\t\t\t\ttext-align: center;\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n}"],"sourceRoot":""}]);
 
 // exports
 
@@ -32785,6 +32785,27 @@ module.exports = function (_InnerObject) {
 			}
 		}
 	}, {
+		key: 'getDemage',
+		value: function getDemage(creature) {
+			if (this.HP > 0) {
+				this.HP -= creature.attackDamage;
+
+				if (this.HP <= 0) {
+					this.live = false;
+					this.die(creature);
+				}
+			} else {
+				throw "zombie";
+			}
+
+			return creature.attackDamage;
+		}
+	}, {
+		key: 'getItems',
+		value: function getItems() {
+			return this._items;
+		}
+	}, {
 		key: '_randMove',
 		value: function _randMove() {
 			var digit = Math.floor(Math.random() * 4) + 1;
@@ -32953,22 +32974,6 @@ module.exports = function (_InnerObject) {
 				}
 			}
 		}
-	}, {
-		key: 'getDemage',
-		value: function getDemage(creature) {
-			if (this.HP > 0) {
-				this.HP -= creature.attackDamage;
-
-				if (this.HP <= 0) {
-					this.live = false;
-					this.die(creature);
-				}
-			} else {
-				throw "zombie";
-			}
-
-			return creature.attackDamage;
-		}
 	}]);
 
 	return Creature;
@@ -33042,60 +33047,67 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var Creature = __webpack_require__(/*! ./creature.js */ "./src/gameSrcJs/engine/inerObjects/creatures/creature.js");
 
 module.exports = function (_Creature) {
-		_inherits(Player, _Creature);
+	_inherits(Player, _Creature);
 
-		function Player(id, state, watcher, coor, profession) {
-				_classCallCheck(this, Player);
+	function Player(id, state, watcher, coor, profession) {
+		_classCallCheck(this, Player);
 
-				var _this = _possibleConstructorReturn(this, (Player.__proto__ || Object.getPrototypeOf(Player)).call(this, id, state, coor));
+		var _this = _possibleConstructorReturn(this, (Player.__proto__ || Object.getPrototypeOf(Player)).call(this, id, state, coor));
 
-				_this.type = 'player';
+		_this.type = 'player';
 
-				_this.maxHP = _this._settings.standartPlayer.maxHP;
-				_this.HP = _this._settings.standartPlayer.maxHP;
+		_this.maxHP = _this._settings.standartPlayer.maxHP;
+		_this.HP = _this._settings.standartPlayer.maxHP;
 
-				_this.attackDamage = _this._settings.standartPlayer.attackDamage;
-				_this.attackRange = _this._settings.standartPlayer.attackRange;
+		_this.attackDamage = _this._settings.standartPlayer.attackDamage;
+		_this.attackRange = _this._settings.standartPlayer.attackRange;
 
-				if (watcher === true) {
-						_this.watcher = true;
+		if (watcher === true) {
+			_this.watcher = true;
 
-						state.setPointWatch(coor, _this);
-						_this.visable = {
-								was: true,
-								now: true
-						};
-				} else {
-						_this.watcher = false;
-				}
+			state.setPointWatch(coor, _this);
+			_this.visable = {
+				was: true,
+				now: true
+			};
 
-				switch (profession) {
-						case 'mage':
-								_this.classNameCSS = 'magePlayer';
-								break;
-				}
-				return _this;
+			_this._fastItem = [];
+		} else {
+			_this.watcher = false;
 		}
 
-		_createClass(Player, [{
-				key: 'getDemage',
-				value: function getDemage(creature) {
-						var damage = _get(Player.prototype.__proto__ || Object.getPrototypeOf(Player.prototype), 'getDemage', this).call(this, creature);
-						var event = this.state.getEventMainGetDamage();
+		switch (profession) {
+			case 'mage':
+				_this.classNameCSS = 'magePlayer';
+				break;
+		}
+		return _this;
+	}
 
-						event.detail.fromO = creature;
-						event.detail.num = damage;
-						event.detail.max = this.maxHP;
-						event.detail.cur = this.HP;
-						event.detail.type = 'hp';
+	_createClass(Player, [{
+		key: 'getDemage',
+		value: function getDemage(creature) {
+			var damage = _get(Player.prototype.__proto__ || Object.getPrototypeOf(Player.prototype), 'getDemage', this).call(this, creature);
+			var event = this.state.getEventMainGetDamage();
 
-						document.dispatchEvent(event);
+			event.detail.fromO = creature;
+			event.detail.num = damage;
+			event.detail.max = this.maxHP;
+			event.detail.cur = this.HP;
+			event.detail.type = 'hp';
 
-						return damage;
-				}
-		}]);
+			document.dispatchEvent(event);
 
-		return Player;
+			return damage;
+		}
+	}, {
+		key: 'getFastItem',
+		value: function getFastItem() {
+			return this._fastItem;
+		}
+	}]);
+
+	return Player;
 }(Creature);
 
 /***/ }),
@@ -33897,7 +33909,27 @@ module.exports = function (_React$Component) {
 	_createClass(Item, [{
 		key: 'render',
 		value: function render() {
-			return React.createElement('div', { className: '__item' });
+			var cn = '__item__count ';
+			var num = null;
+
+			if (this.props.item) {
+				cn += this.props.item.classNameCSS;
+				num = this.props.numItems;
+			}
+
+			return React.createElement(
+				'div',
+				{ className: '__item' },
+				React.createElement(
+					'div',
+					{ className: '__item__icon' },
+					React.createElement(
+						'div',
+						{ className: cn },
+						num
+					)
+				)
+			);
 		}
 	}]);
 
@@ -34037,7 +34069,10 @@ module.exports = function (_React$Component) {
 				{ className: 'header' },
 				React.createElement(HeaderIcon, null),
 				React.createElement(HeaderStatus, { stateGame: this.props.stateGame }),
-				React.createElement(HeaderItems, { openPopUp: this.props.openPopUp })
+				React.createElement(HeaderItems, {
+					openPopUp: this.props.openPopUp,
+					stateGame: this.props.stateGame
+				})
 			);
 		}
 	}]);
@@ -34083,11 +34118,7 @@ module.exports = function (_React$Component) {
 			return React.createElement(
 				'div',
 				{ className: 'header__icon' },
-				React.createElement('img', {
-					src: '/resources/img/interface/mage_iconV2.nesvg.png',
-					width: '60',
-					height: '60'
-				})
+				React.createElement('div', { className: 'Header__icon-imgDiv' })
 			);
 		}
 	}]);
@@ -34128,8 +34159,8 @@ module.exports = function (_React$Component) {
 		var _this = _possibleConstructorReturn(this, (HeaderItems.__proto__ || Object.getPrototypeOf(HeaderItems)).call(this, props));
 
 		_this.state = {
-			items: [],
-			active: false
+			active: false,
+			items: props.stateGame.getWatcher().getFastItem()
 		};
 		return _this;
 	}
@@ -34139,28 +34170,52 @@ module.exports = function (_React$Component) {
 		value: function render() {
 			var bpClassName = this.state.active ? 'header__backpack active' : 'header__backpack';
 
+			var headerItems = [];
+			var row = [];
+			var key = 0;
+
+			var item = null;
+			var num = 0;
+
+			for (var i = 0; i < 2; i++) {
+				row[i] = [];
+
+				for (var j = 0; j < 3; j++) {
+					if (this.state.items[key]) {
+						item = this.state.items[key].item;
+						num = this.state.items[key].num;
+					} else {
+						item = null;
+						num = 0;
+					}
+
+					row[i][j] = React.createElement(Item, {
+						key: key++,
+						item: item,
+						numItems: num
+					});
+				}
+
+				headerItems[i] = React.createElement(
+					'div',
+					{ className: 'header__items-row', key: i },
+					row[i]
+				);
+			}
+
 			return React.createElement(
 				'div',
 				{ className: 'header__items-wrapper' },
 				React.createElement(
 					'div',
 					{ className: 'header__items' },
-					React.createElement(
-						'div',
-						{ className: 'header__items-row' },
-						React.createElement(Item, null),
-						React.createElement(Item, null),
-						React.createElement(Item, null)
-					),
-					React.createElement(
-						'div',
-						{ className: 'header__items-row' },
-						React.createElement(Item, null),
-						React.createElement(Item, null),
-						React.createElement(Item, null)
-					)
+					headerItems
 				),
-				React.createElement('div', { className: bpClassName, onClick: this.props.openPopUp })
+				React.createElement(
+					'div',
+					{ className: bpClassName, onClick: this.props.openPopUp },
+					React.createElement('div', { className: 'header__backpack-divImg' })
+				)
 			);
 		}
 	}, {
@@ -34169,17 +34224,9 @@ module.exports = function (_React$Component) {
 			var _this2 = this;
 
 			document.addEventListener('mainStepOn', function (e) {
-				if (e.detail.withItems) {
-					_this2.setState({
-						items: e.detail.items,
-						active: true
-					});
-				} else {
-					_this2.setState({
-						items: [],
-						active: false
-					});
-				}
+				_this2.setState({
+					active: e.detail.withItems
+				});
 			});
 		}
 	}]);
@@ -34394,18 +34441,66 @@ module.exports = function (_React$Component) {
 			return React.createElement(
 				'div',
 				{ className: 'leftColumn' },
-				React.createElement('div', { className: 'subColumn inventory active' }),
-				React.createElement('div', { className: 'subColumn' }),
-				React.createElement('div', { className: 'subColumn' }),
-				React.createElement('div', { className: 'subColumn' }),
-				React.createElement('div', { className: 'subColumn' }),
-				React.createElement('div', { className: 'subColumn' }),
-				React.createElement('div', { className: 'subColumn' }),
-				React.createElement('div', { className: 'subColumn' }),
-				React.createElement('div', { className: 'subColumn' }),
-				React.createElement('div', { className: 'subColumn' }),
-				React.createElement('div', { className: 'subColumn' }),
-				React.createElement('div', { className: 'subColumn' })
+				React.createElement(
+					'div',
+					{ className: 'subColumn active' },
+					React.createElement('div', { className: 'inventory' })
+				),
+				React.createElement(
+					'div',
+					{ className: 'subColumn' },
+					React.createElement('div', null)
+				),
+				React.createElement(
+					'div',
+					{ className: 'subColumn' },
+					React.createElement('div', null)
+				),
+				React.createElement(
+					'div',
+					{ className: 'subColumn' },
+					React.createElement('div', null)
+				),
+				React.createElement(
+					'div',
+					{ className: 'subColumn' },
+					React.createElement('div', null)
+				),
+				React.createElement(
+					'div',
+					{ className: 'subColumn' },
+					React.createElement('div', null)
+				),
+				React.createElement(
+					'div',
+					{ className: 'subColumn' },
+					React.createElement('div', null)
+				),
+				React.createElement(
+					'div',
+					{ className: 'subColumn' },
+					React.createElement('div', null)
+				),
+				React.createElement(
+					'div',
+					{ className: 'subColumn' },
+					React.createElement('div', null)
+				),
+				React.createElement(
+					'div',
+					{ className: 'subColumn' },
+					React.createElement('div', null)
+				),
+				React.createElement(
+					'div',
+					{ className: 'subColumn' },
+					React.createElement('div', null)
+				),
+				React.createElement(
+					'div',
+					{ className: 'subColumn' },
+					React.createElement('div', null)
+				)
 			);
 		}
 	}]);
@@ -34533,7 +34628,7 @@ module.exports = function (_React$Component) {
 			});
 
 			if (this.props.otherObject.length) {
-				otherObject = React.createElement(OtherObject, null);
+				otherObject = React.createElement(OtherObject, { stateGame: this.props.stateGame });
 
 				ownInvntory = React.createElement(Items, {
 					type: 'small',
@@ -34592,6 +34687,9 @@ module.exports = function (_React$Component) {
 			this.allItems = [];
 
 			var N = 0;
+			var itemsDate = this.props.stateGame.getWatcher().getItems();
+			var item = 0;
+			var numItems = 0;
 
 			if (this.props.type === 'big') {
 				N = 120;
@@ -34600,7 +34698,19 @@ module.exports = function (_React$Component) {
 			}
 
 			for (var i = 0; i < N; i++) {
-				this.allItems[i] = React.createElement(Item, { key: i });
+				if (i < itemsDate.length) {
+					item = itemsDate[i].item;
+					numItems = itemsDate[i].num;
+				} else {
+					item = null;
+					numItems = 0;
+				}
+
+				this.allItems[i] = React.createElement(Item, {
+					key: i,
+					item: item,
+					numItems: numItems
+				});
 			}
 		}
 	}, {
@@ -34664,8 +34774,24 @@ module.exports = function (_React$Component) {
 		value: function componentWillMount() {
 			this.allItems = [];
 
+			var itemsDate = this.props.stateGame.getStepOnItem();
+			var item = null;
+			var numItems = 0;
+
 			for (var i = 0; i < 48; i++) {
-				this.allItems[i] = React.createElement(Item, { key: i });
+				if (i < itemsDate.length) {
+					item = itemsDate[i].item;
+					numItems = itemsDate[i].num;
+				} else {
+					item = null;
+					numItems = 0;
+				}
+
+				this.allItems[i] = React.createElement(Item, {
+					key: i,
+					item: item,
+					numItems: numItems
+				});
 			}
 		}
 	}, {
@@ -34790,7 +34916,7 @@ ReactDOM.render(React.createElement(GameInterface, { stateGame: state }), docume
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(/*! !../../../node_modules/css-loader??ref--4-1!../../../node_modules/sass-loader/lib/loader.js??ref--4-2!./index.scss */ "./node_modules/css-loader/index.js?!./node_modules/sass-loader/lib/loader.js?!./src/styles/sass/index.scss");
+var content = __webpack_require__(/*! !../../../node_modules/css-loader??ref--4-1!../../../node_modules/postcss-loader/lib??ref--4-2!../../../node_modules/sass-loader/lib/loader.js??ref--4-3!./index.scss */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/lib/index.js?!./node_modules/sass-loader/lib/loader.js?!./src/styles/sass/index.scss");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 

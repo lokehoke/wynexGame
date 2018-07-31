@@ -22,6 +22,8 @@ module.exports = class Player extends Creature {
 				was: true,
 				now: true
 			};
+
+			this._fastItem = [];
 		} else {
 			this.watcher = false;
 		}
@@ -46,5 +48,9 @@ module.exports = class Player extends Creature {
 		document.dispatchEvent(event);
 
 		return damage;
+	}
+
+	getFastItem() {
+		return this._fastItem;
 	}
 }

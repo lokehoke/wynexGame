@@ -10,6 +10,10 @@
 		@include stdBlock();
 		padding: 5px;
 		margin: 5px;
+
+		.Header__icon-imgDiv {
+			@include intarface__mageIcon();
+		}
 	}
 
 	.header__status {
@@ -70,18 +74,19 @@
 		}
 
 		.header__backpack {
-			width: 70px;
-			height: 70px;
-			margin: 5px;
 			@include stdBlock();
-			background-image: url('/resources/img/interface/backpack.png');
-			background-repeat: no-repeat;
-			background-position: 10px;
-			background-size: 70%;
+			height: 70px;
+			width: 70px;
+			margin: 5px;
 			cursor: pointer;
 
 			&.active {
 				background-color: $greyLight;
+			}
+
+			.header__backpack-divImg {
+				@include intarface__backpack();
+				transform: scale(0.8);
 			}
 		}
 	}

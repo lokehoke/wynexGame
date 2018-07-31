@@ -1,15 +1,17 @@
 .world {
 	flex-direction: column;
 	background: #000;
-	background-image: url('/resources/img/worldTextures/dark-bg.jpg');
 
 	.row {
 		display: flex;
 
 		.standartPlace {
-			width: 30px;
-			height: 30px;
+			width: 30px !important;
+			height: 30px !important;
 			position: relative;
+			display: flex;
+			align-items: center;
+			justify-content: center;
 
 			div {
 				position: absolute;
@@ -18,58 +20,31 @@
 				z-index: 2;
 
 				&.magePlayer {
-					background-image: url(/resources/img/iconCreature/player/mage.png);
-					background-size: 70%;
-					background-position: 5px 1px;
-					background-repeat: no-repeat;
+					@include player__unit();
 					z-index: 5;
 				}
 
 				&.slimeEnemy {
-					background-image: url(/resources/img/iconCreature/enemy/slime.svg);
-					background-size: 200%;
-					background-position: -2px 8px;
-					background-repeat: no-repeat;
+					@include enemy__slime();
 					z-index: 5;
 				}
 
 				&.weapon {
-					background: url('/resources/img/weaponTextures/stackWeaponBall.svg');
-					width: 30px;
-					height: 30px;
-					background-size: 250%;
-					background-position: 4px 5px;
-					background-repeat: no-repeat;
+					width: 25px;
+					height: 25px;
+					background: #2E0D0D;
+					border-radius: 100%;
 				}
 
-				&.itemSlime {
-					background: url('/resources/img/items/itemSlime.png');
-					width: 30px;
-					height: 30px;
-					background-size: 100%;
-					background-position: 2px 2px;
-					background-repeat: no-repeat;
-					transform: rotate(30deg);
-				}
 			}
 		}
 
 		.border {
-			background-image: url(/resources/img/worldTextures/border.svg);
-			background-size: 200%;
-			background-position: 5px 4px;
-			background-repeat: no-repeat;
-			background-color: black;
+			@include border__stdBorder();
 		}
 
 		.dirt {
-			background-image: url(/resources/img/worldTextures/road.svg);
-			background-size: 200%;
-			background-repeat: no-repeat;
-		}
-
-		.chest {
-			background: #74FD59;
+			@include dirt__desert();
 		}
 	}
 }

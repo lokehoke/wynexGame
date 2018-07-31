@@ -10,17 +10,21 @@
 		"reset-css": "^4.0.1"
 	},
 	"devDependencies": {
+		"autoprefixer": "^9.0.1",
 		"babel-core": "latest",
 		"babel-loader": "latest",
 		"babel-preset-env": "latest",
 		"babel-preset-react": "latest",
 		"css-loader": "latest",
 		"express": "latest",
+		"file-loader": "^1.1.11",
 		"node-sass": "latest",
+		"postcss-loader": "^2.1.6",
 		"sass-loader": "latest",
 		"style-loader": "latest",
 		"webpack": "latest",
-		"webpack-cli": "latest"
+		"webpack-cli": "latest",
+		"webpack-spritesmith": "^0.5.1"
 	},
 	"scripts": {
 		"b": "webpack",

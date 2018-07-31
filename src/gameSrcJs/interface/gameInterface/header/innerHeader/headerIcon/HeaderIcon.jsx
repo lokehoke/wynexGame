@@ -7,11 +7,7 @@ module.exports = class HeaderIcon extends React.Component {
 	render() {
 		return (
 			<div className="header__icon">
-				<img
-					src="/resources/img/interface/mage_iconV2.nesvg.png"
-					width="60"
-					height="60"
-				/>
+				<div className="Header__icon-imgDiv"></div>
 			</div>
 		);
 	}

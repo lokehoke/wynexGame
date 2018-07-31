@@ -25,6 +25,7 @@
 				height: 40px;
 				background-repeat: no-repeat;
 				cursor: pointer;
+				position: relative;
 
 				&:nth-child(n+2) {
 					border-top: 0;
@@ -34,10 +35,12 @@
 					border-right: 0;
 				}
 
-				&.inventory {
-					background-image: url('/resources/img/interface/backpack.png');
-					background-position: 2px;
-					background-size: 90%;
+				.inventory {
+					@include intarface__backpack();
+					position: absolute;
+					top: -17px;
+					right: -8px;
+					transform: scale(0.4);
 				}
 			}
 		}

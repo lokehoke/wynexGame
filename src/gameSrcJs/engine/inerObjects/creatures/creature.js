@@ -138,6 +138,25 @@ module.exports = class Creature extends InnerObject {
 		}
 	}
 
+	getDemage(creature) {
+		if (this.HP > 0) {
+			this.HP -= creature.attackDamage;
+
+			if (this.HP <= 0) {
+				this.live = false;
+				this.die(creature);
+			}
+		} else {
+			throw "zombie";
+		}
+
+		return creature.attackDamage;
+	}
+
+	getItems() {
+		return this._items;
+	}
+
 	_randMove() {
 		let digit = Math.floor(Math.random() * 4) + 1;
 		let direction = '';
@@ -308,20 +327,5 @@ module.exports = class Creature extends InnerObject {
 				return false;
 			}
 		}
-	}
-
-	getDemage(creature) {
-		if (this.HP > 0) {
-			this.HP -= creature.attackDamage;
-
-			if (this.HP <= 0) {
-				this.live = false;
-				this.die(creature);
-			}
-		} else {
-			throw "zombie";
-		}
-
-		return creature.attackDamage;
 	}
 }

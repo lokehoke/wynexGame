@@ -17,7 +17,7 @@ module.exports = class Inventory extends React.Component {
 
 		if (this.props.otherObject.length) {
 			otherObject = (
-				<OtherObject />
+				<OtherObject stateGame={this.props.stateGame} />
 			);
 
 			ownInvntory = (

@@ -5,3 +5,8 @@
 	@include stdBlock();
 	cursor: pointer;
 }
+
+.itemSlime {
+	transform: scale(0.9) rotate(30deg);
+	@include item__slime();
+}

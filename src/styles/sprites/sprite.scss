@@ -1,0 +1,112 @@
+
+@mixin border__stdBorder {
+	width: 256px;
+	margin: auto;
+	height: 256px;
+	background-position: -1200px -900px;
+	background-image: url(/resources/img/sprite.png);
+}
+
+@mixin dirt__concrete {
+	width: 600px;
+	margin: auto;
+	height: 600px;
+	background-position: -1200px 0px;
+	background-image: url(/resources/img/sprite.png);
+}
+
+@mixin dirt__desert {
+	width: 600px;
+	margin: auto;
+	height: 600px;
+	background-position: 0px 0px;
+	background-image: url(/resources/img/sprite.png);
+}
+
+@mixin dirt__moquette {
+	width: 600px;
+	margin: auto;
+	height: 600px;
+	background-position: -600px 0px;
+	background-image: url(/resources/img/sprite.png);
+}
+
+@mixin dirt__planet {
+	width: 600px;
+	margin: auto;
+	height: 600px;
+	background-position: 0px -600px;
+	background-image: url(/resources/img/sprite.png);
+}
+
+@mixin dirt__snow {
+	width: 600px;
+	margin: auto;
+	height: 600px;
+	background-position: -600px -600px;
+	background-image: url(/resources/img/sprite.png);
+}
+
+@mixin dirt__wood_light {
+	width: 300px;
+	margin: auto;
+	height: 300px;
+	background-position: -1500px -600px;
+	background-image: url(/resources/img/sprite.png);
+}
+
+@mixin dirt__wood {
+	width: 300px;
+	margin: auto;
+	height: 300px;
+	background-position: -1200px -600px;
+	background-image: url(/resources/img/sprite.png);
+}
+
+@mixin enemy__slime {
+	width: 30px;
+	margin: auto;
+	height: 21px;
+	background-position: -1626px -900px;
+	background-image: url(/resources/img/sprite.png);
+}
+
+@mixin intarface__backpack {
+	width: 55px;
+	margin: auto;
+	height: 70px;
+	background-position: -1456px -900px;
+	background-image: url(/resources/img/sprite.png);
+}
+
+@mixin intarface__mageIcon {
+	width: 51px;
+	margin: auto;
+	height: 58px;
+	background-position: -1511px -900px;
+	background-image: url(/resources/img/sprite.png);
+}
+
+@mixin item__slime {
+	width: 34px;
+	margin: auto;
+	height: 34px;
+	background-position: -1562px -900px;
+	background-image: url(/resources/img/sprite.png);
+}
+
+@mixin player__unit {
+	width: 30px;
+	margin: auto;
+	height: 30px;
+	background-position: -1596px -900px;
+	background-image: url(/resources/img/sprite.png);
+}
+
+@mixin weapon__arrow {
+	width: 30px;
+	margin: auto;
+	height: 4px;
+	background-position: -1656px -900px;
+	background-image: url(/resources/img/sprite.png);
+}
