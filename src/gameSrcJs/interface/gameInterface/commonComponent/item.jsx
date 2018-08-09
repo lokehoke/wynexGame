@@ -1,24 +1,46 @@
 'use strict';
 
 const React = require('react');
+const PropTypes = require('prop-types');
+
+const InnerItem = require('./innerItem.jsx');
 
 module.exports = class Item extends React.Component {
+	static defaultProps = {
+		item: {},
+		numItems: 0,
+		idItemPosition: 0,
+		fast: false
+	};
+
+	static propsTypes = {
+		item: PropTypes.object,
+		numItems: PropTypes.number,
+		idItemPosition: PropTypes.number,
+		fast: PropTypes.bool
+	};
+
 	render() {
-		let cn = '__item__count '
-		let num = null;
+		let innerItem = null;
 
 		if (this.props.item) {
-			cn += this.props.item.classNameCSS;
-			num = this.props.numItems;
+			innerItem = (
+				<InnerItem
+					item={this.props.item}
+					numItems={this.props.idItemPosition}
+					fast={this.props.fast}
+					idItemPosition={this.props.idItemPosition}
+				/>
+			);
 		}
 
+
 		return (
-			<div className="__item">
-				<div className="__item__icon">
-					<div className={cn}>
-						{num}
-					</div>
-				</div>
+			<div
+				className="__item"
+				ref={item => this.targetItem = item}
+			>
+				{innerItem}
 			</div>
 		);
 	}
