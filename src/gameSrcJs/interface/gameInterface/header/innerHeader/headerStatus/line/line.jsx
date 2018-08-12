@@ -18,8 +18,8 @@ module.exports = class Line extends React.Component {
 		this.state = {
 			fromO: null,
 			num: 0,
-			max: max,
-			cur: cur,
+			max,
+			cur,
 			type: this.props.type
 		};
 	}

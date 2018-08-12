@@ -1,5 +1,7 @@
 'use strict';
 
+const Webpack = require('webpack');
+
 const autoprefixer = require('autoprefixer');
 const path = require('path');
 const SpritesmithPlugin = require('webpack-spritesmith');
@@ -14,7 +16,7 @@ const mixinView = `
 }`;
 
 function templateFunction(data) {
-	let mixins = data.sprites.map(function (sprite) {
+	let mixins = data.sprites.map(sprite => {
 		return mixinView
 			.replace('I', data.sprites[0].image)
 			.replace('N', sprite.name)
@@ -33,6 +35,7 @@ let config = {
 	mode: 'development',
 	entry: {
 		main: [
+			'babel-polyfill',
 			'./src/styles/sass/index.scss',
 			'./src/gameSrcJs/interface/interface.jsx'
 		]
@@ -45,9 +48,9 @@ let config = {
 		rules: [{
 			test: /\.scss$/,
 			use: [{
-				loader: "style-loader"
+				loader: 'style-loader'
 			}, {
-				loader: "css-loader",
+				loader: 'css-loader',
 				options: {
 					sourceMap: true
 				}
@@ -62,7 +65,7 @@ let config = {
 					sourceMap: true
 				}
 			}, {
-				loader: "sass-loader", options: {
+				loader: 'sass-loader', options: {
 					sourceMap: true
 				}
 			}]
@@ -72,7 +75,11 @@ let config = {
 			use: {
 				loader: 'babel-loader',
 				options: {
-					presets: ["env", "react"]
+					presets: [
+						'env',
+						'react'
+					],
+					plugins: ['transform-class-properties']
 				}
 			}
 		}, {
@@ -87,9 +94,10 @@ let config = {
 		}]
 	},
 	resolve: {
-		modules: ["node_modules", "spritesmith-generated"]
+		modules: ['node_modules', 'spritesmith-generated']
 	},
 	plugins: [
+		new Webpack.NoEmitOnErrorsPlugin(),
 		new SpritesmithPlugin({
 			src: {
 				cwd: path.resolve(__dirname, 'src/img/'),
@@ -107,7 +115,7 @@ let config = {
 				'function_based_template': templateFunction,
 			},
 			apiOptions: {
-				cssImageRef: "sprite.png"
+				cssImageRef: 'sprite.png'
 			}
 		})
 	]

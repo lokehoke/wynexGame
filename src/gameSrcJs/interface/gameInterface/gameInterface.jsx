@@ -16,6 +16,10 @@ module.exports = class GameIntarfface extends React.Component {
 
 		this._openPopUp = this._openPopUp.bind(this);
 		this._closePopUp = this._closePopUp.bind(this);
+
+		document.addEventListener("keydown", () => {
+			this._closePopUp();
+		});
 	}
 
 	render() {

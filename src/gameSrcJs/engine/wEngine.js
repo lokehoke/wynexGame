@@ -1,7 +1,5 @@
 'use strict';
 
-require("babel-polyfill");
-
 module.exports = class WEnginAPI {
 	constructor() {
 		this._GLOBAL_SETTING = require('./setting/globalSetting.js');
@@ -28,7 +26,7 @@ module.exports = class WEnginAPI {
 
 		let timer = false;
 
-		document.onkeydown = (e) => {
+		document.addEventListener("keydown", (e) => {
 			e.preventDefault();
 			if (timer) {
 				return 0;
@@ -58,7 +56,7 @@ module.exports = class WEnginAPI {
 			}
 			this._game.tactOfGame(true);
 			return false;
-		}
+		});
 
 		setInterval(() => {
 			this._game.tactOfGame();

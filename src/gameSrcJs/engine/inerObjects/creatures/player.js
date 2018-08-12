@@ -23,9 +23,25 @@ module.exports = class Player extends Creature {
 				now: true
 			};
 
-			this._fastItem = [];
 		} else {
 			this.watcher = false;
+		}
+
+		this._fastItem = [];
+		this._item = [];
+
+		for (let i = 0; i < 32; i++) {
+			if (i < 6) {
+				this._fastItem.push({
+					numItem: 0,
+					item: null
+				});
+			}
+
+			this._item.push({
+				numItem: 0,
+				item: null
+			});
 		}
 
 		switch(profession) {

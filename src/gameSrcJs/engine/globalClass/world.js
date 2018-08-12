@@ -27,7 +27,7 @@ module.exports = class World {
 
 			state.setFirstFindSize({
 				firstFindSize: false,
-				sizeG: sizeG
+				sizeG
 			});
 
 			return sizeG;
@@ -41,13 +41,17 @@ module.exports = class World {
 
 		let creatures = [];
 		for (let i = 0; i < num; i++) {
-			let newCreature = {};
-			newCreature.coor = new Coor();
-			newCreature.type = 'slime';
-			newCreature.coor.x = Math.floor(Math.random() * (GLOBAL_SETTING.numBlocks.height - 2)) + 1;
-			newCreature.coor.y = Math.floor(Math.random() * (GLOBAL_SETTING.numBlocks.width - 2)) + 1;
+			let x = Math.floor(Math.random() * (GLOBAL_SETTING.numBlocks.height - 2)) + 1;
+			let y = Math.floor(Math.random() * (GLOBAL_SETTING.numBlocks.width - 2)) + 1;
+
+			let newCreature = {
+				type: 'slime',
+				coor: new Coor(x, y)
+			};
+
 			creatures[i] = newCreature;
 		}
+
 		return creatures;
 	}
 
@@ -119,6 +123,7 @@ module.exports = class World {
 
 		function deliteOldWorld() {
 			let world = state.getWorldDiv();
+
 			if (world !== null) {
 				world.remove();
 				state.setWorldDiv = null;

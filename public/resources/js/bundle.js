@@ -9923,7 +9923,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "/* http://meyerweb.com/eric/tools/css/reset/\n   v4.0 | 20180602\n   License: none (public domain)\n*/\nhtml, body, div, span, applet, object, iframe,\nh1, h2, h3, h4, h5, h6, p, blockquote, pre,\na, abbr, acronym, address, big, cite, code,\ndel, dfn, em, img, ins, kbd, q, s, samp,\nsmall, strike, strong, sub, sup, tt, var,\nb, u, i, center,\ndl, dt, dd, ol, ul, li,\nfieldset, form, label, legend,\ntable, caption, tbody, tfoot, thead, tr, th, td,\narticle, aside, canvas, details, embed,\nfigure, figcaption, footer, header, hgroup,\nmain, menu, nav, output, ruby, section, summary,\ntime, mark, audio, video {\n  margin: 0;\n  padding: 0;\n  border: 0;\n  font-size: 100%;\n  font: inherit;\n  vertical-align: baseline; }\n\n/* HTML5 display-role reset for older browsers */\narticle, aside, details, figcaption, figure,\nfooter, header, hgroup, main, menu, nav, section {\n  display: block; }\n\n/* HTML5 hidden-attribute fix for newer browsers */\n*[hidden] {\n  display: none; }\n\nbody {\n  line-height: 1; }\n\nol, ul {\n  list-style: none; }\n\nblockquote, q {\n  quotes: none; }\n\nblockquote:before, blockquote:after,\nq:before, q:after {\n  content: '';\n  content: none; }\n\ntable {\n  border-collapse: collapse;\n  border-spacing: 0; }\n\n* {\n  padding: 0;\n  margin: 0;\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box; }\n\nbutton {\n  cursor: pointer; }\n\nhtml, body {\n  width: 100%; }\n\nh1 {\n  margin: 0;\n  padding: 0; }\n\nhtml,\nbody,\n.wrapper,\n.world {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  background: #000; }\n\n.world {\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  background: #000; }\n  .world .row {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex; }\n    .world .row .standartPlace {\n      width: 30px !important;\n      height: 30px !important;\n      position: relative;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -webkit-box-pack: center;\n          -ms-flex-pack: center;\n              justify-content: center; }\n      .world .row .standartPlace div {\n        position: absolute;\n        width: 100%;\n        height: 100%;\n        z-index: 2; }\n        .world .row .standartPlace div.magePlayer {\n          width: 30px;\n          margin: auto;\n          height: 30px;\n          background-position: -1596px -900px;\n          background-image: url(/resources/img/sprite.png);\n          z-index: 5; }\n        .world .row .standartPlace div.slimeEnemy {\n          width: 30px;\n          margin: auto;\n          height: 21px;\n          background-position: -1626px -900px;\n          background-image: url(/resources/img/sprite.png);\n          z-index: 5; }\n        .world .row .standartPlace div.weapon {\n          width: 25px;\n          height: 25px;\n          background: #2E0D0D;\n          border-radius: 100%; }\n    .world .row .border {\n      width: 256px;\n      margin: auto;\n      height: 256px;\n      background-position: -1200px -900px;\n      background-image: url(/resources/img/sprite.png); }\n    .world .row .dirt {\n      width: 600px;\n      margin: auto;\n      height: 600px;\n      background-position: 0px 0px;\n      background-image: url(/resources/img/sprite.png); }\n\n.__item {\n  width: 30px;\n  height: 30px;\n  margin: 5px;\n  background-color: #A8A4A4;\n  border: 1px solid #83199D;\n  border-radius: 5px;\n  cursor: pointer; }\n\n.itemSlime {\n  -webkit-transform: scale(0.9) rotate(30deg);\n      -ms-transform: scale(0.9) rotate(30deg);\n          transform: scale(0.9) rotate(30deg);\n  width: 34px;\n  margin: auto;\n  height: 34px;\n  background-position: -1562px -900px;\n  background-image: url(/resources/img/sprite.png); }\n\n.inerInterface {\n  width: 100%;\n  height: 100%; }\n\n.interface {\n  position: absolute;\n  z-index: 1000;\n  width: 100%;\n  height: 100%;\n  color: white;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between; }\n  .interface .header {\n    height: 80px;\n    width: 100%;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    position: relative; }\n    .interface .header .header__icon {\n      width: 70px;\n      height: 70px;\n      background-color: #A8A4A4;\n      border: 1px solid #83199D;\n      border-radius: 5px;\n      padding: 5px;\n      margin: 5px; }\n      .interface .header .header__icon .Header__icon-imgDiv {\n        width: 51px;\n        margin: auto;\n        height: 58px;\n        background-position: -1511px -900px;\n        background-image: url(/resources/img/sprite.png); }\n    .interface .header .header__status {\n      width: 240px;\n      height: 70px;\n      margin: 5px 0;\n      background-color: #A8A4A4;\n      border: 1px solid #83199D;\n      border-radius: 5px;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-orient: vertical;\n      -webkit-box-direction: normal;\n          -ms-flex-direction: column;\n              flex-direction: column;\n      -webkit-box-pack: justify;\n          -ms-flex-pack: justify;\n              justify-content: space-between; }\n      .interface .header .header__status .header__status-line {\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-align: center;\n            -ms-flex-align: center;\n                align-items: center;\n        position: relative;\n        -webkit-box-pack: center;\n            -ms-flex-pack: center;\n                justify-content: center; }\n        .interface .header .header__status .header__status-line .status-line__container {\n          width: 200px;\n          height: 20px;\n          background-color: #A8A4A4;\n          border: 1px solid #83199D;\n          border-radius: 5px;\n          margin: 5px; }\n          .interface .header .header__status .header__status-line .status-line__container div {\n            height: 18px;\n            border-radius: 5px;\n            margin-left: -1px;\n            -webkit-transition-property: width;\n            -o-transition-property: width;\n            transition-property: width;\n            -webkit-transition-duration: 100ms;\n                 -o-transition-duration: 100ms;\n                    transition-duration: 100ms; }\n            .interface .header .header__status .header__status-line .status-line__container div.mp {\n              background: #44E1FD; }\n            .interface .header .header__status .header__status-line .status-line__container div.hp {\n              background: #FF3232; }\n        .interface .header .header__status .header__status-line .status-line__maxCur {\n          position: absolute; }\n    .interface .header .header__items-wrapper {\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-pack: end;\n          -ms-flex-pack: end;\n              justify-content: flex-end;\n      -webkit-box-flex: 1;\n          -ms-flex-positive: 1;\n              flex-grow: 1; }\n      .interface .header .header__items-wrapper .header__items .header__items-row {\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex; }\n      .interface .header .header__items-wrapper .header__backpack {\n        background-color: #A8A4A4;\n        border: 1px solid #83199D;\n        border-radius: 5px;\n        height: 70px;\n        width: 70px;\n        margin: 5px;\n        cursor: pointer; }\n        .interface .header .header__items-wrapper .header__backpack.active {\n          background-color: #DDDDDD; }\n        .interface .header .header__items-wrapper .header__backpack .header__backpack-divImg {\n          width: 55px;\n          margin: auto;\n          height: 70px;\n          background-position: -1456px -900px;\n          background-image: url(/resources/img/sprite.png);\n          -webkit-transform: scale(0.8);\n              -ms-transform: scale(0.8);\n                  transform: scale(0.8); }\n  .interface .wrapPopUp {\n    width: 100%;\n    height: 100%;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    position: absolute;\n    top: 0;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center; }\n    .interface .wrapPopUp .popUp {\n      background-color: #A8A4A4;\n      border: 1px solid #83199D;\n      border-radius: 5px;\n      padding: 20px 50px;\n      width: 700px;\n      height: 500px;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex; }\n      .interface .wrapPopUp .popUp .leftColumn {\n        width: 40px;\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-orient: vertical;\n        -webkit-box-direction: normal;\n            -ms-flex-direction: column;\n                flex-direction: column; }\n        .interface .wrapPopUp .popUp .leftColumn .subColumn {\n          background-color: #A8A4A4;\n          border: 1px solid #83199D;\n          border-radius: 5px;\n          border-radius: 5px 0 0 5px;\n          height: 40px;\n          background-repeat: no-repeat;\n          cursor: pointer;\n          position: relative; }\n          .interface .wrapPopUp .popUp .leftColumn .subColumn:nth-child(n+2) {\n            border-top: 0; }\n          .interface .wrapPopUp .popUp .leftColumn .subColumn.active {\n            border-right: 0; }\n          .interface .wrapPopUp .popUp .leftColumn .subColumn .inventory {\n            width: 55px;\n            margin: auto;\n            height: 70px;\n            background-position: -1456px -900px;\n            background-image: url(/resources/img/sprite.png);\n            position: absolute;\n            top: -17px;\n            right: -8px;\n            -webkit-transform: scale(0.4);\n                -ms-transform: scale(0.4);\n                    transform: scale(0.4); }\n      .interface .wrapPopUp .popUp .mainWindow {\n        width: 560px; }\n        .interface .wrapPopUp .popUp .mainWindow .popUp__inventory {\n          width: 100%;\n          background-color: #A8A4A4;\n          border: 1px solid #83199D;\n          border-radius: 5px;\n          height: 100%;\n          border-radius: 0 5px 5px 0;\n          border-left: 0; }\n          .interface .wrapPopUp .popUp .mainWindow .popUp__inventory .inventory__items {\n            width: 100%;\n            height: 100%;\n            display: -webkit-box;\n            display: -ms-flexbox;\n            display: flex;\n            -ms-flex-wrap: wrap;\n                flex-wrap: wrap;\n            padding: 0 30px;\n            -webkit-box-pack: center;\n                -ms-flex-pack: center;\n                    justify-content: center;\n            -webkit-box-align: center;\n                -ms-flex-align: center;\n                    align-items: center; }\n        .interface .wrapPopUp .popUp .mainWindow .popUp___wrappWindow {\n          text-align: center; }\n          .interface .wrapPopUp .popUp .mainWindow .popUp___wrappWindow .wrapWindow__title {\n            margin: 12px 0;\n            text-align: center; }\n", "", {"version":3,"sources":["C:/OSPanel/domains/wynexGame/src/styles/sass/C:/OSPanel/domains/wynexGame/src/styles/sass/C:/OSPanel/domains/wynexGame/node_modules/reset-css/reset.css","C:/OSPanel/domains/wynexGame/src/styles/sass/C:/OSPanel/domains/wynexGame/src/styles/sass/C:/OSPanel/domains/wynexGame/src/styles/sass/defaults/defaults.scss","C:/OSPanel/domains/wynexGame/src/styles/sass/C:/OSPanel/domains/wynexGame/src/styles/sass/C:/OSPanel/domains/wynexGame/src/styles/sass/style/inner/world/world.scss","C:/OSPanel/domains/wynexGame/src/styles/sass/C:/OSPanel/domains/wynexGame/src/styles/sass/C:/OSPanel/domains/wynexGame/src/styles/sprites/sprite.scss","C:/OSPanel/domains/wynexGame/src/styles/sass/C:/OSPanel/domains/wynexGame/src/styles/sass/C:/OSPanel/domains/wynexGame/src/styles/sass/style/inner/intarface/commonComponents/commonComponents.scss","C:/OSPanel/domains/wynexGame/src/styles/sass/C:/OSPanel/domains/wynexGame/src/styles/sass/C:/OSPanel/domains/wynexGame/src/styles/sass/mixin/mixin.scss","C:/OSPanel/domains/wynexGame/src/styles/sass/C:/OSPanel/domains/wynexGame/src/styles/sass/C:/OSPanel/domains/wynexGame/src/styles/sass/color/color.scss","C:/OSPanel/domains/wynexGame/src/styles/sass/C:/OSPanel/domains/wynexGame/src/styles/sass/C:/OSPanel/domains/wynexGame/src/styles/sass/style/inner/intarface/intarface.scss","C:/OSPanel/domains/wynexGame/src/styles/sass/C:/OSPanel/domains/wynexGame/src/styles/sass/C:/OSPanel/domains/wynexGame/src/styles/sass/style/inner/intarface/header/header.scss","C:/OSPanel/domains/wynexGame/src/styles/sass/C:/OSPanel/domains/wynexGame/src/styles/sass/C:/OSPanel/domains/wynexGame/src/styles/sass/style/inner/intarface/popUp/popUp.scss"],"names":[],"mappings":"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","file":"index.scss","sourcesContent":["/* http://meyerweb.com/eric/tools/css/reset/\n   v4.0 | 20180602\n   License: none (public domain)\n*/\n\nhtml, body, div, span, applet, object, iframe,\nh1, h2, h3, h4, h5, h6, p, blockquote, pre,\na, abbr, acronym, address, big, cite, code,\ndel, dfn, em, img, ins, kbd, q, s, samp,\nsmall, strike, strong, sub, sup, tt, var,\nb, u, i, center,\ndl, dt, dd, ol, ul, li,\nfieldset, form, label, legend,\ntable, caption, tbody, tfoot, thead, tr, th, td,\narticle, aside, canvas, details, embed,\nfigure, figcaption, footer, header, hgroup,\nmain, menu, nav, output, ruby, section, summary,\ntime, mark, audio, video {\n\tmargin: 0;\n\tpadding: 0;\n\tborder: 0;\n\tfont-size: 100%;\n\tfont: inherit;\n\tvertical-align: baseline;\n}\n/* HTML5 display-role reset for older browsers */\narticle, aside, details, figcaption, figure,\nfooter, header, hgroup, main, menu, nav, section {\n\tdisplay: block;\n}\n/* HTML5 hidden-attribute fix for newer browsers */\n*[hidden] {\n    display: none;\n}\nbody {\n\tline-height: 1;\n}\nol, ul {\n\tlist-style: none;\n}\nblockquote, q {\n\tquotes: none;\n}\nblockquote:before, blockquote:after,\nq:before, q:after {\n\tcontent: '';\n\tcontent: none;\n}\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n","@import 'reset-css';\r\n\r\n* {\r\n\tpadding: 0;\r\n\tmargin: 0;\r\n\tbox-sizing: border-box;\r\n}\r\n\r\nbutton {\r\n\tcursor: pointer;\r\n}\r\n\r\n\r\nhtml, body {\r\n\twidth: 100%;\r\n}\r\n\r\nh1 {\r\n\tmargin: 0;\r\n\tpadding: 0;\r\n}\r\n\r\n\r\nhtml,\r\nbody,\r\n.wrapper,\r\n.world {\r\n\tdisplay: flex;\r\n\tbackground: #000;\r\n}",".world {\r\n\tflex-direction: column;\r\n\tbackground: #000;\r\n\r\n\t.row {\r\n\t\tdisplay: flex;\r\n\r\n\t\t.standartPlace {\r\n\t\t\twidth: 30px !important;\r\n\t\t\theight: 30px !important;\r\n\t\t\tposition: relative;\r\n\t\t\tdisplay: flex;\r\n\t\t\talign-items: center;\r\n\t\t\tjustify-content: center;\r\n\r\n\t\t\tdiv {\r\n\t\t\t\tposition: absolute;\r\n\t\t\t\twidth: 100%;\r\n\t\t\t\theight: 100%;\r\n\t\t\t\tz-index: 2;\r\n\r\n\t\t\t\t&.magePlayer {\r\n\t\t\t\t\t@include player__unit();\r\n\t\t\t\t\tz-index: 5;\r\n\t\t\t\t}\r\n\r\n\t\t\t\t&.slimeEnemy {\r\n\t\t\t\t\t@include enemy__slime();\r\n\t\t\t\t\tz-index: 5;\r\n\t\t\t\t}\r\n\r\n\t\t\t\t&.weapon {\r\n\t\t\t\t\twidth: 25px;\r\n\t\t\t\t\theight: 25px;\r\n\t\t\t\t\tbackground: #2E0D0D;\r\n\t\t\t\t\tborder-radius: 100%;\r\n\t\t\t\t}\r\n\r\n\t\t\t}\r\n\t\t}\r\n\r\n\t\t.border {\r\n\t\t\t@include border__stdBorder();\r\n\t\t}\r\n\r\n\t\t.dirt {\r\n\t\t\t@include dirt__desert();\r\n\t\t}\r\n\t}\r\n}","\n@mixin border__stdBorder {\n\twidth: 256px;\n\tmargin: auto;\n\theight: 256px;\n\tbackground-position: -1200px -900px;\n\tbackground-image: url(/resources/img/sprite.png);\n}\n\n@mixin dirt__concrete {\n\twidth: 600px;\n\tmargin: auto;\n\theight: 600px;\n\tbackground-position: -1200px 0px;\n\tbackground-image: url(/resources/img/sprite.png);\n}\n\n@mixin dirt__desert {\n\twidth: 600px;\n\tmargin: auto;\n\theight: 600px;\n\tbackground-position: 0px 0px;\n\tbackground-image: url(/resources/img/sprite.png);\n}\n\n@mixin dirt__moquette {\n\twidth: 600px;\n\tmargin: auto;\n\theight: 600px;\n\tbackground-position: -600px 0px;\n\tbackground-image: url(/resources/img/sprite.png);\n}\n\n@mixin dirt__planet {\n\twidth: 600px;\n\tmargin: auto;\n\theight: 600px;\n\tbackground-position: 0px -600px;\n\tbackground-image: url(/resources/img/sprite.png);\n}\n\n@mixin dirt__snow {\n\twidth: 600px;\n\tmargin: auto;\n\theight: 600px;\n\tbackground-position: -600px -600px;\n\tbackground-image: url(/resources/img/sprite.png);\n}\n\n@mixin dirt__wood_light {\n\twidth: 300px;\n\tmargin: auto;\n\theight: 300px;\n\tbackground-position: -1500px -600px;\n\tbackground-image: url(/resources/img/sprite.png);\n}\n\n@mixin dirt__wood {\n\twidth: 300px;\n\tmargin: auto;\n\theight: 300px;\n\tbackground-position: -1200px -600px;\n\tbackground-image: url(/resources/img/sprite.png);\n}\n\n@mixin enemy__slime {\n\twidth: 30px;\n\tmargin: auto;\n\theight: 21px;\n\tbackground-position: -1626px -900px;\n\tbackground-image: url(/resources/img/sprite.png);\n}\n\n@mixin intarface__backpack {\n\twidth: 55px;\n\tmargin: auto;\n\theight: 70px;\n\tbackground-position: -1456px -900px;\n\tbackground-image: url(/resources/img/sprite.png);\n}\n\n@mixin intarface__mageIcon {\n\twidth: 51px;\n\tmargin: auto;\n\theight: 58px;\n\tbackground-position: -1511px -900px;\n\tbackground-image: url(/resources/img/sprite.png);\n}\n\n@mixin item__slime {\n\twidth: 34px;\n\tmargin: auto;\n\theight: 34px;\n\tbackground-position: -1562px -900px;\n\tbackground-image: url(/resources/img/sprite.png);\n}\n\n@mixin player__unit {\n\twidth: 30px;\n\tmargin: auto;\n\theight: 30px;\n\tbackground-position: -1596px -900px;\n\tbackground-image: url(/resources/img/sprite.png);\n}\n\n@mixin weapon__arrow {\n\twidth: 30px;\n\tmargin: auto;\n\theight: 4px;\n\tbackground-position: -1656px -900px;\n\tbackground-image: url(/resources/img/sprite.png);\n}",".__item {\r\n\twidth: 30px;\r\n\theight: 30px;\r\n\tmargin: 5px;\r\n\t@include stdBlock();\r\n\tcursor: pointer;\r\n}\r\n\r\n.itemSlime {\r\n\ttransform: scale(0.9) rotate(30deg);\r\n\t@include item__slime();\r\n}","@mixin stdBlock() {\r\n\tbackground-color: $grey;\r\n\tborder: 1px solid $purple;\r\n\tborder-radius: 5px;\r\n}","$greyLight : #DDDDDD;\r\n$grey : #A8A4A4;\r\n$purple : #83199D;\r\n$blue : #44E1FD;\r\n$red : #FF3232;","@import './commonComponents/commonComponents.scss';\r\n\r\n.inerInterface {\r\n\twidth: 100%;\r\n\theight: 100%;\r\n\r\n}\r\n.interface {\r\n\tposition: absolute;\r\n\tz-index: 1000;\r\n\twidth: 100%;\r\n\theight: 100%;\r\n\tcolor: white;\r\n\tdisplay: flex;\r\n\tflex-direction: column;\r\n\tjustify-content: space-between;\r\n\r\n\t@import './header/header.scss';\r\n\t@import './popUp/popUp.scss';\r\n}\r\n",".header {\r\n\theight: 80px;\r\n\twidth: 100%;\r\n\tdisplay: flex;\r\n\tposition: relative;\r\n\r\n\t.header__icon {\r\n\t\twidth: 70px;\r\n\t\theight: 70px;\r\n\t\t@include stdBlock();\r\n\t\tpadding: 5px;\r\n\t\tmargin: 5px;\r\n\r\n\t\t.Header__icon-imgDiv {\r\n\t\t\t@include intarface__mageIcon();\r\n\t\t}\r\n\t}\r\n\r\n\t.header__status {\r\n\t\twidth: 240px;\r\n\t\theight: 70px;\r\n\t\tmargin: 5px 0;\r\n\t\t@include stdBlock();\r\n\t\tdisplay: flex;\r\n\t\tflex-direction: column;\r\n\t\tjustify-content: space-between;\r\n\r\n\t\t.header__status-line {\r\n\t\t\tdisplay: flex;\r\n\t\t\talign-items: center;\r\n\t\t\tposition: relative;\r\n\t\t\tjustify-content: center;\r\n\r\n\r\n\t\t\t.status-line__container {\r\n\t\t\t\twidth: 200px;\r\n\t\t\t\theight: 20px;\r\n\t\t\t\t@include stdBlock();\r\n\t\t\t\tmargin: 5px;\r\n\r\n\r\n\t\t\t\tdiv {\r\n\t\t\t\t\theight: 18px;\r\n\t\t\t\t\tborder-radius: 5px;\r\n\t\t\t\t\tmargin-left: -1px;\r\n\t\t\t\t\ttransition-property: width;\r\n\t\t\t\t\ttransition-duration: 100ms;\r\n\r\n\t\t\t\t\t&.mp {\r\n\t\t\t\t\t\tbackground: $blue;\r\n\t\t\t\t\t}\r\n\r\n\t\t\t\t\t&.hp {\r\n\t\t\t\t\t\tbackground: $red;\r\n\t\t\t\t\t}\r\n\t\t\t\t}\r\n\t\t\t}\r\n\r\n\t\t\t.status-line__maxCur {\r\n\t\t\t\tposition: absolute;\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n\r\n\t.header__items-wrapper {\r\n\t\tdisplay: flex;\r\n\t\tjustify-content: flex-end;\r\n\t\tflex-grow: 1;\r\n\r\n\t\t.header__items {\r\n\t\t\t.header__items-row {\r\n\t\t\t\tdisplay: flex;\r\n\t\t\t}\r\n\t\t}\r\n\r\n\t\t.header__backpack {\r\n\t\t\t@include stdBlock();\r\n\t\t\theight: 70px;\r\n\t\t\twidth: 70px;\r\n\t\t\tmargin: 5px;\r\n\t\t\tcursor: pointer;\r\n\r\n\t\t\t&.active {\r\n\t\t\t\tbackground-color: $greyLight;\r\n\t\t\t}\r\n\r\n\t\t\t.header__backpack-divImg {\r\n\t\t\t\t@include intarface__backpack();\r\n\t\t\t\ttransform: scale(0.8);\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n}",".wrapPopUp {\r\n\twidth: 100%;\r\n\theight: 100%;\r\n\tdisplay: flex;\r\n\tposition: absolute;\r\n\ttop: 0;\r\n\tjustify-content: center;\r\n\talign-items: center;\r\n\r\n\t.popUp {\r\n\t\t@include stdBlock();\r\n\t\tpadding: 20px 50px;\r\n\t\twidth: 700px;\r\n\t\theight: 500px;\r\n\t\tdisplay: flex;\r\n\r\n\t\t.leftColumn {\r\n\t\t\twidth: 40px;\r\n\t\t\tdisplay: flex;\r\n\t\t\tflex-direction: column;\r\n\r\n\t\t\t.subColumn {\r\n\t\t\t\t@include stdBlock();\r\n\t\t\t\tborder-radius: 5px 0 0 5px;\r\n\t\t\t\theight: 40px;\r\n\t\t\t\tbackground-repeat: no-repeat;\r\n\t\t\t\tcursor: pointer;\r\n\t\t\t\tposition: relative;\r\n\r\n\t\t\t\t&:nth-child(n+2) {\r\n\t\t\t\t\tborder-top: 0;\r\n\t\t\t\t}\r\n\r\n\t\t\t\t&.active {\r\n\t\t\t\t\tborder-right: 0;\r\n\t\t\t\t}\r\n\r\n\t\t\t\t.inventory {\r\n\t\t\t\t\t@include intarface__backpack();\r\n\t\t\t\t\tposition: absolute;\r\n\t\t\t\t\ttop: -17px;\r\n\t\t\t\t\tright: -8px;\r\n\t\t\t\t\ttransform: scale(0.4);\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t}\r\n\r\n\t\t.mainWindow {\r\n\t\t\twidth: 560px;\r\n\r\n\t\t\t.popUp__inventory {\r\n\t\t\t\twidth: 100%;\r\n\t\t\t\t@include stdBlock();\r\n\t\t\t\theight: 100%;\r\n\t\t\t\tborder-radius: 0 5px 5px 0;\r\n\t\t\t\tborder-left: 0;\r\n\r\n\t\t\t\t.inventory__items {\r\n\t\t\t\t\twidth: 100%;\r\n\t\t\t\t\theight: 100%;\r\n\t\t\t\t\tdisplay: flex;\r\n\t\t\t\t\tflex-wrap: wrap;\r\n\t\t\t\t\tpadding: 0 30px;\r\n\t\t\t\t\tjustify-content: center;\r\n\t\t\t\t\talign-items: center;\r\n\t\t\t\t}\r\n\t\t\t}\r\n\r\n\t\t\t.popUp___wrappWindow {\r\n\t\t\t\ttext-align: center;\r\n\r\n\t\t\t\t.wrapWindow__title {\r\n\t\t\t\t\tmargin: 12px 0;\r\n\t\t\t\t\ttext-align: center;\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n}"],"sourceRoot":""}]);
+exports.push([module.i, "/* http://meyerweb.com/eric/tools/css/reset/\n   v4.0 | 20180602\n   License: none (public domain)\n*/\nhtml, body, div, span, applet, object, iframe,\nh1, h2, h3, h4, h5, h6, p, blockquote, pre,\na, abbr, acronym, address, big, cite, code,\ndel, dfn, em, img, ins, kbd, q, s, samp,\nsmall, strike, strong, sub, sup, tt, var,\nb, u, i, center,\ndl, dt, dd, ol, ul, li,\nfieldset, form, label, legend,\ntable, caption, tbody, tfoot, thead, tr, th, td,\narticle, aside, canvas, details, embed,\nfigure, figcaption, footer, header, hgroup,\nmain, menu, nav, output, ruby, section, summary,\ntime, mark, audio, video {\n  margin: 0;\n  padding: 0;\n  border: 0;\n  font-size: 100%;\n  font: inherit;\n  vertical-align: baseline; }\n\n/* HTML5 display-role reset for older browsers */\narticle, aside, details, figcaption, figure,\nfooter, header, hgroup, main, menu, nav, section {\n  display: block; }\n\n/* HTML5 hidden-attribute fix for newer browsers */\n*[hidden] {\n  display: none; }\n\nbody {\n  line-height: 1; }\n\nol, ul {\n  list-style: none; }\n\nblockquote, q {\n  quotes: none; }\n\nblockquote:before, blockquote:after,\nq:before, q:after {\n  content: '';\n  content: none; }\n\ntable {\n  border-collapse: collapse;\n  border-spacing: 0; }\n\n* {\n  padding: 0;\n  margin: 0;\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box; }\n\nbutton {\n  cursor: pointer; }\n\nhtml, body {\n  width: 100%; }\n\nh1 {\n  margin: 0;\n  padding: 0; }\n\nhtml,\nbody,\n.wrapper,\n.world {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  background: #000; }\n\n.world {\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  background: #000; }\n  .world .row {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex; }\n    .world .row .standartPlace {\n      width: 30px !important;\n      height: 30px !important;\n      position: relative;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-align: center;\n          -ms-flex-align: center;\n              align-items: center;\n      -webkit-box-pack: center;\n          -ms-flex-pack: center;\n              justify-content: center; }\n      .world .row .standartPlace div {\n        position: absolute;\n        width: 100%;\n        height: 100%;\n        z-index: 2; }\n        .world .row .standartPlace div.magePlayer {\n          width: 30px;\n          margin: auto;\n          height: 30px;\n          background-position: -1596px -900px;\n          background-image: url(/resources/img/sprite.png);\n          z-index: 5; }\n        .world .row .standartPlace div.slimeEnemy {\n          width: 30px;\n          margin: auto;\n          height: 21px;\n          background-position: -1626px -900px;\n          background-image: url(/resources/img/sprite.png);\n          z-index: 5; }\n        .world .row .standartPlace div.weapon {\n          width: 25px;\n          height: 25px;\n          background: #2E0D0D;\n          border-radius: 100%; }\n    .world .row .border {\n      width: 256px;\n      margin: auto;\n      height: 256px;\n      background-position: -1200px -900px;\n      background-image: url(/resources/img/sprite.png); }\n    .world .row .dirt {\n      width: 600px;\n      margin: auto;\n      height: 600px;\n      background-position: 0px 0px;\n      background-image: url(/resources/img/sprite.png); }\n\n.__item {\n  width: 30px;\n  height: 30px;\n  margin: 5px;\n  background-color: #A8A4A4;\n  border: 1px solid #83199D;\n  border-radius: 5px;\n  cursor: pointer; }\n  .__item.active {\n    background: #DDDDDD; }\n  .__item .__item__icon {\n    width: 30px;\n    height: 30px;\n    position: relative; }\n    .__item .__item__icon .__item__countDiv {\n      position: absolute;\n      right: 2px;\n      bottom: 0px; }\n    .__item .__item__icon .__item__icon__imgDiv {\n      position: absolute;\n      top: -3px;\n      right: 0; }\n\n.itemSlime {\n  -webkit-transform: scale(0.9) rotate(30deg);\n      -ms-transform: scale(0.9) rotate(30deg);\n          transform: scale(0.9) rotate(30deg);\n  width: 34px;\n  margin: auto;\n  height: 34px;\n  background-position: -1562px -900px;\n  background-image: url(/resources/img/sprite.png); }\n\n.inerInterface {\n  width: 100%;\n  height: 100%; }\n\n.interface {\n  position: absolute;\n  z-index: 1000;\n  width: 100%;\n  height: 100%;\n  color: white;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between; }\n  .interface .header {\n    height: 80px;\n    width: 100%;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    position: relative; }\n    .interface .header .header__icon {\n      width: 70px;\n      height: 70px;\n      background-color: #A8A4A4;\n      border: 1px solid #83199D;\n      border-radius: 5px;\n      padding: 5px;\n      margin: 5px; }\n      .interface .header .header__icon .Header__icon-imgDiv {\n        width: 51px;\n        margin: auto;\n        height: 58px;\n        background-position: -1511px -900px;\n        background-image: url(/resources/img/sprite.png); }\n    .interface .header .header__status {\n      width: 240px;\n      height: 70px;\n      margin: 5px 0;\n      background-color: #A8A4A4;\n      border: 1px solid #83199D;\n      border-radius: 5px;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-orient: vertical;\n      -webkit-box-direction: normal;\n          -ms-flex-direction: column;\n              flex-direction: column;\n      -webkit-box-pack: justify;\n          -ms-flex-pack: justify;\n              justify-content: space-between; }\n      .interface .header .header__status .header__status-line {\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-align: center;\n            -ms-flex-align: center;\n                align-items: center;\n        position: relative;\n        -webkit-box-pack: center;\n            -ms-flex-pack: center;\n                justify-content: center; }\n        .interface .header .header__status .header__status-line .status-line__container {\n          width: 200px;\n          height: 20px;\n          background-color: #A8A4A4;\n          border: 1px solid #83199D;\n          border-radius: 5px;\n          margin: 5px; }\n          .interface .header .header__status .header__status-line .status-line__container div {\n            height: 18px;\n            border-radius: 5px;\n            margin-left: -1px;\n            -webkit-transition-property: width;\n            -o-transition-property: width;\n            transition-property: width;\n            -webkit-transition-duration: 100ms;\n                 -o-transition-duration: 100ms;\n                    transition-duration: 100ms; }\n            .interface .header .header__status .header__status-line .status-line__container div.mp {\n              background: #44E1FD; }\n            .interface .header .header__status .header__status-line .status-line__container div.hp {\n              background: #FF3232; }\n        .interface .header .header__status .header__status-line .status-line__maxCur {\n          position: absolute; }\n    .interface .header .header__items-wrapper {\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex;\n      -webkit-box-pack: end;\n          -ms-flex-pack: end;\n              justify-content: flex-end;\n      -webkit-box-flex: 1;\n          -ms-flex-positive: 1;\n              flex-grow: 1; }\n      .interface .header .header__items-wrapper .header__items .header__items-row {\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex; }\n      .interface .header .header__items-wrapper .header__backpack {\n        background-color: #A8A4A4;\n        border: 1px solid #83199D;\n        border-radius: 5px;\n        height: 70px;\n        width: 70px;\n        margin: 5px;\n        cursor: pointer; }\n        .interface .header .header__items-wrapper .header__backpack.active {\n          background-color: #DDDDDD; }\n        .interface .header .header__items-wrapper .header__backpack .header__backpack-divImg {\n          width: 55px;\n          margin: auto;\n          height: 70px;\n          background-position: -1456px -900px;\n          background-image: url(/resources/img/sprite.png);\n          -webkit-transform: scale(0.8);\n              -ms-transform: scale(0.8);\n                  transform: scale(0.8); }\n  .interface .wrapPopUp {\n    width: 100%;\n    height: 100%;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    position: absolute;\n    top: 0;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    -webkit-box-align: center;\n        -ms-flex-align: center;\n            align-items: center; }\n    .interface .wrapPopUp .popUp {\n      background-color: #A8A4A4;\n      border: 1px solid #83199D;\n      border-radius: 5px;\n      padding: 20px 50px;\n      width: 700px;\n      height: 500px;\n      display: -webkit-box;\n      display: -ms-flexbox;\n      display: flex; }\n      .interface .wrapPopUp .popUp .leftColumn {\n        width: 40px;\n        display: -webkit-box;\n        display: -ms-flexbox;\n        display: flex;\n        -webkit-box-orient: vertical;\n        -webkit-box-direction: normal;\n            -ms-flex-direction: column;\n                flex-direction: column; }\n        .interface .wrapPopUp .popUp .leftColumn .subColumn {\n          background-color: #A8A4A4;\n          border: 1px solid #83199D;\n          border-radius: 5px;\n          border-radius: 5px 0 0 5px;\n          height: 40px;\n          background-repeat: no-repeat;\n          cursor: pointer;\n          position: relative; }\n          .interface .wrapPopUp .popUp .leftColumn .subColumn:nth-child(n+2) {\n            border-top: 0; }\n          .interface .wrapPopUp .popUp .leftColumn .subColumn.active {\n            border-right: 0; }\n          .interface .wrapPopUp .popUp .leftColumn .subColumn .inventory {\n            width: 55px;\n            margin: auto;\n            height: 70px;\n            background-position: -1456px -900px;\n            background-image: url(/resources/img/sprite.png);\n            position: absolute;\n            top: -17px;\n            right: -8px;\n            -webkit-transform: scale(0.4);\n                -ms-transform: scale(0.4);\n                    transform: scale(0.4); }\n      .interface .wrapPopUp .popUp .mainWindow {\n        width: 560px; }\n        .interface .wrapPopUp .popUp .mainWindow .popUp__inventory {\n          width: 100%;\n          background-color: #A8A4A4;\n          border: 1px solid #83199D;\n          border-radius: 5px;\n          height: 100%;\n          border-radius: 0 5px 5px 0;\n          border-left: 0; }\n          .interface .wrapPopUp .popUp .mainWindow .popUp__inventory .inventory__items {\n            width: 100%;\n            height: 100%;\n            display: -webkit-box;\n            display: -ms-flexbox;\n            display: flex;\n            -ms-flex-wrap: wrap;\n                flex-wrap: wrap;\n            padding: 0 30px;\n            -webkit-box-pack: center;\n                -ms-flex-pack: center;\n                    justify-content: center;\n            -webkit-box-align: center;\n                -ms-flex-align: center;\n                    align-items: center; }\n        .interface .wrapPopUp .popUp .mainWindow .popUp___wrappWindow {\n          text-align: center; }\n          .interface .wrapPopUp .popUp .mainWindow .popUp___wrappWindow .wrapWindow__title {\n            margin: 12px 0;\n            text-align: center; }\n", "", {"version":3,"sources":["/home/alex/aaMy/wynexGame/node_modules/reset-css/reset.css","/home/alex/aaMy/wynexGame/src/styles/sass/defaults/defaults.scss","/home/alex/aaMy/wynexGame/src/styles/sass/style/inner/world/world.scss","/home/alex/aaMy/wynexGame/src/styles/sprites/sprite.scss","/home/alex/aaMy/wynexGame/src/styles/sass/style/inner/intarface/commonComponents/commonComponents.scss","/home/alex/aaMy/wynexGame/src/styles/sass/mixin/mixin.scss","/home/alex/aaMy/wynexGame/src/styles/sass/color/color.scss","/home/alex/aaMy/wynexGame/src/styles/sass/style/inner/intarface/intarface.scss","/home/alex/aaMy/wynexGame/src/styles/sass/style/inner/intarface/header/header.scss","/home/alex/aaMy/wynexGame/src/styles/sass/style/inner/intarface/popUp/popUp.scss"],"names":[],"mappings":"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","file":"index.scss","sourcesContent":["/* http://meyerweb.com/eric/tools/css/reset/\n   v4.0 | 20180602\n   License: none (public domain)\n*/\n\nhtml, body, div, span, applet, object, iframe,\nh1, h2, h3, h4, h5, h6, p, blockquote, pre,\na, abbr, acronym, address, big, cite, code,\ndel, dfn, em, img, ins, kbd, q, s, samp,\nsmall, strike, strong, sub, sup, tt, var,\nb, u, i, center,\ndl, dt, dd, ol, ul, li,\nfieldset, form, label, legend,\ntable, caption, tbody, tfoot, thead, tr, th, td,\narticle, aside, canvas, details, embed,\nfigure, figcaption, footer, header, hgroup,\nmain, menu, nav, output, ruby, section, summary,\ntime, mark, audio, video {\n\tmargin: 0;\n\tpadding: 0;\n\tborder: 0;\n\tfont-size: 100%;\n\tfont: inherit;\n\tvertical-align: baseline;\n}\n/* HTML5 display-role reset for older browsers */\narticle, aside, details, figcaption, figure,\nfooter, header, hgroup, main, menu, nav, section {\n\tdisplay: block;\n}\n/* HTML5 hidden-attribute fix for newer browsers */\n*[hidden] {\n    display: none;\n}\nbody {\n\tline-height: 1;\n}\nol, ul {\n\tlist-style: none;\n}\nblockquote, q {\n\tquotes: none;\n}\nblockquote:before, blockquote:after,\nq:before, q:after {\n\tcontent: '';\n\tcontent: none;\n}\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n","@import 'reset-css';\r\n\r\n* {\r\n\tpadding: 0;\r\n\tmargin: 0;\r\n\tbox-sizing: border-box;\r\n}\r\n\r\nbutton {\r\n\tcursor: pointer;\r\n}\r\n\r\n\r\nhtml, body {\r\n\twidth: 100%;\r\n}\r\n\r\nh1 {\r\n\tmargin: 0;\r\n\tpadding: 0;\r\n}\r\n\r\n\r\nhtml,\r\nbody,\r\n.wrapper,\r\n.world {\r\n\tdisplay: flex;\r\n\tbackground: #000;\r\n}",".world {\r\n\tflex-direction: column;\r\n\tbackground: #000;\r\n\r\n\t.row {\r\n\t\tdisplay: flex;\r\n\r\n\t\t.standartPlace {\r\n\t\t\twidth: 30px !important;\r\n\t\t\theight: 30px !important;\r\n\t\t\tposition: relative;\r\n\t\t\tdisplay: flex;\r\n\t\t\talign-items: center;\r\n\t\t\tjustify-content: center;\r\n\r\n\t\t\tdiv {\r\n\t\t\t\tposition: absolute;\r\n\t\t\t\twidth: 100%;\r\n\t\t\t\theight: 100%;\r\n\t\t\t\tz-index: 2;\r\n\r\n\t\t\t\t&.magePlayer {\r\n\t\t\t\t\t@include player__unit();\r\n\t\t\t\t\tz-index: 5;\r\n\t\t\t\t}\r\n\r\n\t\t\t\t&.slimeEnemy {\r\n\t\t\t\t\t@include enemy__slime();\r\n\t\t\t\t\tz-index: 5;\r\n\t\t\t\t}\r\n\r\n\t\t\t\t&.weapon {\r\n\t\t\t\t\twidth: 25px;\r\n\t\t\t\t\theight: 25px;\r\n\t\t\t\t\tbackground: #2E0D0D;\r\n\t\t\t\t\tborder-radius: 100%;\r\n\t\t\t\t}\r\n\r\n\t\t\t}\r\n\t\t}\r\n\r\n\t\t.border {\r\n\t\t\t@include border__stdBorder();\r\n\t\t}\r\n\r\n\t\t.dirt {\r\n\t\t\t@include dirt__desert();\r\n\t\t}\r\n\t}\r\n}","\n@mixin border__stdBorder {\n\twidth: 256px;\n\tmargin: auto;\n\theight: 256px;\n\tbackground-position: -1200px -900px;\n\tbackground-image: url(/resources/img/sprite.png);\n}\n\n@mixin dirt__concrete {\n\twidth: 600px;\n\tmargin: auto;\n\theight: 600px;\n\tbackground-position: -1200px 0px;\n\tbackground-image: url(/resources/img/sprite.png);\n}\n\n@mixin dirt__desert {\n\twidth: 600px;\n\tmargin: auto;\n\theight: 600px;\n\tbackground-position: 0px 0px;\n\tbackground-image: url(/resources/img/sprite.png);\n}\n\n@mixin dirt__moquette {\n\twidth: 600px;\n\tmargin: auto;\n\theight: 600px;\n\tbackground-position: -600px 0px;\n\tbackground-image: url(/resources/img/sprite.png);\n}\n\n@mixin dirt__planet {\n\twidth: 600px;\n\tmargin: auto;\n\theight: 600px;\n\tbackground-position: 0px -600px;\n\tbackground-image: url(/resources/img/sprite.png);\n}\n\n@mixin dirt__snow {\n\twidth: 600px;\n\tmargin: auto;\n\theight: 600px;\n\tbackground-position: -600px -600px;\n\tbackground-image: url(/resources/img/sprite.png);\n}\n\n@mixin dirt__wood_light {\n\twidth: 300px;\n\tmargin: auto;\n\theight: 300px;\n\tbackground-position: -1500px -600px;\n\tbackground-image: url(/resources/img/sprite.png);\n}\n\n@mixin dirt__wood {\n\twidth: 300px;\n\tmargin: auto;\n\theight: 300px;\n\tbackground-position: -1200px -600px;\n\tbackground-image: url(/resources/img/sprite.png);\n}\n\n@mixin enemy__slime {\n\twidth: 30px;\n\tmargin: auto;\n\theight: 21px;\n\tbackground-position: -1626px -900px;\n\tbackground-image: url(/resources/img/sprite.png);\n}\n\n@mixin intarface__backpack {\n\twidth: 55px;\n\tmargin: auto;\n\theight: 70px;\n\tbackground-position: -1456px -900px;\n\tbackground-image: url(/resources/img/sprite.png);\n}\n\n@mixin intarface__mageIcon {\n\twidth: 51px;\n\tmargin: auto;\n\theight: 58px;\n\tbackground-position: -1511px -900px;\n\tbackground-image: url(/resources/img/sprite.png);\n}\n\n@mixin item__slime {\n\twidth: 34px;\n\tmargin: auto;\n\theight: 34px;\n\tbackground-position: -1562px -900px;\n\tbackground-image: url(/resources/img/sprite.png);\n}\n\n@mixin player__unit {\n\twidth: 30px;\n\tmargin: auto;\n\theight: 30px;\n\tbackground-position: -1596px -900px;\n\tbackground-image: url(/resources/img/sprite.png);\n}\n\n@mixin weapon__arrow {\n\twidth: 30px;\n\tmargin: auto;\n\theight: 4px;\n\tbackground-position: -1656px -900px;\n\tbackground-image: url(/resources/img/sprite.png);\n}",".__item {\r\n\twidth: 30px;\r\n\theight: 30px;\r\n\tmargin: 5px;\r\n\t@include stdBlock();\r\n\tcursor: pointer;\r\n\r\n\t&.active {\r\n\t\tbackground: $greyLight;\r\n\t}\r\n\r\n\t.__item__icon {\r\n\t\twidth: 30px;\r\n\t\theight: 30px;\r\n\t\tposition: relative;\r\n\r\n\t\t.__item__countDiv {\r\n\t\t\tposition: absolute;\r\n\t\t\tright: 2px;\r\n\t\t\tbottom: 0px;\r\n\t\t}\r\n\r\n\t\t.__item__icon__imgDiv {\r\n\t\t\tposition: absolute;\r\n\t\t\ttop: -3px;\r\n\t\t\tright: 0;\r\n\t\t}\r\n\t}\r\n}\r\n\r\n.itemSlime {\r\n\ttransform: scale(0.9) rotate(30deg);\r\n\t@include item__slime();\r\n}","@mixin stdBlock() {\r\n\tbackground-color: $grey;\r\n\tborder: 1px solid $purple;\r\n\tborder-radius: 5px;\r\n}","$greyLight : #DDDDDD;\r\n$grey : #A8A4A4;\r\n$purple : #83199D;\r\n$blue : #44E1FD;\r\n$red : #FF3232;","@import './commonComponents/commonComponents.scss';\r\n\r\n.inerInterface {\r\n\twidth: 100%;\r\n\theight: 100%;\r\n\r\n}\r\n.interface {\r\n\tposition: absolute;\r\n\tz-index: 1000;\r\n\twidth: 100%;\r\n\theight: 100%;\r\n\tcolor: white;\r\n\tdisplay: flex;\r\n\tflex-direction: column;\r\n\tjustify-content: space-between;\r\n\r\n\t@import './header/header.scss';\r\n\t@import './popUp/popUp.scss';\r\n}\r\n",".header {\r\n\theight: 80px;\r\n\twidth: 100%;\r\n\tdisplay: flex;\r\n\tposition: relative;\r\n\r\n\t.header__icon {\r\n\t\twidth: 70px;\r\n\t\theight: 70px;\r\n\t\t@include stdBlock();\r\n\t\tpadding: 5px;\r\n\t\tmargin: 5px;\r\n\r\n\t\t.Header__icon-imgDiv {\r\n\t\t\t@include intarface__mageIcon();\r\n\t\t}\r\n\t}\r\n\r\n\t.header__status {\r\n\t\twidth: 240px;\r\n\t\theight: 70px;\r\n\t\tmargin: 5px 0;\r\n\t\t@include stdBlock();\r\n\t\tdisplay: flex;\r\n\t\tflex-direction: column;\r\n\t\tjustify-content: space-between;\r\n\r\n\t\t.header__status-line {\r\n\t\t\tdisplay: flex;\r\n\t\t\talign-items: center;\r\n\t\t\tposition: relative;\r\n\t\t\tjustify-content: center;\r\n\r\n\r\n\t\t\t.status-line__container {\r\n\t\t\t\twidth: 200px;\r\n\t\t\t\theight: 20px;\r\n\t\t\t\t@include stdBlock();\r\n\t\t\t\tmargin: 5px;\r\n\r\n\r\n\t\t\t\tdiv {\r\n\t\t\t\t\theight: 18px;\r\n\t\t\t\t\tborder-radius: 5px;\r\n\t\t\t\t\tmargin-left: -1px;\r\n\t\t\t\t\ttransition-property: width;\r\n\t\t\t\t\ttransition-duration: 100ms;\r\n\r\n\t\t\t\t\t&.mp {\r\n\t\t\t\t\t\tbackground: $blue;\r\n\t\t\t\t\t}\r\n\r\n\t\t\t\t\t&.hp {\r\n\t\t\t\t\t\tbackground: $red;\r\n\t\t\t\t\t}\r\n\t\t\t\t}\r\n\t\t\t}\r\n\r\n\t\t\t.status-line__maxCur {\r\n\t\t\t\tposition: absolute;\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n\r\n\t.header__items-wrapper {\r\n\t\tdisplay: flex;\r\n\t\tjustify-content: flex-end;\r\n\t\tflex-grow: 1;\r\n\r\n\t\t.header__items {\r\n\t\t\t.header__items-row {\r\n\t\t\t\tdisplay: flex;\r\n\t\t\t}\r\n\t\t}\r\n\r\n\t\t.header__backpack {\r\n\t\t\t@include stdBlock();\r\n\t\t\theight: 70px;\r\n\t\t\twidth: 70px;\r\n\t\t\tmargin: 5px;\r\n\t\t\tcursor: pointer;\r\n\r\n\t\t\t&.active {\r\n\t\t\t\tbackground-color: $greyLight;\r\n\t\t\t}\r\n\r\n\t\t\t.header__backpack-divImg {\r\n\t\t\t\t@include intarface__backpack();\r\n\t\t\t\ttransform: scale(0.8);\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n}",".wrapPopUp {\r\n\twidth: 100%;\r\n\theight: 100%;\r\n\tdisplay: flex;\r\n\tposition: absolute;\r\n\ttop: 0;\r\n\tjustify-content: center;\r\n\talign-items: center;\r\n\r\n\t.popUp {\r\n\t\t@include stdBlock();\r\n\t\tpadding: 20px 50px;\r\n\t\twidth: 700px;\r\n\t\theight: 500px;\r\n\t\tdisplay: flex;\r\n\r\n\t\t.leftColumn {\r\n\t\t\twidth: 40px;\r\n\t\t\tdisplay: flex;\r\n\t\t\tflex-direction: column;\r\n\r\n\t\t\t.subColumn {\r\n\t\t\t\t@include stdBlock();\r\n\t\t\t\tborder-radius: 5px 0 0 5px;\r\n\t\t\t\theight: 40px;\r\n\t\t\t\tbackground-repeat: no-repeat;\r\n\t\t\t\tcursor: pointer;\r\n\t\t\t\tposition: relative;\r\n\r\n\t\t\t\t&:nth-child(n+2) {\r\n\t\t\t\t\tborder-top: 0;\r\n\t\t\t\t}\r\n\r\n\t\t\t\t&.active {\r\n\t\t\t\t\tborder-right: 0;\r\n\t\t\t\t}\r\n\r\n\t\t\t\t.inventory {\r\n\t\t\t\t\t@include intarface__backpack();\r\n\t\t\t\t\tposition: absolute;\r\n\t\t\t\t\ttop: -17px;\r\n\t\t\t\t\tright: -8px;\r\n\t\t\t\t\ttransform: scale(0.4);\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t}\r\n\r\n\t\t.mainWindow {\r\n\t\t\twidth: 560px;\r\n\r\n\t\t\t.popUp__inventory {\r\n\t\t\t\twidth: 100%;\r\n\t\t\t\t@include stdBlock();\r\n\t\t\t\theight: 100%;\r\n\t\t\t\tborder-radius: 0 5px 5px 0;\r\n\t\t\t\tborder-left: 0;\r\n\r\n\t\t\t\t.inventory__items {\r\n\t\t\t\t\twidth: 100%;\r\n\t\t\t\t\theight: 100%;\r\n\t\t\t\t\tdisplay: flex;\r\n\t\t\t\t\tflex-wrap: wrap;\r\n\t\t\t\t\tpadding: 0 30px;\r\n\t\t\t\t\tjustify-content: center;\r\n\t\t\t\t\talign-items: center;\r\n\t\t\t\t}\r\n\t\t\t}\r\n\r\n\t\t\t.popUp___wrappWindow {\r\n\t\t\t\ttext-align: center;\r\n\r\n\t\t\t\t.wrapWindow__title {\r\n\t\t\t\t\tmargin: 12px 0;\r\n\t\t\t\t\ttext-align: center;\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n}"],"sourceRoot":""}]);
 
 // exports
 
@@ -10887,6 +10887,608 @@ function checkPropTypes(typeSpecs, values, location, componentName, getStack) {
 }
 
 module.exports = checkPropTypes;
+
+
+/***/ }),
+
+/***/ "./node_modules/prop-types/factoryWithTypeCheckers.js":
+/*!************************************************************!*\
+  !*** ./node_modules/prop-types/factoryWithTypeCheckers.js ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+
+
+var assign = __webpack_require__(/*! object-assign */ "./node_modules/object-assign/index.js");
+
+var ReactPropTypesSecret = __webpack_require__(/*! ./lib/ReactPropTypesSecret */ "./node_modules/prop-types/lib/ReactPropTypesSecret.js");
+var checkPropTypes = __webpack_require__(/*! ./checkPropTypes */ "./node_modules/prop-types/checkPropTypes.js");
+
+var printWarning = function() {};
+
+if (true) {
+  printWarning = function(text) {
+    var message = 'Warning: ' + text;
+    if (typeof console !== 'undefined') {
+      console.error(message);
+    }
+    try {
+      // --- Welcome to debugging React ---
+      // This error was thrown as a convenience so that you can use this stack
+      // to find the callsite that caused this warning to fire.
+      throw new Error(message);
+    } catch (x) {}
+  };
+}
+
+function emptyFunctionThatReturnsNull() {
+  return null;
+}
+
+module.exports = function(isValidElement, throwOnDirectAccess) {
+  /* global Symbol */
+  var ITERATOR_SYMBOL = typeof Symbol === 'function' && Symbol.iterator;
+  var FAUX_ITERATOR_SYMBOL = '@@iterator'; // Before Symbol spec.
+
+  /**
+   * Returns the iterator method function contained on the iterable object.
+   *
+   * Be sure to invoke the function with the iterable as context:
+   *
+   *     var iteratorFn = getIteratorFn(myIterable);
+   *     if (iteratorFn) {
+   *       var iterator = iteratorFn.call(myIterable);
+   *       ...
+   *     }
+   *
+   * @param {?object} maybeIterable
+   * @return {?function}
+   */
+  function getIteratorFn(maybeIterable) {
+    var iteratorFn = maybeIterable && (ITERATOR_SYMBOL && maybeIterable[ITERATOR_SYMBOL] || maybeIterable[FAUX_ITERATOR_SYMBOL]);
+    if (typeof iteratorFn === 'function') {
+      return iteratorFn;
+    }
+  }
+
+  /**
+   * Collection of methods that allow declaration and validation of props that are
+   * supplied to React components. Example usage:
+   *
+   *   var Props = require('ReactPropTypes');
+   *   var MyArticle = React.createClass({
+   *     propTypes: {
+   *       // An optional string prop named "description".
+   *       description: Props.string,
+   *
+   *       // A required enum prop named "category".
+   *       category: Props.oneOf(['News','Photos']).isRequired,
+   *
+   *       // A prop named "dialog" that requires an instance of Dialog.
+   *       dialog: Props.instanceOf(Dialog).isRequired
+   *     },
+   *     render: function() { ... }
+   *   });
+   *
+   * A more formal specification of how these methods are used:
+   *
+   *   type := array|bool|func|object|number|string|oneOf([...])|instanceOf(...)
+   *   decl := ReactPropTypes.{type}(.isRequired)?
+   *
+   * Each and every declaration produces a function with the same signature. This
+   * allows the creation of custom validation functions. For example:
+   *
+   *  var MyLink = React.createClass({
+   *    propTypes: {
+   *      // An optional string or URI prop named "href".
+   *      href: function(props, propName, componentName) {
+   *        var propValue = props[propName];
+   *        if (propValue != null && typeof propValue !== 'string' &&
+   *            !(propValue instanceof URI)) {
+   *          return new Error(
+   *            'Expected a string or an URI for ' + propName + ' in ' +
+   *            componentName
+   *          );
+   *        }
+   *      }
+   *    },
+   *    render: function() {...}
+   *  });
+   *
+   * @internal
+   */
+
+  var ANONYMOUS = '<<anonymous>>';
+
+  // Important!
+  // Keep this list in sync with production version in `./factoryWithThrowingShims.js`.
+  var ReactPropTypes = {
+    array: createPrimitiveTypeChecker('array'),
+    bool: createPrimitiveTypeChecker('boolean'),
+    func: createPrimitiveTypeChecker('function'),
+    number: createPrimitiveTypeChecker('number'),
+    object: createPrimitiveTypeChecker('object'),
+    string: createPrimitiveTypeChecker('string'),
+    symbol: createPrimitiveTypeChecker('symbol'),
+
+    any: createAnyTypeChecker(),
+    arrayOf: createArrayOfTypeChecker,
+    element: createElementTypeChecker(),
+    instanceOf: createInstanceTypeChecker,
+    node: createNodeChecker(),
+    objectOf: createObjectOfTypeChecker,
+    oneOf: createEnumTypeChecker,
+    oneOfType: createUnionTypeChecker,
+    shape: createShapeTypeChecker,
+    exact: createStrictShapeTypeChecker,
+  };
+
+  /**
+   * inlined Object.is polyfill to avoid requiring consumers ship their own
+   * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is
+   */
+  /*eslint-disable no-self-compare*/
+  function is(x, y) {
+    // SameValue algorithm
+    if (x === y) {
+      // Steps 1-5, 7-10
+      // Steps 6.b-6.e: +0 != -0
+      return x !== 0 || 1 / x === 1 / y;
+    } else {
+      // Step 6.a: NaN == NaN
+      return x !== x && y !== y;
+    }
+  }
+  /*eslint-enable no-self-compare*/
+
+  /**
+   * We use an Error-like object for backward compatibility as people may call
+   * PropTypes directly and inspect their output. However, we don't use real
+   * Errors anymore. We don't inspect their stack anyway, and creating them
+   * is prohibitively expensive if they are created too often, such as what
+   * happens in oneOfType() for any type before the one that matched.
+   */
+  function PropTypeError(message) {
+    this.message = message;
+    this.stack = '';
+  }
+  // Make `instanceof Error` still work for returned errors.
+  PropTypeError.prototype = Error.prototype;
+
+  function createChainableTypeChecker(validate) {
+    if (true) {
+      var manualPropTypeCallCache = {};
+      var manualPropTypeWarningCount = 0;
+    }
+    function checkType(isRequired, props, propName, componentName, location, propFullName, secret) {
+      componentName = componentName || ANONYMOUS;
+      propFullName = propFullName || propName;
+
+      if (secret !== ReactPropTypesSecret) {
+        if (throwOnDirectAccess) {
+          // New behavior only for users of `prop-types` package
+          var err = new Error(
+            'Calling PropTypes validators directly is not supported by the `prop-types` package. ' +
+            'Use `PropTypes.checkPropTypes()` to call them. ' +
+            'Read more at http://fb.me/use-check-prop-types'
+          );
+          err.name = 'Invariant Violation';
+          throw err;
+        } else if ("development" !== 'production' && typeof console !== 'undefined') {
+          // Old behavior for people using React.PropTypes
+          var cacheKey = componentName + ':' + propName;
+          if (
+            !manualPropTypeCallCache[cacheKey] &&
+            // Avoid spamming the console because they are often not actionable except for lib authors
+            manualPropTypeWarningCount < 3
+          ) {
+            printWarning(
+              'You are manually calling a React.PropTypes validation ' +
+              'function for the `' + propFullName + '` prop on `' + componentName  + '`. This is deprecated ' +
+              'and will throw in the standalone `prop-types` package. ' +
+              'You may be seeing this warning due to a third-party PropTypes ' +
+              'library. See https://fb.me/react-warning-dont-call-proptypes ' + 'for details.'
+            );
+            manualPropTypeCallCache[cacheKey] = true;
+            manualPropTypeWarningCount++;
+          }
+        }
+      }
+      if (props[propName] == null) {
+        if (isRequired) {
+          if (props[propName] === null) {
+            return new PropTypeError('The ' + location + ' `' + propFullName + '` is marked as required ' + ('in `' + componentName + '`, but its value is `null`.'));
+          }
+          return new PropTypeError('The ' + location + ' `' + propFullName + '` is marked as required in ' + ('`' + componentName + '`, but its value is `undefined`.'));
+        }
+        return null;
+      } else {
+        return validate(props, propName, componentName, location, propFullName);
+      }
+    }
+
+    var chainedCheckType = checkType.bind(null, false);
+    chainedCheckType.isRequired = checkType.bind(null, true);
+
+    return chainedCheckType;
+  }
+
+  function createPrimitiveTypeChecker(expectedType) {
+    function validate(props, propName, componentName, location, propFullName, secret) {
+      var propValue = props[propName];
+      var propType = getPropType(propValue);
+      if (propType !== expectedType) {
+        // `propValue` being instance of, say, date/regexp, pass the 'object'
+        // check, but we can offer a more precise error message here rather than
+        // 'of type `object`'.
+        var preciseType = getPreciseType(propValue);
+
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + preciseType + '` supplied to `' + componentName + '`, expected ') + ('`' + expectedType + '`.'));
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createAnyTypeChecker() {
+    return createChainableTypeChecker(emptyFunctionThatReturnsNull);
+  }
+
+  function createArrayOfTypeChecker(typeChecker) {
+    function validate(props, propName, componentName, location, propFullName) {
+      if (typeof typeChecker !== 'function') {
+        return new PropTypeError('Property `' + propFullName + '` of component `' + componentName + '` has invalid PropType notation inside arrayOf.');
+      }
+      var propValue = props[propName];
+      if (!Array.isArray(propValue)) {
+        var propType = getPropType(propValue);
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected an array.'));
+      }
+      for (var i = 0; i < propValue.length; i++) {
+        var error = typeChecker(propValue, i, componentName, location, propFullName + '[' + i + ']', ReactPropTypesSecret);
+        if (error instanceof Error) {
+          return error;
+        }
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createElementTypeChecker() {
+    function validate(props, propName, componentName, location, propFullName) {
+      var propValue = props[propName];
+      if (!isValidElement(propValue)) {
+        var propType = getPropType(propValue);
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected a single ReactElement.'));
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createInstanceTypeChecker(expectedClass) {
+    function validate(props, propName, componentName, location, propFullName) {
+      if (!(props[propName] instanceof expectedClass)) {
+        var expectedClassName = expectedClass.name || ANONYMOUS;
+        var actualClassName = getClassName(props[propName]);
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + actualClassName + '` supplied to `' + componentName + '`, expected ') + ('instance of `' + expectedClassName + '`.'));
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createEnumTypeChecker(expectedValues) {
+    if (!Array.isArray(expectedValues)) {
+       true ? printWarning('Invalid argument supplied to oneOf, expected an instance of array.') : undefined;
+      return emptyFunctionThatReturnsNull;
+    }
+
+    function validate(props, propName, componentName, location, propFullName) {
+      var propValue = props[propName];
+      for (var i = 0; i < expectedValues.length; i++) {
+        if (is(propValue, expectedValues[i])) {
+          return null;
+        }
+      }
+
+      var valuesString = JSON.stringify(expectedValues);
+      return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of value `' + propValue + '` ' + ('supplied to `' + componentName + '`, expected one of ' + valuesString + '.'));
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createObjectOfTypeChecker(typeChecker) {
+    function validate(props, propName, componentName, location, propFullName) {
+      if (typeof typeChecker !== 'function') {
+        return new PropTypeError('Property `' + propFullName + '` of component `' + componentName + '` has invalid PropType notation inside objectOf.');
+      }
+      var propValue = props[propName];
+      var propType = getPropType(propValue);
+      if (propType !== 'object') {
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected an object.'));
+      }
+      for (var key in propValue) {
+        if (propValue.hasOwnProperty(key)) {
+          var error = typeChecker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret);
+          if (error instanceof Error) {
+            return error;
+          }
+        }
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createUnionTypeChecker(arrayOfTypeCheckers) {
+    if (!Array.isArray(arrayOfTypeCheckers)) {
+       true ? printWarning('Invalid argument supplied to oneOfType, expected an instance of array.') : undefined;
+      return emptyFunctionThatReturnsNull;
+    }
+
+    for (var i = 0; i < arrayOfTypeCheckers.length; i++) {
+      var checker = arrayOfTypeCheckers[i];
+      if (typeof checker !== 'function') {
+        printWarning(
+          'Invalid argument supplied to oneOfType. Expected an array of check functions, but ' +
+          'received ' + getPostfixForTypeWarning(checker) + ' at index ' + i + '.'
+        );
+        return emptyFunctionThatReturnsNull;
+      }
+    }
+
+    function validate(props, propName, componentName, location, propFullName) {
+      for (var i = 0; i < arrayOfTypeCheckers.length; i++) {
+        var checker = arrayOfTypeCheckers[i];
+        if (checker(props, propName, componentName, location, propFullName, ReactPropTypesSecret) == null) {
+          return null;
+        }
+      }
+
+      return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` supplied to ' + ('`' + componentName + '`.'));
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createNodeChecker() {
+    function validate(props, propName, componentName, location, propFullName) {
+      if (!isNode(props[propName])) {
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` supplied to ' + ('`' + componentName + '`, expected a ReactNode.'));
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createShapeTypeChecker(shapeTypes) {
+    function validate(props, propName, componentName, location, propFullName) {
+      var propValue = props[propName];
+      var propType = getPropType(propValue);
+      if (propType !== 'object') {
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type `' + propType + '` ' + ('supplied to `' + componentName + '`, expected `object`.'));
+      }
+      for (var key in shapeTypes) {
+        var checker = shapeTypes[key];
+        if (!checker) {
+          continue;
+        }
+        var error = checker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret);
+        if (error) {
+          return error;
+        }
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createStrictShapeTypeChecker(shapeTypes) {
+    function validate(props, propName, componentName, location, propFullName) {
+      var propValue = props[propName];
+      var propType = getPropType(propValue);
+      if (propType !== 'object') {
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type `' + propType + '` ' + ('supplied to `' + componentName + '`, expected `object`.'));
+      }
+      // We need to check all keys in case some are required but missing from
+      // props.
+      var allKeys = assign({}, props[propName], shapeTypes);
+      for (var key in allKeys) {
+        var checker = shapeTypes[key];
+        if (!checker) {
+          return new PropTypeError(
+            'Invalid ' + location + ' `' + propFullName + '` key `' + key + '` supplied to `' + componentName + '`.' +
+            '\nBad object: ' + JSON.stringify(props[propName], null, '  ') +
+            '\nValid keys: ' +  JSON.stringify(Object.keys(shapeTypes), null, '  ')
+          );
+        }
+        var error = checker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret);
+        if (error) {
+          return error;
+        }
+      }
+      return null;
+    }
+
+    return createChainableTypeChecker(validate);
+  }
+
+  function isNode(propValue) {
+    switch (typeof propValue) {
+      case 'number':
+      case 'string':
+      case 'undefined':
+        return true;
+      case 'boolean':
+        return !propValue;
+      case 'object':
+        if (Array.isArray(propValue)) {
+          return propValue.every(isNode);
+        }
+        if (propValue === null || isValidElement(propValue)) {
+          return true;
+        }
+
+        var iteratorFn = getIteratorFn(propValue);
+        if (iteratorFn) {
+          var iterator = iteratorFn.call(propValue);
+          var step;
+          if (iteratorFn !== propValue.entries) {
+            while (!(step = iterator.next()).done) {
+              if (!isNode(step.value)) {
+                return false;
+              }
+            }
+          } else {
+            // Iterator will provide entry [k,v] tuples rather than values.
+            while (!(step = iterator.next()).done) {
+              var entry = step.value;
+              if (entry) {
+                if (!isNode(entry[1])) {
+                  return false;
+                }
+              }
+            }
+          }
+        } else {
+          return false;
+        }
+
+        return true;
+      default:
+        return false;
+    }
+  }
+
+  function isSymbol(propType, propValue) {
+    // Native Symbol.
+    if (propType === 'symbol') {
+      return true;
+    }
+
+    // 19.4.3.5 Symbol.prototype[@@toStringTag] === 'Symbol'
+    if (propValue['@@toStringTag'] === 'Symbol') {
+      return true;
+    }
+
+    // Fallback for non-spec compliant Symbols which are polyfilled.
+    if (typeof Symbol === 'function' && propValue instanceof Symbol) {
+      return true;
+    }
+
+    return false;
+  }
+
+  // Equivalent of `typeof` but with special handling for array and regexp.
+  function getPropType(propValue) {
+    var propType = typeof propValue;
+    if (Array.isArray(propValue)) {
+      return 'array';
+    }
+    if (propValue instanceof RegExp) {
+      // Old webkits (at least until Android 4.0) return 'function' rather than
+      // 'object' for typeof a RegExp. We'll normalize this here so that /bla/
+      // passes PropTypes.object.
+      return 'object';
+    }
+    if (isSymbol(propType, propValue)) {
+      return 'symbol';
+    }
+    return propType;
+  }
+
+  // This handles more types than `getPropType`. Only used for error messages.
+  // See `createPrimitiveTypeChecker`.
+  function getPreciseType(propValue) {
+    if (typeof propValue === 'undefined' || propValue === null) {
+      return '' + propValue;
+    }
+    var propType = getPropType(propValue);
+    if (propType === 'object') {
+      if (propValue instanceof Date) {
+        return 'date';
+      } else if (propValue instanceof RegExp) {
+        return 'regexp';
+      }
+    }
+    return propType;
+  }
+
+  // Returns a string that is postfixed to a warning about an invalid type.
+  // For example, "undefined" or "of type array"
+  function getPostfixForTypeWarning(value) {
+    var type = getPreciseType(value);
+    switch (type) {
+      case 'array':
+      case 'object':
+        return 'an ' + type;
+      case 'boolean':
+      case 'date':
+      case 'regexp':
+        return 'a ' + type;
+      default:
+        return type;
+    }
+  }
+
+  // Returns class name of the object, if any.
+  function getClassName(propValue) {
+    if (!propValue.constructor || !propValue.constructor.name) {
+      return ANONYMOUS;
+    }
+    return propValue.constructor.name;
+  }
+
+  ReactPropTypes.checkPropTypes = checkPropTypes;
+  ReactPropTypes.PropTypes = ReactPropTypes;
+
+  return ReactPropTypes;
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/prop-types/index.js":
+/*!******************************************!*\
+  !*** ./node_modules/prop-types/index.js ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+if (true) {
+  var REACT_ELEMENT_TYPE = (typeof Symbol === 'function' &&
+    Symbol.for &&
+    Symbol.for('react.element')) ||
+    0xeac7;
+
+  var isValidElement = function(object) {
+    return typeof object === 'object' &&
+      object !== null &&
+      object.$$typeof === REACT_ELEMENT_TYPE;
+  };
+
+  // By explicitly using `prop-types` you are opting into new development behavior.
+  // http://fb.me/prop-types-in-prod
+  var throwOnDirectAccess = true;
+  module.exports = __webpack_require__(/*! ./factoryWithTypeCheckers */ "./node_modules/prop-types/factoryWithTypeCheckers.js")(isValidElement, throwOnDirectAccess);
+} else {}
 
 
 /***/ }),
@@ -31201,6 +31803,8 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var State = __webpack_require__(/*! ./state/state.js */ "./src/gameSrcJs/engine/globalClass/state/state.js");
@@ -31219,7 +31823,9 @@ module.exports = function () {
 
 		this._definedAndSetStartPointWatch(players);
 
-		enemy = enemy.concat(World.makeAroayWihtEnemy(this._settings.numEnemy, this.state));
+		var newEnemys = World.makeAroayWihtEnemy(this._settings.numEnemy, this.state);
+		// enemy = enemy.concat(newEnemys);
+		enemy = [].concat(_toConsumableArray(enemy), _toConsumableArray(newEnemys));
 		this._setEnemys(enemy, this.state);
 
 		this.world = new World(this.state);
@@ -31883,6 +32489,8 @@ module.exports = function () {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var GLOBAL_SETTING = __webpack_require__(/*! ../../setting/globalSetting.js */ "./src/gameSrcJs/engine/setting/globalSetting.js");
@@ -31950,7 +32558,9 @@ module.exports = function () {
 		key: 'dropItems',
 		value: function dropItems(creature) {
 			var items = creature.giveItems();
-			this._place[creature.coor.x][creature.coor.y]._items = this._place[creature.coor.x][creature.coor.y]._items.concat(items);
+			var needItems = this._place[creature.coor.x][creature.coor.y]._items;
+
+			this._place[creature.coor.x][creature.coor.y]._items = [].concat(_toConsumableArray(needItems), _toConsumableArray(items));
 			return true;
 		}
 	}, {
@@ -32137,10 +32747,6 @@ module.exports = function () {
 	}, {
 		key: 'setCellPlace',
 		value: function setCellPlace(coor, val) {
-			if (val.isCreature === true) {
-				throw "legacy pursues!!!!!";
-			}
-
 			this._place.setCell(coor.x, coor.y, val);
 			return true;
 		}
@@ -32159,6 +32765,7 @@ module.exports = function () {
 				if (remove === true) {
 					this._bias = null;
 				}
+
 				return OldValue;
 			} else {
 				return null;
@@ -32342,6 +32949,7 @@ module.exports = function () {
 
 			function deliteOldWorld() {
 				var world = state.getWorldDiv();
+
 				if (world !== null) {
 					world.remove();
 					state.setWorldDiv = null;
@@ -32560,13 +33168,17 @@ module.exports = function () {
 
 			var creatures = [];
 			for (var i = 0; i < num; i++) {
-				var newCreature = {};
-				newCreature.coor = new Coor();
-				newCreature.type = 'slime';
-				newCreature.coor.x = Math.floor(Math.random() * (GLOBAL_SETTING.numBlocks.height - 2)) + 1;
-				newCreature.coor.y = Math.floor(Math.random() * (GLOBAL_SETTING.numBlocks.width - 2)) + 1;
+				var x = Math.floor(Math.random() * (GLOBAL_SETTING.numBlocks.height - 2)) + 1;
+				var y = Math.floor(Math.random() * (GLOBAL_SETTING.numBlocks.width - 2)) + 1;
+
+				var newCreature = {
+					type: 'slime',
+					coor: new Coor(x, y)
+				};
+
 				creatures[i] = newCreature;
 			}
+
 			return creatures;
 		}
 	}]);
@@ -33070,10 +33682,25 @@ module.exports = function (_Creature) {
 				was: true,
 				now: true
 			};
-
-			_this._fastItem = [];
 		} else {
 			_this.watcher = false;
+		}
+
+		_this._fastItem = [];
+		_this._item = [];
+
+		for (var i = 0; i < 32; i++) {
+			if (i < 6) {
+				_this._fastItem.push({
+					numItem: 0,
+					item: null
+				});
+			}
+
+			_this._item.push({
+				numItem: 0,
+				item: null
+			});
 		}
 
 		switch (profession) {
@@ -33796,8 +34423,6 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-__webpack_require__(/*! babel-polyfill */ "./node_modules/babel-polyfill/lib/index.js");
-
 module.exports = function () {
 	function WEnginAPI() {
 		_classCallCheck(this, WEnginAPI);
@@ -33830,7 +34455,7 @@ module.exports = function () {
 
 			var timer = false;
 
-			document.onkeydown = function (e) {
+			document.addEventListener("keydown", function (e) {
 				e.preventDefault();
 				if (timer) {
 					return 0;
@@ -33860,7 +34485,7 @@ module.exports = function () {
 				}
 				_this._game.tactOfGame(true);
 				return false;
-			};
+			});
 
 			setInterval(function () {
 				_this._game.tactOfGame();
@@ -33877,10 +34502,10 @@ module.exports = function () {
 
 /***/ }),
 
-/***/ "./src/gameSrcJs/interface/gameInterface/commonComponent/item.jsx":
-/*!************************************************************************!*\
-  !*** ./src/gameSrcJs/interface/gameInterface/commonComponent/item.jsx ***!
-  \************************************************************************/
+/***/ "./src/gameSrcJs/interface/gameInterface/commonComponent/innerItem.jsx":
+/*!*****************************************************************************!*\
+  !*** ./src/gameSrcJs/interface/gameInterface/commonComponent/innerItem.jsx ***!
+  \*****************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -33898,6 +34523,126 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 module.exports = function (_React$Component) {
+	_inherits(InnerItem, _React$Component);
+
+	function InnerItem() {
+		_classCallCheck(this, InnerItem);
+
+		return _possibleConstructorReturn(this, (InnerItem.__proto__ || Object.getPrototypeOf(InnerItem)).apply(this, arguments));
+	}
+
+	_createClass(InnerItem, [{
+		key: 'render',
+		value: function render() {
+			var _this2 = this;
+
+			var cn = '__item__icon__imgDiv ';
+			var num = null;
+
+			if (this.props.item) {
+				cn += this.props.item.classNameCSS;
+				num = this.props.numItems;
+			}
+
+			return React.createElement(
+				'div',
+				{
+					className: '__item__icon',
+					ref: function ref(item) {
+						return _this2.divItem = item;
+					}
+				},
+				React.createElement('div', { className: cn }),
+				React.createElement(
+					'div',
+					{ className: '__item__countDiv' },
+					num
+				)
+			);
+		}
+	}, {
+		key: 'componentDidMount',
+		value: function componentDidMount() {
+			var _this3 = this;
+
+			var item = this.divItem;
+
+			item.addEventListener("dragstart", function () {
+				return false;
+			});
+			item.addEventListener("selectstart", function () {
+				return false;
+			});
+			item.addEventListener("mousedown", function (e) {
+				e.preventDefault();
+
+				var mouseMoveHandler = function mouseMoveHandler(e) {
+					return mooving(e);
+				};
+				var mooving = function mooving(e) {
+					_this3.targetItem.classList.remove('active');
+					item.style.left = e.pageX - shiftX + 'px';
+					item.style.top = e.pageY - shiftY + 'px';
+
+					var target = {};
+
+					if ((target = e.target).className === '__item' || (target = e.target.parentElement).className === '__item' || (target = e.target.parentElement.parentElement).className === '__item') {
+						console.log(e);
+						_this3.targetItem = target;
+						_this3.targetItem.classList.add('active');
+					}
+				};
+
+				var coor = item.getBoundingClientRect();
+				var shiftX = e.pageX - coor.left;
+				var shiftY = e.pageY - coor.top;
+
+				item.style.position = 'absolute';
+				item.style.zIndex = 10000;
+				mooving(e);
+
+				document.addEventListener("mousemove", mouseMoveHandler);
+				item.onmouseup = function () {
+					document.removeEventListener("mousemove", mouseMoveHandler);
+					item.onmouseup = null;
+				};
+
+				return false;
+			});
+		}
+	}]);
+
+	return InnerItem;
+}(React.Component);
+
+/***/ }),
+
+/***/ "./src/gameSrcJs/interface/gameInterface/commonComponent/item.jsx":
+/*!************************************************************************!*\
+  !*** ./src/gameSrcJs/interface/gameInterface/commonComponent/item.jsx ***!
+  \************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _class, _temp;
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+var PropTypes = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+
+var InnerItem = __webpack_require__(/*! ./innerItem.jsx */ "./src/gameSrcJs/interface/gameInterface/commonComponent/innerItem.jsx");
+
+module.exports = (_temp = _class = function (_React$Component) {
 	_inherits(Item, _React$Component);
 
 	function Item() {
@@ -33909,32 +34654,44 @@ module.exports = function (_React$Component) {
 	_createClass(Item, [{
 		key: 'render',
 		value: function render() {
-			var cn = '__item__count ';
-			var num = null;
+			var _this2 = this;
+
+			var innerItem = null;
 
 			if (this.props.item) {
-				cn += this.props.item.classNameCSS;
-				num = this.props.numItems;
+				innerItem = React.createElement(InnerItem, {
+					item: this.props.item,
+					numItems: this.props.idItemPosition,
+					fast: this.props.fast,
+					idItemPosition: this.props.idItemPosition
+				});
 			}
 
 			return React.createElement(
 				'div',
-				{ className: '__item' },
-				React.createElement(
-					'div',
-					{ className: '__item__icon' },
-					React.createElement(
-						'div',
-						{ className: cn },
-						num
-					)
-				)
+				{
+					className: '__item',
+					ref: function ref(item) {
+						return _this2.targetItem = item;
+					}
+				},
+				innerItem
 			);
 		}
 	}]);
 
 	return Item;
-}(React.Component);
+}(React.Component), _class.defaultProps = {
+	item: {},
+	numItems: 0,
+	idItemPosition: 0,
+	fast: false
+}, _class.propsTypes = {
+	item: PropTypes.object,
+	numItems: PropTypes.number,
+	idItemPosition: PropTypes.number,
+	fast: PropTypes.bool
+}, _temp);
 
 /***/ }),
 
@@ -33976,6 +34733,10 @@ module.exports = function (_React$Component) {
 
 		_this._openPopUp = _this._openPopUp.bind(_this);
 		_this._closePopUp = _this._closePopUp.bind(_this);
+
+		document.addEventListener("keydown", function () {
+			_this._closePopUp();
+		});
 		return _this;
 	}
 
@@ -34181,18 +34942,15 @@ module.exports = function (_React$Component) {
 				row[i] = [];
 
 				for (var j = 0; j < 3; j++) {
-					if (this.state.items[key]) {
-						item = this.state.items[key].item;
-						num = this.state.items[key].num;
-					} else {
-						item = null;
-						num = 0;
-					}
+					item = this.state.items[key].item;
+					num = this.state.items[key].numItems;
 
 					row[i][j] = React.createElement(Item, {
-						key: key++,
+						key: key,
 						item: item,
-						numItems: num
+						numItems: num,
+						idItemPosition: key++,
+						fast: true
 					});
 				}
 
@@ -34213,7 +34971,10 @@ module.exports = function (_React$Component) {
 				),
 				React.createElement(
 					'div',
-					{ className: bpClassName, onClick: this.props.openPopUp },
+					{
+						className: bpClassName,
+						onClick: this.props.openPopUp
+					},
 					React.createElement('div', { className: 'header__backpack-divImg' })
 				)
 			);
@@ -34608,6 +35369,7 @@ var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 var OtherObject = __webpack_require__(/*! ./subInventory/otherObject.jsx */ "./src/gameSrcJs/interface/gameInterface/popUp/window/subWindow/subInventory/otherObject.jsx");
 var Items = __webpack_require__(/*! ./subInventory/items.jsx */ "./src/gameSrcJs/interface/gameInterface/popUp/window/subWindow/subInventory/items.jsx");
+var Equipment = __webpack_require__(/*! ./subInventory/equipment.jsx */ "./src/gameSrcJs/interface/gameInterface/popUp/window/subWindow/subInventory/equipment.jsx");
 
 module.exports = function (_React$Component) {
 	_inherits(Inventory, _React$Component);
@@ -34622,18 +35384,12 @@ module.exports = function (_React$Component) {
 		key: 'render',
 		value: function render() {
 			var otherObject = null;
-			var ownInvntory = React.createElement(Items, {
-				type: 'big',
-				stateGame: this.props.stateGame
-			});
+			var ownInvntory = React.createElement(Items, { stateGame: this.props.stateGame });
 
 			if (this.props.otherObject.length) {
 				otherObject = React.createElement(OtherObject, { stateGame: this.props.stateGame });
-
-				ownInvntory = React.createElement(Items, {
-					type: 'small',
-					stateGame: this.props.stateGame
-				});
+			} else {
+				otherObject = React.createElement(Equipment, { stateGame: this.props.stateGame });
 			}
 
 			return React.createElement(
@@ -34646,6 +35402,47 @@ module.exports = function (_React$Component) {
 	}]);
 
 	return Inventory;
+}(React.Component);
+
+/***/ }),
+
+/***/ "./src/gameSrcJs/interface/gameInterface/popUp/window/subWindow/subInventory/equipment.jsx":
+/*!*************************************************************************************************!*\
+  !*** ./src/gameSrcJs/interface/gameInterface/popUp/window/subWindow/subInventory/equipment.jsx ***!
+  \*************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var React = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+module.exports = function (_React$Component) {
+    _inherits(Equipment, _React$Component);
+
+    function Equipment() {
+        _classCallCheck(this, Equipment);
+
+        return _possibleConstructorReturn(this, (Equipment.__proto__ || Object.getPrototypeOf(Equipment)).apply(this, arguments));
+    }
+
+    _createClass(Equipment, [{
+        key: 'render',
+        value: function render() {
+            return React.createElement('div', null);
+        }
+    }]);
+
+    return Equipment;
 }(React.Component);
 
 /***/ }),
@@ -34686,32 +35483,19 @@ module.exports = function (_React$Component) {
 		value: function componentWillMount() {
 			this.allItems = [];
 
-			var N = 0;
 			var itemsDate = this.props.stateGame.getWatcher().getItems();
-			var item = 0;
-			var numItems = 0;
 
-			if (this.props.type === 'big') {
-				N = 120;
-			} else {
-				N = 60;
-			}
+			itemsDate.forEach(function (itemCur) {
+				console.log(itemCur);
 
-			for (var i = 0; i < N; i++) {
-				if (i < itemsDate.length) {
-					item = itemsDate[i].item;
-					numItems = itemsDate[i].num;
-				} else {
-					item = null;
-					numItems = 0;
-				}
-
-				this.allItems[i] = React.createElement(Item, {
-					key: i,
-					item: item,
-					numItems: numItems
-				});
-			}
+				// this.allItems[i] = (
+				// 	<Item
+				// 		key={i}
+				// 		item={item}
+				// 		numItems={numItems}
+				// 	/>
+				// );
+			});
 		}
 	}, {
 		key: 'render',
@@ -34778,21 +35562,23 @@ module.exports = function (_React$Component) {
 			var item = null;
 			var numItems = 0;
 
-			for (var i = 0; i < 48; i++) {
-				if (i < itemsDate.length) {
-					item = itemsDate[i].item;
-					numItems = itemsDate[i].num;
-				} else {
-					item = null;
-					numItems = 0;
-				}
-
-				this.allItems[i] = React.createElement(Item, {
-					key: i,
-					item: item,
-					numItems: numItems
-				});
-			}
+			// for (let i = 0; i < 48; i++) {
+			// 	if (i < itemsDate.length) {
+			// 		item = itemsDate[i].item;
+			// 		numItems = itemsDate[i].num;
+			// 	} else {
+			// 		item = {};
+			// 		numItems = 0;
+			// 	}
+			//
+			// 	this.allItems[i] = (
+			// 		<Item
+			// 			key={i}
+			// 			item={item}
+			// 			numItems={numItems}
+			// 		/>
+			// 	);
+			// }
 		}
 	}, {
 		key: 'render',
@@ -34939,12 +35725,13 @@ if(false) {}
 /***/ }),
 
 /***/ 0:
-/*!**********************************************************************************!*\
-  !*** multi ./src/styles/sass/index.scss ./src/gameSrcJs/interface/interface.jsx ***!
-  \**********************************************************************************/
+/*!*************************************************************************************************!*\
+  !*** multi babel-polyfill ./src/styles/sass/index.scss ./src/gameSrcJs/interface/interface.jsx ***!
+  \*************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+__webpack_require__(/*! babel-polyfill */"./node_modules/babel-polyfill/lib/index.js");
 __webpack_require__(/*! ./src/styles/sass/index.scss */"./src/styles/sass/index.scss");
 module.exports = __webpack_require__(/*! ./src/gameSrcJs/interface/interface.jsx */"./src/gameSrcJs/interface/interface.jsx");
 

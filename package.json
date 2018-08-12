@@ -4,19 +4,20 @@
 	"description": "2d game view from above",
 	"main": "index.js",
 	"dependencies": {
-		"babel-polyfill": "^6.26.0",
-		"react": "^16.4.1",
-		"react-dom": "^16.4.1",
-		"reset-css": "^4.0.1"
+		"express": "latest"
 	},
 	"devDependencies": {
+		"react-dom": "^16.4.1",
+		"react": "^16.4.1",
+		"reset-css": "^4.0.1",
+		"babel-polyfill": "^6.26.0",
 		"autoprefixer": "^9.0.1",
 		"babel-core": "latest",
 		"babel-loader": "latest",
+		"babel-plugin-transform-class-properties": "^6.24.1",
 		"babel-preset-env": "latest",
 		"babel-preset-react": "latest",
 		"css-loader": "latest",
-		"express": "latest",
 		"file-loader": "^1.1.11",
 		"node-sass": "latest",
 		"postcss-loader": "^2.1.6",
@@ -28,7 +29,7 @@
 	},
 	"scripts": {
 		"b": "webpack",
-		"p": "start http://localhost:1337 && node index.js"
+		"p": "node index.js"
 	},
 	"repository": "git+https://github.com/Lpkehoke/wynexGame.git",
 	"keywords": [

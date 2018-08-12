@@ -14,7 +14,11 @@ module.exports = class HeaderItems extends React.Component {
 	}
 
 	render() {
-		let bpClassName = (this.state.active ? 'header__backpack active' : 'header__backpack');
+		let bpClassName = (
+			this.state.active ?
+				'header__backpack active' :
+					'header__backpack'
+		);
 
 		let headerItems = [];
 		let row = [];
@@ -27,19 +31,16 @@ module.exports = class HeaderItems extends React.Component {
 			row[i] = [];
 
 			for (let j = 0; j < 3; j++) {
-				if (this.state.items[key]) {
-					item = this.state.items[key].item;
-					num = this.state.items[key].num;
-				} else {
-					item = null;
-					num = 0;
-				}
+				item = this.state.items[key].item;
+				num = this.state.items[key].numItems;
 
 				row[i][j] = (
 					<Item
-						key={key++}
+						key={key}
 						item={item}
 						numItems={num}
+						idItemPosition={key++}
+						fast={true}
 					/>
 				);
 			}
@@ -57,7 +58,10 @@ module.exports = class HeaderItems extends React.Component {
 				<div className="header__items">
 					{headerItems}
 				</div>
-				<div className={bpClassName} onClick={this.props.openPopUp}>
+				<div
+					className={bpClassName}
+					onClick={this.props.openPopUp}
+				>
 					<div className="header__backpack-divImg"></div>
 				</div>
 			</div>

@@ -4,6 +4,28 @@
 	margin: 5px;
 	@include stdBlock();
 	cursor: pointer;
+
+	&.active {
+		background: $greyLight;
+	}
+
+	.__item__icon {
+		width: 30px;
+		height: 30px;
+		position: relative;
+
+		.__item__countDiv {
+			position: absolute;
+			right: 2px;
+			bottom: 0px;
+		}
+
+		.__item__icon__imgDiv {
+			position: absolute;
+			top: -3px;
+			right: 0;
+		}
+	}
 }
 
 .itemSlime {

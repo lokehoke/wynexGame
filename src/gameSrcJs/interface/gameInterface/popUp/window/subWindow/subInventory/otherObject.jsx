@@ -5,7 +5,6 @@ const React = require('react');
 const Item = require('../../../../commonComponent/item.jsx')
 
 module.exports = class Items extends React.Component {
-
 	componentWillMount () {
 		this.allItems = [];
 
@@ -13,23 +12,23 @@ module.exports = class Items extends React.Component {
 		let item = null;
 		let numItems = 0;
 
-		for (let i = 0; i < 48; i++) {
-			if (i < itemsDate.length) {
-				item = itemsDate[i].item;
-				numItems = itemsDate[i].num;
-			} else {
-				item = null;
-				numItems = 0;
-			}
-
-			this.allItems[i] = (
-				<Item
-					key={i}
-					item={item}
-					numItems={numItems}
-				/>
-			);
-		}
+		// for (let i = 0; i < 48; i++) {
+		// 	if (i < itemsDate.length) {
+		// 		item = itemsDate[i].item;
+		// 		numItems = itemsDate[i].num;
+		// 	} else {
+		// 		item = {};
+		// 		numItems = 0;
+		// 	}
+		//
+		// 	this.allItems[i] = (
+		// 		<Item
+		// 			key={i}
+		// 			item={item}
+		// 			numItems={numItems}
+		// 		/>
+		// 	);
+		// }
 	}
 
 	render() {

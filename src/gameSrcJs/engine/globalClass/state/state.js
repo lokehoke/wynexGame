@@ -59,7 +59,9 @@ module.exports = class State {
 
 	dropItems(creature) {
 		let items = creature.giveItems();
-		this._place[creature.coor.x][creature.coor.y]._items = this._place[creature.coor.x][creature.coor.y]._items.concat(items);
+		let needItems = this._place[creature.coor.x][creature.coor.y]._items;
+
+		this._place[creature.coor.x][creature.coor.y]._items = [...needItems, ...items];
 		return true;
 	}
 
@@ -215,10 +217,6 @@ module.exports = class State {
 	}
 
 	setCellPlace(coor, val) {
-		if (val.isCreature === true) {
-			throw "legacy pursues!!!!!";
-		}
-
 		this._place.setCell(coor.x, coor.y, val);
 		return true;
 	}
@@ -235,6 +233,7 @@ module.exports = class State {
 			if (remove === true) {
 				this._bias = null;
 			}
+
 			return OldValue;
 		} else {
 			return null;

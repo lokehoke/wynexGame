@@ -11,7 +11,9 @@ module.exports = class ControllerGame {
 
 		this._definedAndSetStartPointWatch(players);
 
-		enemy = enemy.concat(World.makeAroayWihtEnemy(this._settings.numEnemy, this.state));
+		let newEnemys = World.makeAroayWihtEnemy(this._settings.numEnemy, this.state);
+		// enemy = enemy.concat(newEnemys);
+		enemy = [...enemy, ...newEnemys];
 		this._setEnemys(enemy, this.state);
 
 		this.world = new World(this.state);
