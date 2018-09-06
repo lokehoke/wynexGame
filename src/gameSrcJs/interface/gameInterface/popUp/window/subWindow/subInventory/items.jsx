@@ -1,26 +1,25 @@
 'use strict';
 
 const React = require('react');
+const ReactRedux = require('react-redux');
 
 const Item = require('../../../../commonComponent/item.jsx')
 
-module.exports = class Items extends React.Component {
-
+class Items extends React.Component {
 	componentWillMount () {
 		this.allItems = [];
 
-		let itemsDate = this.props.stateGame.getWatcher().getItems();
+		let itemsDate = this.props.items;
 
-		itemsDate.forEach( itemCur => {
-			console.log(itemCur);
+		itemsDate.forEach( (itemCur, i) => {
 
-			// this.allItems[i] = (
-			// 	<Item
-			// 		key={i}
-			// 		item={item}
-			// 		numItems={numItems}
-			// 	/>
-			// );
+			this.allItems[i] = (
+				<Item
+					key={i}
+					item={itemCur.item}
+					numItems={itemCur.numItems}
+				/>
+			);
 		});
 	}
 
@@ -35,3 +34,13 @@ module.exports = class Items extends React.Component {
 		);
 	}
 }
+
+module.exports = ReactRedux.connect(
+	store => {
+		let items = store.stateGame.getWatcher().getItems();
+
+		return {
+			items
+		}
+	}
+)(Items);

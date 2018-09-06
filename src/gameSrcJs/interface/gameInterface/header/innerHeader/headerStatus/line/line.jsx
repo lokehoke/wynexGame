@@ -1,62 +1,63 @@
 'use strict';
 
 const React = require('react');
+const ReactRedux = require('react-redux');
+const PropTypes = require('prop-types');
 
-module.exports = class Line extends React.Component {
-	constructor(props) {
-		super(props);
-
-		let watcher = this.props.stateGame.getWatcher();
-		let max = 0;
-		let cur = 0;
-
-		if (this.props.type === 'hp') {
-			max = watcher.maxHP;
-			cur = watcher.HP;
-		}
-
-		this.state = {
-			fromO: null,
-			num: 0,
-			max,
-			cur,
-			type: this.props.type
-		};
+class Line extends React.Component {
+	static defaultProps = {
+		cur: 0,
+		max: 0
 	}
 
-	componentDidMount() {
-		if (this.state.type === 'hp') {
-			document.addEventListener('mainGetHP', e => this._add(e) );
-			document.addEventListener('mainGetDamage', e => this._add(e) );
-		} else if (this.state.type === 'mp') {
-			document.addEventListener('mainGetMP', e => this._add(e) );
-		}
-	}
-
-	componentWillUnmount() {
-		if (this.state.type === 'hp') {
-			document.removeEventListener('mainGetHP', e => this._add(e) );
-			document.removeEventListener('mainGetDamage', e => this._add(e) );
-		} else if (this.state.type === 'mp') {
-			document.removeEventListener('mainGetMP', e => this._add(e) );
-		}
+	static propsTypes = {
+		cur: PropTypes.number,
+		max: PropTypes.number
 	}
 
 	render() {
-		let proc = (this.state.max ? this.state.cur / this.state.max * 200 : 0) + 'px';
+		let proc =
+			(this.props.max
+				? this.props.cur / this.props.max * 200
+				: 0
+			) + 'px';
 
-		return(
+		return (
 			<div className="header__status-line">
 				<div className="status-line__container">
-					<div className={this.props.type} style={{width: proc}}></div>
+					<div
+						className={this.props.type}
+						style={{width: proc}}
+					/>
 				</div>
-				<div className="status-line__maxCur">{this.state.cur} / {this.state.max}</div>
-				<span>{this.props.type}</span>
+				<div className="status-line__maxCur">
+					{this.props.cur} / {this.props.max}
+				</div>
+				<span>
+					{this.props.type}
+				</span>
 			</div>
 		);
 	}
-
-	_add(e) {
-		this.setState(e.detail);
-	}
 }
+
+module.exports = ReactRedux.connect(
+	(store, props) => {
+		let watcher = store.stateGame.getWatcher();
+		let cur = 0;
+		let max = 0;
+
+		if (props.type === 'hp') {
+			cur = watcher.HP,
+			max = watcher.maxHP
+		} else if (props.type === 'mp') {
+			cur = watcher.MP,
+			max = watcher.maxMP
+		}
+
+		return {
+			cur,
+			max
+		};
+	}
+)(Line);

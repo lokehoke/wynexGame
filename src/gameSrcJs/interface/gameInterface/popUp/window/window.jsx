@@ -21,10 +21,7 @@ module.exports = class MainWindow extends React.Component {
 		switch(this.props.type) {
 			case "inventory":
 				mainwindow = (
-					<Inventory
-						otherObject={this.props.otherObject}
-						stateGame={this.props.stateGame}
-					/>
+					<Inventory />
 				);
 				break;
 		}

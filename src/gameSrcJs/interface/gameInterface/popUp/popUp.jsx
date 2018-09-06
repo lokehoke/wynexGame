@@ -14,11 +14,7 @@ module.exports = class PopUp extends React.Component {
 			>
 				<div className="popUp">
 					<Column type="inventory" />
-					<MainWindow
-						type="inventory"
-						stateGame={this.props.stateGame}
-						otherObject={this.props.stateGame.getStepOnItem()}
-					/>
+					<MainWindow	type="inventory" />
 					<div />
 				</div>
 			</div>

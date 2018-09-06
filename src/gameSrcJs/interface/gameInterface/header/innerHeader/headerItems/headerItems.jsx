@@ -1,23 +1,16 @@
 'use strict';
 
 const React = require('react');
+const ReactRedux = require('react-redux');
+const PropTypes = require('prop-types');
+const Item = require('./../../../commonComponent/item.jsx');
 
-const Item = require('../../../commonComponent/item.jsx');
-
-module.exports = class HeaderItems extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			active: false,
-			items: props.stateGame.getWatcher().getFastItem()
-		}
-	}
-
+class HeaderItems extends React.Component {
 	render() {
 		let bpClassName = (
-			this.state.active ?
-				'header__backpack active' :
-					'header__backpack'
+			this.props.active
+				? 'header__backpack active'
+				: 'header__backpack'
 		);
 
 		let headerItems = [];
@@ -31,8 +24,8 @@ module.exports = class HeaderItems extends React.Component {
 			row[i] = [];
 
 			for (let j = 0; j < 3; j++) {
-				item = this.state.items[key].item;
-				num = this.state.items[key].numItems;
+				item = this.props.items[key].item;
+				num = this.props.items[key].numItems;
 
 				row[i][j] = (
 					<Item
@@ -67,12 +60,16 @@ module.exports = class HeaderItems extends React.Component {
 			</div>
 		);
 	}
-
-	componentDidMount() {
-		document.addEventListener('mainStepOn', e => {
-			this.setState({
-				active: e.detail.withItems
-			});
-		});
-	}
 }
+
+module.exports = ReactRedux.connect(
+	store => {
+		let items = store.stateGame.getFastItems();
+		let active = !!(store.stateGame.getStepOnItems().length);
+		return {
+			active,
+			items
+		};
+	}, () => {
+		return {};
+	})(HeaderItems);

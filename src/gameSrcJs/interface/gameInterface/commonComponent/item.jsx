@@ -11,14 +11,14 @@ module.exports = class Item extends React.Component {
 		numItems: 0,
 		idItemPosition: 0,
 		fast: false
-	};
+	}
 
 	static propsTypes = {
 		item: PropTypes.object,
 		numItems: PropTypes.number,
 		idItemPosition: PropTypes.number,
 		fast: PropTypes.bool
-	};
+	}
 
 	render() {
 		let innerItem = null;
@@ -27,19 +27,15 @@ module.exports = class Item extends React.Component {
 			innerItem = (
 				<InnerItem
 					item={this.props.item}
-					numItems={this.props.idItemPosition}
+					numItems={this.props.numItems}
 					fast={this.props.fast}
 					idItemPosition={this.props.idItemPosition}
 				/>
 			);
 		}
 
-
 		return (
-			<div
-				className="__item"
-				ref={item => this.targetItem = item}
-			>
+			<div className="__item">
 				{innerItem}
 			</div>
 		);

@@ -60,4 +60,8 @@ module.exports = class Block {
 			return null;
 		}
 	}
+
+	getItems() {
+		return this._items;
+	}
 }

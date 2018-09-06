@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = class WEnginAPI {
-	constructor() {
+	constructor(store) {
 		this._GLOBAL_SETTING = require('./setting/globalSetting.js');
 		this._ControllerGame = require('./globalClass/game.js');
 
@@ -9,10 +9,12 @@ module.exports = class WEnginAPI {
 
 		this._state = null;
 		this._player = null;
+
+		this._store = store;
 	}
 
 	startGame() {
-		this._game = new this._ControllerGame([{
+		this._game = new this._ControllerGame(this._store, [{
 			coor: {
 				x: 3,
 				y: 3
@@ -23,6 +25,10 @@ module.exports = class WEnginAPI {
 
 		this._state = this._game.getState();
 		this._player = this._state.getCreature(0);
+		this._store.dispatch({
+			type: 'INITIAL_STATE',
+			stateGame: this._state
+		});
 
 		let timer = false;
 
@@ -62,8 +68,10 @@ module.exports = class WEnginAPI {
 			this._game.tactOfGame();
 		}, this._GLOBAL_SETTING.timeOfTactOther);
 
-		console.log(this._state);
+		return this._state;
+	}
 
+	getState() {
 		return this._state;
 	}
 }

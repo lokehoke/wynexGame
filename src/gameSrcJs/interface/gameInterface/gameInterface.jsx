@@ -3,7 +3,6 @@
 const React = require('react');
 
 const Header = require('./header/header.jsx');
-
 const PopUp = require('./popUp/popUp.jsx');
 
 module.exports = class GameIntarfface extends React.Component {
@@ -29,7 +28,6 @@ module.exports = class GameIntarfface extends React.Component {
 			popUp = (
 				<PopUp
 					closePopUp={this._closePopUp}
-					stateGame={this.props.stateGame}
 				/>
 			);
 		}
@@ -39,7 +37,6 @@ module.exports = class GameIntarfface extends React.Component {
 				{popUp}
 				<Header
 					openPopUp={this._openPopUp}
-					stateGame={this.props.stateGame}
 				/>
 			</div>
 		);
@@ -48,7 +45,7 @@ module.exports = class GameIntarfface extends React.Component {
 	_openPopUp(type) {
 		let state = Object.assign({}, this.state, {
 			popUp: true,
-			type: type
+			type
 		});
 
 		this.setState(state);

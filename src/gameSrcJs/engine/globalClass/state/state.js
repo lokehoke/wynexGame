@@ -4,7 +4,7 @@ const GLOBAL_SETTING = require('../../setting/globalSetting.js');
 
 const Place = require('./inerState/place/place.js');
 const StackTempClassName = require('./inerState/stackTemp/stackTempClassName.js');
-const StorCustomEvents = require('./inerState/events/StorCustomEvents.js')
+const StoreCustomEvents = require('./inerState/events/storeCustomEvents.js')
 
 const Player = require('../../inerObjects/creatures/player.js');
 const Enemy = require('../../inerObjects/creatures/enemy.js');
@@ -15,8 +15,9 @@ const Coor = require('../../structOfDate/coordinate.js');
 const AllItems = require('../../inerObjects/items/allItems.js');
 
 module.exports = class State {
-	constructor () {
+	constructor (store) {
 		this._settings = GLOBAL_SETTING;
+		this._store = store;
 
 		this._activeGame = true;
 
@@ -43,10 +44,21 @@ module.exports = class State {
 
 		this._stackTempClassName = new StackTempClassName();
 
-		this._events = new StorCustomEvents();
+		this._events = new StoreCustomEvents();
 
 		this._allItems = new AllItems();
-		this._stepOnItem = [];
+		this._stepOnItems = [];
+	}
+
+	getFastItems() {
+		return this._pointWatch.watcher.getFastItems();
+	}
+
+	dispatchMAinGetDamage(player) {
+		this._store.dispatch({
+			type: 'MAIN_GET_DAMAGE',
+		});
+		return true;
 	}
 
 	getSetting() {
@@ -54,6 +66,10 @@ module.exports = class State {
 	}
 
 	createItem(id, coor) {
+		if (!coor) {
+			coor = new Coor(0, 0);
+		}
+
 		return this._allItems.getItem(this._numItems++, this, coor, id);
 	}
 
@@ -69,14 +85,6 @@ module.exports = class State {
 		document.dispatchEvent(this._events.getEventEndGame());
 		this._activeGame = false;
 		return true;
-	}
-
-	getEventMainGetHP() {
-		return this._events.getEventMainGetHP();
-	}
-
-	getEventMainGetDamage() {
-		return this._events.getEventMainGetDamage();
 	}
 
 	getEventDyeCreature() {
@@ -185,25 +193,21 @@ module.exports = class State {
 		creature.coor.y = coor.newY;
 
 		if (creature.watcher) {
-			let event = this._events.getEventMainStepOn();
-
-			if (this._place[coor.newX][coor.newY]._items[0] && creature.watcher) {
-				event.detail.withItems = true;
-				event.detail.items = this._place[coor.newX][coor.newY]._items;
-			} else if (creature.watcher) {
-				event.detail.withItems = false;
-				event.detail.items = [];
+			if (this._place[coor.newX][coor.newY]._items[0]) {
+				this._stepOnItems = this._place[coor.newX][coor.newY].getItems();
+			} else {
+				this._stepOnItems = [];
 			}
-
-			this._stepOnItem = event.detail.items;
-
-			document.dispatchEvent(event);
+			this._store.dispatch({
+				type: 'WATCHER_STEP_ON'
+			});
 		}
+
 		return true;
 	}
 
-	getStepOnItem() {
-		return this._stepOnItem;
+	getStepOnItems() {
+		return this._stepOnItems;
 	}
 
 	changeCoordinateWeapon(weapon, coor) {

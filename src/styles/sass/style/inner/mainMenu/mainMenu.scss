@@ -1,0 +1,48 @@
+.mainMenu {
+    width: 100%;
+    height: 100%;
+
+    .innerMainMenu {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        background: linear-gradient(180deg, #000000, #221e22);
+
+        header {
+            height: 20%;
+        }
+
+        main {
+            height: 60%;
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-end;
+            flex-direction: column;
+            font-size: 2em;
+            padding: 0.5em;
+
+            button {
+                padding: 0.3em 0;
+                background: transparent;
+                color: white;
+                border: 0;
+                outline: none;
+                font-size: 1em;
+
+                &.unActive {
+                    color: #908f90;
+                    cursor: default;
+                }
+            }
+        }
+
+        footer {
+            height: 20%;
+        }
+    }
+
+    .innerMainMenu__setting {
+
+    }
+}

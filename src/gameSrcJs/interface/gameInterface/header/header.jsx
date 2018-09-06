@@ -11,10 +11,9 @@ module.exports = class Header extends React.Component {
 		return (
 			<header className="header">
 				<HeaderIcon />
-				<HeaderStatus stateGame={this.props.stateGame} />
+				<HeaderStatus />
 				<HeaderItems
 					openPopUp={this.props.openPopUp}
-					stateGame={this.props.stateGame}
 				/>
 			</header>
 		);

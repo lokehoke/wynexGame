@@ -7,20 +7,23 @@
 		"express": "latest"
 	},
 	"devDependencies": {
-		"react-dom": "^16.4.1",
-		"react": "^16.4.1",
-		"reset-css": "^4.0.1",
-		"babel-polyfill": "^6.26.0",
 		"autoprefixer": "^9.0.1",
 		"babel-core": "latest",
 		"babel-loader": "latest",
 		"babel-plugin-transform-class-properties": "^6.24.1",
+		"babel-polyfill": "^6.26.0",
 		"babel-preset-env": "latest",
 		"babel-preset-react": "latest",
 		"css-loader": "latest",
 		"file-loader": "^1.1.11",
 		"node-sass": "latest",
+		"opn-cli": "^3.1.0",
 		"postcss-loader": "^2.1.6",
+		"react": "^16.4.1",
+		"react-dom": "^16.4.1",
+		"react-redux": "^5.0.7",
+		"redux": "^4.0.0",
+		"reset-css": "^4.0.1",
 		"sass-loader": "latest",
 		"style-loader": "latest",
 		"webpack": "latest",
@@ -29,7 +32,7 @@
 	},
 	"scripts": {
 		"b": "webpack",
-		"p": "node index.js"
+		"p": "opn http://localhost:1337 && node index.js"
 	},
 	"repository": "git+https://github.com/Lpkehoke/wynexGame.git",
 	"keywords": [

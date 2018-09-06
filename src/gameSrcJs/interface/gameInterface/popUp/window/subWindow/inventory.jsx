@@ -1,25 +1,26 @@
 'use strict';
 
 const React = require('react');
+const ReactRedux = require('react-redux');
 
 const OtherObject = require('./subInventory/otherObject.jsx');
 const Items = require('./subInventory/items.jsx');
 const Equipment = require('./subInventory/equipment.jsx');
 
-module.exports = class Inventory extends React.Component {
+class Inventory extends React.Component {
 	render() {
 		let otherObject = null;
 		let ownInvntory = (
-			<Items stateGame={this.props.stateGame} />
+			<Items />
 		);
 
-		if (this.props.otherObject.length) {
+		if (this.props.existOtherObject) {
 			otherObject = (
-				<OtherObject stateGame={this.props.stateGame} />
+				<OtherObject />
 			);
 		} else {
 			otherObject = (
-				<Equipment stateGame={this.props.stateGame} />
+				<Equipment />
 			);
 		}
 
@@ -31,3 +32,12 @@ module.exports = class Inventory extends React.Component {
 		);
 	}
 }
+
+module.exports = ReactRedux.connect(
+	store => {
+		let existOtherObject = !!(store.stateGame.getStepOnItems().length);
+		return {
+			existOtherObject
+		}
+	}
+)(Inventory);

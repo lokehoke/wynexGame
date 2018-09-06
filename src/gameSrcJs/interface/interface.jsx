@@ -1,13 +1,17 @@
 'use strict';
-
 const WEngineAPI = require('./../engine/wEngine.js');
+const GameIntarfface = require('./gameInterface/gameInterface.jsx');
 
-const React = require('react');
-const ReactDOM = require('react-dom');
+module.exports = class NewGame {
+    constructor(store) {
+        this.game = new WEngineAPI(store);
+        this.stateGame = this.game.startGame();
+        this.state = this.game.getState();
 
-const GameInterface = require('./gameInterface/gameInterface.jsx');
+        console.log(this.state);
+    }
 
-const game = new WEngineAPI();
-const state = game.startGame();
-
-ReactDOM.render(<GameInterface stateGame={state}/>, document.getElementById('interface'));
+    getGameIntarface() {
+        return GameIntarfface;
+    }
+}

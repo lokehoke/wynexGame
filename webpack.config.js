@@ -37,7 +37,7 @@ let config = {
 		main: [
 			'babel-polyfill',
 			'./src/styles/sass/index.scss',
-			'./src/gameSrcJs/interface/interface.jsx'
+			'./src/gameSrcJs/index.jsx'
 		]
 	},
 	output: {

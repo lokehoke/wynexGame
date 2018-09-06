@@ -27,8 +27,8 @@ module.exports = class Player extends Creature {
 			this.watcher = false;
 		}
 
-		this._fastItem = [];
-		this._item = [];
+		this._fastItem = [{numItems: 1, item: state.createItem(1, {x: 0, y: 0})} ];
+		this._items = [];
 
 		for (let i = 0; i < 32; i++) {
 			if (i < 6) {
@@ -38,7 +38,7 @@ module.exports = class Player extends Creature {
 				});
 			}
 
-			this._item.push({
+			this._items.push({
 				numItem: 0,
 				item: null
 			});
@@ -53,20 +53,11 @@ module.exports = class Player extends Creature {
 
 	getDemage(creature) {
 		let damage = super.getDemage(creature);
-		let event = this.state.getEventMainGetDamage();
-
-		event.detail.fromO = creature;
-		event.detail.num = damage;
-		event.detail.max = this.maxHP;
-		event.detail.cur = this.HP;
-		event.detail.type = 'hp';
-
-		document.dispatchEvent(event);
-
+		this.state.dispatchMAinGetDamage(this);
 		return damage;
 	}
 
-	getFastItem() {
+	getFastItems() {
 		return this._fastItem;
 	}
 }

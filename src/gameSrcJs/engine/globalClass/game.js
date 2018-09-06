@@ -4,8 +4,8 @@ const State = require('./state/state.js');
 const World = require('./world.js');
 
 module.exports = class ControllerGame {
-	constructor (players = null, enemy = []) {
-		this.state = new State();
+	constructor (store, players = null, enemy = []) {
+		this.state = new State(store);
 		this._settings = this.state.getSetting();
 		this._setPlayers(players, this.state);
 
@@ -69,31 +69,11 @@ module.exports = class ControllerGame {
 		if (players !== null) {
 			players.forEach((val) => {
 				state.setPlayer(val);
-
-				if (val.watcher) {
-					despetchStartHP();
-				}
 			});
 
 			return true;
 		} else {
 			return false;
-		}
-
-		function despetchStartHP() {
-			let event = state.getEventMainGetHP();
-
-			event.detail.fromO = {
-				id: 'gameStartRefresh'
-			};
-
-			let hp = setting.standartPlayer.maxHP;
-
-			event.detail.num = hp;
-			event.detail.max = hp;
-			event.detail.cur = hp;
-
-			document.dispatchEvent(event);
 		}
 	}
 
